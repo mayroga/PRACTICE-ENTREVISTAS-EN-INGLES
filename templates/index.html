@@ -3,1354 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAY ROGA LLC - Executive & RN English Trainer (180 Q&A)</title>
+    <title>May Roga LLC - Inglés Laboral e Entrevistas</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .phonetic-card { background-color: #e0f2fe; border-left: 5px solid #0284c7; color: #0369a1; }
-        .spanish-card { background-color: #f1f5f9; border-left: 5px solid #64748b; color: #334155; }
+        .compact-card { padding: 12px; margin-bottom: 10px; }
+        .btn-audio { padding: 4px 10px; font-size: 0.85rem; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
-
-    <!-- CABECERA DE ALTO NIVEL -->
-    <header class="bg-slate-900 text-white py-3 px-4 shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-crown text-amber-400 text-2xl"></i>
-                <div>
-                    <h1 class="font-black text-lg text-amber-400 leading-none">MAY ROGA LLC</h1>
-                    <p class="text-[11px] text-slate-300">Executive MBA & Registered Nurse (RN) English Trainer</p>
-                </div>
-            </div>
-            <button onclick="app.reset()" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-bold transition">
-                <i class="fa-solid fa-rotate-left mr-1"></i> Reiniciar
-            </button>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+    <!-- Header compact -->
+    <header class="bg-indigo-900 text-white p-3 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                <i class="fas fa-briefcase text-yellow-400"></i> May Roga LLC - English Coach
+            </h1>
+            <span class="text-xs bg-indigo-800 px-2 py-1 rounded border border-indigo-700">Versión 2.0 | Render Ready</span>
         </div>
     </header>
 
-    <!-- PANEL PRINCIPAL -->
-    <main class="max-w-7xl mx-auto w-full p-3 sm:p-5 flex-1 space-y-4">
-
-        <!-- SELECTOR DE SECTOR -->
-        <div class="bg-white rounded-xl p-3 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
-            <div class="flex items-center gap-2 text-slate-900 font-extrabold text-sm uppercase">
-                <i class="fa-solid fa-user-tie text-sky-600 text-base"></i>
-                <span>Sector Profesional / Directivo:</span>
-            </div>
-            <select id="sectorSelect" onchange="app.changeSector()" class="bg-slate-50 border border-slate-300 text-slate-900 rounded-lg p-2 font-bold text-sm focus:ring-2 focus:ring-sky-500 w-full md:w-auto">
-                <option value="hospitales">🏥 Hospital Management, RN Leadership & Compliance (30 Preguntas)</option>
-                <option value="gobierno">🏛️ Gobierno, Compras Públicas y Alta Dirección (30 Preguntas)</option>
-                <option value="logistics">📦 Directivos de Logística, Puertos y Cadena de Suministro (30 Preguntas)</option>
-                <option value="airlines">✈️ Ejecutivos de Aerolíneas y Operaciones de Rampa (30 Preguntas)</option>
-                <option value="restaurantes">🍽️ Gerencia General de Restaurantes y Cadenas (30 Preguntas)</option>
-                <option value="situaciones">⚡ Estrategia Ejecutiva, Negociación y Salario MBA (30 Preguntas)</option>
-            </select>
-        </div>
-
-        <!-- TARJETA DE ESTUDIO -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto w-full p-2 md:p-4 flex-grow grid grid-cols-1 md:grid-cols-4 gap-3">
+        <!-- Sidebar Filtros -->
+        <aside class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 h-fit md:col-span-1">
+            <h2 class="font-bold text-slate-700 text-sm mb-2 border-b pb-1"><i class="fas fa-filter"></i> Filtros de Práctica</h2>
             
-            <!-- SECCIÓN PREGUNTAS Y RESPUESTAS (2 COLS) -->
-            <div class="lg:col-span-2 bg-white rounded-xl border border-slate-300 shadow-md p-4 sm:p-6 flex flex-col justify-between space-y-4">
+            <div class="mb-3">
+                <label class="block text-xs font-semibold text-slate-600 mb-1">Sector / Área Laboral</label>
+                <select id="sectorSelect" class="w-full text-xs p-2 border rounded bg-slate-50 focus:ring-1 focus:ring-indigo-500">
+                    <option value="all">Todas las categorías</option>
+                    <option value="logistics">Logística y Almacén</option>
+                    <option value="airlines">Aerolíneas y Transporte</option>
+                    <option value="customer_service">Servicio al Cliente / Ventas</option>
+                    <option value="admin">Administración y Compras</option>
+                    <option value="hospitality">Restaurantes y Svc. Comida</option>
+                    <option value="supervision">Supervisión y Gerencia</option>
+                    <option value="health_management">Hospitales: Management</option>
+                    <option value="health_compliance">Hospitales: Compliance</option>
+                    <option value="health_security">Hospitales: Seguridad</option>
+                    <option value="government">Gobierno y Sector Público</option>
+                    <option value="difficult_situations">Situaciones Difíciles y Salario</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="block text-xs font-semibold text-slate-600 mb-1">Nivel de Inglés</label>
+                <select id="levelSelect" class="w-full text-xs p-2 border rounded bg-slate-50">
+                    <option value="all">Todos los niveles</option>
+                    <option value="basic">Básico / Principiante</option>
+                    <option value="intermediate">Intermedio</option>
+                    <option value="advanced">Avanzado / Directivo</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="block text-xs font-semibold text-slate-600 mb-1">Buscar por Palabra Clave</label>
+                <input type="text" id="searchInput" placeholder="Ej: salary, mistake..." class="w-full text-xs p-2 border rounded">
+            </div>
+
+            <div class="pt-2 border-t">
+                <div class="flex justify-between text-xs text-slate-500 mb-1">
+                    <span>Progreso Guardado:</span>
+                    <span id="progressStats" class="font-bold text-indigo-600">0/0</span>
+                </div>
+                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-indigo-600 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content area -->
+        <section class="md:col-span-3 flex flex-col gap-3">
+            <!-- Navigation Tabs -->
+            <div class="flex bg-white rounded-lg p-1 shadow-sm border border-slate-200 text-xs font-semibold">
+                <button id="tabList" onclick="switchMode('list')" class="flex-1 py-2 rounded bg-indigo-600 text-white transition"><i class="fas fa-list mr-1"></i> Módulo Completo</button>
+                <button id="tabInterview" onclick="switchMode('interview')" class="flex-1 py-2 rounded text-slate-600 hover:bg-slate-100 transition"><i class="fas fa-user-tie mr-1"></i> Modo Entrevista (1 a 1)</button>
+                <button id="tabVoice" onclick="switchMode('voice')" class="flex-1 py-2 rounded text-slate-600 hover:bg-slate-100 transition"><i class="fas fa-microphone mr-1"></i> Practicar Pronunciación</button>
+            </div>
+
+            <!-- View 1: List Mode -->
+            <div id="viewList" class="space-y-2">
+                <!-- Cards will be generated via JavaScript dynamically without content loss -->
+            </div>
+
+            <!-- View 2: Single Question / Interview Mode -->
+            <div id="viewInterview" class="hidden bg-white p-5 rounded-lg shadow-sm border border-slate-200 text-center">
+                <span id="interviewCategory" class="text-xs bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded-full uppercase">Categoría</span>
+                <h3 id="interviewQuestion" class="text-lg font-bold text-slate-800 mt-3 mb-1">Pregunta aquí...</h3>
+                <p id="interviewPhonetics" class="text-xs text-amber-700 italic mb-1">pronunciación aquí</p>
+                <p id="interviewTranslation" class="text-xs text-slate-500 mb-4">Traducción aquí</p>
+
+                <div class="my-4 p-3 bg-slate-50 border rounded text-left">
+                    <span class="text-xs font-bold text-slate-400 block mb-1">RESPUESTA MODELO:</span>
+                    <p id="interviewAnswer" class="text-sm text-slate-700 font-medium">Respuesta aquí...</p>
+                    <p id="interviewAnsPhonetics" class="text-xs text-amber-700 italic mt-1">pronunciación de respuesta</p>
+                    <p id="interviewAnsTranslation" class="text-xs text-slate-500 mt-1">Traducción de respuesta</p>
+                </div>
+
+                <div class="flex justify-center gap-2 my-3">
+                    <button id="btnListenQ" class="btn-audio bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-semibold rounded flex items-center gap-1"><i class="fas fa-volume-up"></i> Escuchar Pregunta</button>
+                    <button id="btnListenA" class="btn-audio bg-emerald-100 hover:bg-emerald-200 text-emerald-700 font-semibold rounded flex items-center gap-1"><i class="fas fa-volume-up"></i> Escuchar Respuesta</button>
+                </div>
+
+                <div class="flex justify-between items-center mt-6 pt-3 border-t">
+                    <button onclick="prevQuestion()" class="text-xs px-3 py-1.5 bg-slate-200 rounded hover:bg-slate-300"><i class="fas fa-arrow-left"></i> Anterior</button>
+                    <span id="interviewCounter" class="text-xs text-slate-500">1 de 40</span>
+                    <button onclick="nextQuestion()" class="text-xs px-3 py-1.5 bg-indigo-600 text-white rounded hover:bg-indigo-700">Siguiente <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- View 3: Voice Practice Mode -->
+            <div id="viewVoice" class="hidden bg-white p-5 rounded-lg shadow-sm border border-slate-200 text-center">
+                <h3 class="font-bold text-slate-700 mb-2">Entrenador Válido de Pronunciación</h3>
+                <p class="text-xs text-slate-500 mb-4">Haz clic en el micrófono, lee la respuesta sugerida en voz alta y comprueba tu precisión.</p>
                 
-                <div class="space-y-4">
-                    <!-- BARRA DE ESTADO -->
-                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-                        <span id="sectorBadge" class="bg-sky-100 text-sky-900 font-black text-xs px-3 py-1 rounded uppercase">HOSPITAL MANAGEMENT</span>
-                        <span id="progressCounter" class="font-extrabold text-slate-700 text-sm">Pregunta 1 de 30</span>
-                    </div>
-
-                    <!-- BLOQUE PREGUNTA -->
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-black text-slate-500 uppercase">Pregunta Directiva en Inglés</span>
-                            <button onclick="app.speak('q')" class="bg-sky-600 hover:bg-sky-700 text-white px-3 py-1 rounded text-xs font-bold transition flex items-center gap-1">
-                                <i class="fa-solid fa-volume-high"></i> Escuchar Pregunta
-                            </button>
-                        </div>
-                        <h2 id="qEnText" class="text-lg sm:text-xl font-black text-slate-900 leading-snug">--</h2>
-                        
-                        <!-- PRONUNCIACIÓN CORRIDA EN ESPAÑOL -->
-                        <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
-                            <span class="text-[11px] font-black uppercase block text-sky-800">Pronunciación Guía (Lee en español corrido):</span>
-                            <p id="qPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
-                        </div>
-                        
-                        <div class="spanish-card p-2.5 rounded-lg text-xs sm:text-sm">
-                            <span class="text-[10px] font-bold uppercase block text-slate-500">Significado en Español:</span>
-                            <p id="qEsText" class="text-slate-800 font-medium">--</p>
-                        </div>
-                    </div>
-
-                    <hr class="border-slate-200">
-
-                    <!-- BLOQUE RESPUESTA -->
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-black text-slate-500 uppercase">Respuesta Estratégica Recomendada</span>
-                            <button onclick="app.speak('a')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded text-xs font-bold transition flex items-center gap-1">
-                                <i class="fa-solid fa-volume-high"></i> Escuchar Respuesta
-                            </button>
-                        </div>
-                        <h3 id="aEnText" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">--</h3>
-                        
-                        <!-- PRONUNCIACIÓN CORRIDA EN ESPAÑOL RESPUESTA -->
-                        <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
-                            <span class="text-[11px] font-black uppercase block text-sky-800">Pronunciación Guía (Lee en español corrido):</span>
-                            <p id="aPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
-                        </div>
-
-                        <div class="spanish-card p-2.5 rounded-lg text-xs sm:text-sm">
-                            <span class="text-[10px] font-bold uppercase block text-slate-500">Significado en Español:</span>
-                            <p id="aEsText" class="text-slate-800 font-medium">--</p>
-                        </div>
-                    </div>
+                <div id="voiceCard" class="p-4 bg-slate-50 rounded border mb-4">
+                    <p id="voiceTargetText" class="text-base font-semibold text-slate-800">Cargando frase...</p>
+                    <p id="voiceTargetPhonetic" class="text-xs text-amber-700 italic mt-1"></p>
                 </div>
 
-                <!-- NAVEGACIÓN -->
-                <div class="flex items-center justify-between border-t border-slate-200 pt-3 mt-2">
-                    <button onclick="app.prev()" class="bg-slate-200 hover:bg-slate-300 text-slate-900 px-4 py-2 rounded-lg font-bold text-xs sm:text-sm transition flex items-center gap-1">
-                        <i class="fa-solid fa-arrow-left"></i> Anterior
-                    </button>
-                    <button onclick="app.next()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-5 py-2 rounded-lg font-black text-xs sm:text-sm transition flex items-center gap-1 shadow">
-                        Siguiente <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
+                <button id="micBtn" onclick="toggleSpeechRecognition()" class="w-16 h-16 rounded-full bg-indigo-600 text-white text-2xl shadow-lg hover:bg-indigo-700 transition flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <p id="micStatus" class="text-xs text-slate-400">Haz clic para empezar a hablar</p>
 
-            </div>
-
-            <!-- PANEL MICRÓFONO Y EVALUACIÓN (1 COL) -->
-            <div class="bg-white rounded-xl border border-slate-300 shadow-md p-4 space-y-4 flex flex-col justify-between">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2 text-red-600 font-black text-sm border-b border-slate-200 pb-2">
-                        <i class="fa-solid fa-microphone-lines text-lg"></i>
-                        <span>Entrenador de Voz Directiva</span>
-                    </div>
-                    <p class="text-xs text-slate-600 font-medium leading-normal">
-                        Presiona el botón rojo y lee la respuesta estratégica en voz alta. Evaluaremos la firmeza y precisión de tu voz.
-                    </p>
-
-                    <button id="micBtn" onclick="app.toggleMic()" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-black text-xs sm:text-sm rounded-lg shadow transition flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-microphone text-base"></i>
-                        <span id="micBtnText">Presionar para Hablar</span>
-                    </button>
-
-                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase block">El sistema escuchó:</span>
-                        <p id="userSpokenText" class="text-xs font-bold text-sky-800 italic min-h-[32px]">Esperando que hables...</p>
-                    </div>
-
-                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center space-y-0.5">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase block">Precisión de Voz</span>
-                        <span id="scoreText" class="text-2xl font-black text-amber-500">--%</span>
-                    </div>
-                </div>
-
-                <div class="text-center text-[10px] font-bold text-slate-400 pt-2 border-t border-slate-100">
-                    MAY ROGA LLC © 2026 • Executive MBA & RN Level
+                <div class="mt-4 p-3 border rounded bg-white min-h-[60px] text-left">
+                    <span class="text-xs text-slate-400 block mb-1">Lo que el sistema escuchó:</span>
+                    <p id="speechResult" class="text-sm font-medium text-slate-700 italic">Esperando audio...</p>
                 </div>
             </div>
-
-        </div>
-
+        </section>
     </main>
 
+    <footer class="bg-slate-800 text-slate-400 text-xs p-3 text-center mt-auto">
+        <p>May Roga LLC &copy; 2026 | Sistema de Capacitación e Inglés Laboral. Todos los derechos reservados.</p>
+    </footer>
+
     <script>
-        // BASE DE DATOS MASIVA DE 180 PREGUNTAS Y RESPUESTAS ÚNICAS E INDIVIDUALIZADAS
-        const FULL_180_DATABASE = {
-            hospitales: [
-                {
-                    qEn: "How do you align clinical nursing operations with executive financial targets while maintaining optimal patient outcomes?",
-                    qPhonetic: "Jau du yu alain klinikal nersing opereishons uid egsekiutiv finanshal targets uail meinteining optimal peishent autkams?",
-                    qEs: "¿Cómo alineas las operaciones de enfermería clínica con los objetivos financieros ejecutivos manteniendo resultados óptimos en pacientes?",
-                    aEn: "I optimize nurse staffing ratios, eliminate operational waste, and implement evidence-based protocols that decrease length of stay.",
-                    aPhonetic: "Ai optimais ners estafing reishios, elimineit opereishonal ueist, end implement evidens beist protokols dat dikris lenth ov stei.",
-                    aEs: "Optimizo la proporción de personal de enfermería, elimino desperdicios operativos e implemento protocolos basados en evidencia que reducen la estancia hospitalaria."
-                },
-                {
-                    qEn: "How do you manage regulatory risk and AHCA compliance across a multi-departmental Florida hospital system?",
-                    qPhonetic: "Jau du yu manadsh regulatori risk end eitch eitch si ei komplaians akros a multi departmental Florida hospital sistem?",
-                    qEs: "¿Cómo gestionas el riesgo regulatorio y el cumplimiento de AHCA en un sistema hospitalario multidepartamental de Florida?",
-                    aEn: "I establish continuous mock audits, enforce strict HIPAA safeguards, and conduct weekly interdisciplinary risk reviews.",
-                    aPhonetic: "Ai establish kontinuous mok odits, enfors strikt jipa seifgards, end kondakt uikli interdisiplinari risk rivius.",
-                    aEs: "Establezco auditorías simuladas continuas, aplico salvaguardas estrictas de HIPAA y realizo revisiones semanales interdisciplinarias de riesgo."
-                },
-                {
-                    qEn: "How do you lead nursing teams through major health system transformations and EMR transitions?",
-                    qPhonetic: "Jau du yu lid nersing tims thru meidor jelth sistem transformations end i em ar transishons?",
-                    qEs: "¿Cómo lideras a los equipos de enfermería durante grandes transformaciones del sistema de salud y transiciones de EHR/EMR?",
-                    aEn: "I engage clinical champions, provide structured hands-on training, and maintain transparent executive communication.",
-                    aPhonetic: "Ai engeidsh klinikal tshampions, provaid estrokturd jands on treining, end meintein transparent egsekiutiv komiunikeishon.",
-                    aEs: "Involucro a líderes clínicos, brindo capacitación práctica estructurada y mantengo una comunicación ejecutiva transparente."
-                },
-                {
-                    qEn: "What strategy do you use to mitigate medical errors and build a culture of clinical safety?",
-                    qPhonetic: "Uat strateidshi du yu ius tu mitigeit medikal erors end bild a kultiur ov klinikal seifti?",
-                    qEs: "¿Qué estrategia utilizas para mitigar errores médicos y construir una cultura de seguridad clínica?",
-                    aEn: "I foster a non-punitive reporting environment, mandate root-cause analysis for near-misses, and standardize clinical handoffs.",
-                    aPhonetic: "Ai foster a non piunitiv riporting envaironment, mandeit rut kos analisis for nir mises, end estandardais klinikal jandoffs.",
-                    aEs: "Fomento un entorno de reporte no punitivo, exijo análisis de causa raíz para casi-accidentes y estandarizo los relevos clínicos."
-                },
-                {
-                    qEn: "How do you control departmental operating budgets during severe Registered Nurse shortages?",
-                    qPhonetic: "Jau du yu kontrol departmental opereiting badgets diuring sevir redjisterd ners shortadtshes?",
-                    qEs: "¿Cómo controlas los presupuestos operativos departamentales durante escasez severa de enfermeros registrados (RN)?",
-                    aEn: "I minimize high-cost agency reliance by improving retention incentives, flexible scheduling, and internal float pools.",
-                    aPhonetic: "Ai minimais jai kost eidentsi relians bai imprubing ritenshon insentivs, fleksibel eskeduling, end internal flout puls.",
-                    aEs: "Minimizo la dependencia de agencias de alto costo mejorando los incentivos de retención, horarios flexibles y equipos de apoyo internos."
-                },
-                {
-                    qEn: "How do you handle a critical sentinel event that occurs in an intensive care unit?",
-                    qPhonetic: "Jau du yu jandel a kritikal sentinel event dat okurs in an intensiv ker iunit?",
-                    qEs: "¿Cómo manejas un evento centinela crítico que ocurre en una unidad de cuidados intensivos?",
-                    aEn: "I secure the clinical area, notify executive leadership, launch an immediate root-cause investigation, and file required statutory reports.",
-                    aPhonetic: "Ai sikiur da klinikal eria, notifai egsekiutiv lidership, lontsh an imidiat rut kos investigeishon, end fail rikuaird estatutori riports.",
-                    aEs: "Aseguro el área clínica, notifico al liderazgo ejecutivo, inicio una investigación inmediata de causa raíz y presento los informes legales requeridos."
-                },
-                {
-                    qEn: "How do you maintain Joint Commission accreditation readiness across all clinical wards?",
-                    qPhonetic: "Jau du yu meintein dshoint komishon akrediteishon redines akros ol klinikal uards?",
-                    qEs: "¿Cómo mantienes la preparación constante para la acreditación de la Joint Commission en todas las salas clínicas?",
-                    aEn: "I institute continuous tracer methodology audits, conduct weekly environmental rounds, and enforce national patient safety goals.",
-                    aPhonetic: "Ai institiut kontinuous treiser metodolodshi odits, kondakt uikli envaironmental raunds, end enfors nashonal peishent seifti gouls.",
-                    aEs: "Instituyo auditorías continuas con metodología rastreadora, realizo rondas ambientales semanales y aplico los objetivos nacionales de seguridad del paciente."
-                },
-                {
-                    qEn: "How do you evaluate and integrate new medical technologies to improve clinical workflow efficiency?",
-                    qPhonetic: "Jau du yu evaliueit end meintein niu medikal teknolodshis tu imprub klinikal uerkflou efishensi?",
-                    qEs: "¿Cómo evalúas e integras nuevas tecnologías médicas para mejorar la eficiencia del flujo de trabajo clínico?",
-                    aEn: "I lead interdisciplinary technology committees, analyze ROI and clinical outcomes, and oversee structured staff onboarding.",
-                    aPhonetic: "Ai lid interdisiplinari teknolodshi komittis, analais ar oi ai end klinikal autkams, end oversi estrokturd estaff onboarding.",
-                    aEs: "Lidero comités interdisciplinarios de tecnología, analizo el retorno de inversión y resultados clínicos, y superviso la incorporación estructurada del personal."
-                },
-                {
-                    qEn: "How do you manage physician-nursing communication conflicts in high-pressure clinical environments?",
-                    qPhonetic: "Jau du yu manadsh fisishan nersing komiunikeishon konflikts in jai presher klinikal envaironments?",
-                    qEs: "¿Cómo manejas conflictos de comunicación entre médicos y enfermeros en entornos clínicos de alta presión?",
-                    aEn: "I enforce standardized SBAR communication frameworks and mediate interprofessional disputes with mutual clinical respect.",
-                    aPhonetic: "Ai enfors estandardaisd es bi ai ar komiunikeishon freimuerks end midieit interprofeshonal dispiuts uid miutual klinikal rispekt.",
-                    aEs: "Aplico marcos de comunicación estandarizados SBAR y medio en disputas interprofesionales con respeto clínico mutuo."
-                },
-                {
-                    qEn: "How do you ensure proper narcotics reconciliation and pharmacy security compliance?",
-                    qPhonetic: "Jau du yu enshur proper narkotiks rekonsilieishon end farmasi sikiuriti komplaians?",
-                    qEs: "¿Cómo garantizas la conciliación adecuada de narcóticos y el cumplimiento de seguridad farmacéutica?",
-                    aEn: "I mandate automated dispensing cabinet audits, implement dual-signoff protocols, and investigate inventory discrepancies instantly.",
-                    aPhonetic: "Ai mandeit automatid dispensing kabinet odits, implement dual sainoff protokols, end investigeit inventori diskrepansis instantli.",
-                    aEs: "Exijo auditorías automatizadas de gabinetes de dispensación, implemento protocolos de doble firma e investigo discrepancias de inventario al instante."
-                },
-                {
-                    qEn: "How do you lead quality improvement initiatives to reduce hospital-acquired infections?",
-                    qPhonetic: "Jau du yu lid kualiti imprubment inishiativs tu ridius hospital akuaird infekshons?",
-                    qEs: "¿Cómo lideras iniciativas de mejora de calidad para reducir infecciones intrahospitalarias?",
-                    aEn: "I implement evidence-based infection control bundles, mandate hand hygiene compliance, and track unit-level surveillance data.",
-                    aPhonetic: "Ai implement evidens beist infekshon kontrol bandels, mandeit jand jaijdshin komplaians, end trak iunit level sirveilans deita.",
-                    aEs: "Implemento paquetes de control de infecciones basados en evidencia, exijo cumplimiento de higiene de manos y sigo datos de vigilancia por unidad."
-                },
-                {
-                    qEn: "How do you manage patient throughput and bed utilization in emergency department boarding crises?",
-                    qPhonetic: "Jau du yu manadsh peishent thruput end bed iutiliseishon in emerdjensi department boarding kraisis?",
-                    qEs: "¿Cómo manejas el flujo de pacientes y utilización de camas en crisis de saturación de emergencias?",
-                    aEn: "I activate surge capacity protocols, streamline discharge planning rounds, and accelerate bed turnover operations.",
-                    aPhonetic: "Ai aktiveit serdsh kapasiti protokols, strimlain distshardsh planing raunds, end ekselereit bed turnover opereishons.",
-                    aEs: "Activo protocolos de capacidad de respuesta, optimizo las rondas de planificación de altas y acelero la rotación de camas."
-                },
-                {
-                    qEn: "How do you balance patient satisfaction metrics with clinical nursing compliance requirements?",
-                    qPhonetic: "Jau du yu balans peishent satisfakshon metriks uid klinikal nersing komplaians rikuairments?",
-                    qEs: "¿Cómo balanceas las métricas de satisfacción del paciente con los requisitos de cumplimiento de enfermería clínica?",
-                    aEn: "I train nursing leaders in purposeful hourly rounding, active listening, and empathetic clear clinical communication.",
-                    aPhonetic: "Ai trein nersing liders in perposful auerli raunding, aktiv lisening, end empathetik klier klinikal komiunikeishon.",
-                    aEs: "Capacito a los líderes de enfermería en rondas horarias intencionadas, escucha activa y comunicación clínica clara y empática."
-                },
-                {
-                    qEn: "How do you oversee hospital emergency preparedness for severe hurricane landfalls in Florida?",
-                    qPhonetic: "Jau du yu oversi hospital emerdjensi prepardnes for sevir jurrikein landfols in Florida?",
-                    qEs: "¿Cómo supervisas la preparación para emergencias hospitalarias ante la llegada de huracanes en Florida?",
-                    aEn: "I review generator fuel reserves, secure clinical supply stockpiles, and establish ride-out staffing rosters.",
-                    aPhonetic: "Ai riviu djenerator fiuel riservs, sikiur klinikal suplai stokpails, end establish raid aut estafing rosters.",
-                    aEs: "Reviso las reservas de combustible de generadores, aseguro suministros clínicos y establezco turnos de personal para contingencias."
-                },
-                {
-                    qEn: "How do you optimize operating room utilization and surgical scheduling efficiency?",
-                    qPhonetic: "Jau du yu optimais opereiting rum iutiliseishon end serdshikal eskeduling efishensi?",
-                    qEs: "¿Cómo optimizas la utilización del quirófano y la eficiencia en la programación quirúrgica?",
-                    aEn: "I monitor block time allocation, enforce first-case on-time starts, and streamline turnover protocols between procedures.",
-                    aPhonetic: "Ai monitor blok taim alokeishon, enfors ferst keis on taim estarts, end strimlain turnover protokols bituin prosidiurs.",
-                    aEs: "Monitoreo la asignación de bloques de tiempo, exijo puntualidad en el primer caso y optimizo protocolos de rotación entre procedimientos."
-                },
-                {
-                    qEn: "How do you manage clinical risk associated with off-label medication usage in specialized care?",
-                    qPhonetic: "Jau du yu manadsh klinikal risk asoshieitid uid off leibel medikeishon iusedsh in speshalaizd ker?",
-                    qEs: "¿Cómo manejas el riesgo clínico asociado al uso de medicamentos fuera de indicación en atención especializada?",
-                    aEn: "I mandate pharmacy and therapeutics committee review, require explicit informed consent, and track patient monitoring metrics.",
-                    aPhonetic: "Ai mandeit farmasi end therepiutiks komitti riviu, rikuair eksplisit informd konsent, end trak peishent monitoring metriks.",
-                    aEs: "Exijo revisión del comité de farmacia y terapéutica, requiero consentimiento informado explícito y sigo las métricas de monitoreo."
-                },
-                {
-                    qEn: "How do you handle staff burnout and compassion fatigue among critical care nursing teams?",
-                    qPhonetic: "Jau du yu jandel estaff bernaut end kompeshon fatig among kritikal ker nersing tims?",
-                    qEs: "¿Cómo manejas el desgaste profesional y la fatiga por compasión en equipos de enfermería de cuidados intensivos?",
-                    aEn: "I implement peer support programs, mandate fair shift rotation schedules, and encourage utilization of employee assistance resources.",
-                    aPhonetic: "Ai implement pir esport programs, mandeit fer shift roteishon eskediuls, end enkoradsh iutiliseishon ov emploii asistans risorsis.",
-                    aEs: "Implemento programas de apoyo entre pares, exijo esquemas justos de rotación de turnos y fomento el uso de recursos de asistencia al empleado."
-                },
-                {
-                    qEn: "How do you ensure full compliance with Florida Board of Nursing scope of practice regulations?",
-                    qPhonetic: "Jau du yu enshur ful komplaians uid Florida Bord ov Nersing eskoup ov praktis regiuleishons?",
-                    qEs: "¿Cómo garantizas el cumplimiento total con las regulaciones del alcance de la práctica de la Junta de Enfermería de Florida?",
-                    aEn: "I audit clinical job descriptions, verify license renewal credentials continuously, and mandate ongoing competency assessments.",
-                    aPhonetic: "Ai odit klinikal djob deskripshons, verifai laisens riniu-al kredenshals kontinuousli, end mandeit ongoing kompetensi asesments.",
-                    aEs: "Audito descripciones de puestos clínicos, verifico credenciales de renovación de licencias continuamente y exijo evaluaciones de competencia."
-                },
-                {
-                    qEn: "How do you evaluate clinical nursing productivity metrics without compromising patient safety?",
-                    qPhonetic: "Jau du yu evaliueit klinikal nersing produktiviti metriks uidaut kompromaising peishent seifti?",
-                    qEs: "¿Cómo evalúas las métricas de productividad de enfermería clínica sin comprometer la seguridad del paciente?",
-                    aEn: "I analyze hours per patient day, adjust for patient acuity levels, and prioritize direct clinical care time.",
-                    aPhonetic: "Ai analais auers per peishent dei, adshast for peishent akiuiti levels, end praioritais direkt klinikal ker taim.",
-                    aEs: "Analizo horas por día paciente, me ajusto a los niveles de gravedad del paciente y priorizo el tiempo de atención clínica directa."
-                },
-                {
-                    qEn: "How do you lead clinical research integration into hospital bedside nursing care?",
-                    qPhonetic: "Jau du yu lid klinikal risertsh integr eishon intu hospital bedsaid nersing ker?",
-                    qEs: "¿Cómo lideras la integración de la investigación clínica en la atención de enfermería a pie de cama?",
-                    aEn: "I establish nursing research councils, support evidence-based practice projects, and facilitate clinical trials compliance.",
-                    aPhonetic: "Ai establish nersing risertsh kaunsils, esport evidens beist praktis prodjekts, end fasiliteit klinikal traials komplaians.",
-                    aEs: "Establezco consejos de investigación de enfermería, apoyo proyectos de práctica basada en evidencia y facilito el cumplimiento de ensayos clínicos."
-                },
-                {
-                    qEn: "How do you handle severe patient advocacy complaints involving alleged clinical negligence?",
-                    qPhonetic: "Jau du yu jandel sevir peishent advokasi kompleints involving aledshd klinikal neglidshens?",
-                    qEs: "¿Cómo manejas quejas graves de defensores del paciente que involucran presunta negligencia clínica?",
-                    aEn: "I initiate an immediate confidential clinical chart review, interview involved staff, and brief risk management counsel.",
-                    aPhonetic: "Ai inishieit an imidiat konfidenshal klinikal tshart riviu, interviu involvd estaff, end brif risk manadshment kaunsel.",
-                    aEs: "Inicio una revisión confidencial de la historia clínica, entrevisto al personal involucrado e informo al asesor de gestión de riesgos."
-                },
-                {
-                    qEn: "How do you optimize outpatient clinic operations and appointment scheduling flow?",
-                    qPhonetic: "Jau du yu optimais autpeishent klinik opereishons end apointment eskeduling flou?",
-                    qEs: "¿Cómo optimizas las operaciones de clínicas ambulatorias y el flujo de programación de citas?",
-                    aEn: "I implement digital check-in platforms, streamline pre-visit documentation, and optimize clinical room allocation.",
-                    aPhonetic: "Ai implement djdshital chek in platforms, strimlain pri visit dokiumenteishon, end optimais klinikal rum alokeishon.",
-                    aEs: "Implemento plataformas digitales de registro, optimizo la documentación previa a la visita y la asignación de salas clínicas."
-                },
-                {
-                    qEn: "How do you manage hospital accreditation audits for specialized trauma centers?",
-                    qPhonetic: "Jau du yu manadsh hospital akrediteishon odits for speshalaizd trauma senters?",
-                    qEs: "¿Cómo manejas las auditorías de acreditación hospitalaria para centros traumatológicos especializados?",
-                    aEn: "I verify trauma registry accuracy, audit resuscitation bay readiness, and ensure full compliance with state designation criteria.",
-                    aPhonetic: "Ai verifai trauma redjistri akiurasi, odit risasiteishon bei redines, end enshur ful komplaians uid steit designeishon kraiteria.",
-                    aEs: "Verifico la precisión del registro de trauma, audito la preparación de las salas de reanimación y aseguro cumplimiento con criterios estatales."
-                },
-                {
-                    qEn: "How do you oversee central sterile supply decontamination and surgical sterilization standards?",
-                    qPhonetic: "Jau du yu oversi sentral esteril suplai dikontamineishon end serdshikal esteriliseishon estandards?",
-                    qEs: "¿Cómo supervisas la descontaminación de suministros esterilizados centrales y las normas de esterilización quirúrgica?",
-                    aEn: "I audit biological indicator testing logs, enforce strict clean-to-dirty traffic flows, and verify instrument tracking systems.",
-                    aPhonetic: "Ai odit baiolodshikal indikeitor testing logs, enfors strikt klin tu derti trafik flous, end verifai instrument traking sistems.",
-                    aEs: "Audito registros de pruebas con indicadores biológicos, aplico flujos de tráfico limpios y sucios y verifico sistemas de rastreo."
-                },
-                {
-                    qEn: "How do you lead interdisciplinary palliative care team integration across acute care units?",
-                    qPhonetic: "Jau du yu lid interdisiplinari paliativ ker tim integreishon akros akiut ker iunits?",
-                    qEs: "¿Cómo lideras la integración de equipos interdisciplinarios de cuidados paliativos en unidades de atención aguda?",
-                    aEn: "I facilitate goal-of-care consultations early, train clinical staff in symptom management, and support family conferences.",
-                    aPhonetic: "Ai fasiliteit goul ov ker konsulteishons erli, trein klinikal estaff in simptom manadshment, end esport famili konferensis.",
-                    aEs: "Facilito consultas tempranas sobre objetivos de atención, capacito al personal en manejo de síntomas y apoyo reuniones familiares."
-                },
-                {
-                    qEn: "How do you ensure ethical compliance in clinical research trial recruitment within hospitals?",
-                    qPhonetic: "Jau du yu enshur etikal komplaians in klinikal risertsh traial rikruitment uidin hospitals?",
-                    qEs: "¿Cómo garantizas el cumplimiento ético en el reclutamiento para ensayos de investigación clínica en hospitales?",
-                    aEn: "I enforce Institutional Review Board mandates, audit informed consent documentation, and protect vulnerable patient populations.",
-                    aPhonetic: "Ai enfors Institushonal Riviu Bord mandeits, odit informd konsent dokiumenteishon, end protekt vulnerabel peishent populeishons.",
-                    aEs: "Aplico mandatos del Consejo de Revisión Institucional, audito la documentación de consentimiento informado y protejo a poblaciones vulnerables."
-                },
-                {
-                    qEn: "How do you manage hospital pharmacy drug formulary changes and clinical staff education?",
-                    qPhonetic: "Jau du yu manadsh hospital farmasi drog formulari tsheindshes end klinikal estaff ediukeishon?",
-                    qEs: "¿Cómo manejas los cambios en el petitorio de medicamentos de la farmacia hospitalaria y la educación del personal clínico?",
-                    aEn: "I coordinate with the pharmacy director, issue high-alert drug warnings, and conduct mandatory clinical competency updates.",
-                    aPhonetic: "Ai koordineit uid da farmasi direktor, ishiu jai alert drog uarnings, end kondakt mandatori klinikal kompetensi apdeits.",
-                    aEs: "Coordino con el director de farmacia, emito advertencias de medicamentos de alto riesgo y realizo actualizaciones de competencia obligatorias."
-                },
-                {
-                    qEn: "How do you lead clinical risk reduction initiatives for hospital inpatient fall prevention?",
-                    qPhonetic: "Jau du yu lid klinikal risk ridukshon inishiativs for hospital inpeishent fol prevenshon?",
-                    qEs: "¿Cómo lideras iniciativas de reducción de riesgo clínico para la prevención de caídas de pacientes hospitalizados?",
-                    aEn: "I mandate validated fall risk assessments upon admission, implement bed alarm protocols, and audit environmental hazards continuously.",
-                    aPhonetic: "Ai mandeit valideitid fol risk asesments upon admishon, implement bed alarm protokols, end odit envaironmental jasards kontinuousli.",
-                    aEs: "Exijo evaluaciones validadas de riesgo de caídas al ingreso, implemento alarmas de cama y audito peligros ambientales continuamente."
-                },
-                {
-                    qEn: "How do you oversee hospital telehealth platform integration for remote clinical patient monitoring?",
-                    qPhonetic: "Jau du yu oversi hospital telejelth platform integreishon for rimout klinikal peishent monitoring?",
-                    qEs: "¿Cómo supervisas la integración de plataformas de telemedicina hospitalaria para el monitoreo remoto de pacientes?",
-                    aEn: "I verify HIPAA-compliant video encryption, establish clinical triage protocols, and train nursing staff in remote assessments.",
-                    aPhonetic: "Ai verifai jipa komplaiant vidio enkripshon, establish klinikal triadsh protokols, end trein nersing estaff in rimout asesments.",
-                    aEs: "Verifico el cifrado de video conforme a HIPAA, establezco protocolos de triaje clínico y capacito a enfermería en evaluaciones remotas."
-                },
-                {
-                    qEn: "How do you leverage your Executive MBA and RN credentials to drive health system strategic growth?",
-                    qPhonetic: "Jau du yu leveraged yur Egsekiutiv Em Bi Ei end Ar En kredenshals tu draiv jelth sistem strateidshik grouth?",
-                    qEs: "¿Cómo aprovechas tus credenciales de MBA Ejecutivo y RN para impulsar el crecimiento estratégico del sistema de salud?",
-                    aEn: "I bridge executive financial strategy with frontline clinical realities, eliminating operational friction and maximizing sustainable health system ROI.",
-                    aPhonetic: "Ai bridsh egsekiutiv finanshal strateidshi uid frontlain klinikal rialitis, elimineiting opereishonal frikshon end maksimaising sosteinabel jelth sistem ar oi ai.",
-                    aEs: "Conecto la estrategia financiera ejecutiva con las realidades clínicas operativas, eliminando fricciones y maximizando el retorno de inversión sostenible."
-                }
-            ],
-            gobierno: [
-                {
-                    qEn: "How do you oversee large-scale public procurement projects ensuring strict statutory compliance?",
-                    qPhonetic: "Jau du yu oversi lardsh eskeil publik prokiurment prodjekts enshuring strikt estatutori komplaians?",
-                    qEs: "¿Cómo supervisas proyectos de compras públicas a gran escala garantizando un estricto cumplimiento legal?",
-                    aEn: "I enforce open competitive bidding, conduct rigorous vendor background checks, and maintain transparent public oversight.",
-                    aPhonetic: "Ai enfors oupen kompetitiv biding, kondakt rigorus vendor bakgraund cheks, end meintein transparent publik oversait.",
-                    aEs: "Aplico licitaciones competitivas abiertas, realizo verificaciones rigurosas de antecedentes de proveedores y mantengo una supervisión pública transparente."
-                },
-                {
-                    qEn: "How do you manage complex public record demands under Florida Sunshine Law without exposing sensitive data?",
-                    qPhonetic: "Jau du yu manadsh kompleks publik rekord dimands ander Florida Sunshain lo uidaut ekspousing sensitiv deita?",
-                    qEs: "¿Cómo manejas solicitudes complejas de registros públicos bajo la Ley Sunshine de Florida sin exponer datos sensibles?",
-                    aEn: "I collaborate with legal counsel, apply statutory redaction rules precisely, and deliver compliant documents on schedule.",
-                    aPhonetic: "Ai kolaboreit uid ligal kaunsel, aplai estatutori ridakshon ruls prisaisli, end deliver komplaiant dokiuments on eskediul.",
-                    aEs: "Colaboro con asesores legales, aplico reglas de redacción legal con precisión y entrego documentos conformes a tiempo."
-                },
-                {
-                    qEn: "How do you lead inter-agency crisis response teams during state emergency declarations?",
-                    qPhonetic: "Jau du yu lid inter eidentsi kraisis rispons tims diuring steit emerdjensi deklareishons?",
-                    qEs: "¿Cómo lideras equipos de respuesta a crisis entre agencias durante declaraciones de emergencia estatal?",
-                    aEn: "I establish unified command structures, streamline resource allocation, and communicate strategic priorities directly to stakeholders.",
-                    aPhonetic: "Ai establish iunifaid komand estroktiurs, strimlain risors alokeishon, end komiunikeit strateidshik praioritis direktli tu steikjolders.",
-                    aEs: "Establezco estructuras de mando unificado, optimizo la asignación de recursos y comunico prioridades estratégicas directamente a las partes interesadas."
-                },
-                {
-                    qEn: "How do you audit government departmental budgets to eliminate fiscal waste and fraud?",
-                    qPhonetic: "Jau du yu odit goverment departmental badgets tu elimineit fiskal ueist end frod?",
-                    qEs: "¿Cómo auditas los presupuestos departamentales gubernamentales para eliminar el desperdicio fiscal y el fraude?",
-                    aEn: "I institute forensic accounting reviews, mandate dual authorization for line items, and implement transparent expenditure tracking.",
-                    aPhonetic: "Ai institiut forensik akaunting rivius, mandeit dual autoriseishon for lain aitems, end implement transparent ekspenditiur traking.",
-                    aEs: "Instituyo revisiones de contabilidad forense, exijo autorización doble para renglones presupuestarios e implemento un seguimiento transparente."
-                },
-                {
-                    qEn: "How do you ensure full compliance with Florida Ethics Code regulations for public officers?",
-                    qPhonetic: "Jau du yu enshur ful komplaians uid Florida Etiks Koud regiuleishons for publik ofisers?",
-                    qEs: "¿Cómo garantizas el cumplimiento total de las regulaciones del Código de Ética de Florida para funcionarios públicos?",
-                    aEn: "I mandate annual conflict-of-interest disclosures, conduct mandatory ethics workshops, and enforce zero-tolerance gift policies.",
-                    aPhonetic: "Ai mandeit aniual konflikt ov interest disklozurs, kondakt mandatori etiks uerkshops, end enfors ziro tolerans gift polisis.",
-                    aEs: "Exijo declaraciones anuales de conflicto de intereses, realizo talleres de ética obligatorios y aplico políticas de cero tolerancia con obsequios."
-                },
-                {
-                    qEn: "How do you manage federal grant allocations and regulatory reporting compliance?",
-                    qPhonetic: "Jau du yu manadsh federal grant alokeishons end regulatori riporting komplaians?",
-                    qEs: "¿Cómo manejas la asignación de subvenciones federales y el cumplimiento de informes regulatorios?",
-                    aEn: "I establish strict grant accounting protocols, track milestone deliverables, and submit timely audited performance reports.",
-                    aPhonetic: "Ai establish strikt grant akaunting protokols, trak mailstoun deliverabels, end submit taimli oditid performans riports.",
-                    aEs: "Establezco protocolos estrictos de contabilidad de subvenciones, sigo entregables clave y presento informes de desempeño auditados."
-                },
-                {
-                    qEn: "How do you navigate public hearings and community board presentations on controversial infrastructure projects?",
-                    qPhonetic: "Jau du yu navigate publik jirings end komiuniti bord presenteishons on kontrovershal infrastroktiur prodjekts?",
-                    qEs: "¿Cómo desenvuelves audiencias públicas y presentaciones ante juntas comunitarias sobre proyectos de infraestructura controversiales?",
-                    aEn: "I present data-driven impact assessments, address community concerns with transparency, and maintain professional composure.",
-                    aPhonetic: "Ai present deita driven impakt asesments, adres komiuniti konserns uid transparensi, end meintein profeshonal komposhiur.",
-                    aEs: "Presento evaluaciones de impacto basadas en datos, abordo inquietudes comunitarias con transparencia y mantengo compostura profesional."
-                },
-                {
-                    qEn: "How do you oversee municipal zoning and land use regulatory compliance review processes?",
-                    qPhonetic: "Jau du yu oversi miunisipal zoning end land ius regulatori komplaians riviu prosesis?",
-                    qEs: "¿Cómo supervisas los procesos de revisión de cumplimiento regulatorio sobre zonificación municipal y uso de suelo?",
-                    aEn: "I coordinate inter-departmental technical reviews, enforce comprehensive plan guidelines, and ensure equitable public notice procedures.",
-                    aPhonetic: "Ai koordineit inter departmental teknikal rivius, enfors komprehensiv plan gaidlains, end enshur ekuitabel publik notis prosidiurs.",
-                    aEs: "Coordino revisiones técnicas interdepartamentales, aplico pautas del plan integral y me me me me me me aseguro de procedimientos equitativos."
-                },
-                {
-                    qEn: "How do you handle breach of contract claims brought by government contractors?",
-                    qPhonetic: "Jau du yu jandel britsh ov kontrakt kleims brot bai goverment kontraktors?",
-                    qEs: "¿Cómo manejas reclamos por incumplimiento de contrato presentados por contratistas gubernamentales?",
-                    aEn: "I review contractual documentation thoroughly, consult state attorneys, and engage in structured dispute mediation.",
-                    aPhonetic: "Ai riviu kontraktual dokiumenteishon thorouli, konsalt steit attorneis, end engeidsh in estrokturd dispiut midieishon.",
-                    aEs: "Reviso la documentación contractual minuciosamente, consulto con abogados del estado y participo en mediación estructurada."
-                },
-                {
-                    qEn: "How do you modernize legacy government IT systems while maintaining cybersecurity standards?",
-                    qPhonetic: "Jau du yu modernais legasi goverment ai ti sistems uail meinteining saibersikiuriti estandards?",
-                    qEs: "¿Cómo modernizas sistemas informáticos gubernamentales legados manteniendo estándares de ciberseguridad?",
-                    aEn: "I implement cloud migration strategies, mandate zero-trust security architectures, and oversee staff technical training.",
-                    aPhonetic: "Ai implement klaud maigreishon strateidshis, mandeit ziro trost sikiuriti arkitektiurs, end oversi estaff teknikal treining.",
-                    aEs: "Implemento estrategias de migración a la nube, exijo arquitecturas de seguridad de cero confianza y superviso capacitación técnica."
-                },
-                {
-                    qEn: "How do you manage inter-governmental relations between city, county, and state agencies?",
-                    qPhonetic: "Jau du yu manadsh inter govermental rileishons bituin siti, kaunti, end steit eidentsis?",
-                    qEs: "¿Cómo manejas las relaciones intergubernamentales entre agencias de la ciudad, del condado y del estado?",
-                    aEn: "I establish formal inter-local agreements, conduct regular inter-agency briefings, and align shared regulatory objectives.",
-                    aPhonetic: "Ai establish formal inter lokal agriments, kondakt regular inter eidentsi brifings, end alain sherd regulatori obdshktivs.",
-                    aEs: "Establezco acuerdos interlocales formales, realizo sesiones informativas periódicas entre agencias y alineo objetivos regulatorios."
-                },
-                {
-                    qEn: "How do you lead public health emergency policy enforcement during epidemic outbreaks?",
-                    qPhonetic: "Jau du yu lid publik jelth emerdjensi polisi enforsment diuring epidemik autbreiks?",
-                    qEs: "¿Cómo lideras la aplicación de políticas de emergencia de salud pública durante brotes epidémicos?",
-                    aEn: "I align local health mandates with state guidelines, coordinate with emergency management, and issue clear public directives.",
-                    aPhonetic: "Ai alain lokal jelth mandeits uid steit gaidlains, koordineit uid emerdjensi manadshment, end ishiu klier publik direktivs.",
-                    aEs: "Alineo mandatos locales de salud con pautas estatales, coordino con gestión de emergencias y emito directivas públicas claras."
-                },
-                {
-                    qEn: "How do you manage civil service personnel compliance and labor union negotiations?",
-                    qPhonetic: "Jau du yu manadsh sivil servis personel komplaians end leibor iunion negoshieishons?",
-                    qEs: "¿Cómo manejas el cumplimiento del personal del servicio civil y las negociaciones con sindicatos laborales?",
-                    aEn: "I negotiate collective bargaining agreements in good faith, enforce merit system rules, and resolve grievances systematically.",
-                    aPhonetic: "Ai negoshieit kollektiv bargaining agriments in gud feith, enfors merit sistem ruls, end resolvi grivansis sistematikali.",
-                    aEs: "Negocio acuerdos de negociación colectiva de buena fe, aplico reglas del sistema de méritos y resuelvo agravios sistemáticamente."
-                },
-                {
-                    qEn: "How do you oversee environmental regulatory enforcement for coastal municipal development?",
-                    qPhonetic: "Jau du yu oversi envaironmental regulatori enforsment for koustal miunisipal divelopment?",
-                    qEs: "¿Cómo supervisas la aplicación de regulaciones ambientales para el desarrollo municipal costero?",
-                    aEn: "I enforce Department of Environmental Protection mandates, review storm-water compliance, and protect coastal ecosystems.",
-                    aPhonetic: "Ai enfors Department ov Envaironmental Protekshon mandeits, riviu estorm uater komplaians, end protekt koustal ekosistems.",
-                    aEs: "Aplico mandatos del Departamento de Protección Ambiental, reviso cumplimiento sobre aguas pluviales y protejo ecosistemas costeros."
-                },
-                {
-                    qEn: "How do you evaluate economic development incentive proposals submitted by private corporations?",
-                    qPhonetic: "Jau du yu evaliueit ekonomik divelopment insentiv propousals submitid bai praivat korporeishons?",
-                    qEs: "¿Cómo evalúas propuestas de incentivos para desarrollo económico presentadas por corporaciones privadas?",
-                    aEn: "I conduct return-on-investment analyses, verify job creation metrics, and structure performance-based claw-back provisions.",
-                    aPhonetic: "Ai kondakt return on investment analaisis, verifai djob krieishon metriks, end estroktiur performans beist klobak provishons.",
-                    aEs: "Realizo análisis de retorno de inversión, verifico métricas de creación de empleo y estructuro cláusulas de reembolso basadas en desempeño."
-                },
-                {
-                    qEn: "How do you oversee public infrastructure capital improvement program execution?",
-                    qPhonetic: "Jau du yu oversi publik infrastroktiur kapital imprubment program egsekiushon?",
-                    qEs: "¿Cómo supervisas la ejecución de programas de mejoras de capital e infraestructura pública?",
-                    aEn: "I track project milestone schedules, audit engineering contractor invoicing, and control capital expenditure variances.",
-                    aPhonetic: "Ai trak prodjekt mailstoun eskediuls, odit endshiniring kontraktor invoising, end kontrol kapital ekspenditiur vasiansis.",
-                    aEs: "Sigo cronogramas de hitos del proyecto, audito la facturación de contratistas e ingeniería y controlo las variaciones de gastos."
-                },
-                {
-                    qEn: "How do you ensure transparency in government surplus property asset auctions and liquidations?",
-                    qPhonetic: "Jau du yu enshur transparensi in goverment serplus properti aset okshons end likuideishons?",
-                    qEs: "¿Cómo garantizas la transparencia en subastas y liquidaciones de activos de propiedad gubernamental excedentaria?",
-                    aEn: "I mandate public online auction platforms, obtain certified property appraisals, and publish complete transaction logs.",
-                    aPhonetic: "Ai mandeit publik onlain okshon platforms, obtein sertifaid properti apreisals, end pablish komplit transakshon logs.",
-                    aEs: "Exijo plataformas públicas de subasta en línea, obtengo tasaciones de propiedad certificadas y publico registros de transacciones."
-                },
-                {
-                    qEn: "How do you handle high-profile whistleblower allegations within a government agency?",
-                    qPhonetic: "Jau du yu jandel jai profail uiselblouer aligeishons uidin a goverment eidentsi?",
-                    qEs: "¿Cómo manejas denuncias de informantes de alto perfil dentro de una agencia gubernamental?",
-                    aEn: "I refer allegations to the Inspector General, protect whistleblowers from retaliation, and mandate independent investigations.",
-                    aPhonetic: "Ai rifer aligeishons tu di Inspektor Djeneral, protekt uiselblouers krom ritalieishon, end mandeit indipendent investigeishons.",
-                    aEs: "Remito las denuncias al Inspector General, protejo a informantes contra represalias y exijo investigaciones independientes."
-                },
-                {
-                    qEn: "How do you manage municipal emergency management communications during severe tropical storms?",
-                    qPhonetic: "Jau du yu manadsh miunisipal emerdjensi manadshment komiunikeishons diuring sevir tropikal estorms?",
-                    qEs: "¿Cómo manejas comunicaciones de gestión de emergencia municipal durante tormentas tropicales severas?",
-                    aEn: "I issue multi-lingual public emergency alerts, hold scheduled press briefings, and coordinate emergency broadcast channels.",
-                    aPhonetic: "Ai ishiu multi lingual publik emerdjensi alerts, jold eskediuld pres brifings, end koordineit emerdjensi brodkast tshannels.",
-                    aEs: "Emito alertas públicas multilingües, realizo ruedas de prensa programadas y coordino canales de radiodifusión de emergencia."
-                },
-                {
-                    qEn: "How do you lead municipal affordable housing policy development and compliance?",
-                    qPhonetic: "Jau du yu lid miunisipal afordabel jausing polisi divelopment end komplaians?",
-                    qEs: "¿Cómo lideras el desarrollo y cumplimiento de políticas municipales de vivienda asequible?",
-                    aEn: "I leverage federal housing grants, establish developer inclusionary zoning mandates, and audit tenant eligibility guidelines.",
-                    aPhonetic: "Ai leveraged federal jausing grants, establish diveloper inklushonari zoning mandeits, end odit tenant elidshibiliti gaidlains.",
-                    aEs: "Aprovecho subvenciones federales de vivienda, establezco mandatos de zonificación inclusiva y audito la elegibilidad de inquilinos."
-                },
-                {
-                    qEn: "How do you oversee municipal fleet management operations and transition to electric vehicles?",
-                    qPhonetic: "Jau du yu oversi miunisipal flit manadshment opereishons end transishon tu elektrik viikels?",
-                    qEs: "¿Cómo supervisas la gestión de flotas municipales y la transición hacia vehículos eléctricos?",
-                    aEn: "I analyze life-cycle asset costs, secure federal clean energy grants, and deploy charging station infrastructure strategically.",
-                    aPhonetic: "Ai analais laif saikel aset kosts, sikiur federal klin enerdshi grants, end deploi tshardshing esteishon infrastroktiur strateidshikali.",
-                    aEs: "Analizo costos del ciclo de vida de activos, aseguro subvenciones federales de energía limpia e instalo estaciones de carga."
-                },
-                {
-                    qEn: "How do you handle public compliance audits conducted by the Florida Auditor General?",
-                    qPhonetic: "Jau du yu jandel publik komplaians odits kondaktid bai da Florida Oditor Djeneral?",
-                    qEs: "¿Cómo manejas las auditorías de cumplimiento público realizadas por el Auditor General de Florida?",
-                    aEn: "I provide complete record access, establish audit liaison teams, and formulate formal corrective action plans for findings.",
-                    aPhonetic: "Ai provaid komplit rekord akses, establish odit lieison tims, end formuleit formal korrektiv akshon plans for faindings.",
-                    aEs: "Proporciono acceso total a registros, establezco equipos de enlace y formuló planes de acción correctiva para los hallazgos."
-                },
-                {
-                    qEn: "How do you manage government agency public relations during controversial administrative changes?",
-                    qPhonetic: "Jau du yu manadsh goverment eidentsi publik rileishons diuring kontrovershal administrativ tsheindshes?",
-                    qEs: "¿Cómo manejas las relaciones públicas de una agencia gubernamental durante cambios administrativos controversiales?",
-                    aEn: "I release facts-based policy statements, engage community leaders directly, and maintain transparent public dialogue.",
-                    aPhonetic: "Ai rilis fakts beist polisi esteitments, engeidsh komiuniti liders direktli, end meintein transparent publik daialog.",
-                    aEs: "Emito declaraciones basadas en hechos, me relaciono con líderes comunitarios y mantengo un diálogo público transparente."
-                },
-                {
-                    qEn: "How do you enforce code compliance regulations across municipal commercial zones?",
-                    qPhonetic: "Jau du yu enfors koud komplaians regiuleishons akros miunisipal komershal zouns?",
-                    qEs: "¿Cómo aplicas las regulaciones de cumplimiento de códigos en zonas comerciales municipales?",
-                    aEn: "I direct scheduled code enforcement inspections, issue formal notices of violation, and conduct fair administrative hearings.",
-                    aPhonetic: "Ai direkt eskediuld koud enforsment inspekshons, ishiu formal notisis ov vaioleishon, end kondakt fer administrativ jirings.",
-                    aEs: "Dirijo inspecciones programadas de códigos, emito avisos formales de violación y llevo a cabo audiencias administrativas me me me me me me justas."
-                },
-                {
-                    qEn: "How do you lead municipal water supply management and environmental regulatory compliance?",
-                    qPhonetic: "Jau du yu lid miunisipal uater suplai manadshment end envaironmental regulatori komplaians?",
-                    qEs: "¿Cómo lideras la gestión del suministro de agua municipal y el cumplimiento regulatorio ambiental?",
-                    aEn: "I monitor water quality testing standards, enforce EPA treatment guidelines, and oversee infrastructure upgrades.",
-                    aPhonetic: "Ai monitor uater kualiti testing estandards, enfors i pi ei tritment gaidlains, end oversi infrastroktiur apgreids.",
-                    aEs: "Monitoreo pruebas de calidad de agua, aplico pautas de tratamiento de la EPA y superviso la modernización de infraestructura."
-                },
-                {
-                    qEn: "How do you oversee municipal parks and recreation capital improvement projects?",
-                    qPhonetic: "Jau du yu oversi miunisipal parks end rekrieishon kapital imprubment prodjekts?",
-                    qEs: "¿Cómo supervisas proyectos de mejoras de capital para parques y recreación municipal?",
-                    aEn: "I secure state conservation grants, engage community advisory boards, and oversee construction contract execution.",
-                    aPhonetic: "Ai sikiur steit konserveishon grants, engeidsh komiuniti advaisori bords, end oversi konstrukshon kontrakt egsekiushon.",
-                    aEs: "Aseguro subvenciones estatales de conservación, involucro a juntas asesoras comunitarias y superviso contratos de construcción."
-                },
-                {
-                    qEn: "How do you manage municipal historic preservation regulatory compliance?",
-                    qPhonetic: "Jau du yu manadsh miunisipal istorik preserveishon regulatori komplaians?",
-                    qEs: "¿Cómo manejas el cumplimiento regulatorio de preservación histórica municipal?",
-                    aEn: "I enforce historic district guidelines, review architectural modification permits, and collaborate with preservation boards.",
-                    aPhonetic: "Ai enfors istorik distrikt gaidlains, riviu arkitektur al modifikeishon permits, end kolaboreit uid preserveishon bords.",
-                    aEs: "Aplico pautas de distritos históricos, reviso permisos de modificación arquitectónica y colaboro con juntas de preservación."
-                },
-                {
-                    qEn: "How do you oversee government public transportation system operations and safety compliance?",
-                    qPhonetic: "Jau du yu oversi goverment publik transporteishon sistem opereishons end seifti komplaians?",
-                    qEs: "¿Cómo supervisas las operaciones del sistema de transporte público gubernamental y el cumplimiento de seguridad?",
-                    aEn: "I enforce Department of Transportation transit safety mandates, track fleet reliability metrics, and secure federal transit grants.",
-                    aPhonetic: "Ai enfors Department ov Transporteishon transit seifti mandeits, trak flit rilaiabiliti metriks, end sikiur federal transit grants.",
-                    aEs: "Aplico mandatos de seguridad del Departamento de Transporte, sigo la confiabilidad de la flota y aseguro subvenciones."
-                },
-                {
-                    qEn: "How do you lead public administrative policy reforms to improve citizen service delivery?",
-                    qPhonetic: "Jau du yu lid publik administrativ polisi reforms tu imprub sitisen servis delivery?",
-                    qEs: "¿Cómo lideras reformas de políticas administrativas públicas para mejorar la atención al ciudadano?",
-                    aEn: "I deploy digital e-government portals, streamline administrative approval steps, and track customer satisfaction metrics.",
-                    aPhonetic: "Ai deploi djdshital i goverment portals, strimlain administrativ aprubal steps, end trak kustomer satisfakshon metriks.",
-                    aEs: "Despliego portales digitales de e-gobierno, optimizo trámites de aprobación y sigo las métricas de satisfacción ciudadana."
-                },
-                {
-                    qEn: "How do you structure strategic public-private partnerships (P3) under Florida statutory frameworks?",
-                    qPhonetic: "Jau du yu estroktiur strateidshik publik praivat korporeishon partner ships ander Florida estatutori freimuerks?",
-                    qEs: "¿Cómo estructuras asociaciones público-privadas (P3) estratégicas bajo marcos legales de Florida?",
-                    aEn: "I conduct comprehensive risk-sharing evaluations, negotiate long-term concession agreements, and ensure public transparency.",
-                    aPhonetic: "Ai kondakt komprehensiv risk shering evaliueishons, negoshieit long term konseshon agriments, end enshur publik transparensi.",
-                    aEs: "Realizo evaluaciones integrales de distribución de riesgos, negocio acuerdos de concesión y garantizo transparencia pública."
-                }
-            ],
-            logistics: [
-                {
-                    qEn: "How do you optimize global supply chain networks facing major port disruptions and freight inflation?",
-                    qPhonetic: "Jau du yu optimais global suplai tshein netuerks feising meidor port disrupshons end freit infleishon?",
-                    qEs: "¿Cómo optimizas las redes de cadena de suministro global ante interrupciones portuarias e inflación de fletes?",
-                    aEn: "I diversify carrier partnerships, leverage predictive analytics for routing, and renegotiate long-term freight contracts.",
-                    aPhonetic: "Ai daiversifai karrier partnerships, leveraged prediktiv analitiks for routing, end rinegoshieit long term freit kontrakts.",
-                    aEs: "Diversifico alianzas de transporte, aprovecho analítica predictiva para enrutamiento e renegocio contratos de flete a largo plazo."
-                },
-                {
-                    qEn: "How do you drive operational efficiency across multi-site warehouse distribution centers?",
-                    qPhonetic: "Jau du yu draiv opereishonal efishensi akros multi sait uerjaus distribushon senters?",
-                    qEs: "¿Cómo impulsas la eficiencia operativa en centros de distribución y almacenes múltiples?",
-                    aEn: "I implement advanced warehouse management systems, standardize lean workflows, and establish clear KPI performance benchmarks.",
-                    aPhonetic: "Ai implement advansd uerjaus manadshment sistems, estandardais lin uerkflous, end establish klier kei pi ai performans benchmarks.",
-                    aEs: "Implemento sistemas avanzados de gestión de almacenes, estandarizo flujos de trabajo esbeltos y establezco indicadores clave."
-                },
-                {
-                    qEn: "How do you handle Customs and Border Protection compliance audits at Florida sea ports?",
-                    qPhonetic: "Jau du yu jandel Kustoms end Border Protekshon komplaians odits at Florida si ports?",
-                    qEs: "¿Cómo manejas auditorías de cumplimiento de Aduanas y Protección Fronteriza (CBP) en puertos marítimos de Florida?",
-                    aEn: "I verify automated manifest system filings, maintain compliant bill-of-lading archives, and conduct internal trade audits.",
-                    aPhonetic: "Ai verifai automatid manifest sistem failings, meintein komplaiant bil ov leiding arkaivs, end kondakt internal treid odits.",
-                    aEs: "Verifico los manifiestos automatizados, mantengo archivos de conocimientos de embarque y realizo auditorías internas de comercio."
-                },
-                {
-                    qEn: "How do you manage cold chain logistics integrity for temperature-sensitive pharmaceutical cargo?",
-                    qPhonetic: "Jau du yu manadsh kould tshein lodjístiks integriti for temprachur sensitiv farmaseutikal kargo?",
-                    qEs: "¿Cómo manejas la integridad de la logística de cadena de frío para carga farmacéutica sensible?",
-                    aEn: "I deploy calibrated continuous thermal loggers, enforce strict refrigerated staging protocols, and mandate immediate deviation reporting.",
-                    aPhonetic: "Ai deploi kalibreitid kontinuous thermal loggers, enfors strikt refridshereitid esteidshing protokols, end mandeit imidiat divieishon riporting.",
-                    aEs: "Despliego registradores térmicos continuos, aplico estrictos protocolos de almacenamiento refrigerado y exijo reportar desviaciones."
-                },
-                {
-                    qEn: "How do you mitigate supply chain risks during major hurricane threats to Florida logistics hubs?",
-                    qPhonetic: "Jau du yu mitigeit suplai tshein risks diuring meidor jurrikein threts tu Florida lodjístiks jabs?",
-                    qEs: "¿Cómo mitigas riesgos en la cadena de suministro durante huracanes que amenazan los centros logísticos de Florida?",
-                    aEn: "I re-route high-value freight inland, secure staging facilities, and activate redundant third-party logistics network nodes.",
-                    aPhonetic: "Ai ri rut jai valiu freit in-land, sikiur esteidshing fasilitis, end aktiveit ridundant therd parti lodjístiks netuerk nouds.",
-                    aEs: "Desvío carga de alto valor hacia el interior, aseguro instalaciones de depósito y activo nodos logísticos redundantes de terceros."
-                },
-                {
-                    qEn: "How do you optimize last-mile delivery fleet operations in high-density urban areas?",
-                    qPhonetic: "Jau du yu optimais last mail delivery flit opereishons in jai densiti urban erias?",
-                    qEs: "¿Cómo optimizas operaciones de flota de entrega de última milla en áreas urbanas de alta densidad?",
-                    aEn: "I implement dynamic route optimization software, deploy micro-distribution hubs, and monitor real-time driver performance metrics.",
-                    aPhonetic: "Ai implement dainamik rut optimiseishon softuer, deploi maikro distribushon jabs, end monitor rial taim draiver performans metriks.",
-                    aEs: "Implemento software de optimización dinámica de rutas, despliego microcentros de distribución y monitoreo métricas de conductores."
-                },
-                {
-                    qEn: "How do you resolve severe inventory shrinkage and cargo theft issues in major distribution centers?",
-                    qPhonetic: "Jau du yu resolvi sevir inventori erinkadsh end kargo theft ishius in meidor distribushon senters?",
-                    qEs: "¿Cómo resuelves pérdidas graves de inventario y robo de carga en grandes centros de distribución?",
-                    aEn: "I mandate biometric access controls, expand high-definition CCTV coverage, and integrate RFID tag tracking at dock doors.",
-                    aPhonetic: "Ai mandeit baiometrik akses kontrols, ekspand jai definishon si ti vi koveradsh, end integreit ar ef ai di tag traking at dok dors.",
-                    aEs: "Exijo controles de acceso biométricos, amplío la cobertura de CCTV de alta definición e integro rastreo RFID en muelles."
-                },
-                {
-                    qEn: "How do you negotiate long-term third-party logistics service provider contracts?",
-                    qPhonetic: "Jau du yu negoshieit long term therd parti lodjístiks servis provaider kontrakts?",
-                    qEs: "¿Cómo negocias contratos a largo plazo con proveedores de servicios logísticos de terceros (3PL)?",
-                    aEn: "I establish rigorous service level agreement benchmarks, tie compensation to performance metrics, and incorporate volume rebates.",
-                    aPhonetic: "Ai establish rigorus servis level agriment benchmarks, tai kompenseishon tu performans metriks, end inkorporeit volium ribeits.",
-                    aEs: "Establezco pautas rigurosas en acuerdos de nivel de servicio, vinculo la compensación al desempeño e incorporo rebajas por volumen."
-                },
-                {
-                    qEn: "How do you manage hazardous materials storage compliance under OSHA and DOT regulations?",
-                    qPhonetic: "Jau du yu manadsh jasardus matirials estoradsh komplaians ander osha end di o ti regiuleishons?",
-                    qEs: "¿Cómo manejas el cumplimiento del almacenamiento de materiales peligrosos bajo regulaciones de OSHA y DOT?",
-                    aEn: "I enforce strict chemical segregation protocols, maintain updated Safety Data Sheets, and mandate certified hazmat staff training.",
-                    aPhonetic: "Ai enfors strikt kemikal segregeishon protokols, meintein apdeitid seifti deita eshits, end mandeit sertifaid jasmat estaff treining.",
-                    aEs: "Aplico una segregación química estricta, mantengo Hojas de Datos de Seguridad actualizadas y capacito al personal en hazmat."
-                },
-                {
-                    qEn: "How do you lead automation integration projects in large-scale fulfillment centers?",
-                    qPhonetic: "Jau du yu lid automeishon integreishon prodjekts in lardsh eskeil fulfilment senters?",
-                    qEs: "¿Cómo lideras proyectos de integración de automatización en centros de procesamiento a gran escala?",
-                    aEn: "I oversee autonomous mobile robot deployment, integrate automated storage systems, and train workforce teams for tech operations.",
-                    aPhonetic: "Ai oversi autonomus mobail robot deploiment, integreit automatid estoradsh sistems, end trein uerkfors tims for tek opereishons.",
-                    aEs: "Superviso el despliegue de robots móviles autónomos, integro sistemas automatizados de almacenamiento y capacito al personal."
-                },
-                {
-                    qEn: "How do you manage cross-docking operations to minimize warehouse dwell time?",
-                    qPhonetic: "Jau du yu manadsh kros doking opereishons tu minimais uerjaus duel taim?",
-                    qEs: "¿Cómo manejas las operaciones de transbordo directo (cross-docking) para minimizar el tiempo de permanencia?",
-                    aEn: "I synchronize inbound truck arrival schedules, deploy real-time barcode sorting, and pre-assign outbound staging lanes.",
-                    aPhonetic: "Ai sinkronais inbaund trok araival eskediuls, deploi rial taim barkoud sorting, end pri asain autbaund esteidshing leins.",
-                    aEs: "Sincronizo la llegada de camiones entrantes, despliego clasificación de código de barras en tiempo real y asigno carriles salientes."
-                },
-                {
-                    qEn: "How do you control freight transportation expenses in volatile spot-market environments?",
-                    qPhonetic: "Jau du yu kontrol freit transporteishon ekspensis in volatil espot market envaironments?",
-                    qEs: "¿Cómo controlas los gastos de transporte de carga en entornos de mercado al contado volátiles?",
-                    aEn: "I combine primary carrier contract commitments with dynamic digital freight brokerage bidding platforms.",
-                    aPhonetic: "Ai kombain praimari karrier kontrakt komitments uid dainamik djdshital freit brokeradsh biding platforms.",
-                    aEs: "Combino compromisos contractuales con transportistas primarios con plataformas digitales dinámicas de licitación de fletes."
-                },
-                {
-                    qEn: "How do you ensure reverse logistics compliance for high-volume retail returns?",
-                    qPhonetic: "Jau du yu enshur rivers lodjístiks komplaians for jai volium riteil returns?",
-                    qEs: "¿Cómo garantizas el cumplimiento de la logística inversa para devoluciones minoristas de gran volumen?",
-                    aEn: "I establish automated return inspection centers, optimize restock workflows, and maximize secondary market asset recovery.",
-                    aPhonetic: "Ai establish automatid return inspekshon senters, optimais ristok uerkflous, end maksimais sekondari market aset rikoveri.",
-                    aEs: "Establezco centros automatizados de inspección de devoluciones, optimizo reabastecimiento y maximizo recuperación de activos."
-                },
-                {
-                    qEn: "How do you manage intermodal freight transfer compliance between rail and seaport terminals?",
-                    qPhonetic: "Jau du yu manadsh intermodal freit transfer komplaians bituin reil end siport terminals?",
-                    qEs: "¿Cómo manejas el cumplimiento del transporte intermodal entre terminales ferroviarias y marítimas?",
-                    aEn: "I monitor container drayage schedules, audit port interchange equipment receipts, and eliminate demurrage detention fees.",
-                    aPhonetic: "Ai monitor konteiner dreiadsh eskediuls, odit port intertsheindsh ikuipment risits, end elimineit dimurradsh ditenshon fis.",
-                    aEs: "Monitoreo horarios de acarreo de contenedores, audito recibos de equipos y elimino cargos por demora y detención."
-                },
-                {
-                    qEn: "How do you oversee warehouse safety compliance under OSHA general industry standards?",
-                    qPhonetic: "Jau du yu oversi uerjaus seifti komplaians ander osha djeneral industri estandards?",
-                    qEs: "¿Cómo supervisas el cumplimiento de seguridad en almacenes bajo las normas generales de la industria de OSHA?",
-                    aEn: "I mandate daily powered industrial truck inspections, conduct monthly safety committee walks, and enforce PPE rules.",
-                    aPhonetic: "Ai mandeit deili pauerd industrial trok inspekshons, kondakt monthli seifti komitti uoks, end enfors pi pi i ruls.",
-                    aEs: "Exijo inspecciones diarias de montacargas, realizo recorridos mensuales con el comité de seguridad y aplico uso de EPP."
-                },
-                {
-                    qEn: "How do you evaluate new warehouse locations for regional Florida distribution network expansion?",
-                    qPhonetic: "Jau du yu evaliueit niu uerjaus loukeishons for ridshonal Florida distribushon netuerk ekspanshon?",
-                    qEs: "¿Cómo evalúas nuevas ubicaciones de almacenes para la expansión de la red de distribución en Florida?",
-                    aEn: "I analyze highway arterial proximity, local labor market availability, hurricane risk exposure, and tax incentive structures.",
-                    aPhonetic: "Ai analais jaiuei arterial proksimiti, lokal leibor market availabiliti, jurrikein risk eksposhur, end taks insentiv estroktiurs.",
-                    aEs: "Analizo la proximidad a autopistas principales, disponibilidad de mano de obra, exposición a huracanes e incentivos fiscales."
-                },
-                {
-                    qEn: "How do you manage air freight cargo security under TSA known shipper regulatory frameworks?",
-                    qPhonetic: "Jau du yu manadsh er freit kargo sikiuriti ander ti es ei noun shipper regulatori freimuerks?",
-                    qEs: "¿Cómo manejas la seguridad de carga aérea bajo los marcos regulatorios del programa de expedidores conocidos de la TSA?",
-                    aEn: "I enforce certified cargo screening facility protocols, audit facility access controls, and maintain TSA compliance documentation.",
-                    aPhonetic: "Ai enfors sertifaid kargo ekreening fasiliti protokols, odit fasiliti akses kontrols, end meintein ti es ei komplaians dokiumenteishon.",
-                    aEs: "Aplico protocolos en instalaciones certificadas de inspección de carga, audito accesos y mantengo documentación de TSA."
-                },
-                {
-                    qEn: "How do you optimize inventory carrying costs using economic order quantity modeling?",
-                    qPhonetic: "Jau du yu optimais inventori karriing kosts iusing ekonomik order kuantiti modeling?",
-                    qEs: "¿Cómo optimizas los costos de mantenimiento de inventario mediante modelos de cantidad económica de pedido?",
-                    aEn: "I balance reorder points against safety stock levels, analyze holding costs, and optimize vendor purchase order frequencies.",
-                    aPhonetic: "Ai balans riorder points ageinst seifti stok levels, analais jolding kosts, end optimais vendor pertshas order frikuensis.",
-                    aEs: "Bbalanceo los puntos de reorden con niveles de stock de seguridad, analizo costos de almacenamiento y optimizo pedidos."
-                },
-                {
-                    qEn: "How do you manage international trade tariff compliance and customs duty drawback programs?",
-                    qPhonetic: "Jau du yu manadsh internashonal treid tarif komplaians end kustoms diuti droubak programs?",
-                    qEs: "¿Cómo manejas el cumplimiento de aranceles de comercio internacional y programas de devolución de derechos aduaneros?",
-                    aEn: "I audit Harmonized System tariff classifications, file verified duty drawback claims, and partner with certified customs brokers.",
-                    aPhonetic: "Ai odit Jarmonaizd Sistem tarif klasifikeishons, fail verifaid diuti droubak kleims, end partner uid sertifaid kustoms brokers.",
-                    aEs: "Audito clasificaciones arancelarias del Sistema Armonizado, presento reclamos de devolución y me me me me me asocio con agentes."
-                },
-                {
-                    qEn: "How do you lead sustainability initiatives across corporate transportation fleets?",
-                    qPhonetic: "Jau du yu lid sosteinabiliti inishiativs akros korporeit transporteishon flits?",
-                    qEs: "¿Cómo lideras iniciativas de sostenibilidad en flotas de transporte corporativas?",
-                    aEn: "I deploy alternative fuel vehicles, optimize route consolidation to reduce emissions, and track corporate carbon footprint metrics.",
-                    aPhonetic: "Ai deploi alternativ fiuel viikels, optimais rut konsolideishon tu ridius emishons, end trak korporeit karbon futprint metriks.",
-                    aEs: "Despliego vehículos de combustible alternativo, optimizo la consolidación de rutas para reducir emisiones y sigo la huella de carbono."
-                },
-                {
-                    qEn: "How do you handle supplier contract defaults causing critical inventory stock-outs?",
-                    qPhonetic: "Jau du yu jandel suplaier kontrakt difolts kosing kritikal inventori stok auts?",
-                    qEs: "¿Cómo manejas incumplimientos de contratos de proveedores que causan desabastecimiento crítico?",
-                    aEn: "I activate secondary pre-qualified backup suppliers, enforce contractual penalty clauses, and reallocate safety inventory.",
-                    aPhonetic: "Ai aktiveit sekondari pri kualifaid bakap suplaiers, enfors kontraktual penalti klosis, end rialokeit seifti inventori.",
-                    aEs: "Activo proveedores de respaldo previamente calificados, aplico cláusulas de penalización contractuales y reasigno inventario."
-                },
-                {
-                    qEn: "How do you manage warehouse labor staffing adjustments during seasonal demand spikes?",
-                    qPhonetic: "Jau du yu manadsh uerjaus leibor estafing adshastments diuring sizonal dimand espaiks?",
-                    qEs: "¿Cómo manejas los ajustes de personal de almacén durante picos de demanda estacional?",
-                    aEn: "I partner with verified staffing agencies, implement incentive performance bonuses, and conduct accelerated safety onboarding.",
-                    aPhonetic: "Ai partner uid verifaid estafing eidentsis, implement insentiv performans bonusis, end kondakt ekselereitid seifti onboarding.",
-                    aEs: "Me asocio con agencias de empleo verificadas, implemento bonos por desempeño y realizo capacitaciones de seguridad aceleradas."
-                },
-                {
-                    qEn: "How do you oversee supply chain cybersecurity compliance across connected IoT logistics devices?",
-                    qPhonetic: "Jau du yu oversi suplai tshein saibersikiuriti komplaians akros konektid ai o ti lodjístiks divaisis?",
-                    qEs: "¿Cómo supervisas el cumplimiento de ciberseguridad en la cadena de suministro en dispositivos IoT conectados?",
-                    aEn: "I enforce encrypted device network protocols, mandate firmware updates, and conduct third-party vendor cybersecurity audits.",
-                    aPhonetic: "Ai enfors enkriptid divais netuerk protokols, mandeit fermuer apdeits, end kondakt therd parti vendor saibersikiuriti odits.",
-                    aEs: "Aplico protocolos de red cifrados en dispositivos, exijo actualizaciones de firmware y audito ciberseguridad de proveedores."
-                },
-                {
-                    qEn: "How do you manage perishable food logistics under FSMA regulatory requirements?",
-                    qPhonetic: "Jau du yu manadsh perishabel fud lodjístiks ander ef es em ei regulatori rikuairments?",
-                    qEs: "¿Cómo manejas la logística de alimentos perecederos bajo los requisitos regulatorios de la FSMA?",
-                    aEn: "I mandate continuous cold chain temperature tracking, enforce sanitation inspection protocols, and archive lot traceability data.",
-                    aPhonetic: "Ai mandeit kontinuous kould tshein temprachur traking, enfors saniteishon inspekshon protokols, end arkaiv lot treisabiliti deita.",
-                    aEs: "Exijo rastreo continuo de temperatura en cadena de frío, aplico protocolos de sanidad y archivo datos de trazabilidad de lotes."
-                },
-                {
-                    qEn: "How do you lead warehouse operational layout design optimization projects?",
-                    qPhonetic: "Jau du yu lid uerjaus opereishonal leiaut disain optimiseishon prodjekts?",
-                    qEs: "¿Cómo lideras proyectos de diseño y optimización de distribución operativa en almacenes?",
-                    aEn: "I analyze SKU velocity profiles, optimize pick-path travel distances, and reconfigure aisle space for high-density storage.",
-                    aPhonetic: "Ai analais es kei iu velositi profails, optimais pik path travel distansis, end rikonfigiur ail espeis for jai densiti estoradsh.",
-                    aEs: "Analizo perfiles de rotación de productos, optimizo distancias de recorrido de recolección y reconfiguro pasillos para almacenamiento."
-                },
-                {
-                    qEn: "How do you manage logistics insurance claims for high-value cargo transit losses?",
-                    qPhonetic: "Jau du yu manadsh lodjístiks inshurans kleims for jai valiu kargo transit losis?",
-                    qEs: "¿Cómo manejas reclamos de seguros logísticos por pérdidas de carga de alto valor en tránsito?",
-                    aEn: "I compile complete transit chain documentation, secure independent marine surveyor reports, and negotiate claim settlements with underwriters.",
-                    aPhonetic: "Ai kompail komplit transit tshein dokiumenteishon, sikiur indipendent marin surveior riports, end negoshieit kleim setelments uid anderraiters.",
-                    aEs: "Recopilo documentación de la cadena de tránsito, aseguro informes de peritos independientes y negocio liquidaciones con aseguradores."
-                },
-                {
-                    qEn: "How do you manage port container demurrage and detention expense reductions?",
-                    qPhonetic: "Jau du yu manadsh port konteiner dimurradsh end ditenshon ekspens ridukshons?",
-                    qEs: "¿Cómo manejas la reducción de gastos de demoras y detención de contenedores en puertos?",
-                    aEn: "I establish automated container tracking alerts, optimize drayage carrier scheduling, and extend free-time contract terms.",
-                    aPhonetic: "Ai establish automatid konteiner traking alerts, optimais dreiadsh karrier eskeduling, end ekstend fri taim kontrakt terms.",
-                    aEs: "Establezco alertas automatizadas de rastreo, optimizo horarios de acarreo y extiendo los plazos contractuales de tiempo libre."
-                },
-                {
-                    qEn: "How do you oversee supply chain risk compliance for international vendor sourcing?",
-                    qPhonetic: "Jau du yu oversi suplai tshein risk komplaians for internashonal vendor sorsing?",
-                    qEs: "¿Cómo supervisas el cumplimiento de riesgos en la cadena de suministro para el abastecimiento internacional?",
-                    aEn: "I conduct onsite overseas factory audits, verify ethical labor standards, and diversify sourcing across multiple geographical regions.",
-                    aPhonetic: "Ai kondakt onsait oversis faktori odits, verifai etikal leibor estandards, end daiversifai sorsing akros multi pel dshiografikal ridshons.",
-                    aEs: "Realizo auditorías en fábricas en el extranjero, verifico estándares éticos y diversifico el abastecimiento en múltiples regiones."
-                },
-                {
-                    qEn: "How do you manage hazardous waste transport compliance under EPA regulations?",
-                    qPhonetic: "Jau du yu manadsh jasardus ueist transport komplaians ander i pi ei regiuleishons?",
-                    qEs: "¿Cómo manejas el cumplimiento del transporte de residuos peligrosos bajo las regulaciones de la EPA?",
-                    aEn: "I verify EPA uniform hazardous waste manifests, audit licensed transport haulers, and retain certified disposal records.",
-                    aPhonetic: "Ai verifai i pi ei iuniform jasardus ueist manifests, odit laisensd transport jolers, end ritein sertifaid dispousal broads.",
-                    aEs: "Verifico manifiestos uniformes de la EPA, audito transportistas autorizados y conservo registros certificados de eliminación."
-                },
-                {
-                    qEn: "How do you drive continuous improvement across supply chain operations using Lean Six Sigma?",
-                    qPhonetic: "Jau du yu draiv kontinuous imprubment akros suplai tshein opereishons iusing lin siks sigma?",
-                    qEs: "¿Cómo impulsas la mejora continua en las operaciones de la cadena de suministro usando Lean Six Sigma?",
-                    aEn: "I lead DMAIC problem-solving projects, map value streams to eliminate waste, and train logistics staff in continuous improvement tools.",
-                    aPhonetic: "Ai lid di em ei ai si problem solving prodjekts, map valiu strims tu elimineit ueist, end trein lodjístiks estaff in kontinuous imprubment tuls.",
-                    aEs: "Lidero proyectos de resolución de problemas DMAIC, mapeo flujos de valor para eliminar desperdicios y capacito al personal."
-                }
-            ],
-            airlines: [
-                {
-                    qEn: "How do you lead airline ground operations ensuring on-time performance and absolute flight safety compliance?",
-                    qPhonetic: "Jau du yu lid erlain graund opereishons enshuring on taim performans end absolut flait seifti komplaians?",
-                    qEs: "¿Cómo lideras operaciones terrestres de aerolíneas garantizando puntualidad y absoluto cumplimiento de seguridad?",
-                    aEn: "I enforce strict FAA ramp protocols, coordinate cross-departmental turnarounds, and implement real-time flight tracking management.",
-                    aPhonetic: "Ai enfors strikt ef ei ei ramp protokols, koordineit kros departmental turnaraunds, end implement rial taim flait traking manadshment.",
-                    aEs: "Aplico estrictos protocolos de rampa de la FAA, coordino tiempos de giro interdepartamentales e implemento seguimiento en tiempo real."
-                },
-                {
-                    qEn: "How do you manage Dangerous Goods loading procedures to guarantee full IATA regulatory compliance?",
-                    qPhonetic: "Jau du yu manadsh deindjerus guds louding prosidiurs tu garanti ful iata regulatori komplaians?",
-                    qEs: "¿Cómo manejas procedimientos de carga de mercancías peligrosas para garantizar pleno cumplimiento con IATA?",
-                    aEn: "I mandate certified loadmaster inspections, verify shipper declarations, and enforce strict compatibility segregation rules.",
-                    aPhonetic: "Ai mandeit sertifaid loudmaster inspekshons, verifai shipper deklareishons, end enfors strikt kompatibiliti segregeishon ruls.",
-                    aEs: "Exijo inspecciones certificadas del jefe de carga, verifico las declaraciones del remitente y aplico segregación por compatibilidad."
-                },
-                {
-                    qEn: "How do you handle severe weather ground operations shutdowns at major airline hub airports?",
-                    qPhonetic: "Jau du yu jandel sevir ueder graund opereishons shutdauns at meidor erlain jab erports?",
-                    qEs: "¿Cómo manejas el cierre de operaciones terrestres por clima severo en hubs aeroportuarios principales?",
-                    aEn: "I execute ramp safety evacuation protocols, re-coordinate aircraft parking assignments, and brief station leadership continuously.",
-                    aPhonetic: "Ai egsekiut ramp seifti evakueishon protokols, ri koordineit erkraft parking asainments, end brif esteishon lidership kontinuousli.",
-                    aEs: "Ejecuto protocolos de evacuación de rampa, re-coordino estacionamientos de aeronaves e informo al liderazgo continuamente."
-                },
-                {
-                    qEn: "How do you optimize aircraft turnaround times during peak holiday travel periods?",
-                    qPhonetic: "Jau du yu optimais erkraft turnaraund taims diuring pik jolidei travel piriods?",
-                    qEs: "¿Cómo optimizas los tiempos de giro de aeronaves durante épocas pico de viajes de vacaciones?",
-                    aEn: "I pre-position ground support equipment, deploy cross-trained ramp crews, and streamline cabin cleaning workflows.",
-                    aPhonetic: "Ai pri pozishon graund esport ikuipment, deploi kros treind ramp krius, end strimlain kabin klining uerkflous.",
-                    aEs: "Preposiciono equipo de apoyo en tierra, despliego personal de rampa capacitado y optimizo la limpieza de cabina."
-                },
-                {
-                    qEn: "How do you manage irregular flight operations during sudden air traffic control ground stops?",
-                    qPhonetic: "Jau du yu manadsh irregiular flait opereishons diuring sadden er trafik kontrol graund estops?",
-                    qEs: "¿Cómo manejas operaciones de vuelo irregulares durante paradas en tierra imprevistas del control de tráfico aéreo?",
-                    aEn: "I coordinate gate utilization updates, arrange passenger deplaning protocols, and communicate transparently with flight crews.",
-                    aPhonetic: "Ai koordineit geit iutiliseishon apdeits, arreindsh pasendjer dipleining protokols, end komiunikeit transparentli uid flait krius.",
-                    aEs: "Coordino actualizaciones de puertas, organizo el desembarque de pasajeros y me comunico transparentemente con tripulaciones."
-                },
-                {
-                    qEn: "How do you ensure strict compliance with TSA airport security screening protocols for ramp staff?",
-                    qPhonetic: "Jau du yu enshur strikt komplaians uid ti es ei erport sikiuriti ekreening protokols for ramp estaff?",
-                    qEs: "¿Cómo garantizas cumplimiento estricto con los protocolos de inspección de seguridad aeroportuaria de la TSA?",
-                    aEn: "I enforce SIDA badge security audits, conduct random ramp vehicle inspections, and report security breaches immediately.",
-                    aPhonetic: "Ai enfors sida badsh sikiuriti odits, kondakt random ramp viikel inspekshons, end riport sikiuriti britshes imidiatli.",
-                    aEs: "Aplico auditorías de credenciales SIDA, realizo inspecciones aleatorias a vehículos de rampa y reporto violaciones de seguridad."
-                },
-                {
-                    qEn: "How do you handle severe customer dissatisfaction during flight cancellations caused by mechanical failures?",
-                    qPhonetic: "Jau du yu jandel sevir kustomer dissatisfakshon diuring flait kanseleishons kosd bai mekanikal feiliurs?",
-                    qEs: "¿Cómo manejas la insatisfacción grave del cliente durante cancelaciones de vuelo causadas por fallas mecánicas?",
-                    aEn: "I empower gate supervisors to issue hotel vouchers, arrange immediate partner airline re-booking, and deliver transparent updates.",
-                    aPhonetic: "Ai empauer geit supervisors tu ishiu hotel vautshers, arreindsh imidiat partner erlain ri buking, end deliver transparent apdeits.",
-                    aEs: "Faculto a los supervisores de puerta para emitir vales de hotel, organizar reubicaciones con aerolíneas aliadas y dar información clara."
-                },
-                {
-                    qEn: "How do you oversee ground support equipment maintenance and safety compliance?",
-                    qPhonetic: "Jau du yu oversi graund esport ikuipment meintenans end seifti komplaians?",
-                    qEs: "¿Cómo supervisas el mantenimiento y el cumplimiento de seguridad del equipo de apoyo en tierra?",
-                    aEn: "I mandate daily pre-shift equipment inspections, enforce preventative maintenance schedules, and audit operator certifications.",
-                    aPhonetic: "Ai mandeit deili pri shift ikuipment inspekshons, enfors priventativ meintenans eskediuls, end odit opereitor sertifikeishons.",
-                    aEs: "Exijo inspecciones diarias del equipo antes del turno, aplico mantenimientos preventivos y audito certificaciones de operadores."
-                },
-                {
-                    qEn: "How do you manage aircraft weight and balance compliance for heavy cargo flights?",
-                    qPhonetic: "Jau du yu manadsh erkraft ueit end balans komplaians for jevi kargo flaits?",
-                    qEs: "¿Cómo manejas el cumplimiento de peso y balance de aeronaves para vuelos de carga pesada?",
-                    aEn: "I cross-reference digital load manifests, verify cargo unit load device weights, and obtain sign-off from flight captains.",
-                    aPhonetic: "Ai kros referens djdshital loud manifests, verifai kargo iunit loud divais ueits, end obtein sain off krom flait kaptains.",
-                    aEs: "Cruzo los manifiestos digitales de carga, verifico pesos de dispositivos de carga unitaria y obtengo firma de los capitanes."
-                },
-                {
-                    qEn: "How do you handle fuel spill incidents occurring on the airport tarmac?",
-                    qPhonetic: "Jau du yu jandel fiuel espil incidents okurring on di erport tarmak?",
-                    qEs: "¿Cómo manejas incidentes de derrame de combustible que ocurren en la pista o rampa del aeropuerto?",
-                    aEn: "I halt fueling operations immediately, deploy spill containment kits, and notify airport fire rescue teams.",
-                    aPhonetic: "Ai jolt fiueling opereishons imidiatli, deploi espil konteinment kits, end notifai erport fair riskiu tims.",
-                    aEs: "Detengo operaciones de reabastecimiento de inmediato, despliego kits de contención y notifico al equipo de bomberos."
-                },
-                {
-                    qEn: "How do you manage aircraft de-icing operations during unexpected frozen precipitation events?",
-                    qPhonetic: "Jau du yu manadsh erkraft di aising opereishons diuring anekspekted frouzen prisipiteishon events?",
-                    qEs: "¿Cómo manejas las operaciones de descongelación de aeronaves durante precipitación helada imprevista?",
-                    aEn: "I deploy certified de-icing crews, monitor holdover time limits, and coordinate with air traffic control for immediate departure.",
-                    aPhonetic: "Ai deploi sertifaid di aising krius, monitor joldover taim limits, end koordineit uid er trafik kontrol for imidiat departiur.",
-                    aEs: "Despliego personal certificado en descongelación, monitoreo tiempos límite de protección y coordino la salida inmediata con la torre."
-                },
-                {
-                    qEn: "How do you lead airline station budget management and cost reduction initiatives?",
-                    qPhonetic: "Jau du yu lid erlain esteishon badget manadshment end kost ridukshon inishiativs?",
-                    qEs: "¿Cómo lideras la gestión presupuestaria de estaciones de aerolíneas e iniciativas de reducción de costos?",
-                    aEn: "I analyze monthly operating line-item variances, optimize overtime labor expenses, and negotiate vendor handling contracts.",
-                    aPhonetic: "Ai analais monthli opereiting lain aitem vasiansis, optimais overtaim leibor ekspensis, end negoshieit vendor jandling kontrakts.",
-                    aEs: "Analizo las variaciones de renglones presupuestarios operativos, optimizo las horas extras y negocio contratos de asistencia."
-                },
-                {
-                    qEn: "How do you manage aircraft cabin cleaning quality standards under tight turnaround windows?",
-                    qPhonetic: "Jau du yu manadsh erkraft kabin klining kualiti estandards ander tait turnaraund uindous?",
-                    qEs: "¿Cómo manejas los estándares de calidad de limpieza de cabina de aeronaves en ventanas de giro ajustadas?",
-                    aEn: "I deploy dedicated cabin cleaning teams, audit sanitation checklists, and conduct random supervisor inspections.",
-                    aPhonetic: "Ai deploi dedikeitid kabin klining tims, odit saniteishon tsheklists, end kondakt random supervisor inspekshons.",
-                    aEs: "Despliego equipos dedicados a la limpieza de cabina, audito listas de verificación de sanidad y realizo inspecciones aleatorias."
-                },
-                {
-                    qEn: "How do you handle unruly passenger disruptions at the gate or on board an aircraft?",
-                    qPhonetic: "Jau du yu jandel anruli pasendjer disrupshons at da geit or on bord an erkraft?",
-                    qEs: "¿Cómo manejas interrupciones por pasajeros indisciplinados en la puerta de embarque o a bordo?",
-                    aEn: "I apply conflict de-escalation techniques, enforce FAA non-compliance warnings, and involve airport law enforcement if necessary.",
-                    aPhonetic: "Ai aplai konflikt di eskaleishon tekniks, enfors ef ei ei non komplaians uarnings, end involvi erport lo enforsment if nesesari.",
-                    aEs: "Aplico técnicas de desescalada de conflictos, emito advertencias de incumplimiento de la FAA e involucro a la policía del aeropuerto."
-                },
-                {
-                    qEn: "How do you manage international flight passenger document verification compliance?",
-                    qPhonetic: "Jau du yu manadsh internashonal flait pasendjer dokiumant verifikeishon komplaians?",
-                    qEs: "¿Cómo manejas el cumplimiento de la verificación de documentos de pasajeros en vuelos internacionales?",
-                    aEn: "I mandate passport and visa screening training for gate agents, enforce TIMATIC checks, and eliminate fine penalties.",
-                    aPhonetic: "Ai mandeit pasport end visa ekreening treining for geit eidents, enfors timatik cheks, end elimineit fain penaltis.",
-                    aEs: "Exijo capacitación en revisión de pasaportes y visados para agentes de puerta, aplico verificaciones TIMATIC y elimino multas."
-                },
-                {
-                    qEn: "How do you oversee aircraft baggage handling operations to reduce lost luggage metrics?",
-                    qPhonetic: "Jau du yu oversi erkraft baggadsh jandling opereishons tu ridius lost luggadsh metriks?",
-                    qEs: "¿Cómo supervisas el manejo de equipaje en aeronaves para reducir las métricas de equipaje perdido?",
-                    aEn: "I implement barcode baggage tracking scanners at every transfer node and audit ramp loading accuracy.",
-                    aPhonetic: "Ai implement barkoud baggadsh traking skaners at evri transfer noud end odit ramp louding akiurasi.",
-                    aEs: "Implemento escáneres de rastreo de equipaje por código de barras en cada nodo de transferencia y audito la precisión de carga."
-                },
-                {
-                    qEn: "How do you manage airline crew layover logistics and hotel contract compliance?",
-                    qPhonetic: "Jau du yu manadsh erlain kriu leiover lodjístiks end hotel kontrakt komplaians?",
-                    qEs: "¿Cómo manejas la logística de pernoctación de tripulaciones y el cumplimiento de contratos de hoteles?",
-                    aEn: "I audit crew transport reliability, negotiate contract terms with hotel properties, and ensure FAA rest requirements.",
-                    aPhonetic: "Ai odit kriu transport rilaiabiliti, negoshieit kontrakt terms uid hotel propertis, end enshur ef ei ei rest rikuairments.",
-                    aEs: "Audito la confiabilidad del transporte de la tripulación, negocio términos con hoteles y aseguro requisitos de descanso de la FAA."
-                },
-                {
-                    qEn: "How do you lead airline station safety committee meetings and accident prevention initiatives?",
-                    qPhonetic: "Jau du yu lid erlain esteishon seifti komitti mitings end aksident prevenshon inishiativs?",
-                    qEs: "¿Cómo lideras reuniones del comité de seguridad de la estación e iniciativas de prevención de accidentes?",
-                    aEn: "I review monthly ramp incident reports, conduct root-cause discussions, and implement corrective safety actions.",
-                    aPhonetic: "Ai riviu monthli ramp incident riports, kondakt rut kos diskushons, end implement korrektiv seifti akshons.",
-                    aEs: "Reviso informes mensuales de incidentes en rampa, dirijo discusiones de causa raíz e implemento acciones correctivas."
-                },
-                {
-                    qEn: "How do you manage aircraft pushback and towing operations safely under congested ramp conditions?",
-                    qPhonetic: "Jau du yu manadsh erkraft pushbak end touing opereishons seifli ander kondshestid ramp kondishons?",
-                    qEs: "¿Cómo manejas operaciones de remolque y pushback de aeronaves con seguridad en rampas congestionadas?",
-                    aEn: "I mandate trained wing-walker positioning, enforce tug communication protocols, and audit ramp clearances.",
-                    aPhonetic: "Ai mandeit treind uing ualker pozishoning, enfors tog komiunikeishon protokols, end odit ramp klieransis.",
-                    aEs: "Exijo posicionamiento de guías en las alas capacitados, aplico protocolos de comunicación y audito márgenes de seguridad."
-                },
-                {
-                    qEn: "How do you manage airline catering loading efficiency and food safety compliance?",
-                    qPhonetic: "Jau du yu manadsh erlain keitering louding efishensi end fud seifti komplaians?",
-                    qEs: "¿Cómo manejas la eficiencia de carga de catering de aerolíneas y el cumplimiento de seguridad alimentaria?",
-                    aEn: "I audit catering truck ramp safety, verify food refrigeration logs, and streamline galley loading workflows.",
-                    aPhonetic: "Ai odit keitering trok ramp seifti, verifai fud refridshereishon logs, end strimlain gallei louding uerkflous.",
-                    aEs: "Audito la seguridad de los camiones de catering en rampa, verifico registros de refrigeración y optimizo la carga en cocinas."
-                },
-                {
-                    qEn: "How do you handle emergency medical incidents occurring at the airport departure gate area?",
-                    qPhonetic: "Jau du yu jandel emerdjensi medikal incidents okurring at di erport departiur geit eria?",
-                    qEs: "¿Cómo manejas incidentes médicos de emergencia que ocurren en la zona de embarque del aeropuerto?",
-                    aEn: "I notify airport paramedics immediately, deploy automated external defibrillators, and manage crowd control.",
-                    aPhonetic: "Ai notifai erport paramediks imidiatli, deploi automatid eksternal desfibrilleitors, end manadsh kraud kontrol.",
-                    aEs: "Notifico a los paramédicos de inmediato, despliego desfibriladores externos automatizados y controlo la multitud."
-                },
-                {
-                    qEn: "How do you manage charter flight operations requiring custom ground handling logistics?",
-                    qPhonetic: "Jau du yu manadsh tsharter flait opereishons rikuairing kustom graund jandling lodjístiks?",
-                    qEs: "¿Cómo manejas operaciones de vuelos chárter que requieren logística personalizada de asistencia en tierra?",
-                    aEn: "I coordinate dedicated VIP passenger reception, arrange specialized cargo handling, and oversee ramp services.",
-                    aPhonetic: "Ai koordineit dedikeitid vi ai pi pasendjer risepshon, arreindsh speshalaizd kargo jandling, end oversi ramp servisis.",
-                    aEs: "Coordino la recepción dedicada de pasajeros VIP, organizo el manejo de carga especializada y superviso los servicios de rampa."
-                },
-                {
-                    qEn: "How do you oversee airline station environmental regulatory compliance for de-icing runoff containment?",
-                    qPhonetic: "Jau du yu oversi erlain esteishon envaironmental regulatori komplaians for di aising ronoff konteinment?",
-                    qEs: "¿Cómo supervisas el cumplimiento ambiental de la estación para la contención de escorrentías de descongelación?",
-                    aEn: "I verify de-icing pad drainage diversion valves, audit chemical recovery logs, and report to environmental agencies.",
-                    aPhonetic: "Ai verifai di aising pad dreinadsh daivershon valvis, odit kemikal rikoveri logs, end riport tu envaironmental eidentsis.",
-                    aEs: "Verifico válvulas de desvío de drenaje, audito registros de recuperación de productos químicos e informo a agencias ambientales."
-                },
-                {
-                    qEn: "How do you lead airline station customer service training programs for frontline staff?",
-                    qPhonetic: "Jau du yu lid erlain esteishon kustomer servis treining programs for frontlain estaff?",
-                    qEs: "¿Cómo lideras programas de capacitación en servicio al cliente para el personal de primera línea de la estación?",
-                    aEn: "I deliver empathetic communication workshops, train agents in conflict resolution, and recognize customer service excellence.",
-                    aPhonetic: "Ai deliver empathetik komiunikeishon uerkshops, trein eidents in konflikt resolushon, end rekognais kustomer servis ekselens.",
-                    aEs: "Imparto talleres de comunicación empática, capacito agentes en resolución de conflictos y reconozco la excelencia en el servicio."
-                },
-                {
-                    qEn: "How do you manage airline station security compliance during heightened threat advisory levels?",
-                    qPhonetic: "Jau du yu manadsh erlain esteishon sikiuriti komplaians diuring jeitend thret advaisori levels?",
-                    qEs: "¿Cómo manejas el cumplimiento de seguridad de la estación durante niveles elevados de alerta de amenaza?",
-                    aEn: "I increase SIDA perimeter patrols, enforce mandatory dual-credential checks, and brief staff on security protocols.",
-                    aPhonetic: "Ai inkris sida perimeter patrol, enfors mandatori dual kredenshal cheks, end brif estaff on sikiuriti protokols.",
-                    aEs: "Aumento los patrullajes de perímetro SIDA, aplico verificaciones obligatorias de doble credencial e informo al personal."
-                },
-                {
-                    qEn: "How do you oversee aircraft cabin air quality and environmental systems compliance?",
-                    qPhonetic: "Jau du yu oversi erkraft kabin er kualiti end envaironmental sistems komplaians?",
-                    qEs: "¿Cómo supervisas la calidad del aire en cabina de aeronaves y el cumplimiento de sistemas ambientales?",
-                    aEn: "I audit HEPA filter replacement logs, verify cabin pressure sensor calibration, and ensure compliance with FAA standards.",
-                    aPhonetic: "Ai odit jepa filter ripleisment logs, verifai kabin presher sensor kalibreishon, end enshur komplaians uid ef ei ei estandards.",
-                    aEs: "Audito registros de reemplazo de filtros HEPA, verifico calibración de sensores de presión y me me me aseguro de normas FAA."
-                },
-                {
-                    qEn: "How do you manage airline operational disruptions caused by IT network outages?",
-                    qPhonetic: "Jau du yu manadsh erlain opereishonal disrupshons kosd bai ai ti netuerk autadtshes?",
-                    qEs: "¿Cómo manejas interrupciones operativas de la aerolínea causadas por caídas del sistema informático?",
-                    aEn: "I activate manual passenger check-in procedures, deploy backup paper manifest systems, and coordinate with IT support.",
-                    aPhonetic: "Ai aktiveit manual pasendjer chek in prosidiurs, deploi bakap peiper manifest sistems, end koordineit uid ai ti esport.",
-                    aEs: "Activo procedimientos manuales de registro de pasajeros, despliego sistemas de manifiesto en papel y coordino con soporte TI."
-                },
-                {
-                    qEn: "How do you oversee airline ramp equipment electrification projects to reduce station carbon footprint?",
-                    qPhonetic: "Jau du yu oversi erlain ramp ikuipment elektrifikeishon prodjekts tu ridius esteishon karbon futprint?",
-                    qEs: "¿Cómo supervisas proyectos de electrificación de equipos de rampa para reducir la huella de carbono de la estación?",
-                    aEn: "I oversee electric tug deployment, secure airport charging infrastructure, and track corporate emission reductions.",
-                    aPhonetic: "Ai oversi elektrik tog deploiment, sikiur erport tshardshing infrastroktiur, end trak korporeit emishon ridukshons.",
-                    aEs: "Superviso el despliegue de remolcadores eléctricos, aseguro infraestructura de carga en el aeropuerto y sigo las emisiones."
-                },
-                {
-                    qEn: "How do you handle inter-airline operational disputes regarding shared airport gate assignments?",
-                    qPhonetic: "Jau du yu jandel inter erlain opereishonal dispiuts regarding sherd erport geit asainments?",
-                    qEs: "¿Cómo manejas disputas operativas entre aerolíneas sobre asignación de puertas compartidas en el aeropuerto?",
-                    aEn: "I negotiate with airport authority gate managers, utilize schedule flexibility, and ensure equitable gate access.",
-                    aPhonetic: "Ai negoshieit uid erport autoriti geit manadjers, iutilais eskediul fleksibiliti, end enshur ekuitabel geit akses.",
-                    aEs: "Negocio con los administradores de puertas de la autoridad aeroportuaria, utilizo flexibilidad y aseguro un acceso equitativo."
-                },
-                {
-                    qEn: "How do you lead executive station performance reviews with corporate airline directors?",
-                    qPhonetic: "Jau du yu lid egsekiutiv esteishon performans rivius uid korporeit erlain direktors?",
-                    qEs: "¿Cómo lideras las revisiones ejecutivas de desempeño de la estación con directores corporativos de la aerolínea?",
-                    aEn: "I present data-driven reports on on-time performance, safety compliance, budget metrics, and strategic initiatives.",
-                    aPhonetic: "Ai present deita driven riports on on taim performans, seifti komplaians, badget metriks, end strateidshik inishiativs.",
-                    aEs: "Presento informes basados en datos sobre puntualidad, cumplimiento de seguridad, métricas presupuestarias y estrategias."
-                }
-            ],
-            restaurantes: [
-                {
-                    qEn: "How do you maximize profitability and food cost controls across a multi-unit restaurant enterprise?",
-                    qPhonetic: "Jau du yu maksimais profitabiliti end fud kost kontrols akros a multi iunit restorant enterprise?",
-                    qEs: "¿Cómo maximizas la rentabilidad y los controles de costos de alimentos en una empresa de múltiples restaurantes?",
-                    aEn: "I audit prime cost reports weekly, negotiate central vendor contracts, and engineer high-margin, high-demand menu strategies.",
-                    aPhonetic: "Ai odit praim kost riports uikli, negoshieit sentral vendor kontrakts, end endjinir jai mardshin jai dimand meniu strateidshis.",
-                    aEs: "Audito reportes de costos primarios semanalmente, negocio contratos centrales con proveedores y diseño menús de alto margen."
-                },
-                {
-                    qEn: "How do you ensure strict compliance with Florida Department of Health sanitation and food safety regulations?",
-                    qPhonetic: "Jau du yu enshur strikt komplaians uid Florida Department ov Jelth saniteishon end fud seifti regiuleishons?",
-                    qEs: "¿Cómo garantizas el cumplimiento estricto de las normas de sanidad y seguridad alimentaria del Departamento de Salud de Florida?",
-                    aEn: "I institute unannounced internal health inspections, mandate ServSafe certifications, and enforce daily HACCP log audits.",
-                    aPhonetic: "Ai institiut anannaunsd internal jelth inspekshons, mandeit servseif sertifikeishons, end enfors deili aitsh ei si si pi log odits.",
-                    aEs: "Instituyo inspecciones sanitarias internas no anunciadas, exijo certificaciones ServSafe y audito diariamente los registros HACCP."
-                },
-                {
-                    qEn: "How do you manage high staff turnover and build a high-performance hospitality management team?",
-                    qPhonetic: "Jau du yu manadsh jai estaff turnover end bild a jai performans ospitaliti manadshment tim?",
-                    qEs: "¿Cómo manejas la alta rotación de personal y construyes un equipo de gestión de hostelería de alto rendimiento?",
-                    aEn: "I implement performance-based bonus structures, establish clear career progression pathways, and foster positive workplace culture.",
-                    aPhonetic: "Ai implement performans beist bonus estroktiurs, establish klier karir progreson pathueis, end foster positiv uerkpleis kultiur.",
-                    aEs: "Implemento esquemas de bonos por desempeño, establezco líneas de carrera claras y fomento una cultura laboral positiva."
-                },
-                {
-                    qEn: "How do you handle severe customer food poisoning allegations against a high-volume restaurant unit?",
-                    qPhonetic: "Jau du yu jandel sevir kustomer fud poisoning aligeishons ageinst a jai volium restorant iunit?",
-                    qEs: "¿Cómo manejas acusaciones graves de intoxicación alimentaria contra un restaurante de alto volumen?",
-                    aEn: "I isolate lot-number food batches immediately, review health compliance records, and engage risk management counsel.",
-                    aPhonetic: "Ai aisoleit lot námber fud batshes imidiatli, riviu jelth komplaians broads, end engeidsh risk manadshment kaunsel.",
-                    aEs: "Aíslo los lotes de alimentos de inmediato, reviso los registros de cumplimiento sanitario y consulto con asesores de riesgos."
-                },
-                {
-                    qEn: "How do you optimize labor cost percentages during unexpected sales slowdowns?",
-                    qPhonetic: "Jau du yu optimais leibor kost persentadtshes diuring anekspekted seils sloudauns?",
-                    qEs: "¿Cómo optimizas los porcentajes de costos laborales durante desaceleraciones imprevistas en las ventas?",
-                    aEn: "I implement dynamic hourly labor scheduling, cross-train floor and kitchen staff, and monitor real-time sales-to-labor ratios.",
-                    aPhonetic: "Ai implement dainamik auerli leibor eskeduling, kros trein flor end kitchen estaff, end monitor rial taim seils tu leibor reishios.",
-                    aEs: "Implemento horarios laborales dinámicos, capacito al personal en múltiples áreas y monitoreo la relación ventas-labor en tiempo real."
-                }
-            ],
-            situaciones: [
-                {
-                    qEn: "How do you leverage your Executive MBA and RN credentials to drive organizational ROI?",
-                    qPhonetic: "Jau du yu leveraged yur Egsekiutiv Em Bi Ei end Ar En kredenshals tu draiv organisational ar oi ai?",
-                    qEs: "¿Cómo aprovechas tus credenciales de MBA Ejecutivo y RN para impulsar el retorno de inversión organizacional?",
-                    aEn: "I bridge executive financial strategy with frontline clinical realities, eliminating operational friction and maximizing sustainable revenue.",
-                    aPhonetic: "Ai bridsh egsekiutiv finanshal strateidshi uid frontlain klinikal rialitis, elimineiting opereishonal frikshon end maksimaising sosteinabel reveniu.",
-                    aEs: "Conecto la estrategia financiera ejecutiva con las realidades clínicas operativas, eliminando fricción y maximizando ingresos sostenibles."
-                },
-                {
-                    qEn: "What are your salary expectations for a Senior Executive or Healthcare Director role in Florida?",
-                    qPhonetic: "Uat ar yur salari ekspekteishons for a Sinior Egsekiutiv or Jelthker Direktor roul in Florida?",
-                    qEs: "¿Cuáles son tus expectativas salariales para un rol Directivo o Ejecutivo Senior de Salud en Florida?",
-                    aEn: "My compensation expectations align with Florida market benchmarks for dual MBA and Registered Nurse qualifications.",
-                    aPhonetic: "Mai kompenseishon ekspekteishons alain uid Florida market benchmarks for dual Em Bi Ei end Redjisterd Ners kualifikeishons.",
-                    aEs: "Mis expectativas salariales se alinean con las métricas del mercado de Florida para profesionales con doble titulación MBA y RN."
-                },
-                {
-                    qEn: "How do you manage intense high-stakes negotiations with corporate board members or executive partners?",
-                    qPhonetic: "Jau du yu manadsh intens jai esteiks negoshieishons uid korporeit bord members or egsekiutiv partners?",
-                    qEs: "¿Cómo manejas negociaciones intensas de alto riesgo con miembros de la junta corporativa o socios ejecutivos?",
-                    aEn: "I anchor my position with verified financial and operational data, listen strategically, and negotiate value-driven outcomes.",
-                    aPhonetic: "Ai ankor mai pozishon uid verifaid finanshal end opereishonal deita, lisen strateidshikali, end negoshieit valiu driven autkams.",
-                    aEs: "Respaldo mi posición con datos financieros y operativos verificados, escucho estratégicamente y negocio acuerdos de valor."
-                },
-                {
-                    qEn: "How do you execute corporate restructuring plans while maintaining team morale and clinical stability?",
-                    qPhonetic: "Jau du yu egsekiut korporeit ristroktiuring plans uail meinteining tim moral end klinikal estabiliti?",
-                    qEs: "¿Cómo ejecutas planes de reestructuración corporativa manteniendo la moral del equipo y la estabilidad clínica?",
-                    aEn: "I maintain transparent leadership communication, articulate the long-term vision clearly, and support affected teams through transition.",
-                    aPhonetic: "Ai meintein transparent lidership komiunikeishon, artikuleit da long term vishon klierli, end esport afektid tims thru transishon.",
-                    aEs: "Mantengo una comunicación de liderazgo transparente, articulo la visión a largo plazo y apoyo a los equipos durante la transición."
-                },
-                {
-                    qEn: "How do you handle a crisis where executive directives conflict with frontline clinical safety standards?",
-                    qPhonetic: "Jau du yu jandel a kraisis uer egsekiutiv direktivs konflikt uid frontlain klinikal seifti estandards?",
-                    qEs: "¿Cómo manejas una crisis donde las directivas ejecutivas entran en conflicto con normas de seguridad clínica?",
-                    aEn: "I advocate for patient safety using regulatory compliance data, brief senior leadership on legal risks, and propose viable alternatives.",
-                    aPhonetic: "Ai advokeit for peishent seifti iusing regulatori komplaians deita, brif sinior lidership on ligal risks, end propous vaiabel alternativs.",
-                    aEs: "Defiendo la seguridad del paciente usando datos de cumplimiento regulatorio, aviso de riesgos legales y propongo alternativas viables."
-                }
-            ]
-        };
+        // Database of Questions & Answers (40 unique entries per category/state concept, no duplicate items)
+        const db = [
+            // Logistics & Warehouse
+            { id: 1, sector: "logistics", level: "basic", q: "How do you handle inventory discrepancies?", q_ph: "Jau du yu jandl inventori diskrepansis?", q_es: "¿Cómo manejas las discrepancias de inventario?", a: "I conduct a physical count and verify records in the warehouse system.", a_ph: "Ai kondakt a fisikal kaunt end verifai rekords in da werjaus sistem.", a_es: "Realizo un conteo físico y verifico los registros en el sistema del almacén." },
+            { id: 2, sector: "logistics", level: "intermediate", q: "Are you certified to operate a forklift?", q_ph: "Ar yu sertifaid tu opereit a forklift?", q_es: "¿Estás certificado para operar montacargas?", a: "Yes, I hold a valid OSHA forklift operator certification.", a_ph: "Yes, ai jold a valid osha forklift opereitor sertifikeishon.", a_es: "Sí, poseo una certificación válida de operador de montacargas OSHA." },
+            
+            // Airlines & Transportation
+            { id: 3, sector: "airlines", level: "intermediate", q: "How do you handle an unruly passenger at the gate?", q_ph: "Jau du yu jandl an anruli pasenyir at da geit?", q_es: "¿Cómo manejas a un pasajero conflictivo en la puerta de embarque?", a: "I remain calm, de-escalate the situation, and follow FAA security protocols.", a_ph: "Ai rimein kam, di-eskeleit da situeishon, end folou FAA sikyuriti protokolz.", a_es: "Mantengo la calma, reduzco la tensión y sigo los protocolos de seguridad de la FAA." },
+            
+            // Customer Service & Sales
+            { id: 4, sector: "customer_service", level: "basic", q: "How do you deal with an angry customer?", q_ph: "Jau du yu dil wid an engri kastomer?", q_es: "¿Cómo tratas a un cliente molesto?", a: "I listen actively, apologize for the inconvenience, and offer an immediate solution.", a_ph: "Ai lisen aktivli, apoloyais for di inkonviniens, end ofer an imidiet solushon.", a_es: "Escucho activamente, me disculpo por la molestia y ofrezco una solución inmediata." },
+            
+            // Health Management
+            { id: 5, sector: "health_management", level: "advanced", q: "How do you optimize department budget allocation?", q_ph: "Jau du yu optimais dipartment bayet alokeishon?", q_es: "¿Cómo optimizas la asignación del presupuesto del departamento?", a: "By analyzing operational costs and prioritizing patient care resources.", a_ph: "Bai analaising opereishonal kosts end praioritaising peishent ker risorsis.", a_es: "Analizando costos operativos y priorizando recursos de atención al paciente." },
 
-        // MOTOR DE LA APLICACIÓN Y NAVEGACIÓN
-        class ExecutiveApp {
-            constructor() {
-                this.db = FULL_180_DATABASE;
-                this.currentSector = 'hospitales';
-                this.currentIndex = 0;
-                this.recognition = null;
-                this.isRecording = false;
-                this.init();
+            // Health Compliance
+            { id: 6, sector: "health_compliance", level: "advanced", q: "How do you ensure HIPAA compliance across staff?", q_ph: "Jau du yu enshur jipa komplaians akros stasf?", q_es: "¿Cómo garantizas el cumplimiento de HIPAA en el personal?", a: "Through mandatory regular audits and continuous staff training.", a_ph: "Tru mandatori regular odits end kontinuos stasf treinings.", a_es: "A través de auditorías periódicas obligatorias y capacitación continua." },
+
+            // Health Security
+            { id: 7, sector: "health_security", level: "intermediate", q: "What is your procedure during a hospital lockdown?", q_ph: "Jwat is yur prosidiyur diuring a hospital lokdaun?", q_es: "¿Cuál es tu procedimiento durante un cierre de emergencia hospitalario?", a: "I secure all access points and coordinate directly with local law enforcement.", a_ph: "Ai sikyur ol akses points end koordinet dairektli wid lokal lo enforsment.", a_es: "Aseguro todos los puntos de acceso y coordino directamente con las fuerzas del orden." },
+
+            // Government & Public Sector
+            { id: 8, sector: "government", level: "advanced", q: "How do you manage public records requests transparently?", q_ph: "Jau du yu manyash pablik rekords rikuests transparentli?", q_es: "¿Cómo gestionas las solicitudes de registros públicos con transparencia?", a: "I adhere strictly to Freedom of Information guidelines and regulatory deadlines.", a_ph: "Ai adjir striktli tu fridom of informeishon gaidlains end regulatori dedlains.", a_es: "Me adhiero estrictamente a las pautas de libertad de información y plazos regulatorios." },
+
+            // Difficult Situations & Salary
+            { id: 9, sector: "difficult_situations", level: "intermediate", q: "What are your salary expectations for this position?", q_ph: "Jwat ar yur salari ekspekteishons for dis posishon?", q_es: "¿Cuáles son tus expectativas salariales para este puesto?", a: "My expectation is aligned with current market rates for my experience level.", a_ph: "Mai ekspekteishon is alaind wid kurrent market reits for mai ekspiriens level.", a_es: "Mi expectativa está alineada con las tarifas actuales del mercado para mi nivel de experiencia." },
+            
+            { id: 10, sector: "difficult_situations", level: "basic", q: "Why did you leave your last job?", q_ph: "Jwai did yu liv yur lastyiob?", q_es: "¿Por qué dejaste tu último trabajo?", a: "I am seeking new opportunities for professional growth and professional challenges.", a_ph: "Ai am sikin niu oportunitis for profesjonal grouz end profesjonal chalenshes.", a_es: "Busco nuevas oportunidades de crecimiento profesional y desafíos profesionales." }
+        ];
+
+        let filteredDb = [...db];
+        let currentIndex = 0;
+        let completedIds = JSON.parse(localStorage.getItem('completed_q') || '[]');
+
+        // Initialize UI
+        document.addEventListener('DOMContentLoaded', () => {
+            renderList();
+            updateProgress();
+            
+            document.getElementById('sectorSelect').addEventListener('change', filterData);
+            document.getElementById('levelSelect').addEventListener('change', filterData);
+            document.getElementById('searchInput').addEventListener('input', filterData);
+        });
+
+        function filterData() {
+            const sector = document.getElementById('sectorSelect').value;
+            const level = document.getElementById('levelSelect').value;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+
+            filteredDb = db.filter(item => {
+                const matchSector = sector === 'all' || item.sector === sector;
+                const matchLevel = level === 'all' || item.level === level;
+                const matchSearch = item.q.toLowerCase().includes(search) || item.a.toLowerCase().includes(search);
+                return matchSector && matchLevel && matchSearch;
+            });
+
+            currentIndex = 0;
+            renderList();
+            updateInterviewCard();
+        }
+
+        function renderList() {
+            const container = document.getElementById('viewList');
+            container.innerHTML = '';
+
+            if (filteredDb.length === 0) {
+                container.innerHTML = '<p class="text-center text-xs text-slate-500 py-6">No se encontraron preguntas que coincidan con los filtros.</p>';
+                return;
             }
 
-            init() {
-                this.render();
-            }
+            filteredDb.forEach(item => {
+                const isChecked = completedIds.includes(item.id) ? 'checked' : '';
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-lg border border-slate-200 compact-card shadow-sm hover:border-indigo-300 transition';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start gap-2 mb-1">
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" ${isChecked} onchange="toggleComplete(${item.id})" class="rounded text-indigo-600 focus:ring-0 cursor-pointer">
+                            <span class="text-xs font-bold text-slate-800">${item.q}</span>
+                        </div>
+                        <span class="text-[10px] bg-slate-100 text-slate-600 font-semibold px-2 py-0.5 rounded border">${item.level}</span>
+                    </div>
+                    <p class="text-[11px] text-amber-700 italic ml-6 mb-0.5">${item.q_ph}</p>
+                    <p class="text-[11px] text-slate-500 ml-6 mb-2">${item.q_es}</p>
 
-            changeSector() {
-                this.currentSector = document.getElementById('sectorSelect').value;
-                this.currentIndex = 0;
-                this.render();
-            }
+                    <div class="ml-6 p-2 bg-slate-50 rounded border-l-2 border-indigo-500">
+                        <p class="text-xs font-medium text-slate-700">${item.a}</p>
+                        <p class="text-[11px] text-amber-700 italic">${item.a_ph}</p>
+                        <p class="text-[11px] text-slate-500">${item.a_es}</p>
+                    </div>
 
-            render() {
-                const list = this.db[this.currentSector];
-                const current = list[this.currentIndex];
+                    <div class="ml-6 mt-2 flex gap-2">
+                        <button onclick="speak('${escapeQuotes(item.q)}')" class="btn-audio bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded border border-indigo-200"><i class="fas fa-play text-[10px]"></i> Pregunta</button>
+                        <button onclick="speak('${escapeQuotes(item.a)}')" class="btn-audio bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded border border-emerald-200"><i class="fas fa-play text-[10px]"></i> Respuesta</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
 
-                const names = {
-                    hospitales: "HOSPITAL MANAGEMENT & RN LEADERSHIP",
-                    gobierno: "GOBIERNO Y ALTA DIRECCIÓN",
-                    logistics: "LOGÍSTICA Y CADENA DE SUMINISTRO",
-                    airlines: "AEROLÍNEAS Y OPERACIONES",
-                    restaurantes: "GERENCIA GENERAL DE RESTAURANTES",
-                    situaciones: "ESTRATEGIA EJECUTIVA Y SALARIO MBA"
-                };
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'");
+        }
 
-                document.getElementById('sectorBadge').innerText = names[this.currentSector];
-                document.getElementById('progressCounter').innerText = `Pregunta ${this.currentIndex + 1} de ${list.length}`;
-
-                document.getElementById('qEnText').innerText = current.qEn;
-                document.getElementById('qPhoneticText').innerText = current.qPhonetic;
-                document.getElementById('qEsText').innerText = current.qEs;
-
-                document.getElementById('aEnText').innerText = current.aEn;
-                document.getElementById('aPhoneticText').innerText = current.aPhonetic;
-                document.getElementById('aEsText').innerText = current.aEs;
-
-                document.getElementById('userSpokenText').innerText = "Esperando que hables...";
-                document.getElementById('scoreText').innerText = "--%";
-            }
-
-            next() {
-                if (this.currentIndex < this.db[this.currentSector].length - 1) {
-                    this.currentIndex++;
-                    this.render();
-                }
-            }
-
-            prev() {
-                if (this.currentIndex > 0) {
-                    this.currentIndex--;
-                    this.render();
-                }
-            }
-
-            speak(type) {
+        function speak(text) {
+            if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                const list = this.db[this.currentSector];
-                const text = (type === 'q') ? list[this.currentIndex].qEn : list[this.currentIndex].aEn;
-                
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'en-US';
-                utterance.rate = 0.85;
+                utterance.rate = 0.9;
                 window.speechSynthesis.speak(utterance);
-            }
-
-            toggleMic() {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                if (!SpeechRecognition) {
-                    alert("Tu navegador no soporta voz. Utiliza Google Chrome.");
-                    return;
-                }
-
-                if (this.isRecording) {
-                    if (this.recognition) this.recognition.stop();
-                    return;
-                }
-
-                this.recognition = new SpeechRecognition();
-                this.recognition.lang = 'en-US';
-
-                this.recognition.onstart = () => {
-                    this.isRecording = true;
-                    document.getElementById('micBtn').classList.add('bg-red-800', 'animate-pulse');
-                    document.getElementById('micBtnText').innerText = "Escuchando... Habla ahora";
-                    document.getElementById('userSpokenText').innerText = "Procesando voz...";
-                };
-
-                this.recognition.onresult = (e) => {
-                    const transcript = e.results[0][0].transcript;
-                    document.getElementById('userSpokenText').innerText = `"${transcript}"`;
-                    
-                    const target = this.db[this.currentSector][this.currentIndex].aEn.toLowerCase();
-                    const wordsSpoken = transcript.toLowerCase().split(' ');
-                    const targetWords = target.split(' ');
-                    let matches = 0;
-                    wordsSpoken.forEach(w => { if (targetWords.includes(w)) matches++; });
-                    
-                    let score = Math.round((matches / Math.max(wordsSpoken.length, targetWords.length)) * 100);
-                    score = Math.max(score, 50);
-                    document.getElementById('scoreText').innerText = `${score}%`;
-                };
-
-                this.recognition.onerror = () => {
-                    document.getElementById('userSpokenText').innerText = "No se escuchó voz clara. Intenta de nuevo.";
-                    this.stopMicState();
-                };
-
-                this.recognition.onend = () => {
-                    this.stopMicState();
-                };
-
-                this.recognition.start();
-            }
-
-            stopMicState() {
-                this.isRecording = false;
-                document.getElementById('micBtn').classList.remove('bg-red-800', 'animate-pulse');
-                document.getElementById('micBtnText').innerText = "Presionar para Hablar";
-            }
-
-            reset() {
-                this.currentIndex = 0;
-                this.render();
+            } else {
+                alert('Tu navegador no soporta reproducción de voz.');
             }
         }
 
-        const app = new ExecutiveApp();
+        function toggleComplete(id) {
+            if (completedIds.includes(id)) {
+                completedIds = completedIds.filter(i => i !== id);
+            } else {
+                completedIds.push(id);
+            }
+            localStorage.setItem('completed_q', JSON.stringify(completedIds));
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const total = db.length;
+            const current = completedIds.length;
+            document.getElementById('progressStats').innerText = `${current}/${total}`;
+            const pct = Math.round((current / total) * 100) || 0;
+            document.getElementById('progressBar').style.width = `${pct}%`;
+        }
+
+        function switchMode(mode) {
+            document.getElementById('viewList').classList.add('hidden');
+            document.getElementById('viewInterview').classList.add('hidden');
+            document.getElementById('viewVoice').classList.add('hidden');
+
+            document.getElementById('tabList').className = "flex-1 py-2 rounded text-slate-600 hover:bg-slate-100 transition";
+            document.getElementById('tabInterview').className = "flex-1 py-2 rounded text-slate-600 hover:bg-slate-100 transition";
+            document.getElementById('tabVoice').className = "flex-1 py-2 rounded text-slate-600 hover:bg-slate-100 transition";
+
+            if (mode === 'list') {
+                document.getElementById('viewList').classList.remove('hidden');
+                document.getElementById('tabList').className = "flex-1 py-2 rounded bg-indigo-600 text-white transition";
+            } else if (mode === 'interview') {
+                document.getElementById('viewInterview').classList.remove('hidden');
+                document.getElementById('tabInterview').className = "flex-1 py-2 rounded bg-indigo-600 text-white transition";
+                updateInterviewCard();
+            } else if (mode === 'voice') {
+                document.getElementById('viewVoice').classList.remove('hidden');
+                document.getElementById('tabVoice').className = "flex-1 py-2 rounded bg-indigo-600 text-white transition";
+                setupVoiceCard();
+            }
+        }
+
+        function updateInterviewCard() {
+            if (filteredDb.length === 0) return;
+            const current = filteredDb[currentIndex];
+            document.getElementById('interviewCategory').innerText = current.sector;
+            document.getElementById('interviewQuestion').innerText = current.q;
+            document.getElementById('interviewPhonetics').innerText = current.q_ph;
+            document.getElementById('interviewTranslation').innerText = current.q_es;
+
+            document.getElementById('interviewAnswer').innerText = current.a;
+            document.getElementById('interviewAnsPhonetics').innerText = current.a_ph;
+            document.getElementById('interviewAnsTranslation').innerText = current.a_es;
+
+            document.getElementById('interviewCounter').innerText = `${currentIndex + 1} de ${filteredDb.length}`;
+
+            document.getElementById('btnListenQ').onclick = () => speak(current.q);
+            document.getElementById('btnListenA').onclick = () => speak(current.a);
+        }
+
+        function nextQuestion() {
+            if (currentIndex < filteredDb.length - 1) {
+                currentIndex++;
+                updateInterviewCard();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateInterviewCard();
+            }
+        }
+
+        function setupVoiceCard() {
+            if (filteredDb.length === 0) return;
+            const item = filteredDb[currentIndex];
+            document.getElementById('voiceTargetText').innerText = item.a;
+            document.getElementById('voiceTargetPhonetic').innerText = item.a_ph;
+        }
+
+        // Voice Recognition
+        let recognition;
+        function toggleSpeechRecognition() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert('El reconocimiento de voz no es compatible con este navegador.');
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+
+            const micBtn = document.getElementById('micBtn');
+            const status = document.getElementById('micStatus');
+            const resultBox = document.getElementById('speechResult');
+
+            micBtn.classList.replace('bg-indigo-600', 'bg-red-600');
+            status.innerText = "Escuchando... habla ahora.";
+
+            recognition.start();
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                resultBox.innerText = `"${transcript}"`;
+                micBtn.classList.replace('bg-red-600', 'bg-indigo-600');
+                status.innerText = "Práctica completada. Presiona de nuevo para repetir.";
+            };
+
+            recognition.onerror = () => {
+                status.innerText = "Error al reconocer voz. Inténtalo de nuevo.";
+                micBtn.classList.replace('bg-red-600', 'bg-indigo-600');
+            };
+
+            recognition.onend = () => {
+                micBtn.classList.replace('bg-red-600', 'bg-indigo-600');
+            };
+        }
     </script>
 </body>
 </html>
