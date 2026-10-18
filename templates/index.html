@@ -14,7 +14,6 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
-
     <!-- CABECERA DE ALTO NIVEL -->
     <header class="bg-slate-900 text-white py-3 px-4 shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
@@ -30,10 +29,8 @@
             </button>
         </div>
     </header>
-
     <!-- PANEL PRINCIPAL -->
     <main class="max-w-7xl mx-auto w-full p-3 sm:p-5 flex-1 space-y-4">
-
         <!-- SELECTOR DE SECTOR -->
         <div class="bg-white rounded-xl p-3 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
             <div class="flex items-center gap-2 text-slate-900 font-extrabold text-sm uppercase">
@@ -49,20 +46,16 @@
                 <option value="situaciones">⚡ Estrategia Ejecutiva, Negociación y Salario MBA (30 Preguntas)</option>
             </select>
         </div>
-
         <!-- TARJETA DE ESTUDIO -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">            
             <!-- SECCIÓN PREGUNTAS Y RESPUESTAS (2 COLS) -->
-            <div class="lg:col-span-2 bg-white rounded-xl border border-slate-300 shadow-md p-4 sm:p-6 flex flex-col justify-between space-y-4">
-                
+            <div class="lg:col-span-2 bg-white rounded-xl border border-slate-300 shadow-md p-4 sm:p-6 flex flex-col justify-between space-y-4">                
                 <div class="space-y-4">
                     <!-- BARRA DE ESTADO -->
                     <div class="flex items-center justify-between border-b border-slate-200 pb-2">
                         <span id="sectorBadge" class="bg-sky-100 text-sky-900 font-black text-xs px-3 py-1 rounded uppercase">HOSPITAL MANAGEMENT</span>
                         <span id="progressCounter" class="font-extrabold text-slate-700 text-sm">Pregunta 1 de 30</span>
                     </div>
-
                     <!-- BLOQUE PREGUNTA -->
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
@@ -71,22 +64,18 @@
                                 <i class="fa-solid fa-volume-high"></i> Escuchar Pregunta
                             </button>
                         </div>
-                        <h2 id="qEnText" class="text-lg sm:text-xl font-black text-slate-900 leading-snug">--</h2>
-                        
+                        <h2 id="qEnText" class="text-lg sm:text-xl font-black text-slate-900 leading-snug">--</h2>                    
                         <!-- PRONUNCIACIÓN CORRIDA EN ESPAÑOL -->
                         <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
                             <span class="text-[11px] font-black uppercase block text-sky-800">Pronunciación Guía (Lee en español corrido):</span>
                             <p id="qPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
-                        </div>
-                        
+                        </div>                    
                         <div class="spanish-card p-2.5 rounded-lg text-xs sm:text-sm">
                             <span class="text-[10px] font-bold uppercase block text-slate-500">Significado en Español:</span>
                             <p id="qEsText" class="text-slate-800 font-medium">--</p>
                         </div>
                     </div>
-
                     <hr class="border-slate-200">
-
                     <!-- BLOQUE RESPUESTA -->
                     <div class="space-y-2">
                         <div class="flex items-center justify-between">
@@ -95,21 +84,18 @@
                                 <i class="fa-solid fa-volume-high"></i> Escuchar Respuesta
                             </button>
                         </div>
-                        <h3 id="aEnText" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">--</h3>
-                        
+                        <h3 id="aEnText" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">--</h3>                        
                         <!-- PRONUNCIACIÓN CORRIDA EN ESPAÑOL RESPUESTA -->
                         <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
                             <span class="text-[11px] font-black uppercase block text-sky-800">Pronunciación Guía (Lee en español corrido):</span>
                             <p id="aPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
                         </div>
-
                         <div class="spanish-card p-2.5 rounded-lg text-xs sm:text-sm">
                             <span class="text-[10px] font-bold uppercase block text-slate-500">Significado en Español:</span>
                             <p id="aEsText" class="text-slate-800 font-medium">--</p>
                         </div>
                     </div>
                 </div>
-
                 <!-- NAVEGACIÓN -->
                 <div class="flex items-center justify-between border-t border-slate-200 pt-3 mt-2">
                     <button onclick="app.prev()" class="bg-slate-200 hover:bg-slate-300 text-slate-900 px-4 py-2 rounded-lg font-bold text-xs sm:text-sm transition flex items-center gap-1">
@@ -119,9 +105,7 @@
                         Siguiente <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
-
             </div>
-
             <!-- PANEL MICRÓFONO Y EVALUACIÓN (1 COL) -->
             <div class="bg-white rounded-xl border border-slate-300 shadow-md p-4 space-y-4 flex flex-col justify-between">
                 <div class="space-y-3">
@@ -132,32 +116,25 @@
                     <p class="text-xs text-slate-600 font-medium leading-normal">
                         Presiona el botón rojo y lee la respuesta estratégica en voz alta. Evaluaremos la firmeza y precisión de tu voz.
                     </p>
-
                     <button id="micBtn" onclick="app.toggleMic()" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-black text-xs sm:text-sm rounded-lg shadow transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-microphone text-base"></i>
                         <span id="micBtnText">Presionar para Hablar</span>
                     </button>
-
                     <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
                         <span class="text-[10px] font-bold text-slate-400 uppercase block">El sistema escuchó:</span>
                         <p id="userSpokenText" class="text-xs font-bold text-sky-800 italic min-h-[32px]">Esperando que hables...</p>
                     </div>
-
                     <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center space-y-0.5">
                         <span class="text-[10px] font-bold text-slate-400 uppercase block">Precisión de Voz</span>
                         <span id="scoreText" class="text-2xl font-black text-amber-500">--%</span>
                     </div>
                 </div>
-
                 <div class="text-center text-[10px] font-bold text-slate-400 pt-2 border-t border-slate-100">
                     MAY ROGA LLC © 2026 • Executive MBA & RN Level
                 </div>
             </div>
-
         </div>
-
     </main>
-
     <script>
 // BASE DE DATOS MASIVA DE 180 PREGUNTAS Y RESPUESTAS ÚNICAS E INDIVIDUALIZADAS
         const FULL_180_DATABASE = {
@@ -1320,21 +1297,17 @@
                 this.isRecording = false;
                 this.init();
             }
-
             init() {
                 this.render();
             }
-
             changeSector() {
                 this.currentSector = document.getElementById('sectorSelect').value;
                 this.currentIndex = 0;
                 this.render();
             }
-
             render() {
                 const list = this.db[this.currentSector];
                 const current = list[this.currentIndex];
-
                 const names = {
                     hospitales: "HOSPITAL MANAGEMENT & RN LEADERSHIP",
                     gobierno: "GOBIERNO Y ALTA DIRECCIÓN",
@@ -1343,36 +1316,29 @@
                     restaurantes: "GERENCIA GENERAL DE RESTAURANTES",
                     situaciones: "ESTRATEGIA EJECUTIVA Y SALARIO MBA"
                 };
-
                 document.getElementById('sectorBadge').innerText = names[this.currentSector];
                 document.getElementById('progressCounter').innerText = `Pregunta ${this.currentIndex + 1} de ${list.length}`;
-
                 document.getElementById('qEnText').innerText = current.qEn;
                 document.getElementById('qPhoneticText').innerText = current.qPhonetic;
                 document.getElementById('qEsText').innerText = current.qEs;
-
                 document.getElementById('aEnText').innerText = current.aEn;
                 document.getElementById('aPhoneticText').innerText = current.aPhonetic;
                 document.getElementById('aEsText').innerText = current.aEs;
-
                 document.getElementById('userSpokenText').innerText = "Esperando que hables...";
                 document.getElementById('scoreText').innerText = "--%";
             }
-
             next() {
                 if (this.currentIndex < this.db[this.currentSector].length - 1) {
                     this.currentIndex++;
                     this.render();
                 }
             }
-
             prev() {
                 if (this.currentIndex > 0) {
                     this.currentIndex--;
                     this.render();
                 }
             }
-
             speak(type) {
                 window.speechSynthesis.cancel();
                 const list = this.db[this.currentSector];
@@ -1383,68 +1349,55 @@
                 utterance.rate = 0.85;
                 window.speechSynthesis.speak(utterance);
             }
-
             toggleMic() {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 if (!SpeechRecognition) {
                     alert("Tu navegador no soporta voz. Utiliza Google Chrome.");
                     return;
                 }
-
                 if (this.isRecording) {
                     if (this.recognition) this.recognition.stop();
                     return;
                 }
-
                 this.recognition = new SpeechRecognition();
                 this.recognition.lang = 'en-US';
-
                 this.recognition.onstart = () => {
                     this.isRecording = true;
                     document.getElementById('micBtn').classList.add('bg-red-800', 'animate-pulse');
                     document.getElementById('micBtnText').innerText = "Escuchando... Habla ahora";
                     document.getElementById('userSpokenText').innerText = "Procesando voz...";
                 };
-
                 this.recognition.onresult = (e) => {
                     const transcript = e.results[0][0].transcript;
-                    document.getElementById('userSpokenText').innerText = `"${transcript}"`;
-                    
+                    document.getElementById('userSpokenText').innerText = `"${transcript}"`;                    
                     const target = this.db[this.currentSector][this.currentIndex].aEn.toLowerCase();
                     const wordsSpoken = transcript.toLowerCase().split(' ');
                     const targetWords = target.split(' ');
                     let matches = 0;
-                    wordsSpoken.forEach(w => { if (targetWords.includes(w)) matches++; });
-                    
+                    wordsSpoken.forEach(w => { if (targetWords.includes(w)) matches++; });         
                     let score = Math.round((matches / Math.max(wordsSpoken.length, targetWords.length)) * 100);
                     score = Math.max(score, 50);
                     document.getElementById('scoreText').innerText = `${score}%`;
                 };
-
                 this.recognition.onerror = () => {
                     document.getElementById('userSpokenText').innerText = "No se escuchó voz clara. Intenta de nuevo.";
                     this.stopMicState();
                 };
-
                 this.recognition.onend = () => {
                     this.stopMicState();
                 };
-
                 this.recognition.start();
             }
-
             stopMicState() {
                 this.isRecording = false;
                 document.getElementById('micBtn').classList.remove('bg-red-800', 'animate-pulse');
                 document.getElementById('micBtnText').innerText = "Presionar para Hablar";
             }
-
             reset() {
                 this.currentIndex = 0;
                 this.render();
             }
         }
-
         const app = new ExecutiveApp();
     </script>
 </body>
