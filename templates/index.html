@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAY ROGA LLC | Master Elite Labor English & Interview Trainer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        gold: {
+                            500: '#d4af37',
+                            600: '#aa8c2c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+        @keyframes pulse-red {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .pulse-recording { animation: pulse-red 1.5s infinite; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-200">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="app.navHome()">
+                <div class="bg-brand-600 text-white p-2 rounded-lg font-bold text-xl flex items-center justify-center w-10 h-10 shadow">
+                    <i class="fa-solid fa-crown text-gold-500"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg leading-tight text-slate-900 dark:text-white" id="app-title">MAY ROGA LLC | Elite English Trainer</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400" id="app-subtitle">Labor Interview & Professional Communication System</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <!-- Language Switcher -->
+                <button onclick="app.toggleLanguage()" class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-semibold flex items-center gap-2 transition">
+                    <i class="fa-solid fa-language text-brand-500 text-sm"></i>
+                    <span id="lang-indicator">Español</span>
+                </button>
+
+                <!-- Theme Switcher -->
+                <button onclick="app.toggleTheme()" class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+
+                <!-- Reset Data Button -->
+                <button onclick="app.resetProgress()" title="Reset Progress" class="p-2 rounded-lg border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- VIEW 1: HOME & DASHBOARD -->
+        <div id="view-home" class="space-y-6">
+            
+            <!-- Sector Selector Controls -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+                <span class="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-brand-500"></i>
+                    <span id="lbl-select-sector">Select Target Florida Sector:</span>
+                </span>
+                
+                <div class="w-full md:w-auto flex-1 max-w-md">
+                    <select id="sectorSelect" onchange="app.changeSector()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-xl p-2.5 text-sm font-semibold">
+                        <option value="all">🌐 All Sectors (General Florida Standard)</option>
+                        <option value="logistics">📦 Logistics, Warehouse & Ports</option>
+                        <option value="airlines">✈️ Airlines & Ground Operations (Avianca Standards)</option>
+                        <option value="hospitales">🏥 Hospitals: Management, Compliance & Safety</option>
+                        <option value="gobierno">🏛️ Government, Public Procurement & Administration</option>
+                        <option value="restaurantes">🍽️ Restaurants, Retail & Customer Service</option>
+                        <option value="situaciones">⚡ Difficult Situations, Conflicts & Salary Negotiation</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-brand-700 via-brand-800 to-brand-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                <div class="max-w-3xl relative z-10">
+                    <span class="inline-block px-3 py-1 bg-brand-500/30 border border-brand-400/30 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 text-gold-500" id="badge-fl">Florida Labor Standard Prep</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight" id="home-title">Master Elite English Interview Trainer</h2>
+                    <p class="text-brand-100 text-sm sm:text-base mb-6 leading-relaxed" id="home-desc">
+                        Prepare like an absolute monster. Master professional workplace English, listen to native audio, practice your pronunciation with real-time speech recognition, and ace your job interviews across Florida industries.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 sm:gap-4">
+                        <button onclick="app.startPractice()" class="bg-white text-brand-900 hover:bg-brand-50 px-6 py-3 rounded-xl font-bold text-sm shadow-md transition flex items-center gap-2">
+                            <i class="fa-solid fa-book-open text-brand-600"></i>
+                            <span id="btn-start-practice">Start Interactive Training</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase" id="stat-lbl-answered">Questions Explored</p>
+                            <h3 class="text-2xl font-bold mt-1" id="stat-answered">0 / 0</h3>
+                        </div>
+                        <div class="p-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
+                            <i class="fa-solid fa-list-check text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full mt-4 overflow-hidden">
+                        <div id="stat-bar-progress" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase" id="stat-lbl-accuracy">Voice Accuracy Avg</p>
+                            <h3 class="text-2xl font-bold mt-1" id="stat-accuracy">0%</h3>
+                        </div>
+                        <div class="p-3 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg">
+                            <i class="fa-solid fa-bullseye text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full mt-4 overflow-hidden">
+                        <div id="stat-bar-accuracy" class="bg-emerald-500 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase" id="stat-lbl-mastered">Mastered Questions</p>
+                            <h3 class="text-2xl font-bold mt-1" id="stat-mastered">0</h3>
+                        </div>
+                        <div class="p-3 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-lg">
+                            <i class="fa-solid fa-award text-xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-4" id="stat-mastered-sub">Marked as fully mastered</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase" id="stat-lbl-mode">Current Level</p>
+                            <h3 class="text-2xl font-bold mt-1 text-gold-500">Elite 🚀</h3>
+                        </div>
+                        <div class="p-3 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg">
+                            <i class="fa-solid fa-graduation-cap text-xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-4" id="stat-mode-sub">Professional Florida Standard</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: QUIZ / TRAINING SESSION -->
+        <div id="view-quiz" class="hidden space-y-6">
+            <!-- Top Controls Bar -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <button onclick="app.navHome()" class="text-slate-500 hover:text-slate-800 dark:hover:text-white p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+                        <i class="fa-solid fa-arrow-left text-lg"></i>
+                    </button>
+                    <div>
+                        <span id="quiz-mode-badge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand-100 text-brand-800 dark:bg-brand-900/50 dark:text-brand-300">Elite Interview Trainer</span>
+                        <h2 class="text-sm font-bold text-slate-800 dark:text-slate-200" id="quiz-sector-lbl">All Sectors</h2>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="text-right">
+                        <span class="text-xs text-slate-400 block" id="lbl-question-num">Question</span>
+                        <span class="text-base font-bold text-brand-600 dark:text-brand-400" id="quiz-progress-text">1 / 10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training Grid: Left Main QA, Right Voice Coach -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Main Question & Answer Card (2 cols) -->
+                <div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-lg p-6 sm:p-8 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="inline-block text-xs font-bold px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md" id="q-category">
+                                Sector
+                            </span>
+                            <button onclick="app.markMastered()" class="px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800 text-xs font-bold flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-star"></i> <span id="btn-mastered-lbl">Mark Mastered</span>
+                            </button>
+                        </div>
+
+                        <!-- Question Box -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400" id="lbl-q-title">Interview Question (English)</span>
+                                <button onclick="app.speakText('q')" class="text-brand-600 dark:text-brand-400 hover:underline text-xs font-semibold flex items-center gap-1">
+                                    <i class="fa-solid fa-volume-high"></i> <span id="btn-listen-q">Listen Question</span>
+                                </button>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-relaxed" id="q-text">--</h3>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-700 italic text-sm text-brand-600 dark:text-brand-400" id="q-phonetic">--</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400" id="q-spanish">--</div>
+                        </div>
+
+                        <hr class="border-slate-200 dark:border-slate-700">
+
+                        <!-- Answer Box -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-400" id="lbl-a-title">Professional Strategy Answer</span>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="app.speakText('a')" class="text-emerald-600 dark:text-emerald-400 hover:underline text-xs font-semibold flex items-center gap-1">
+                                        <i class="fa-solid fa-volume-high"></i> <span id="btn-listen-a">Listen Answer</span>
+                                    </button>
+                                    <button onclick="app.stopAudio()" class="text-slate-400 hover:text-red-500 text-xs"><i class="fa-solid fa-stop"></i></button>
+                                </div>
+                            </div>
+                            <h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white leading-relaxed" id="a-text">--</h4>
+                            <div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-700 italic text-sm text-emerald-600 dark:text-emerald-400" id="a-phonetic">--</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400" id="a-spanish">--</div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between gap-3">
+                        <button onclick="app.prevQuestion()" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 font-semibold text-xs sm:text-sm flex items-center gap-2 transition">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            <span id="lbl-btn-prev">Previous</span>
+                        </button>
+                        <span class="text-xs text-slate-400 hidden sm:inline" id="keyboard-hint">Use Keyboard ⬅️ ➡️</span>
+                        <button onclick="app.nextQuestion()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow transition">
+                            <span id="lbl-btn-next">Next</span>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Voice Coach & Speech Recognition Panel (1 col) -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-lg p-6 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 text-red-500 font-bold text-sm">
+                            <i class="fa-solid fa-microphone-lines"></i>
+                            <span id="lbl-voice-title">Native Speech Coach</span>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" id="lbl-voice-desc">
+                            Press the microphone button and speak your answer out loud in English. The browser engine will evaluate your spoken words and score your pronunciation accuracy instantly.
+                        </p>
+
+                        <div class="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3 text-center">
+                            <button id="micBtn" onclick="app.toggleSpeechRecognition()" class="w-full py-3.5 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm shadow transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-microphone text-lg"></i>
+                                <span id="micBtnText">Start Voice Practice</span>
+                            </button>
+
+                            <div class="text-left space-y-1 mt-2">
+                                <span class="text-[10px] text-slate-400 uppercase tracking-wider block" id="lbl-transcript">What we heard:</span>
+                                <p class="text-xs font-semibold text-brand-600 dark:text-brand-400 min-h-[30px]" id="userTranscript">Press button & speak...</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                            <span class="text-[10px] text-slate-400 uppercase tracking-wider block" id="lbl-accuracy">Pronunciation Accuracy</span>
+                            <h3 class="text-3xl font-extrabold text-amber-500 mt-1" id="accuracyScore">--%</h3>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="text-[11px] text-slate-400" id="brand-tag">MAY ROGA LLC • Florida Elite Training</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FULL LOGIC & DATABASE SCRIPT -->
+    <script>
+        // MASTER TRAINING DATABASE (FLORIDA LABOR & PROFESSIONAL STANDARDS)
+        const MASTER_DATABASE = [
+            // LOGISTICS & WAREHOUSE
+            {
+                sector: "logistics",
+                qEn: "How do you handle severe inventory discrepancies or lost cargo during warehouse shift handovers?",
+                qPhonetic: "Jau du yu jándol sivíer ínventori dískrepansis or lost kárgo dúring uérjaus shift jándovers?",
+                qEs: "¿Cómo manejas discrepancias graves de inventario o carga perdida durante los relevos de turno en el almacén?",
+                aEn: "I immediately halt the affected zone, audit recent scanner logs, cross-reference bills of lading, and brief the incoming supervisor with a formal variance report.",
+                aPhonetic: "Ai imédiatli jolt da afékted zóun, ódit rísent skáner logs, kros-réferens bils ov léiding, end bríf da íncoming supérvisor uid a fórmal vérians riport.",
+                aEs: "Inmediatamente detengo la zona afectada, audito registros recientes del escáner, cruzo conocimientos de embarque y informo al supervisor entrante con un reporte formal de variaciones."
+            },
+            {
+                sector: "logistics",
+                qEn: "What steps do you take when a pallet arrives with damaged shrink-wrap and compromised packaging?",
+                qPhonetic: "Uát steps du yu teik uen a pálit aráives uid dámadsh shrink-rap end kómpromaised páckidsing?",
+                qEs: "¿Qué pasos sigues cuando un estiba llega con película plástica dañada y empaque comprometido?",
+                aEn: "I document the damage with photos, isolate the pallet for quality inspection, notify the logistics coordinator, and update the inventory management system.",
+                aPhonetic: "Ai dókyument da dámadsh uid fóutos, ísolate da pálit for kuáliti inspeéshon, nóutifai da lodjístiks kóordinator, end apdéit da ínventori mánagement sístem.",
+                aEs: "Dokumento el daño con fotos, aíslo el estiba para inspección de calidad, notifico al coordinador de logística y actualizo el sistema de gestión de inventario."
+            },
+            // AIRLINES & GROUND OPS (AVIANCA / FLORIDA STANDARDS)
+            {
+                sector: "airlines",
+                qEn: "What immediate escalation protocol do you follow when a dangerous goods (DG) documentation error is detected at ramp side?",
+                qPhonetic: "Uát imédiatli eskaléishon prótokol du yu fólou uen a déindjerous guds dokyumentéishon éror iz detékted at ramp sáid?",
+                qEs: "¿Qué protocolo de escalamiento inmediato sigues cuando se detecta un error de documentación de mercancías peligrosas (DG) en rampa?",
+                aEn: "I instantly notify the load master and station manager, hold the aircraft loading operation per safety guidelines, and rectify the dangerous goods declaration before clearance.",
+                aPhonetic: "Ai ínstantli nóutifai da lóud máster end stéishon mánager, jold da érkraft lóuding operéishon per séifti gáidlains, end réktifai da déindjerous guds deklaréishon bifór klíarans.",
+                aEs: "Notifico al instante al jefe de carga y al gerente de estación, detengo la operación de carga según las normas de seguridad y rectifico la declaración antes de la autorización."
+            },
+            {
+                sector: "airlines",
+                qEn: "How do you coordinate passenger boarding gate flow when an international flight experiences unexpected technical delays?",
+                qPhonetic: "Jau du yu koórdineit pásendjer bóarding geit flóu uen an internáshonal fláit ekspiriénses aneksékted téknikal diléis?",
+                qEs: "¿Cómo coordinas el flujo de la puerta de embarque cuando un vuelo internacional experimenta retrasos técnicos inesperados?",
+                aEn: "I make transparent public announcements every fifteen minutes, coordinate reaccommodation with customer service, and maintain calm among passengers.",
+                aPhonetic: "Ai meik tránsparent públik anáunsments évri fíftin mínuts, koórdineit riakomodeishon uid kústomer sèrvice, end méintain kám amóng pásendjers.",
+                aEs: "Hago anuncios públicos transparentes cada quince minutos, coordino la reacomodación con servicio al cliente y mantengo la calma entre los pasajeros."
+            },
+            // HOSPITALS: MANAGEMENT, COMPLIANCE & SAFETY
+            {
+                sector: "hospitales",
+                qEn: "How do you ensure strict HIPAA compliance and data security when handling confidential patient records in hospital administration?",
+                qPhonetic: "Jau du yu enshúr strikt jípa kompláians end déita sekliúriti uen jándling konfidénshal péishont récordz in jóspital administréishon?",
+                qEs: "¿Cómo garantizas el cumplimiento estricto de HIPAA y la seguridad de datos al manejar registros confidenciales de pacientes en administración hospitalaria?",
+                aEn: "I enforce role-based system access controls, conduct routine audit logs reviews, and ensure secure physical and digital document disposal protocols.",
+                aPhonetic: "Ai enfórs róul-beist sístem ákses kóntrols, kondákt rúutin ódit logs riviús, end enshúr sikiúr fízikal end dídjital dókyument dispóusal prótokols.",
+                aEs: "Aplico controles de acceso basados en roles, reviso registros de auditoría y garantizo protocolos seguros de eliminación de documentos físicos y digitales."
+            },
+            {
+                sector: "hospitales",
+                qEn: "What emergency protocol is initiated upon discovering a potential safety breach or missing pharmaceutical substance in hospital compliance?",
+                qPhonetic: "Uát emérdjenzi prótokol iz iníshieited upón diskúvering a poténshal séifti brích or míssing fármaseutikal súbstans in jóspital kompláians?",
+                qEs: "¿Qué protocolo de emergencia se inicia al descubrir una posible violación de seguridad o sustancia farmacéutica faltante en cumplimiento hospitalario?",
+                aEn: "I immediately report the discrepancy to the compliance officer, secure the storage area, and initiate a thorough internal review per safety guidelines.",
+                aPhonetic: "Ai imédiatli riport da dískrepansi tu da kompláians óficer, sikiúr da stóradsh éria, end iníshieit a thórou ínternal riviú per séifti gáidlains.",
+                aEs: "Inmediatamente reporto la discrepancia al oficial de cumplimiento, aseguro el área de almacenamiento e inicio una revisión interna exhaustiva según las normas."
+            },
+            // GOVERNMENT & PUBLIC ADMINISTRATION
+            {
+                sector: "gobierno",
+                qEn: "How do you manage public procurement compliance and vendor documentation under state and federal guidelines?",
+                qPhonetic: "Jau du yu mánadsh públik prokliúrment kompláians end vvendor dokyumentéishon ánder steit end féderal gáidlains?",
+                qEs: "¿Cómo manejas el cumplimiento de compras públicas y la documentación de proveedores bajo directrices estatales y federales?",
+                aEn: "I verify all vendor certifications, ensure transparent bidding records, and strictly adhere to compliance regulations without exception.",
+                aPhonetic: "Ai vérifai ol vvendor sertifikéishons, enshúr tránsparent bíding récordz, end striktli adjíar tu kompláians regyuléishons uidout eksépshon.",
+                aEs: "Verifico todas las certificaciones de proveedores, aseguro registros de licitación transparentes y cumplo estrictamente con las regulaciones sin excepción."
+            },
+            {
+                sector: "gobierno",
+                qEn: "How do you handle public records requests under Florida Sunshine Law while protecting confidential information?",
+                qPhonetic: "Jau du yu jándol públik récordz rekuests ánder Flórida Súnshain lo uáil protékting konfidénshal informéishon?",
+                qEs: "¿Cómo manejas las solicitudes de registros públicos bajo la Ley Sunshine de Florida protegiendo información confidencial?",
+                aEn: "I promptly process requests while redacting legally exempt personal data in compliance with Florida statutory requirements.",
+                aPhonetic: "Ai prómptli próses rekuests uáil ridákting lėgali egzémt pórsonal déita in kompláians uid Flórida stătutori rekuáirments.",
+                aEs: "Proceso rápidamente las solicitudes redactando los datos personales legalmente exentos en cumplimiento con los requisitos estatutarios de Florida."
+            },
+            // RESTAURANTS, RETAIL & CUSTOMER SERVICE
+            {
+                sector: "restaurantes",
+                qEn: "How do you prioritize your tables and orders during a massive rush hour in a busy restaurant?",
+                qPhonetic: "Jau du yu práioritaić yur téibels end órders dúring a másiv rash áur in a bízi réstorant?",
+                qEs: "¿Cómo priorizas tus mesas y órdenes durante una hora pico masiva en un restaurante ocupado?",
+                aEn: "I organize orders by priority, communicate constantly with the kitchen staff, and provide friendly, transparent updates to my guests.",
+                aPhonetic: "Ai órganiz órders bai práioriti, komyúnikeit kónstantli uid da kítchen staf, end prováid fréndli, tránsparent apdéits tu mai gésts.",
+                aEs: "Organizo los pedidos por prioridad, me comunico constantemente con el personal de cocina y doy actualizaciones amigables y transparentes a mis invitados."
+            },
+            {
+                sector: "restaurantes",
+                qEn: "How do you resolve a situation where an angry customer complains about an incorrect order in a high-end establishment?",
+                qPhonetic: "Jau du yu rizólve a sityuéishon uen an ángri kústomer kompléins abáut an inkorrekt órder in a jái-end establishment?",
+                qEs: "¿Cómo resuelves una situación donde un cliente enojado se queja de un pedido incorrecto en un establecimiento de alta categoría?",
+                aEn: "I listen empathetically without interrupting, apologize sincerely, replace the item immediately, and ensure their complete satisfaction.",
+                aPhonetic: "Ai lísen empáthetikli uidout interrúpting, apolodjaiz sinsérli, repléis da áitem imédiatli, end enshúr their komplít satisféishon.",
+                aEs: "Escucho con empatía sin interrumpir, me disculpo sinceramente, reemplazo el artículo de inmediato y aseguro su completa satisfacción."
+            },
+            // DIFFICULT SITUATIONS, CONFLICTS & SALARY
+            {
+                sector: "situaciones",
+                qEn: "Tell me about a time you handled an intense conflict with a difficult coworker in a high-pressure Florida workplace.",
+                qPhonetic: "Tel mi abáut a táim yu jándled an inténs konflikt uid a dífikult kúorker in a jái-presher Flórida uérkpleis?",
+                qEs: "Cuéntame sobre una ocasión en que manejaste un conflicto intenso con un compañero difícil en un entorno de alta presión en Florida.",
+                aEn: "I remained completely calm, actively listened to their core concerns, identified a practical middle-ground solution, and resolved the issue professionally.",
+                aPhonetic: "Ai riméind komplítli kám, áktivli lísened tu their kór onsérns, idéntified a práktikal mídel-graund solúshon, end rizólved da íshyu prófeshonali.",
+                aEs: "Me mantuve completamente calmado, escuché activamente sus preocupaciones principales, identifiqué una solución práctica intermedia y resolví el problema profesionalmente."
+            },
+            {
+                sector: "situaciones",
+                qEn: "What are your salary expectations for this professional position in Florida?",
+                qPhonetic: "Uát ar yur sálari ekspektéishons for dis prófeshonal posíshon in Flórida?",
+                qEs: "¿Cuáles son tus expectativas salariales para este puesto profesional en Florida?",
+                aEn: "I am open to a competitive offer based on market rates, my extensive experience, and the value I bring to the organization.",
+                aPhonetic: "Ai am óupen tu a kompetitiv ófer beist on márket reits, mai eksténsiv ekspíriens, end da vvalyu ai bring tu da órganizéishon.",
+                aEs: "Estoy abierto a una oferta competitiva basada en las tarifas del mercado, mi amplia experiencia y el valor que aporto a la organización."
+            }
+        ];
+
+        // APP STATE CONTROLLER
+        class EliteTrainerApp {
+            constructor() {
+                this.lang = 'es'; // 'es' or 'en'
+                this.darkMode = false;
+                this.currentSector = 'all';
+                this.filteredQuestions = [...MASTER_DATABASE];
+                this.currentIndex = 0;
+                this.masteredList = JSON.parse(localStorage.getItem('may_roga_mastered')) || [];
+                this.totalExplored = new Set();
+                this.accuracyScores = [];
+                this.recognition = null;
+                this.isRecording = false;
+
+                this.init();
+            }
+
+            init() {
+                this.filterQuestions();
+                this.updateStats();
+            }
+
+            toggleLanguage() {
+                this.lang = this.lang === 'es' ? 'en' : 'es';
+                document.getElementById('lang-indicator').innerText = this.lang === 'es' ? 'Español' : 'English';
+                this.updateUIStrings();
+            }
+
+            toggleTheme() {
+                this.darkMode = !this.darkMode;
+                document.documentElement.classList.toggle('dark', this.darkMode);
+            }
+
+            navHome() {
+                document.getElementById('view-home').classList.remove('hidden');
+                document.getElementById('view-quiz').classList.add('hidden');
+                this.updateStats();
+            }
+
+            startPractice() {
+                document.getElementById('view-home').classList.add('hidden');
+                document.getElementById('view-quiz').classList.remove('hidden');
+                this.filterQuestions();
+                this.renderQuestion();
+            }
+
+            changeSector() {
+                this.currentSector = document.getElementById('sectorSelect').value;
+                this.filterQuestions();
+            }
+
+            filterQuestions() {
+                if (this.currentSector === 'all') {
+                    this.filteredQuestions = [...MASTER_DATABASE];
+                } else {
+                    this.filteredQuestions = MASTER_DATABASE.filter(q => q.sector === this.currentSector);
+                }
+                this.currentIndex = 0;
+            }
+
+            renderQuestion() {
+                if (this.filteredQuestions.length === 0) return;
+                const q = this.filteredQuestions[this.currentIndex];
+                
+                document.getElementById('q-category').innerText = q.sector.toUpperCase();
+                document.getElementById('q-text').innerText = q.qEn;
+                document.getElementById('q-phonetic').innerText = q.qPhonetic;
+                document.getElementById('q-spanish').innerText = q.qEs;
+
+                document.getElementById('a-text').innerText = q.aEn;
+                document.getElementById('a-phonetic').innerText = q.aPhonetic;
+                document.getElementById('a-spanish').innerText = q.aEs;
+
+                document.getElementById('quiz-progress-text').innerText = `${this.currentIndex + 1} / ${this.filteredQuestions.length}`;
+                
+                const sectorText = document.getElementById('sectorSelect').options[document.getElementById('sectorSelect').selectedIndex].text;
+                document.getElementById('quiz-sector-lbl').innerText = sectorText;
+
+                this.totalExplored.add(this.currentIndex);
+                this.updateStats();
+            }
+
+            nextQuestion() {
+                if (this.currentIndex < this.filteredQuestions.length - 1) {
+                    this.currentIndex++;
+                    this.renderQuestion();
+                }
+            }
+
+            prevQuestion() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.renderQuestion();
+                }
+            }
+
+            speakText(type) {
+                window.speechSynthesis.cancel();
+                const q = this.filteredQuestions[this.currentIndex];
+                const text = (type === 'q') ? q.qEn : q.aEn;
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.88;
+                window.speechSynthesis.speak(utterance);
+            }
+
+            stopAudio() {
+                window.speechSynthesis.cancel();
+            }
+
+            toggleSpeechRecognition() {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    alert("Speech recognition is not supported in this browser. Please use Google Chrome.");
+                    return;
+                }
+
+                if (this.isRecording) {
+                    if (this.recognition) this.recognition.stop();
+                    return;
+                }
+
+                this.recognition = new SpeechRecognition();
+                this.recognition.lang = 'en-US';
+                this.recognition.interimResults = false;
+
+                this.recognition.onstart = () => {
+                    this.isRecording = true;
+                    const btn = document.getElementById('micBtn');
+                    btn.classList.add('pulse-recording', 'bg-red-700');
+                    document.getElementById('micBtnText').innerText = this.lang === 'es' ? "Escuchando... (Hable ahora)" : "Listening... (Speak now)";
+                    document.getElementById('userTranscript').innerText = "...";
+                };
+
+                this.recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('userTranscript').innerText = `"${transcript}"`;
+                    
+                    const q = this.filteredQuestions[this.currentIndex];
+                    const score = this.calculateSimilarity(transcript.toLowerCase(), q.aEn.toLowerCase());
+                    this.accuracyScores.push(score);
+                    document.getElementById('accuracyScore').innerText = `${score}%`;
+                };
+
+                this.recognition.onerror = () => {
+                    document.getElementById('userTranscript').innerText = "Speech not detected. Try again.";
+                    this.stopRecState();
+                };
+
+                this.recognition.onend = () => {
+                    this.stopRecState();
+                };
+
+                this.recognition.start();
+            }
+
+            stopRecState() {
+                this.isRecording = false;
+                const btn = document.getElementById('micBtn');
+                btn.classList.remove('pulse-recording', 'bg-red-700');
+                document.getElementById('micBtnText').innerText = this.lang === 'es' ? "Iniciar Práctica de Voz" : "Start Voice Practice";
+            }
+
+            calculateSimilarity(str1, str2) {
+                let w1 = str1.split(' ');
+                let w2 = str2.split(' ');
+                let matches = 0;
+                w1.forEach(w => { if (w2.includes(w)) matches++; });
+                let pct = Math.round((matches / Math.max(w1.length, w2.length)) * 100);
+                return Math.max(pct, 40);
+            }
+
+            markMastered() {
+                const q = this.filteredQuestions[this.currentIndex];
+                if (!this.masteredList.includes(q.qEn)) {
+                    this.masteredList.push(q.qEn);
+                    localStorage.setItem('may_roga_mastered', JSON.stringify(this.masteredList));
+                    this.updateStats();
+                    alert(this.lang === 'es' ? "¡Pregunta marcada como dominada con éxito!" : "Question marked as successfully mastered!");
+                }
+            }
+
+            resetProgress() {
+                if (confirm(this.lang === 'es' ? "¿Deseas reiniciar todo tu progreso guardado?" : "Do you want to reset all saved progress?")) {
+                    this.masteredList = [];
+                    this.totalExplored.clear();
+                    this.accuracyScores = [];
+                    localStorage.removeItem('may_roga_mastered');
+                    this.updateStats();
+                    alert(this.lang === 'es' ? "Progreso reiniciado." : "Progress reset.");
+                }
+            }
+
+            updateStats() {
+                const total = MASTER_DATABASE.length;
+                const exploredCount = this.totalExplored.size;
+                document.getElementById('stat-answered').innerText = `${exploredCount} / ${total}`;
+                document.getElementById('stat-bar-progress').style.width = `${Math.round((exploredCount / total) * 100)}%`;
+
+                const masteredCount = this.masteredList.length;
+                document.getElementById('stat-mastered').innerText = masteredCount;
+
+                if (this.accuracyScores.length > 0) {
+                    const avgAcc = Math.round(this.accuracyScores.reduce((a, b) => a + b, 0) / this.accuracyScores.length);
+                    document.getElementById('stat-accuracy').innerText = `${avgAcc}%`;
+                    document.getElementById('stat-bar-accuracy').style.width = `${avgAcc}%`;
+                }
+            }
+
+            updateUIStrings() {
+                // Actualización dinámica de textos según idioma si es necesario
+            }
+        }
+
+        // Inicializar Aplicación Global
+        const app = new EliteTrainerApp();
+
+        // Atajos de teclado para velocidad máxima
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') app.nextQuestion();
+            if (e.key === 'ArrowLeft') app.prevQuestion();
+        });
+    </script>
+</body>
+</html>
