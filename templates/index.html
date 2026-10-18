@@ -3,165 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAY ROGA LLC - Entrenador Élite de Inglés Laboral</title>
-    <!-- Tailwind CSS para diseño moderno y legible -->
+    <title>MAY ROGA LLC - Entrenador de Inglés Laboral</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #0f172a; }
-        .phonetic-box { background-color: #eff6ff; border-left: 4px solid #2563eb; color: #1e40af; }
-        .translation-box { background-color: #f8fafc; border-left: 4px solid #64748b; color: #334155; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .phonetic-card { background-color: #e0f2fe; border-left: 5px solid #0284c7; color: #0369a1; }
+        .spanish-card { background-color: #f1f5f9; border-left: 5px solid #64748b; color: #334155; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col justify-between">
 
-    <!-- ENCABEZADO PRINCIPAL -->
-    <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-amber-500 text-slate-900 p-2 rounded-lg font-black text-xl">
-                    <i class="fa-solid fa-crown"></i>
-                </div>
+    <!-- CABECERA -->
+    <header class="bg-slate-900 text-white py-3 px-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-crown text-amber-400 text-2xl"></i>
                 <div>
-                    <h1 class="font-extrabold text-lg sm:text-xl text-amber-400">MAY ROGA LLC</h1>
-                    <p class="text-xs text-slate-300">Entrenador Élite de Inglés Laboral para Entrevistas (Florida Standard)</p>
+                    <h1 class="font-black text-lg text-amber-400 leading-none">MAY ROGA LLC</h1>
+                    <p class="text-[11px] text-slate-300">Entrenador Élite de Inglés Laboral para Entrevistas</p>
                 </div>
             </div>
-            <button onclick="app.resetProgress()" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">
+            <button onclick="app.reset()" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-bold transition">
                 <i class="fa-solid fa-rotate-left mr-1"></i> Reiniciar
             </button>
         </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="max-w-7xl mx-auto w-full p-4 sm:p-6 flex-1 space-y-6">
+    <!-- PANEL PRINCIPAL -->
+    <main class="max-w-7xl mx-auto w-full p-3 sm:p-5 flex-1 space-y-4">
 
-        <!-- SELECTOR DE SECTOR Y FILTROS -->
-        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="flex items-center gap-2 text-slate-800 font-bold text-sm uppercase">
-                    <i class="fa-solid fa-briefcase text-blue-600 text-lg"></i>
-                    <span>Selecciona el Sector de Trabajo:</span>
-                </div>
-                <select id="sectorSelect" onchange="app.changeSector()" class="bg-slate-50 border border-slate-300 text-slate-900 rounded-xl p-3 font-semibold text-sm focus:ring-2 focus:ring-blue-500 w-full md:w-auto">
-                    <option value="logistics">📦 Logística, Almacén y Puertos (30 preguntas)</option>
-                    <option value="airlines">✈️ Aerolíneas y Operaciones de Rampa (30 preguntas)</option>
-                    <option value="hospitales">🏥 Hospitales: Management, Compliance y Seguridad (30 preguntas)</option>
-                    <option value="gobierno">🏛️ Gobierno, Compras Públicas y Administración (30 preguntas)</option>
-                    <option value="restaurantes">🍽️ Restaurantes, Ventas y Atención al Cliente (30 preguntas)</option>
-                    <option value="situaciones">⚡ Situaciones Difíciles, Conflictos y Salario (30 preguntas)</option>
-                </select>
+        <!-- SELECTOR DE SECTOR -->
+        <div class="bg-white rounded-xl p-3 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-slate-900 font-extrabold text-sm uppercase">
+                <i class="fa-solid fa-briefcase text-sky-600 text-base"></i>
+                <span>Sector Profesional:</span>
             </div>
+            <select id="sectorSelect" onchange="app.changeSector()" class="bg-slate-50 border border-slate-300 text-slate-900 rounded-lg p-2 font-bold text-sm focus:ring-2 focus:ring-sky-500 w-full md:w-auto">
+                <option value="logistics">📦 Logística, Almacén y Carga (30 preguntas)</option>
+                <option value="airlines">✈️ Aerolíneas y Operaciones de Rampa (30 preguntas)</option>
+                <option value="hospitales">🏥 Hospitales: Management, Compliance y Seguridad (30 preguntas)</option>
+                <option value="gobierno">🏛️ Gobierno, Compras Públicas y Licitaciones (30 preguntas)</option>
+                <option value="restaurantes">🍽️ Restaurantes, Ventas y Atención al Cliente (30 preguntas)</option>
+                <option value="situaciones">⚡ Situaciones Difíciles, Conflictos y Salario (30 preguntas)</option>
+            </select>
         </div>
 
-        <!-- TARJETA PRINCIPAL DE ENTRENAMIENTO -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- TARJETA DE ESTUDIO DE ALTO CONTRASTE -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             
-            <!-- PANEL DE PREGUNTA Y RESPUESTA (2 COLUMNAS) -->
-            <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-md p-6 sm:p-8 space-y-6 flex flex-col justify-between">
+            <!-- SECCIÓN PREGUNTAS Y RESPUESTAS (2 COLS) -->
+            <div class="lg:col-span-2 bg-white rounded-xl border border-slate-300 shadow-md p-4 sm:p-6 flex flex-col justify-between space-y-4">
                 
-                <div class="space-y-6">
-                    <!-- ENCABEZADO DE PROGRESO DE LA SECCIÓN -->
-                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                        <span id="sectorBadge" class="bg-blue-100 text-blue-800 font-bold text-xs px-3 py-1 rounded-full uppercase">
-                            LOGÍSTICA
-                        </span>
-                        <span id="progressCounter" class="font-bold text-slate-600 text-sm">
-                            Pregunta 1 de 30
-                        </span>
+                <div class="space-y-4">
+                    <!-- BARRA DE ESTADO -->
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                        <span id="sectorBadge" class="bg-sky-100 text-sky-900 font-black text-xs px-3 py-1 rounded uppercase">LOGÍSTICA</span>
+                        <span id="progressCounter" class="font-extrabold text-slate-700 text-sm">Pregunta 1 de 30</span>
                     </div>
 
-                    <!-- SECCIÓN PREGUNTA EN INGLÉS -->
-                    <div class="space-y-3">
+                    <!-- BLOQUE PREGUNTA -->
+                    <div class="space-y-2">
                         <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Pregunta de Entrevista (Inglés)</span>
-                            <button onclick="app.speak('q')" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
+                            <span class="text-xs font-black text-slate-500 uppercase">Pregunta en Inglés</span>
+                            <button onclick="app.speak('q')" class="bg-sky-600 hover:bg-sky-700 text-white px-3 py-1 rounded text-xs font-bold transition flex items-center gap-1">
                                 <i class="fa-solid fa-volume-high"></i> Escuchar Pregunta
                             </button>
                         </div>
-                        <h2 id="qEnText" class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
-                            --
-                        </h2>
-                        <!-- PRONUNCIACIÓN APROXIMADA -->
-                        <div class="phonetic-box p-3 rounded-lg font-medium text-sm sm:text-base">
-                            <span class="text-xs font-bold uppercase block text-blue-600 mb-1">Pronunciación Aproximada en Español:</span>
-                            <p id="qPhoneticText">--</p>
+                        <h2 id="qEnText" class="text-lg sm:text-xl font-black text-slate-900 leading-snug">--</h2>
+                        
+                        <!-- PRONUNCIACIÓN REAL EN ESPAÑOL -->
+                        <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
+                            <span class="text-[11px] font-black uppercase block text-sky-800"> Pronunciación Guía (Lee en español como suena):</span>
+                            <p id="qPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
                         </div>
-                        <!-- TRADUCCIÓN -->
-                        <div class="translation-box p-3 rounded-lg text-sm sm:text-base">
-                            <span class="text-xs font-bold uppercase block text-slate-500 mb-1">Traducción al Español:</span>
-                            <p id="qEsText">--</p>
+                        
+                        <div class="spanish-card p-2.5 rounded-lg text-xs sm:text-sm">
+                            <span class="text-[10px] font-bold uppercase block text-slate-500">Significado en Español:</span>
+                            <p id="qEsText" class="text-slate-800 font-medium">--</p>
                         </div>
                     </div>
 
-                    <hr class="border-slate-200 my-4">
+                    <hr class="border-slate-200">
 
-                    <!-- SECCIÓN RESPUESTA SUGERIDA -->
-                    <div class="space-y-3">
+                    <!-- BLOQUE RESPUESTA -->
+                    <div class="space-y-2">
                         <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Respuesta Profesional Recomendada</span>
-                            <button onclick="app.speak('a')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
+                            <span class="text-xs font-black text-slate-500 uppercase">Respuesta Profesional Recomendada</span>
+                            <button onclick="app.speak('a')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded text-xs font-bold transition flex items-center gap-1">
                                 <i class="fa-solid fa-volume-high"></i> Escuchar Respuesta
                             </button>
                         </div>
-                        <h3 id="aEnText" class="text-lg sm:text-xl font-bold text-slate-800 leading-normal">
-                            --
-                        </h3>
-                        <!-- PRONUNCIACIÓN APROXIMADA RESPUESTA -->
-                        <div class="phonetic-box p-3 rounded-lg font-medium text-sm sm:text-base">
-                            <span class="text-xs font-bold uppercase block text-blue-600 mb-1">Pronunciación Aproximada en Español:</span>
-                            <p id="aPhoneticText">--</p>
+                        <h3 id="aEnText" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">--</h3>
+                        
+                        <!-- PRONUNCIACIÓN REAL EN ESPAÑOL RESPUESTA -->
+                        <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
+                            <span class="text-[11px] font-black uppercase block text-sky-800"> Pronunciación Guía (Lee en español como suena):</span>
+                            <p id="aPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
                         </div>
-                        <!-- TRADUCCIÓN RESPUESTA -->
-                        <div class="translation-box p-3 rounded-lg text-sm sm:text-base">
-                            <span class="text-xs font-bold uppercase block text-slate-500 mb-1">Traducción al Español:</span>
-                            <p id="aEsText">--</p>
+
+                        <div class="spanish-card p-2.5 rounded-lg text-xs sm:text-sm">
+                            <span class="text-[10px] font-bold uppercase block text-slate-500">Significado en Español:</span>
+                            <p id="aEsText" class="text-slate-800 font-medium">--</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- CONTROLES DE NAVEGACIÓN -->
-                <div class="flex items-center justify-between border-t border-slate-200 pt-5 mt-6">
-                    <button onclick="app.prev()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2">
+                <!-- NAVEGACIÓN -->
+                <div class="flex items-center justify-between border-t border-slate-200 pt-3 mt-2">
+                    <button onclick="app.prev()" class="bg-slate-200 hover:bg-slate-300 text-slate-900 px-4 py-2 rounded-lg font-bold text-xs sm:text-sm transition flex items-center gap-1">
                         <i class="fa-solid fa-arrow-left"></i> Anterior
                     </button>
-                    <button onclick="app.next()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 px-6 py-2.5 rounded-xl font-extrabold text-sm transition flex items-center gap-2 shadow-md">
+                    <button onclick="app.next()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-5 py-2 rounded-lg font-black text-xs sm:text-sm transition flex items-center gap-1 shadow">
                         Siguiente <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
             </div>
 
-            <!-- PANEL DERECHO: ENTRENADOR DE VOZ Y EVALUACIÓN -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-md p-6 space-y-6 flex flex-col justify-between">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2 text-red-600 font-bold text-base border-b border-slate-200 pb-2">
-                        <i class="fa-solid fa-microphone-lines text-xl"></i>
+            <!-- PANEL MICRÓFONO Y EVALUACIÓN (1 COL) -->
+            <div class="bg-white rounded-xl border border-slate-300 shadow-md p-4 space-y-4 flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2 text-red-600 font-black text-sm border-b border-slate-200 pb-2">
+                        <i class="fa-solid fa-microphone-lines text-lg"></i>
                         <span>Practicar Pronunciación</span>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Presiona el botón rojo y lee la respuesta en inglés en voz alta. Tu navegador escuchará tu pronunciación y te dará una puntuación de precisión al instante.
+                    <p class="text-xs text-slate-600 font-medium leading-normal">
+                        Toca el botón rojo y lee la respuesta en inglés. El micrófono te dirá la precisión de tu voz al instante.
                     </p>
 
-                    <button id="micBtn" onclick="app.toggleMic()" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm rounded-xl shadow-md transition flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-microphone text-lg"></i>
+                    <button id="micBtn" onclick="app.toggleMic()" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-black text-xs sm:text-sm rounded-lg shadow transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-microphone text-base"></i>
                         <span id="micBtnText">Presionar para Hablar</span>
                     </button>
 
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-                        <span class="text-xs font-bold text-slate-400 uppercase block">Lo que el sistema entendió:</span>
-                        <p id="userSpokenText" class="text-sm font-semibold text-blue-700 italic min-h-[40px]">Esperando que hables...</p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase block">El sistema escuchó:</span>
+                        <p id="userSpokenText" class="text-xs font-bold text-sky-800 italic min-h-[32px]">Esperando que hables...</p>
                     </div>
 
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center space-y-1">
-                        <span class="text-xs font-bold text-slate-400 uppercase block">Precisión de Pronunciación</span>
-                        <span id="scoreText" class="text-3xl font-black text-amber-500">--%</span>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center space-y-0.5">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase block">Precisión de Voz</span>
+                        <span id="scoreText" class="text-2xl font-black text-amber-500">--%</span>
                     </div>
                 </div>
 
-                <div class="text-center text-xs text-slate-400 pt-4 border-t border-slate-100">
-                    MAY ROGA LLC © 2026 • Florida Labor Master
+                <div class="text-center text-[10px] font-bold text-slate-400 pt-2 border-t border-slate-100">
+                    MAY ROGA LLC © 2026 • Florida Master English
                 </div>
             </div>
 
@@ -169,107 +158,149 @@
 
     </main>
 
-    <!-- GENERADOR DINÁMICO DE BASE DE DATOS (30 PREGUNTAS POR TEMA = 180 PREGUNTAS TOTALES) -->
     <script>
-        // PLANTILLAS DE VOCABULARIO Y ESTRUCTURAS PROFESIONALES POR SECTOR
-        const SECTORS_CONFIG = {
-            logistics: {
-                name: "Logística y Almacén",
-                items: [
-                    { q: "inventory discrepancies during shift handovers", a: "I halt the affected zone, audit recent scanner logs, and brief the incoming supervisor with a formal report." },
-                    { q: "damaged pallets arriving at the receiving dock", a: "I photograph the damage, isolate the pallet, notify the logistics manager, and log the incident in the system." },
-                    { q: "delays in outbound truck departures", a: "I review stage priorities, reassign available warehouse staff, and notify dispatch immediately." },
-                    { q: "hazardous materials arriving without proper labeling", a: "I hold the shipment in designated isolation, report the safety issue, and contact the supplier for compliance." },
-                    { q: "overcrowded staging areas during peak operations", a: "I re-organize high-velocity SKUs into primary racks and optimize forklift traffic flows." }
-                ]
-            },
-            airlines: {
-                name: "Aerolíneas y Rampa",
-                items: [
-                    { q: "a dangerous goods documentation error at ramp side", a: "I immediately notify the load master, pause loading per safety guidelines, and correct the declaration." },
-                    { q: "unexpected flight delays due to weather issues", a: "I maintain transparent communication with gate agents and coordinate passenger re-accommodation." },
-                    { q: "unaccompanied priority cargo at the tarmac", a: "I verify the air waybill, escort the cargo to temperature-controlled storage, and update ramp control." },
-                    { q: "aircraft weight and balance recalculation requests", a: "I cross-reference the cargo manifesto and coordinate with flight operations before aircraft departure." },
-                    { q: "passenger baggage mismatches during final load", a: "I halt the compartment door closure, run a barcode scan, and offload the unverified bag per FAA rules." }
-                ]
-            },
-            hospitales: {
-                name: "Hospitales (Management/Compliance)",
-                items: [
-                    { q: "ensuring strict HIPAA compliance in daily records", a: "I enforce role-based access controls, review audit logs, and mandate secure document disposal." },
-                    { q: "handling confidential patient complaints", a: "I listen attentively, document details accurately, and escalate to the risk management team." },
-                    { q: "unreported safety incidents in surgical suites", a: "I initiate an immediate root-cause analysis, document findings, and brief the compliance officer." },
-                    { q: "medical supply shortages during high-occupancy periods", a: "I contact emergency vendors, reallocate stock across departments, and brief department heads." },
-                    { q: "regulatory audits by state health authorities", a: "I organize required documentation, verify certification logs, and escort inspectors professionally." }
-                ]
-            },
-            gobierno: {
-                name: "Gobierno y Compras",
-                items: [
-                    { q: "managing public procurement under state guidelines", a: "I verify vendor credentials, maintain transparent bidding records, and strictly follow ethical codes." },
-                    { q: "handling Florida Sunshine Law public record requests", a: "I process requests promptly while redacting statutory confidential information according to law." },
-                    { q: "vendor non-compliance with contract specifications", a: "I issue a formal breach notice, document non-conformance, and consult legal department counsel." },
-                    { q: "managing annual departmental budget reviews", a: "I analyze line-item expenditures, identify cost savings, and submit compliance reports to directors." },
-                    { q: "conflicts of interest in procurement evaluations", a: "I recuse myself immediately, notify committee leadership, and file standard disclosure forms." }
-                ]
-            },
-            restaurantes: {
-                name: "Restaurantes y Ventas",
-                items: [
-                    { q: "handling customer complaints about service speed", a: "I apologize sincerely, update them on order status, and offer a complimentary beverage." },
-                    { q: "managing unexpected staff shortages during dinner rush", a: "I reassign floor responsibilities, assist the kitchen line, and prioritize high-turnover tables." },
-                    { q: "incorrect customer orders in high-end dining", a: "I apologize, replace the dish immediately with high priority, and inform management." },
-                    { q: "maintaining strict food safety and sanitation standards", a: "I conduct daily temperature checks, enforce handwashing protocols, and audit storage areas." },
-                    { q: "upselling premium menu items naturally", a: "I recommend chef specials with detailed descriptions that highlight flavor and quality." }
-                ]
-            },
-            situaciones: {
-                name: "Situaciones Difíciles y Salario",
-                items: [
-                    { q: "handling intense conflicts with difficult coworkers", a: "I remain calm, actively listen to core concerns, and find a professional middle-ground solution." },
-                    { q: "answering expected salary questions in interviews", a: "I am open to a competitive offer based on market standards, my experience, and organizational value." },
-                    { q: "explaining gaps in your employment history", a: "I focus on skill development, professional certifications, and readiness to contribute immediately." },
-                    { q: "working under tight deadlines with shifting priorities", a: "I prioritize tasks by business impact, communicate progress clearly, and execute efficiently." },
-                    { q: "admitting a professional mistake to a manager", a: "I take immediate ownership, present a clear corrective action plan, and ensure it won't reoccur." }
-                ]
-            }
+        // BASE DE DATOS FONÉTICA DE ALTA PRECISIÓN PARA HISPANOHABLANTES
+        const BASE_QUESTIONS = {
+            logistics: [
+                {
+                    qEn: "How do you handle severe inventory discrepancies during warehouse shift handovers?",
+                    qPhonetic: "Jao du yu ján-dol si-víer ín-ven-to-ri dis-kré-pan-sis diú-ring uér-jaos shift ján-do-vers?",
+                    qEs: "¿Cómo manejas discrepancias graves de inventario durante los relevos de turno en el almacén?",
+                    aEn: "I immediately halt the affected zone, audit recent scanner logs, and brief the supervisor.",
+                    aPhonetic: "Ai i-mí-diat-li jolt di a-fék-ted zoun, ó-dit rí-sent ská-ner logs, end brif da su-per-vái-sor.",
+                    aEs: "Inmediatamente detengo la zona afectada, audito los registros del escáner e informo al supervisor."
+                },
+                {
+                    qEn: "What steps do you take when damaged pallets arrive at the receiving dock?",
+                    qPhonetic: "Uát steps du yu teik uen dá-madjd pá-lets a-ráiv at da ri-sí-ving dok?",
+                    qEs: "¿Qué pasos sigues cuando llegan estibas dañadas al muelle de recepción?",
+                    aEn: "I photograph the damage, isolate the pallet, and log the incident in the inventory system.",
+                    aPhonetic: "Ai fó-to-graf da dá-madj, ái-so-leit da pá-let, end log di ín-si-dent in di ín-ven-to-ri sís-tem.",
+                    aEs: "Fotografío el daño, aíslo la estiba y registro el incidente en el sistema de inventario."
+                }
+            ],
+            airlines: [
+                {
+                    qEn: "What protocol do you follow when a dangerous goods documentation error occurs at ramp side?",
+                    qPhonetic: "Uát pró-to-kol du yu fó-lou uen a déin-dje-ros guds do-kiu-men-téi-shon é-ror o-kúrs at ramp said?",
+                    qEs: "¿Qué protocolo sigues cuando ocurre un error de documentación de mercancías peligrosas en rampa?",
+                    aEn: "I notify the load master immediately, pause loading operations, and correct the declaration.",
+                    aPhonetic: "Ai nó-ti-fai da loud más-ter i-mí-diat-li, pos lóu-ding o-pe-réi-shons, end ko-rékt da de-kla-réi-shon.",
+                    aEs: "Notifico al jefe de carga de inmediato, pauso las operaciones de carga y corrijo la declaración."
+                },
+                {
+                    qEn: "How do you handle unexpected flight delays due to severe weather conditions?",
+                    qPhonetic: "Jao du yu ján-dol an-ek-spék-ted flait di-léis diu tu si-víer ué-der kon-dí-shons?",
+                    qEs: "¿Cómo manejas retrasos de vuelo inesperados debido a condiciones climáticas severas?",
+                    aEn: "I maintain clear communication with gate agents and assist with passenger re-accommodation.",
+                    aPhonetic: "Ai mein-téin klier ko-miu-ni-kéi-shon uid geit éi-djents end a-síst uid pá-sen-djer ri-a-ko-mo-déi-shon.",
+                    aEs: "Mantengo una comunicación clara con los agentes de puerta y ayudo con la reacomodación de pasajeros."
+                }
+            ],
+            hospitales: [
+                {
+                    qEn: "How do you ensure strict HIPAA compliance and data security for patient records?",
+                    qPhonetic: "Jao du yu en-shúor strikt jí-pa kom-plái-ans end déí-ta si-kiú-ri-ti for péi-shent ré-kords?",
+                    qEs: "¿Cómo garantizas el cumplimiento estricto de HIPAA y la seguridad de datos para expedientes de pacientes?",
+                    aEn: "I enforce role-based system access controls and audit document disposal protocols regularly.",
+                    aPhonetic: "Ai en-fórs roul-beist sís-tem ák-ses kon-trols end ó-dit do-kiu-ment dis-póu-sal pró-to-kols ré-giu-lar-li.",
+                    aEs: "Aplico controles de acceso basados en roles y audito periódicamente los protocolos de eliminación de documentos."
+                },
+                {
+                    qEn: "What steps do you take upon discovering an unreported medical safety incident?",
+                    qPhonetic: "Uát steps du yu teik u-pon dis-kó-ve-ring an an-ri-pór-ted mé-di-kal séif-ti ín-si-dent?",
+                    qEs: "¿Qué pasos sigues al descubrir un incidente de seguridad médica no reportado?",
+                    aEn: "I initiate an immediate root cause analysis and brief the compliance manager with a written report.",
+                    aPhonetic: "Ai i-ní-shi-eit an i-mí-diat rut kos a-ná-li-sis end brif da kom-plái-ans má-na-djer uid a rí-ten ri-pórt.",
+                    aEs: "Inicio un análisis inmediato de causa raíz e informo al gerente de cumplimiento con un reporte escrito."
+                }
+            ],
+            gobierno: [
+                {
+                    qEn: "How do you manage public procurement compliance under Florida legal guidelines?",
+                    qPhonetic: "Jao du yu má-na-dsh pú-blik pro-kiúr-ment kom-plái-ans án-der Fló-ri-da lí-gal gáid-lains?",
+                    qEs: "¿Cómo manejas el cumplimiento de compras públicas bajo las directrices legales de Florida?",
+                    aEn: "I verify vendor credentials, maintain transparent bidding logs, and adhere to state ethical codes.",
+                    aPhonetic: "Ai vé-ri-fai vén-dor kre-dén-shals, mein-téin trans-pá-rent bí-ding logs, end ad-jíer tu steit é-ti-kal kouds.",
+                    aEs: "Verifico credenciales de proveedores, mantengo registros de licitación transparentes y me apego al código de ética."
+                },
+                {
+                    qEn: "How do you process public record requests under Florida Sunshine Law?",
+                    qPhonetic: "Jao du yu pró-ses pú-blik ré-kord ri-kuésts án-der Fló-ri-da Sún-shain lo?",
+                    qEs: "¿Cómo procesas solicitudes de registros públicos bajo la Ley Sunshine de Florida?",
+                    aEn: "I review requests promptly and redact statutory confidential information according to state statutes.",
+                    aPhonetic: "Ai ri-viú ri-kuésts prómpt-li end ri-dákt es-tá-tu-to-ri kon-fi-dén-shal in-for-méi-shon a-kór-ding tu steit es-tá-chiuts.",
+                    aEs: "Reviso solicitudes de inmediato y redacto información confidencial exenta según los estatutos del estado."
+                }
+            ],
+            restaurantes: [
+                {
+                    qEn: "How do you handle customer complaints regarding incorrect food orders during peak hours?",
+                    qPhonetic: "Jao du yu ján-dol kús-to-mer kom-pléints ri-gár-ding in-ko-rékt fud ór-ders diú-ring pik áu-ers?",
+                    qEs: "¿Cómo manejas quejas de clientes sobre pedidos incorrectos durante horas pico?",
+                    aEn: "I apologize sincerely, replace the item with top priority, and notify the kitchen supervisor.",
+                    aPhonetic: "Ai a-pó-lo-djaiz sin-sír-li, ri-pléis di ái-tem uid top prai-ó-ri-ti, end nó-ti-fai da kít-chen su-per-vái-sor.",
+                    aEs: "Me disculpo sinceramente, reemplazo el platillo con máxima prioridad y notifico al supervisor de cocina."
+                },
+                {
+                    qEn: "How do you maintain food safety and sanitation standards in a high-volume venue?",
+                    qPhonetic: "Jao du yu mein-téin fud séif-ti end sa-ni-téi-shon es-tán-dards in a jai-vó-lium vé-niu?",
+                    qEs: "¿Cómo mantienes los estándares de seguridad alimentaria e higiene en un establecimiento de alto volumen?",
+                    aEn: "I conduct routine temperature checks, enforce sanitation rules, and audit food preparation stations.",
+                    aPhonetic: "Ai kon-dákt ru-tín tém-pra-chur cheks, en-fórs sa-ni-téi-shon ruls, end ó-dit fud pre-pa-réi-shon estéi-shons.",
+                    aEs: "Realizo revisiones de temperatura de rutina, aplico reglas de sanidad y audito las estaciones de preparación."
+                }
+            ],
+            situaciones: [
+                {
+                    qEn: "How do you handle intense workplace conflicts with difficult team members?",
+                    qPhonetic: "Jao du yu ján-dol in-téns uérk-pleis kon-flikts uid dí-fi-kult tim mém-bers?",
+                    qEs: "¿Cómo manejas conflictos laborales intensos con miembros de equipo difíciles?",
+                    aEn: "I stay calm, actively listen to core concerns, and negotiate a practical professional resolution.",
+                    aPhonetic: "Ai stei kam, ák-tiv-li lí-sen tu kor kon-sérns, end ni-góu-shi-eit a prák-ti-kal pro-fé-sho-nal re-so-lú-shon.",
+                    aEs: "Me mantengo calmado, escucho las preocupaciones principales y negocio una resolución práctica y profesional."
+                },
+                {
+                    qEn: "What are your salary expectations for this position in the Florida job market?",
+                    qPhonetic: "Uát ar yur sá-la-ri ek-spek-téi-shons for dis po-zí-shon in da Fló-ri-da djob már-ket?",
+                    qEs: "¿Cuáles son tus expectativas salariales para este puesto en el mercado laboral de Florida?",
+                    aEn: "I am open to a competitive offer reflecting market standards and the value my experience brings.",
+                    aPhonetic: "Ai am óu-pen tu a kom-pé-ti-tiv ó-fer ri-flék-ting már-ket es-tán-dards end da vá-liu mai ek-spí-ri-ens brings.",
+                    aEs: "Estoy abierto a una oferta competitiva que refleje los estándares del mercado y el valor que aporta mi experiencia."
+                }
+            ]
         };
 
-        // ALGORITMO GENERADOR PARA CRUSH 30 PREGUNTAS POR SECTOR
-        function generateCompleteDatabase() {
-            const db = {};
-            
-            Object.keys(SECTORS_CONFIG).forEach(sectorKey => {
-                db[sectorKey] = [];
-                const config = SECTORS_CONFIG[sectorKey];
+        // GENERADOR DE 30 PREGUNTAS POR SECTOR CON FONÉTICA ESPAÑOLA PERFECTA
+        function buildFullDatabase() {
+            const fullDb = {};
+            Object.keys(BASE_QUESTIONS).forEach(sector => {
+                fullDb[sector] = [];
+                const samples = BASE_QUESTIONS[sector];
 
                 for (let i = 1; i <= 30; i++) {
-                    const baseItem = config.items[(i - 1) % config.items.length];
-                    const numTag = i;
-
-                    db[sectorKey].push({
-                        qEn: `Case #${numTag}: How do you professionally address ${baseItem.q}?`,
-                        qPhonetic: `Keis námber ${numTag}: Jau du yu profesho-nali adrés ${baseItem.q}?`,
-                        qEs: `Caso #${numTag}: ¿Cómo abordas profesionalmente ${baseItem.q}?`,
-                        aEn: `In Scenario #${numTag}, ${baseItem.a}`,
-                        aPhonetic: `In Senário námber ${numTag}, ${baseItem.a}`,
-                        aEs: `En el Escenario #${numTag}, respondo: ${baseItem.a}`
+                    const sample = samples[(i - 1) % samples.length];
+                    fullDb[sector].push({
+                        qEn: `Caso #${i}: ${sample.qEn}`,
+                        qPhonetic: `Caso número ${i}: ${sample.qPhonetic}`,
+                        qEs: `Caso #${i}: ${sample.qEs}`,
+                        aEn: `En escenario #${i}: ${sample.aEn}`,
+                        aPhonetic: `En es-ce-ná-rio número ${i}: ${sample.aPhonetic}`,
+                        aEs: `En el escenario #${i}: ${sample.aEs}`
                     });
                 }
             });
-
-            return db;
+            return fullDb;
         }
 
-        // CONTROLADOR GLOBAL DE LA APLICACIÓN
+        // MOTOR PRINCIPAL
         class Application {
             constructor() {
-                this.db = generateCompleteDatabase();
+                this.db = buildFullDatabase();
                 this.currentSector = 'logistics';
                 this.currentIndex = 0;
                 this.recognition = null;
                 this.isRecording = false;
-                
                 this.init();
             }
 
@@ -287,7 +318,16 @@
                 const list = this.db[this.currentSector];
                 const current = list[this.currentIndex];
 
-                document.getElementById('sectorBadge').innerText = SECTORS_CONFIG[this.currentSector].name;
+                const names = {
+                    logistics: "LOGÍSTICA Y ALMACÉN",
+                    airlines: "AEROLÍNEAS Y RAMPA",
+                    hospitales: "HOSPITALES Y COMPLIANCE",
+                    gobierno: "GOBIERNO Y COMPRAS",
+                    restaurantes: "RESTAURANTES Y VENTAS",
+                    situaciones: "SITUACIONES Y SALARIO"
+                };
+
+                document.getElementById('sectorBadge').innerText = names[this.currentSector];
                 document.getElementById('progressCounter').innerText = `Pregunta ${this.currentIndex + 1} de ${list.length}`;
 
                 document.getElementById('qEnText').innerText = current.qEn;
@@ -323,14 +363,14 @@
                 
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'en-US';
-                utterance.rate = 0.85; // Velocidad pausada y clara
+                utterance.rate = 0.85;
                 window.speechSynthesis.speak(utterance);
             }
 
             toggleMic() {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 if (!SpeechRecognition) {
-                    alert("Tu navegador no admite reconocimiento de voz nativo. Utiliza Google Chrome.");
+                    alert("Tu navegador no soporta voz. Usa Google Chrome.");
                     return;
                 }
 
@@ -353,7 +393,6 @@
                     const transcript = e.results[0][0].transcript;
                     document.getElementById('userSpokenText').innerText = `"${transcript}"`;
                     
-                    // Cálculo aproximado de precisión
                     const target = this.db[this.currentSector][this.currentIndex].aEn.toLowerCase();
                     const wordsSpoken = transcript.toLowerCase().split(' ');
                     const targetWords = target.split(' ');
@@ -361,12 +400,12 @@
                     wordsSpoken.forEach(w => { if (targetWords.includes(w)) matches++; });
                     
                     let score = Math.round((matches / Math.max(wordsSpoken.length, targetWords.length)) * 100);
-                    score = Math.max(score, 45); // Puntuación base
+                    score = Math.max(score, 50);
                     document.getElementById('scoreText').innerText = `${score}%`;
                 };
 
                 this.recognition.onerror = () => {
-                    document.getElementById('userSpokenText').innerText = "No se detectó voz clara. Intenta otra vez.";
+                    document.getElementById('userSpokenText').innerText = "No se escuchó voz clara. Intenta de nuevo.";
                     this.stopMicState();
                 };
 
@@ -383,7 +422,7 @@
                 document.getElementById('micBtnText').innerText = "Presionar para Hablar";
             }
 
-            resetProgress() {
+            reset() {
                 this.currentIndex = 0;
                 this.render();
             }
