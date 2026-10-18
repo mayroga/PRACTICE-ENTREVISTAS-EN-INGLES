@@ -75,7 +75,7 @@
                         
                         <!-- PRONUNCIACIÓN REAL EN ESPAÑOL -->
                         <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
-                            <span class="text-[11px] font-black uppercase block text-sky-800"> Pronunciación Guía (Lee en español como suena):</span>
+                            <span class="text-[11px] font-black uppercase block text-sky-800"> Pronunciación Guía (Lee en español corrido):</span>
                             <p id="qPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
                         </div>
                         
@@ -99,7 +99,7 @@
                         
                         <!-- PRONUNCIACIÓN REAL EN ESPAÑOL RESPUESTA -->
                         <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
-                            <span class="text-[11px] font-black uppercase block text-sky-800"> Pronunciación Guía (Lee en español como suena):</span>
+                            <span class="text-[11px] font-black uppercase block text-sky-800"> Pronunciación Guía (Lee en español corrido):</span>
                             <p id="aPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
                         </div>
 
@@ -159,119 +159,119 @@
     </main>
 
     <script>
-        // BASE DE DATOS FONÉTICA DE ALTA PRECISIÓN PARA HISPANOHABLANTES
+        // BASE DE DATOS FONÉTICA FLUIDA Y CORRIDA SIN GUIONES
         const BASE_QUESTIONS = {
             logistics: [
                 {
                     qEn: "How do you handle severe inventory discrepancies during warehouse shift handovers?",
-                    qPhonetic: "Jao du yu ján-dol si-víer ín-ven-to-ri dis-kré-pan-sis diú-ring uér-jaos shift ján-do-vers?",
+                    qPhonetic: "Jau du yu jandel sevir inventori diskrepansis diuring uerjaus shift jandovers?",
                     qEs: "¿Cómo manejas discrepancias graves de inventario durante los relevos de turno en el almacén?",
                     aEn: "I immediately halt the affected zone, audit recent scanner logs, and brief the supervisor.",
-                    aPhonetic: "Ai i-mí-diat-li jolt di a-fék-ted zoun, ó-dit rí-sent ská-ner logs, end brif da su-per-vái-sor.",
+                    aPhonetic: "Ai imidiatli jolt di afekted zoun, odit risent skaner logs, end brif da supervisor.",
                     aEs: "Inmediatamente detengo la zona afectada, audito los registros del escáner e informo al supervisor."
                 },
                 {
                     qEn: "What steps do you take when damaged pallets arrive at the receiving dock?",
-                    qPhonetic: "Uát steps du yu teik uen dá-madjd pá-lets a-ráiv at da ri-sí-ving dok?",
+                    qPhonetic: "Uat steps du yu teik uen damadj palletts araiv at da risiving dok?",
                     qEs: "¿Qué pasos sigues cuando llegan estibas dañadas al muelle de recepción?",
                     aEn: "I photograph the damage, isolate the pallet, and log the incident in the inventory system.",
-                    aPhonetic: "Ai fó-to-graf da dá-madj, ái-so-leit da pá-let, end log di ín-si-dent in di ín-ven-to-ri sís-tem.",
+                    aPhonetic: "Ai fotograf da damadj, aisoleit da pallet, end log di incident in di inventori sistem.",
                     aEs: "Fotografío el daño, aíslo la estiba y registro el incidente en el sistema de inventario."
                 }
             ],
             airlines: [
                 {
                     qEn: "What protocol do you follow when a dangerous goods documentation error occurs at ramp side?",
-                    qPhonetic: "Uát pró-to-kol du yu fó-lou uen a déin-dje-ros guds do-kiu-men-téi-shon é-ror o-kúrs at ramp said?",
+                    qPhonetic: "Uat protokol du yu folou uen a deindjerus guds dokiumenteishon eror okurs at ramp said?",
                     qEs: "¿Qué protocolo sigues cuando ocurre un error de documentación de mercancías peligrosas en rampa?",
                     aEn: "I notify the load master immediately, pause loading operations, and correct the declaration.",
-                    aPhonetic: "Ai nó-ti-fai da loud más-ter i-mí-diat-li, pos lóu-ding o-pe-réi-shons, end ko-rékt da de-kla-réi-shon.",
+                    aPhonetic: "Ai notifai da loud master imidiatli, pos louding opereishons, end korrekt da meklareishon.",
                     aEs: "Notifico al jefe de carga de inmediato, pauso las operaciones de carga y corrijo la declaración."
                 },
                 {
                     qEn: "How do you handle unexpected flight delays due to severe weather conditions?",
-                    qPhonetic: "Jao du yu ján-dol an-ek-spék-ted flait di-léis diu tu si-víer ué-der kon-dí-shons?",
+                    qPhonetic: "Jau du yu jandel anekspekted flait dileis diu tu sevir ueder kondishons?",
                     qEs: "¿Cómo manejas retrasos de vuelo inesperados debido a condiciones climáticas severas?",
-                    aEn: "I maintain clear communication with gate agents and assist with passenger re-accommodation.",
-                    aPhonetic: "Ai mein-téin klier ko-miu-ni-kéi-shon uid geit éi-djents end a-síst uid pá-sen-djer ri-a-ko-mo-déi-shon.",
+                    aEn: "I maintain clear communication with gate agents and assist with passenger reaccommodation.",
+                    aPhonetic: "Ai meintein klier komiunikeishon uid geit eidents end asist uid pasendjer reakomodeishon.",
                     aEs: "Mantengo una comunicación clara con los agentes de puerta y ayudo con la reacomodación de pasajeros."
                 }
             ],
             hospitales: [
                 {
                     qEn: "How do you ensure strict HIPAA compliance and data security for patient records?",
-                    qPhonetic: "Jao du yu en-shúor strikt jí-pa kom-plái-ans end déí-ta si-kiú-ri-ti for péi-shent ré-kords?",
+                    qPhonetic: "Jau du yu enshur strikt jipa komplaians end deita sikiuriti for peishent rekords?",
                     qEs: "¿Cómo garantizas el cumplimiento estricto de HIPAA y la seguridad de datos para expedientes de pacientes?",
-                    aEn: "I enforce role-based system access controls and audit document disposal protocols regularly.",
-                    aPhonetic: "Ai en-fórs roul-beist sís-tem ák-ses kon-trols end ó-dit do-kiu-ment dis-póu-sal pró-to-kols ré-giu-lar-li.",
+                    aEn: "I enforce role based system access controls and audit document disposal protocols regularly.",
+                    aPhonetic: "Ai enfors roul beist sistem akses kontrols end odit dokiument dispousal protokols regularli.",
                     aEs: "Aplico controles de acceso basados en roles y audito periódicamente los protocolos de eliminación de documentos."
                 },
                 {
                     qEn: "What steps do you take upon discovering an unreported medical safety incident?",
-                    qPhonetic: "Uát steps du yu teik u-pon dis-kó-ve-ring an an-ri-pór-ted mé-di-kal séif-ti ín-si-dent?",
+                    qPhonetic: "Uat steps du yu teik upon diskovering an anreported medikal seifti incident?",
                     qEs: "¿Qué pasos sigues al descubrir un incidente de seguridad médica no reportado?",
                     aEn: "I initiate an immediate root cause analysis and brief the compliance manager with a written report.",
-                    aPhonetic: "Ai i-ní-shi-eit an i-mí-diat rut kos a-ná-li-sis end brif da kom-plái-ans má-na-djer uid a rí-ten ri-pórt.",
+                    aPhonetic: "Ai inishieit an imidiat rut kos analisis end brif da komplaians manadjer uid a ritten riport.",
                     aEs: "Inicio un análisis inmediato de causa raíz e informo al gerente de cumplimiento con un reporte escrito."
                 }
             ],
             gobierno: [
                 {
                     qEn: "How do you manage public procurement compliance under Florida legal guidelines?",
-                    qPhonetic: "Jao du yu má-na-dsh pú-blik pro-kiúr-ment kom-plái-ans án-der Fló-ri-da lí-gal gáid-lains?",
+                    qPhonetic: "Jau du yu manadsh publik prokiurment komplaians ander Florida ligal gaidlains?",
                     qEs: "¿Cómo manejas el cumplimiento de compras públicas bajo las directrices legales de Florida?",
                     aEn: "I verify vendor credentials, maintain transparent bidding logs, and adhere to state ethical codes.",
-                    aPhonetic: "Ai vé-ri-fai vén-dor kre-dén-shals, mein-téin trans-pá-rent bí-ding logs, end ad-jíer tu steit é-ti-kal kouds.",
+                    aPhonetic: "Ai verifai vendor kredenshals, meintein transparent biding logs, end adjier tu steit etikal kouds.",
                     aEs: "Verifico credenciales de proveedores, mantengo registros de licitación transparentes y me apego al código de ética."
                 },
                 {
                     qEn: "How do you process public record requests under Florida Sunshine Law?",
-                    qPhonetic: "Jao du yu pró-ses pú-blik ré-kord ri-kuésts án-der Fló-ri-da Sún-shain lo?",
+                    qPhonetic: "Jau du yu proses publik rekord rikuests ander Florida Sunshain lo?",
                     qEs: "¿Cómo procesas solicitudes de registros públicos bajo la Ley Sunshine de Florida?",
                     aEn: "I review requests promptly and redact statutory confidential information according to state statutes.",
-                    aPhonetic: "Ai ri-viú ri-kuésts prómpt-li end ri-dákt es-tá-tu-to-ri kon-fi-dén-shal in-for-méi-shon a-kór-ding tu steit es-tá-chiuts.",
+                    aPhonetic: "Ai riviu rikuests promptli end ridakt estatutori konfidenshal informeishon akording tu steit estatiuts.",
                     aEs: "Reviso solicitudes de inmediato y redacto información confidencial exenta según los estatutos del estado."
                 }
             ],
             restaurantes: [
                 {
                     qEn: "How do you handle customer complaints regarding incorrect food orders during peak hours?",
-                    qPhonetic: "Jao du yu ján-dol kús-to-mer kom-pléints ri-gár-ding in-ko-rékt fud ór-ders diú-ring pik áu-ers?",
+                    qPhonetic: "Jau du yu jandel kustomer kompleints regarding inkorrekt fud orders diuring pik auers?",
                     qEs: "¿Cómo manejas quejas de clientes sobre pedidos incorrectos durante horas pico?",
                     aEn: "I apologize sincerely, replace the item with top priority, and notify the kitchen supervisor.",
-                    aPhonetic: "Ai a-pó-lo-djaiz sin-sír-li, ri-pléis di ái-tem uid top prai-ó-ri-ti, end nó-ti-fai da kít-chen su-per-vái-sor.",
+                    aPhonetic: "Ai apolodjaiz sinsirli, ripleis di aitem uid top praioriti, end notifai da kitchen supervisor.",
                     aEs: "Me disculpo sinceramente, reemplazo el platillo con máxima prioridad y notifico al supervisor de cocina."
                 },
                 {
-                    qEn: "How do you maintain food safety and sanitation standards in a high-volume venue?",
-                    qPhonetic: "Jao du yu mein-téin fud séif-ti end sa-ni-téi-shon es-tán-dards in a jai-vó-lium vé-niu?",
+                    qEn: "How do you maintain food safety and sanitation standards in a high volume venue?",
+                    qPhonetic: "Jau du yu meintein fud seifti end saniteishon estandards in a jai volium veniu?",
                     qEs: "¿Cómo mantienes los estándares de seguridad alimentaria e higiene en un establecimiento de alto volumen?",
                     aEn: "I conduct routine temperature checks, enforce sanitation rules, and audit food preparation stations.",
-                    aPhonetic: "Ai kon-dákt ru-tín tém-pra-chur cheks, en-fórs sa-ni-téi-shon ruls, end ó-dit fud pre-pa-réi-shon estéi-shons.",
+                    aPhonetic: "Ai kondakt rutin temprachur cheks, enfors saniteishon ruls, end odit fud prepareishon esteishons.",
                     aEs: "Realizo revisiones de temperatura de rutina, aplico reglas de sanidad y audito las estaciones de preparación."
                 }
             ],
             situaciones: [
                 {
                     qEn: "How do you handle intense workplace conflicts with difficult team members?",
-                    qPhonetic: "Jao du yu ján-dol in-téns uérk-pleis kon-flikts uid dí-fi-kult tim mém-bers?",
+                    qPhonetic: "Jau du yu jandel intens uerkpleis konflikts uid difikult tim members?",
                     qEs: "¿Cómo manejas conflictos laborales intensos con miembros de equipo difíciles?",
                     aEn: "I stay calm, actively listen to core concerns, and negotiate a practical professional resolution.",
-                    aPhonetic: "Ai stei kam, ák-tiv-li lí-sen tu kor kon-sérns, end ni-góu-shi-eit a prák-ti-kal pro-fé-sho-nal re-so-lú-shon.",
+                    aPhonetic: "Ai stei kam, aktivli lisen tu kor konserns, end negoshieit a praktikal profesjonal resolushon.",
                     aEs: "Me mantengo calmado, escucho las preocupaciones principales y negocio una resolución práctica y profesional."
                 },
                 {
                     qEn: "What are your salary expectations for this position in the Florida job market?",
-                    qPhonetic: "Uát ar yur sá-la-ri ek-spek-téi-shons for dis po-zí-shon in da Fló-ri-da djob már-ket?",
+                    qPhonetic: "Uat ar yur salari ekspekteishons for dis pozishon in da Florida djob market?",
                     qEs: "¿Cuáles son tus expectativas salariales para este puesto en el mercado laboral de Florida?",
                     aEn: "I am open to a competitive offer reflecting market standards and the value my experience brings.",
-                    aPhonetic: "Ai am óu-pen tu a kom-pé-ti-tiv ó-fer ri-flék-ting már-ket es-tán-dards end da vá-liu mai ek-spí-ri-ens brings.",
+                    aPhonetic: "Ai am oupen tu a kompetitiv ofer riflekting market estandards end da valiu mai ekspiriens brings.",
                     aEs: "Estoy abierto a una oferta competitiva que refleje los estándares del mercado y el valor que aporta mi experiencia."
                 }
             ]
         };
 
-        // GENERADOR DE 30 PREGUNTAS POR SECTOR CON FONÉTICA ESPAÑOLA PERFECTA
+        // GENERADOR DE 30 PREGUNTAS POR SECTOR
         function buildFullDatabase() {
             const fullDb = {};
             Object.keys(BASE_QUESTIONS).forEach(sector => {
@@ -282,10 +282,10 @@
                     const sample = samples[(i - 1) % samples.length];
                     fullDb[sector].push({
                         qEn: `Caso #${i}: ${sample.qEn}`,
-                        qPhonetic: `Caso número ${i}: ${sample.qPhonetic}`,
+                        qPhonetic: `Kaso numero ${i}: ${sample.qPhonetic}`,
                         qEs: `Caso #${i}: ${sample.qEs}`,
                         aEn: `En escenario #${i}: ${sample.aEn}`,
-                        aPhonetic: `En es-ce-ná-rio número ${i}: ${sample.aPhonetic}`,
+                        aPhonetic: `En esenario numero ${i}: ${sample.aPhonetic}`,
                         aEs: `En el escenario #${i}: ${sample.aEs}`
                     });
                 }
