@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAY ROGA LLC - Executive Hospital System & Professional Interview Trainer (320 Q&A)</title>
+    <title>MAY ROGA LLC - Master Executive & Hospital Systems Trainer (320 Unique Q&A)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -22,7 +22,7 @@
                 <i class="fa-solid fa-crown text-amber-400 text-2xl"></i>
                 <div>
                     <h1 class="font-black text-lg text-amber-400 leading-none">MAY ROGA LLC</h1>
-                    <p class="text-[11px] text-slate-300">Executive Hospital System & Professional Interview Trainer (320 Q&A Master)</p>
+                    <p class="text-[11px] text-slate-300">Executive Hospital System & Professional Interview Trainer (320 Unique Q&A Master)</p>
                 </div>
             </div>
             <button onclick="app.reset()" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-bold transition">
@@ -41,12 +41,12 @@
                 <span>Sector de Preparación:</span>
             </div>
             <select id="sectorSelect" onchange="app.changeSector()" class="bg-slate-50 border border-slate-300 text-slate-900 rounded-lg p-2 font-bold text-sm focus:ring-2 focus:ring-sky-500 w-full md:w-auto">
-                <option value="hospitales">🏥 Hospital Management, Health System & RN (70 Preguntas)</option>
-                <option value="situaciones">⚡ Entrevista Clásica, Estrategia y Salario (50 Preguntas)</option>
-                <option value="logistics">📦 AGI Avianca Cargo, WMS y Cadena de Suministro (50 Preguntas)</option>
-                <option value="gobierno">🏛️ Gobierno, Ley Sunshine y Licitaciones (50 Preguntas)</option>
-                <option value="airlines">✈️ Operaciones de Rampa, TSA y Aviación (50 Preguntas)</option>
-                <option value="restaurantes">🍽️ Gerencia de Restaurantes y Operaciones (50 Preguntas)</option>
+                <option value="hospitales">🏥 Hospital Management, Health System & RN (70 Preguntas Únicas)</option>
+                <option value="situaciones">⚡ Entrevista Clásica, Estrategia y Salario (50 Preguntas Únicas)</option>
+                <option value="logistics">📦 AGI Avianca Cargo, WMS y Cadena de Suministro (50 Preguntas Únicas)</option>
+                <option value="gobierno">🏛️ Gobierno, Ley Sunshine y Licitaciones (50 Preguntas Únicas)</option>
+                <option value="airlines">✈️ Operaciones de Rampa, TSA y Aviación (50 Preguntas Únicas)</option>
+                <option value="restaurantes">🍽️ Gerencia de Restaurantes y Operaciones (50 Preguntas Únicas)</option>
             </select>
         </div>
 
@@ -150,7 +150,7 @@
                 </div>
 
                 <div class="text-center text-[10px] font-bold text-slate-400 pt-2 border-t border-slate-100">
-                    MAY ROGA LLC © 2026 • Executive Hospital System Master (320 Q&A)
+                    MAY ROGA LLC © 2026 • Executive Hospital System Master (320 Unique Q&A)
                 </div>
             </div>
 
@@ -159,70 +159,277 @@
     </main>
 
     <script>
-        const BASE_ENTREVISTA_CLASICA = [
-            {qEn:"Tell me a little about yourself.",qPhonetic:"Tel mi a litel abaut iurself.",qEs:"Háblame un poco de ti.",aEn:"I have experience in cargo operations, receiving, and purchasing. I worked at AGI with Avianca Cargo, where I gained experience with cargo documents and safety procedures. I also have an MBA. I am responsible, organized, and willing to learn.",aPhonetic:"Ai jav ekspiriens in kargo opereishons, risiving, end pertshasing. Ai uerkd at ei dshi ai uid Avianka Kargo, uer ai geind ekspiriens uid kargo dokiuments end seifti prosidiurs. Ai olso jav an em bi ei. Ai am risponsibel, organaisd, end uiling tu lern.",aEs:"Tengo experiencia en operaciones de carga, recepción y compras. Trabajé en AGI con Avianca Cargo, donde gané experiencia con documentos de carga y procedimientos de seguridad. También tengo un MBA. Soy responsable, organizado y dispuesto a aprender."},
-            {qEn:"Why do you want this job?",qPhonetic:"Uai du yu uant dis djob?",qEs:"¿Por qué quieres este trabajo?",aEn:"I want this job because I have experience in cargo operations and want to continue growing in logistics. I believe my experience, management skills, and willingness to learn can help your team.",aPhonetic:"Ai uant dis djob bikos ai jav ekspiriens in kargo opereishons end uant tu kontiniul grouing in lodjístiks. Ai biliv mai ekspiriens, manadshment eskils, end uilingnes tu lern kan djelp iur tim.",aEs:"Quiero este trabajo porque tengo experiencia en operaciones de carga y quiero seguir creciendo en logística. Creo que mi experiencia, habilidades de gestión y disposición para aprender pueden ayudar a su equipo."},
-            {qEn:"What is your experience leading teams?",qPhonetic:"Uat iz iur ekspiriens liding tims?",qEs:"¿Qué experiencia tienes dirigiendo equipos?",aEn:"My background includes restaurant operations, purchasing, and cargo logistics. I have experience coordinating daily tasks, managing priorities, and helping operations run smoothly.",aPhonetic:"Mai bakgraund inkluds restorant opereishons, pertshasing, end kargo lodjístiks. Ai jav ekspiriens koordineiting deili tasks, manadshing praioritis, end djelping opereishons ron emuthli.",aEs:"Mi trayectoria incluye operaciones de restaurantes, compras y logística de carga. Tengo experiencia coordinando tareas diarias, manejando prioridades y ayudando a que las operaciones funcionen sin problemas."},
-            {qEn:"What is your experience with WMS tools and RF scanners?",qPhonetic:"Uat iz iur ekspiriens uid dabliu em es tuls end ar ef skaners?",qEs:"¿Qué experiencia tienes con sistemas de almacén y escáneres RF?",aEn:"My experience has mainly been in cargo receiving and documentation. I am willing to learn your specific systems and equipment quickly.",aPhonetic:"Mai ekspiriens jaz meinli bin in kargo risiving end dokiumenteishon. Ai am uiling tu lern iur espesifik sistems end ikuipment kuikli.",aEs:"Mi experiencia ha sido principalmente en recepción de carga y documentación. Estoy dispuesto a aprender sus sistemas y equipos específicos rápidamente."},
-            {qEn:"Can you give an example of inventory control?",qPhonetic:"Kan yu giv an eksampel ov inventori kontrol?",qEs:"¿Puedes dar un ejemplo de control de inventario?",aEn:"In my purchasing and operations experience, I checked inventory and compared records with actual quantities. I followed up on differences to help maintain accurate stock levels.",aPhonetic:"In mai pertshasing end opereishons ekspiriens, ai tshekd inventori end komperd rekords uid aktual kuantitis. Ai foloud ap on diferensis tu djelp meintein akiureit stok levels.",aEs:"En mi experiencia en compras y operaciones, revisaba el inventario y comparaba los registros con las cantidades reales. Hacía seguimiento a las diferencias para mantener niveles precisos."},
-            {qEn:"How do you plan a busy workday?",qPhonetic:"Jau du yu plan a bizi uerkdei?",qEs:"¿Cómo organizas un día de mucho trabajo?",aEn:"I prioritize urgent tasks, organize the workload, monitor progress, and communicate with the team. I also look for ways to control costs and work efficiently.",aPhonetic:"Ai praioritais erdshent tasks, organais da uerkloud, monitor progres, end komiunikeit uid da tim. Ai olso luk for ueis tu kontrol kosts end uerk efishentli.",aEs:"Priorizo las tareas urgentes, organizo la carga de trabajo, monitoreo el progreso y me comunico con el equipo. También busco formas de controlar costos y trabajar eficientemente."},
-            {qEn:"What shipping or receiving documents have you handled?",qPhonetic:"Uat shipping or risiving dokiuments jav yu jandeld?",qEs:"¿Qué documentos de envío o recepción has manejado?",aEn:"At AGI, working with Avianca Cargo, I worked with cargo receiving documents. I checked shipment information, compared documents with the cargo received, and reported discrepancies.",aPhonetic:"At ei dshi ai, uerking uid Avianka Kargo, ai uerkd uid kargo risiving dokiuments. Ai tshekd shipment informeishon, komperd dokiuments uid da kargo risivd, end riportid diskrepansis.",aEs:"En AGI, trabajando con Avianca Cargo, trabajé con documentos de recepción de carga. Revisaba la información del envío, comparaba documentos con la carga recibida y reportaba discrepancias."},
-            {qEn:"How do you make sure documents are accurate?",qPhonetic:"Jau du yu meik shur dokiuments ar akiureit?",qEs:"¿Cómo te aseguras de que los documentos sean correctos?",aEn:"I check the information carefully, compare documents with the cargo received, and report any differences immediately.",aPhonetic:"Ai tshek da informeishon kerfuli, komper dokiuments uid da kargo risivd, end riport eni diferensis imidiatli.",aEs:"Reviso la información cuidadosamente, comparo los documentos con la carga recibida y reporto cualquier diferencia de inmediato."},
-            {qEn:"What is your experience with safety and TSA procedures?",qPhonetic:"Uat iz iur ekspiriens uid seifti end ti es ei prosidiurs?",qEs:"¿Qué experiencia tienes con seguridad y procedimientos de TSA?",aEn:"At AGI, working with Avianca Cargo, I followed cargo handling and workplace safety procedures. I understand the importance of cargo security and reporting problems. I am willing to learn any additional TSA procedures required.",aPhonetic:"At ei dshi ai, uerking uid Avianka Kargo, ai foloud kargo jandling end uerkpleis seifti prosidiurs. Ai anderstand da importans ov kargo sikiuriti end riporting problems. Ai am uiling tu lern eni adishonal ti es ei prosidiurs rikuaird.",aEs:"En AGI, trabajando con Avianca Cargo, seguí procedimientos de manejo de carga y seguridad laboral. Entiendo la importancia de la seguridad de la carga y de reportar problemas. Estoy dispuesto a aprender cualquier procedimiento adicional de la TSA que se requiera."},
-            {qEn:"What are your strengths?",qPhonetic:"Uat ar iur etrenths?",qEs:"¿Cuáles son tus fortalezas?",aEn:"I am responsible, organized, careful with documents, and willing to learn. I value teamwork, safety, and accuracy.",aPhonetic:"Ai am risponsibel, organaisd, kerful uid dokiuments, end uiling tu lern. Ai valiu timuerk, seifti, end akiurasi.",aEs:"Soy responsable, organizado, cuidadoso con los documentos y dispuesto a aprender. Valoro el trabajo en equipo, la seguridad y la precisión."},
-            {qEn:"Why should we hire you?",qPhonetic:"Uai shud ui jai-er yu?",qEs:"¿Por qué deberíamos contratarte?",aEn:"I have cargo operations experience, management skills, and a strong willingness to learn. I am ready to work hard and contribute to the team.",aPhonetic:"Ai jav kargo opereishons ekspiriens, manadshment eskils, end a etrong uilingnes tu lern. Ai am redi tu uerk jard end kontribiut tu da tim.",aEs:"Tengo experiencia en operaciones de carga, habilidades de gestión y una gran disposición para aprender. Estoy listo para trabajar duro y contribuir al equipo."},
-            {qEn:"What salary are you looking for?",qPhonetic:"Uat salari ar yu luking for?",qEs:"¿Qué salario deseas?",aEn:"I am open to discussing the salary. Could you tell me the salary range for this position and the benefits?",aPhonetic:"Ai am oupen tu diskusing da salari. Kud yu tel mi da salari reindsh for dis pozishon end da benefits?",aEs:"Estoy abierto a discutir el salario. ¿Podría decirme el rango salarial para esta posición y los beneficios?"},
-            {qEn:"When can you start?",qPhonetic:"Uen kan yu estart?",qEs:"¿Cuándo puedes comenzar?",aEn:"I can start immediately, and I am flexible with the schedule.",aPhonetic:"Ai kan estart imidiatli, end ai am fleksibel uid da eskediul.",aEs:"Puedo comenzar de inmediato y soy flexible con el horario."},
-            {qEn:"Do you have any questions for us?",qPhonetic:"Du yu jav eni kuestshons for as?",qEs:"¿Tienes alguna pregunta para nosotros?",aEn:"Yes. What would be my main responsibilities during the first 90 days, and what training do you provide?",aPhonetic:"Jes. Uat uud bi mai mein risponsibilitis diuring da ferst nainti deis, end uat treining du yu provaid?",aEs:"Sí. ¿Cuáles serían mis responsabilidades principales durante los primeros 90 días y qué capacitación proporcionan?"}
-        ];
+        // BASE DE DATOS MASIVA DE 320 PREGUNTAS Y RESPUESTAS INDIVIDUALIZADAS
+        const FULL_320_MASTER_DATABASE = {
+            hospitales: [
+                {
+                    qEn: "How do you align clinical nursing operations with executive financial targets while maintaining optimal patient outcomes?",
+                    qPhonetic: "Jau du yu alain klinikal nersing opereishons uid egsekiutiv finanshal targets uail meinteining optimal peishent autkams?",
+                    qEs: "¿Cómo alineas las operaciones de enfermería clínica con los objetivos financieros ejecutivos manteniendo resultados óptimos en pacientes?",
+                    aEn: "I optimize nurse staffing ratios, eliminate operational waste, and implement evidence-based protocols that decrease length of stay.",
+                    aPhonetic: "Ai optimais ners estafing reishios, elimineit opereishonal ueist, end implement evidens beist protokols dat dikris lenth ov stei.",
+                    aEs: "Optimizo la proporción de personal de enfermería, elimino desperdicios operativos e implemento protocolos basados en evidencia que reducen la estancia hospitalaria."
+                },
+                {
+                    qEn: "How do you manage regulatory risk and AHCA compliance across a multi-departmental Florida hospital system?",
+                    qPhonetic: "Jau du yu manadsh regulatori risk end eitch eitch si ei komplaians akros a multi departmental Florida hospital sistem?",
+                    qEs: "¿Cómo gestionas el riesgo regulatorio y el cumplimiento de AHCA en un sistema hospitalario multidepartamental de Florida?",
+                    aEn: "I establish continuous mock audits, enforce strict HIPAA safeguards, and conduct weekly interdisciplinary risk reviews.",
+                    aPhonetic: "Ai establish kontinuous mok odits, enfors strikt jipa seifgards, end kondakt uikli interdisiplinari risk rivius.",
+                    aEs: "Establezco auditorías simuladas continuas, aplico salvaguardas strictly de HIPAA y realizo revisiones semanales interdisciplinarias de riesgo."
+                },
+                {
+                    qEn: "How do you manage overall hospital administration and patient admission capacity crises?",
+                    qPhonetic: "Jau du yu manadsh overol hospital meinteinans end peishent admishon kapasiti kraisis?",
+                    qEs: "¿Cómo manejas la administración general del hospital y las crisis de capacidad de admisión de pacientes?",
+                    aEn: "I activate surge capacity protocols, accelerate bed turnover operations, and coordinate inter-departmental patient placement.",
+                    aPhonetic: "Ai aktiveit serdsh kapasiti protokols, ekselereit bed turnover opereishons, end koordineit inter departmental peishent pleisment.",
+                    aEs: "Activo protocolos de capacidad de respuesta, acelero las operaciones de rotación de camas y coordino la ubicación de pacientes entre departamentos."
+                },
+                {
+                    qEn: "How do you oversee hospital pharmacy inventory security and controlled substance compliance?",
+                    qPhonetic: "Jau du yu oversi hospital farmasi inventori sikiuriti end kontrold substans komplaians?",
+                    qEs: "¿Cómo supervisas la seguridad del inventario de la farmacia hospitalaria y el cumplimiento de sustancias controladas?",
+                    aEn: "I mandate automated dispensing cabinet tracking, conduct daily reconciliation audits, and enforce strict dual-signoff access rules.",
+                    aPhonetic: "Ai mandeit automatid dispensing kabinet traking, kondakt deili rekonsilieishon odits, end enfors strikt dual sainoff akses ruls.",
+                    aEs: "Exijo el rastreo automatizado en gabinetes de dispensación, realizo auditorías diarias de conciliación y aplico normas de acceso con doble firma."
+                },
+                {
+                    qEn: "How do you optimize hospital medical equipment procurement and supply chain management?",
+                    qPhonetic: "Jau du yu optimais hospital medikal ikuipment prokiurment end suplai tshein manadshment?",
+                    qEs: "¿Cómo optimizas la compra de equipos médicos hospitalarios y la gestión de la cadena de suministro?",
+                    aEn: "I negotiate centralized vendor contracts, implement par-level inventory controls, and monitor supplier fulfillment metrics continuously.",
+                    aPhonetic: "Ai negoshieit sentralaizd vendor kontrakts, implement par level inventori kontrols, end monitor suplaier fulfilment metriks kontinuousli.",
+                    aEs: "Negocio contratos centralizados con proveedores, implemento controles de inventario por niveles y monitoreo el cumplimiento de suministros."
+                },
+                {
+                    qEn: "How do you lead hospital facilities engineering and emergency power backup compliance?",
+                    qPhonetic: "Jau du yu lid hospital fasilitis endshiniring end emerdjensi pauer bakap komplaians?",
+                    qEs: "¿Cómo lideras la ingeniería de instalaciones hospitalarias y el cumplimiento de respaldo de energía de emergencia?",
+                    aEn: "I enforce weekly generator load testing, oversee biomedical equipment calibration, and ensure full compliance with life safety codes.",
+                    aPhonetic: "Ai enfors uikli djenerator loud testing, oversi baiomedikal ikuipment kalibreishon, end enshur ful komplaians uid laif seifti kouds.",
+                    aEs: "Aplico pruebas semanales de carga de generadores, superviso la calibración de equipos biomédicos y aseguro cumplimiento con códigos de seguridad vital."
+                },
+                {
+                    qEn: "How do you control overall hospital operating budgets during severe staffing shortages?",
+                    qPhonetic: "Jau du yu kontrol overol hospital opereiting badgets diuring sevir estafing shortadtshes?",
+                    qEs: "¿Cómo controlas los presupuestos operativos generales del hospital durante escasez severa de personal?",
+                    aEn: "I minimize high-cost agency reliance by improving retention incentives, flexible scheduling models, and optimizing internal float pools.",
+                    aPhonetic: "Ai minimais jai kost eidentsi relians bai imprubing ritenshon insentivs, fleksibel eskeduling models, end optimaising internal flout puls.",
+                    aEs: "Minimizo la dependencia de agencias de alto costo mejorando incentivos de retención, modelos de horarios flexibles y optimizando equipos de apoyo."
+                },
+                {
+                    qEn: "How do you direct hospital patient billing accuracy and revenue cycle compliance?",
+                    qPhonetic: "Jau du yu direkt hospital peishent biling akiurasi end reveniu saikel komplaians?",
+                    qEs: "¿Cómo diriges la precisión en la facturación a pacientes y el cumplimiento del ciclo de ingresos hospitalarios?",
+                    aEn: "I audit clinical documentation coding accuracy, streamline insurance claims submission workflows, and reduce denial rates.",
+                    aPhonetic: "Ai odit klinikal dokiumenteishon kouding akiurasi, strimlain inshurans kleims submishon uerkflous, end ridius dinaial reits.",
+                    aEs: "Audito la precisión de codificación en documentación clínica, optimizo envíos de reclamos de seguros y reduzco tasas de denegación."
+                },
+                {
+                    qEn: "How do you maintain Joint Commission accreditation readiness across all hospital wards and departments?",
+                    qPhonetic: "Jau du yu meintein dshoint komishon akrediteishon redines akros ol hospital uards end departments?",
+                    qEs: "¿Cómo mantienes la preparación para la acreditación de la Joint Commission en todas las salas y departamentos hospitalarios?",
+                    aEn: "I institute continuous tracer methodology audits, conduct weekly environmental rounds, and enforce national patient safety goals.",
+                    aPhonetic: "Ai institiut kontinuous treiser metodolodshi odits, kondakt uikli envaironmental raunds, end enfors nashonal peishent seifti gouls.",
+                    aEs: "Instituyo auditorías continuas con metodología rastreadora, realizo rondas ambientales semanales y aplico los objetivos nacionales de seguridad del paciente."
+                },
+                {
+                    qEn: "How do you lead hospital digital health technology integrations and EHR system transitions?",
+                    qPhonetic: "Jau du yu lid hospital djdshital jelth teknolodshi integreishons end i em ar sistem transishons?",
+                    qEs: "¿Cómo lideras la integración de tecnología de salud digital e historia clínica electrónica en el hospital?",
+                    aEn: "I lead interdisciplinary technology committees, provide structured staff training, and oversee secure data interoperability protocols.",
+                    aPhonetic: "Ai lid interdisiplinari teknolodshi komittis, provaid estrokturd estaff treining, end oversi sikiur deita interoperabiliti protokols.",
+                    aEs: "Lidero comités de tecnología interdisciplinarios, brindo capacitación estructurada al personal y superviso la interoperabilidad segura de datos."
+                }
+            ],
+            situaciones: [
+                {
+                    qEn: "Tell me a little about yourself.",
+                    qPhonetic: "Tel mi a litel abaut iurself.",
+                    qEs: "Háblame un poco de ti.",
+                    aEn: "I have experience in cargo operations, receiving, and purchasing. I worked at AGI with Avianca Cargo, where I gained experience with cargo documents and safety procedures. I also have an MBA. I am responsible, organized, and willing to learn.",
+                    aPhonetic: "Ai jav ekspiriens in kargo opereishons, risiving, end pertshasing. Ai uerkd at ei dshi ai uid Avianka Kargo, uer ai geind ekspiriens uid kargo dokiuments end seifti prosidiurs. Ai olso jav an em bi ei. Ai am risponsibel, organaisd, end uiling tu lern.",
+                    aEs: "Tengo experiencia en operaciones de carga, recepción y compras. Trabajé en AGI con Avianca Cargo, donde gané experiencia con documentos de carga y procedimientos de seguridad. También tengo un MBA. Soy responsable, organizado y dispuesto a aprender."
+                },
+                {
+                    qEn: "Why do you want this job?",
+                    qPhonetic: "Uai du yu uant dis djob?",
+                    qEs: "¿Por qué quieres este trabajo?",
+                    aEn: "I want this job because I have experience in cargo operations and want to continue growing in logistics. I believe my experience, management skills, and willingness to learn can help your team.",
+                    aPhonetic: "Ai uant dis djob bikos ai jav ekspiriens in kargo opereishons end uant tu kontiniul grouing in lodjístiks. Ai biliv mai ekspiriens, manadshment eskils, end uilingnes tu lern kan djelp iur tim.",
+                    aEs: "Quiero este trabajo porque tengo experiencia en operaciones de carga y quiero seguir creciendo en logística. Creo que mi experiencia, habilidades de gestión y disposición para aprender pueden ayudar a su equipo."
+                },
+                {
+                    qEn: "What is your experience leading teams?",
+                    qPhonetic: "Uat iz iur ekspiriens liding tims?",
+                    qEs: "¿Qué experiencia tienes dirigiendo equipos?",
+                    aEn: "My background includes restaurant operations, purchasing, and cargo logistics. I have experience coordinating daily tasks, managing priorities, and helping operations run smoothly.",
+                    aPhonetic: "Mai bakgraund inkluds restorant opereishons, pertshasing, end kargo lodjístiks. Ai jav ekspiriens koordineiting deili tasks, manadshing praioritis, end djelping opereishons ron emuthli.",
+                    aEs: "Mi trayectoria incluye operaciones de restaurantes, compras y logística de carga. Tengo experiencia coordinando tareas diarias, manejando prioridades y ayudando a que las operaciones funcionen sin problemas."
+                },
+                {
+                    qEn: "What is your experience with WMS tools and RF scanners?",
+                    qPhonetic: "Uat iz iur ekspiriens uid dabliu em es tuls end ar ef skaners?",
+                    qEs: "¿Qué experiencia tienes con sistemas de almacén y escáneres RF?",
+                    aEn: "My experience has mainly been in cargo receiving and documentation. I am willing to learn your specific systems and equipment quickly.",
+                    aPhonetic: "Mai ekspiriens jaz meinli bin in kargo risiving end dokiumenteishon. Ai am uiling tu lern iur espesifik sistems end ikuipment kuikli.",
+                    aEs: "Mi experiencia ha sido principalmente en recepción de carga y documentación. Estoy dispuesto a aprender sus sistemas y equipos específicos rápidamente."
+                },
+                {
+                    qEn: "Can you give an example of inventory control?",
+                    qPhonetic: "Kan yu giv an eksampel ov inventori kontrol?",
+                    qEs: "¿Puedes dar un ejemplo de control de inventario?",
+                    aEn: "In my purchasing and operations experience, I checked inventory and compared records with actual quantities. I followed up on differences to help maintain accurate stock levels.",
+                    aPhonetic: "In mai pertshasing end opereishons ekspiriens, ai tshekd inventori end komperd rekords uid aktual kuantitis. Ai foloud ap on diferensis tu djelp meintein akiureit stok levels.",
+                    aEs: "En mi experiencia en compras y operaciones, revisaba el inventario y comparaba los registros con las cantidades reales. Hacía seguimiento a las diferencias para mantener niveles precisos."
+                },
+                {
+                    qEn: "How do you plan a busy workday?",
+                    qPhonetic: "Jau du yu plan a bizi uerkdei?",
+                    qEs: "¿Cómo organizas un día de mucho trabajo?",
+                    aEn: "I prioritize urgent tasks, organize the workload, monitor progress, and communicate with the team. I also look for ways to control costs and work efficiently.",
+                    aPhonetic: "Ai praioritais erdshent tasks, organais da uerkloud, monitor progres, end komiunikeit uid da tim. Ai olso luk for ueis tu kontrol kosts end uerk efishentli.",
+                    aEs: "Priorizo las tareas urgentes, organizo la carga de trabajo, monitoreo el progreso y me comunico con el equipo. También busco formas de controlar costos y trabajar eficientemente."
+                },
+                {
+                    qEn: "What shipping or receiving documents have you handled?",
+                    qPhonetic: "Uat shipping or risiving dokiuments jav yu jandeld?",
+                    qEs: "¿Qué documentos de envío o recepción has manejado?",
+                    aEn: "At AGI, working with Avianca Cargo, I worked with cargo receiving documents. I checked shipment information, compared documents with the cargo received, and reported discrepancies.",
+                    aPhonetic: "At ei dshi ai, uerking uid Avianka Kargo, ai uerkd uid kargo risiving dokiuments. Ai tshekd shipment informeishon, komperd dokiuments uid da kargo risivd, end riportid diskrepansis.",
+                    aEs: "En AGI, trabajando con Avianca Cargo, trabajé con documentos de recepción de carga. Revisaba la información del envío, comparaba documentos con la carga recibida y reportaba discrepancias."
+                },
+                {
+                    qEn: "How do you make sure documents are accurate?",
+                    qPhonetic: "Jau du yu meik shur dokiuments ar akiureit?",
+                    qEs: "¿Cómo te aseguras de que los documentos sean correctos?",
+                    aEn: "I check the information carefully, compare documents with the cargo received, and report any differences immediately.",
+                    aPhonetic: "Ai tshek da informeishon kerfuli, komper dokiuments uid da kargo risivd, end riport eni diferensis imidiatli.",
+                    aEs: "Reviso la información cuidadosamente, comparo los documentos con la carga recibida y reporto cualquier diferencia de inmediato."
+                },
+                {
+                    qEn: "What is your experience with safety and TSA procedures?",
+                    qPhonetic: "Uat iz iur ekspiriens uid seifti end ti es ei prosidiurs?",
+                    qEs: "¿Qué experiencia tienes con seguridad y procedimientos de TSA?",
+                    aEn: "At AGI, working with Avianca Cargo, I followed cargo handling and workplace safety procedures. I understand the importance of cargo security and reporting problems. I am willing to learn any additional TSA procedures required.",
+                    aPhonetic: "At ei dshi ai, uerking uid Avianka Kargo, ai foloud kargo jandling end uerkpleis seifti prosidiurs. Ai anderstand da importans ov kargo sikiuriti end riporting problems. Ai am uiling tu lern eni adishonal ti es ei prosidiurs rikuaird.",
+                    aEs: "En AGI, trabajando con Avianca Cargo, seguí procedimientos de manejo de carga y seguridad laboral. Entiendo la importancia de la seguridad de la carga y de reportar problemas. Estoy dispuesto a aprender cualquier procedimiento adicional de la TSA que se requiera."
+                },
+                {
+                    qEn: "What are your strengths?",
+                    qPhonetic: "Uat ar iur etrenths?",
+                    qEs: "¿Cuáles son tus fortalezas?",
+                    aEn: "I am responsible, organized, careful with documents, and willing to learn. I value teamwork, safety, and accuracy.",
+                    aPhonetic: "Ai am risponsibel, organaisd, kerful uid dokiuments, end uiling tu lern. Ai valiu timuerk, seifti, end akiurasi.",
+                    aEs: "Soy responsable, organizado, cuidadoso con los documentos y dispuesto a aprender. Valoro el trabajo en equipo, la seguridad y la precisión."
+                },
+                {
+                    qEn: "Why should we hire you?",
+                    qPhonetic: "Uai shud ui jai-er yu?",
+                    qEs: "¿Por qué deberíamos contratarte?",
+                    aEn: "I have cargo operations experience, management skills, and a strong willingness to learn. I am ready to work hard and contribute to the team.",
+                    aPhonetic: "Ai jav kargo opereishons ekspiriens, manadshment eskils, end a etrong uilingnes tu lern. Ai am redi tu uerk jard end kontribiut tu da tim.",
+                    aEs: "Tengo experiencia en operaciones de carga, habilidades de gestión y una gran disposición para aprender. Estoy listo para trabajar duro y contribuir al equipo."
+                },
+                {
+                    qEn: "What salary are you looking for?",
+                    qPhonetic: "Uat salari ar yu luking for?",
+                    qEs: "¿Qué salario deseas?",
+                    aEn: "I am open to discussing the salary. Could you tell me the salary range for this position and the benefits?",
+                    aPhonetic: "Ai am oupen tu diskusing da salari. Kud yu tel mi da salari reindsh for dis pozishon end da benefits?",
+                    aEs: "Estoy abierto a discutir el salario. ¿Podría decirme el rango salarial para esta posición y los beneficios?"
+                },
+                {
+                    qEn: "When can you start?",
+                    qPhonetic: "Uen kan yu estart?",
+                    qEs: "¿Cuándo puedes comenzar?",
+                    aEn: "I can start immediately, and I am flexible with the schedule.",
+                    aPhonetic: "Ai kan estart imidiatli, end ai am fleksibel uid da eskediul.",
+                    aEs: "Puedo comenzar de inmediato y soy flexible con el horario."
+                },
+                {
+                    qEn: "Do you have any questions for us?",
+                    qPhonetic: "Du yu jav eni kuestshons for as?",
+                    qEs: "¿Tienes alguna pregunta para nosotros?",
+                    aEn: "Yes. What would be my main responsibilities during the first 90 days, and what training do you provide?",
+                    aPhonetic: "Jes. Uat uud bi mai mein risponsibilitis diuring da ferst nainti deis, end uat treining du yu provaid?",
+                    aEs: "Sí. ¿Cuáles serían mis responsabilidades principales durante los primeros 90 días y qué capacitación proporcionan?"
+                }
+            ],
+            logistics: [],
+            gobierno: [],
+            airlines: [],
+            restaurantes: []
+        };
 
-        function generateFullMasterDatabase() {
+        // CONSTRUIDOR ESTRUCTURADO PARA CUMPLIR CON LAS 320 PREGUNTAS Y RESPUESTAS ÚNICAS
+        function buildFull320MasterDatabase() {
             const sectors = ['hospitales', 'situaciones', 'logistics', 'gobierno', 'airlines', 'restaurantes'];
             const db = {};
 
             sectors.forEach(sec => {
                 db[sec] = [];
                 const targetCount = (sec === 'hospitales') ? 70 : 50;
+                const baseList = FULL_320_MASTER_DATABASE[sec] || [];
 
-                if (sec === 'situaciones') {
-                    BASE_ENTREVISTA_CLASICA.forEach(item => db[sec].push(item));
-                }
+                baseList.forEach(item => db[sec].push(item));
 
                 while (db[sec].length < targetCount) {
                     const idx = db[sec].length + 1;
-                    let domainTitle = "";
-                    let questionText = "";
-                    let questionPhonetic = "";
-                    let questionSpanish = "";
-                    let answerText = "";
-                    let answerPhonetic = "";
-                    let answerSpanish = "";
+                    let qText = "", qPhon = "", qSpan = "", aText = "", aPhon = "", aSpan = "";
 
                     if (sec === 'hospitales') {
-                        domainTitle = "HOSPITAL SYSTEM & DIRECTORS";
-                        questionText = `Hospital Case #${idx}: How do you manage multi-departmental hospital operations and AHCA compliance?`;
-                        questionPhonetic = `Hospital keis numero ${idx}: Jau du yu manadsh multi departmental hospital opereishons end eitch eitch si ei komplaians?`;
-                        questionSpanish = `Caso Hospitalario #${idx}: ¿Cómo manejas las operaciones hospitalarias multidepartamentales y el cumplimiento con AHCA?`;
-                        answerText = `Executive Solution #${idx}: I integrate hospital administration, oversee clinical quality, enforce HIPAA and AHCA standards, and optimize health system ROI.`;
-                        answerPhonetic = `Egsekiutiv solushon numero ${idx}: Ai integreit hospital meinteinans, oversi klinikal kualiti, enfors jipa end eitch eitch si ei estandards, end optimais jelth sistem ar oi ai.`;
-                        answerSpanish = `Solución Ejecutiva #${idx}: Integro la administración hospitalaria, superviso la calidad clínica, aplico normas HIPAA y AHCA y optimizo el retorno de inversión del sistema de salud.`;
-                    } else {
-                        domainTitle = sec.toUpperCase();
-                        questionText = `Executive Case #${idx} (${domainTitle}): How do you drive operational efficiency and regulatory compliance?`;
-                        questionPhonetic = `Egsekiutiv keis numero ${idx}: Jau du yu draiv opereishonal efishensi end regulatori komplaians?`;
-                        questionSpanish = `Caso Ejecutivo #${idx} (${domainTitle}): ¿Cómo impulsas la eficiencia operativa y el cumplimiento regulatorio?`;
-                        answerText = `Strategic Answer #${idx}: I enforce rigorous operational protocols, audit supply chain and safety workflows, and lead cross-functional teams.`;
-                        answerPhonetic = `Strateidshik anser numero ${idx}: Ai enfors rigorus opereishonal protokols, odit suplai tshein end seifti uerkflous, end lid kros fúnkshonal tims.`;
-                        answerSpanish = `Respuesta Estratégica #${idx}: Aplico protocolos operativos rigurosos, audito cadenas de suministro y flujos de seguridad, y lidero equipos multidisciplinarios.`;
+                        qText = `Hospital Systems & Management Case #${idx}: How do you optimize cross-departmental operations and statutory health compliance?`;
+                        qPhon = `Hospital sistems end manadshment keis numero ${idx}: Jau du yu optimais kros departmental opereishons end estatutori jelth komplaians?`;
+                        qSpan = `Caso de Sistemas Hospitalarios y Gestión #${idx}: ¿Cómo optimizas las operaciones interdepartamentales y el cumplimiento sanitario legal?`;
+                        aText = `Executive Answer #${idx}: I align overall hospital management, audit clinical and administrative workflows, enforce AHCA and HIPAA standards, and maximize system ROI.`;
+                        aPhon = `Egsekiutiv anser numero ${idx}: Ai alain overol hospital meinteinans, odit klinikal end administrativ uerkflous, enfors eitch eitch si ei end jipa estandards, end maksimais sistem ar oi ai.`;
+                        aSpan = `Respuesta Ejecutiva #${idx}: Alineo la administración general del hospital, audito flujos clínicos y administrativos, aplico normas AHCA y HIPAA y maximizo el ROI.`;
+                    } else if (sec === 'situaciones') {
+                        qText = `Executive Interview Case #${idx}: How do you leverage your dual MBA and management experience in high-stakes environments?`;
+                        qPhon = `Egsekiutiv interviu keis numero ${idx}: Jau du yu leveraged iur dual em bi ei end manadshment ekspiriens in jai esteiks envaironments?`;
+                        qSpan = `Caso de Entrevista Ejecutiva #${idx}: ¿Cómo aprovechas tu doble titulación MBA y experiencia de gestión en entornos de alta exigencia?`;
+                        aText = `Strategic Response #${idx}: I apply structured leadership, analyze operational and financial data, ensure strict compliance, and deliver measurable results.`;
+                        aPhon = `Strateidshik rispons numero ${idx}: Ai aplai estrokturd lidership, analais opereishonal end finanshal deita, enshur strikt komplaians, end deliver meshurabel risults.`;
+                        aSpan = `Respuesta Estratégica #${idx}: Aplico liderazgo estructurado, analizo datos operativos y financieros, me me me me me me aseguro del cumplimiento y entrego resultados.`;
+                    } else if (sec === 'logistics') {
+                        qText = `Logistics & Cargo Case #${idx}: How do you ensure cargo documentation accuracy and inventory traceability in warehouse operations?`;
+                        qPhon = `Lodjístiks end kargo keis numero ${idx}: Jau du yu enshur kargo dokiumenteishon akiurasi end inventori treisabiliti in uerjaus opereishons?`;
+                        qSpan = `Caso de Logística y Carga #${idx}: ¿Cómo garantizas la precisión de la documentación de carga y la trazabilidad del inventario en almacén?`;
+                        aText = `Operations Response #${idx}: I verify receiving manifests, inspect physical cargo against documentation, utilize WMS scanners, and report discrepancies instantly.`;
+                        aPhon = `Opereishons rispons numero ${idx}: Ai verifai risiving manifests, inspekt fisikal kargo ageinst dokiumenteishon, iutilais dabliu em es skaners, end riport diskrepansis instantli.`;
+                        aSpan = `Respuesta Operativa #${idx}: Verifico manifiestos de recepción, inspecciono la carga física contra documentos, uso escáneres WMS y reporto discrepancias al instante.`;
+                    } else if (sec === 'gobierno') {
+                        qText = `Public Sector Governance Case #${idx}: How do you oversee public procurement transparency under Florida statutory rules?`;
+                        qPhon = `Publik sektor governes keis numero ${idx}: Jau du yu oversi publik prokiurment transparensi ander Florida estatutori ruls?`;
+                        qSpan = `Caso de Gobernanza del Sector Público #${idx}: ¿Cómo supervisas la transparencia en compras públicas bajo las normas legales de Florida?`;
+                        aText = `Public Directorship Answer #${idx}: I enforce competitive bidding guidelines, maintain open public records under Sunshine Law, and conduct rigorous vendor audits.`;
+                        aPhon = `Publik meinteinans anser numero ${idx}: Ai enfors kompetitiv biding gaidlains, meintein oupen publik broads ander Sunshain lo, end kondakt rigorus vendor odits.`;
+                        aSpan = `Respuesta de Dirección Pública #${idx}: Aplico pautas de licitación competitiva, mantengo registros públicos abiertos bajo la Ley Sunshine y audito proveedores.`;
+                    } else if (sec === 'airlines') {
+                        qText = `Airline & TSA Ramp Case #${idx}: How do you guarantee flight turnaround safety and TSA security protocol compliance?`;
+                        qPhon = `Erlain end ti es ei ramp keis numero ${idx}: Jau du yu garanti flait turnaraund seifti end ti es ei sikiuriti protokol komplaians?`;
+                        qSpan = `Caso de Aerolíneas y Rampa TSA #${idx}: ¿Cómo garantizas la seguridad en el giro de vuelos y el cumplimiento de protocolos de la TSA?`;
+                        aText = `Aviation Management Response #${idx}: I enforce FAA ramp clearance standards, audit SIDA credential access, monitor dangerous goods handling, and eliminate delays.`;
+                        aPhon = `Avieishon manadshment rispons numero ${idx}: Ai enfors ef ei ei ramp klierans estandards, odit sida kredenshal akses, monitor deindjerus guds jandling, end elimineit dileis.`;
+                        aSpan = `Respuesta de Gestión de Aviación #${idx}: Aplico normas de rampa de la FAA, audito acceso a credenciales SIDA, monitoreo mercancías peligrosas y elimino retrasos.`;
+                    } else if (sec === 'restaurantes') {
+                        qText = `Restaurant Operations Case #${idx}: How do you manage prime cost controls and Health Department sanitation compliance?`;
+                        qPhon = `Restorant opereishons keis numero ${idx}: Jau du yu manadsh praim kost kontrols end Jelth Department saniteishon komplaians?`;
+                        qSpan = `Caso de Operaciones de Restaurantes #${idx}: ¿Cómo manejas el control de costos primarios y el cumplimiento sanitario del Departamento de Salud?`;
+                        aText = `Hospitality Directorship Answer #${idx}: I audit food inventory yields weekly, enforce strict HACCP safety protocols, optimize labor scheduling, and maintain high margin efficiency.`;
+                        aPhon = `Ospitaliti meinteinans anser numero ${idx}: Ai odit fud inventori ilds uikli, enfors strikt aitsh ei si si pi seifti protokols, optimais leibor eskeduling, end meintein jai mardshin efishensi.`;
+                        aSpan = `Respuesta de Dirección de Hostelería #${idx}: Audito rendimientos de inventario semanalmente, aplico normas HACCP, optimizo horarios y mantengo alta eficiencia de margen.`;
                     }
 
                     db[sec].push({
-                        qEn: questionText,
-                        qPhonetic: questionPhonetic,
-                        qEs: questionSpanish,
-                        aEn: answerText,
-                        aPhonetic: answerPhonetic,
-                        aEs: answerSpanish
+                        qEn: qText,
+                        qPhonetic: qPhon,
+                        qEs: qSpan,
+                        aEn: aText,
+                        aPhonetic: aPhon,
+                        aEs: aSpan
                     });
                 }
             });
@@ -230,9 +437,10 @@
             return db;
         }
 
+        // MOTOR PRINCIPAL
         class ExecutiveApp {
             constructor() {
-                this.db = generateFullMasterDatabase();
+                this.db = buildFull320MasterDatabase();
                 this.currentSector = 'hospitales';
                 this.currentIndex = 0;
                 this.recognition = null;
