@@ -1,358 +1,718 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#102c46">
-<title>Executive English & Professional Trainer | May Roga LLC</title>
+<meta name="theme-color" content="#173c36">
+<title>Professional Interview Trainer | May Roga LLC</title>
 <style>
-:root{--navy:#102c46;--blue:#1767a8;--pale:#eaf3fb;--ink:#172b3d;--muted:#526579;--line:#cbd8e5;--white:#fff;--green:#167447;--orange:#9a5100;--red:#a52b2b}
+:root{--bg:#f3f6f4;--card:#fff;--ink:#20332f;--muted:#687873;--green:#246b55;--green2:#dcefe6;--line:#dce5df;--gold:#f4ead0;--red:#a74343;--radius:16px}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#edf2f7;color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:1.45}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Arial,Helvetica,sans-serif}
+header{background:#173c36;color:white;padding:22px max(18px,calc((100% - 1250px)/2))}
+header h1{font-size:clamp(24px,4vw,35px);margin:0 0 5px}
+header p{margin:0;color:#d7e8e0}
+main{max-width:1250px;margin:20px auto;padding:0 16px 35px}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
 button,select,input,textarea{font:inherit}
-button,select{min-height:48px;border-radius:10px;border:2px solid var(--line);padding:10px 14px;font-weight:700}
-button{cursor:pointer;background:var(--navy);color:#fff;border-color:var(--navy)}
-button:hover{filter:brightness(1.1)}
-button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #f3b33d;outline-offset:2px}
-button.secondary{background:#fff;color:var(--navy);border-color:var(--navy)}
-button.green{background:var(--green);border-color:var(--green)}
-button.orange{background:var(--orange);border-color:var(--orange)}
-button:disabled{opacity:.55;cursor:not-allowed}
-header{background:var(--navy);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
-header h1{font-size:clamp(24px,2.4vw,34px);margin:0}
-header p{margin:4px 0 0;color:#d9e9f8;font-size:17px}
-.header-actions{display:flex;gap:8px;flex-wrap:wrap}
-header button{background:#fff;color:var(--navy);border-color:#fff}
-main{max-width:1800px;margin:auto;padding:14px}
-.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 3px 12px #102c4610;min-width:0}
-.toolbar{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:12px;margin-bottom:14px}
-.field{display:flex;flex-direction:column;gap:6px}
-label{font-weight:800;color:var(--navy)}
-select,input,textarea{background:#fff;color:var(--ink);width:100%;border:2px solid var(--line);border-radius:10px;padding:10px}
-#workspace{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(340px,1fr);gap:14px;align-items:start}
-h2{font-size:clamp(22px,2vw,29px);color:var(--navy);margin:0 0 12px}
-h3{font-size:21px;color:var(--navy);margin:16px 0 8px}
-h4{font-size:18px;margin:8px 0;color:var(--navy)}
-.small{font-size:16px;color:var(--muted)}
-.badges{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-.badge{background:var(--pale);border:1px solid #bdd4e8;border-radius:999px;padding:7px 12px;color:var(--navy);font-size:16px;font-weight:800}
-.question{font-size:clamp(23px,2.1vw,31px);font-weight:800;line-height:1.3;margin:8px 0 12px}
-.translation{font-size:clamp(19px,1.5vw,23px);background:#f3f7fb;padding:12px;border-left:5px solid var(--blue);border-radius:8px}
-.phonetic{font-size:19px;color:#465e75;margin:8px 0;line-height:1.5}
-.answer{font-size:clamp(21px,1.7vw,27px);font-weight:700;line-height:1.4;background:#eef7f1;border-left:5px solid var(--green);border-radius:8px;padding:14px;margin:8px 0}
-.answer-es{font-size:19px;background:#f5f7fa;border-radius:8px;padding:12px;margin:8px 0}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.navigation{display:flex;gap:10px;justify-content:space-between;margin-top:14px}
-.navigation button{flex:1}
-hr{border:0;border-top:1px solid var(--line);margin:16px 0}
-#practicePanel{position:relative}
-#micBtn{width:100%;min-height:66px;font-size:21px;background:var(--green);border-color:var(--green)}
-#micBtn.recording{background:var(--red);border-color:var(--red);animation:pulse 1.4s infinite}
-@keyframes pulse{50%{box-shadow:0 0 0 5px #a52b2b30}}
-#recordTimer{font-size:30px;font-weight:900;color:var(--navy);text-align:center;margin:10px}
-#userSpokenText{min-height:105px;background:#f3f7fb;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-wrap:anywhere}
-.score{font-size:40px;font-weight:900;color:var(--green)}
-.notice{background:#fff7e8;border:1px solid #efd09b;border-radius:10px;padding:12px;font-size:16px}
-.module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.module-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f9fbfd}
-.module-card p{margin:5px 0;font-size:16px}
-#learningPanel{margin-top:14px}
-#caseBox{background:#f4f8fc;border-radius:10px;padding:14px}
-#caseAnswer{min-height:110px}
-#vocabList,#mistakeList{padding-left:22px}
-.pillrow{display:flex;flex-wrap:wrap;gap:8px}
-.progressbar{height:12px;background:#e1e8ef;border-radius:99px;overflow:hidden;margin:8px 0}
-.progressbar span{display:block;height:100%;background:var(--green);width:0;transition:width .2s}
+button,select{cursor:pointer}
+button{border:0;border-radius:10px;padding:10px 14px;background:var(--green);color:white;font-weight:700}
+button:hover{filter:brightness(.94)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.secondary{background:var(--green2);color:var(--ink)}
+button.light{background:#edf0ee;color:var(--ink)}
+button.danger{background:#f8e5e2;color:#842e2e}
+select,input,textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;background:white;color:var(--ink)}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:0 0 6px}
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;align-items:start}
+.panel,.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}
+.panel h2,.card h2{font-size:19px;margin:0 0 13px}
+.field{margin-bottom:14px}
+.small{font-size:13px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.stat{background:white;border:1px solid var(--line);border-radius:12px;padding:12px}
+.stat strong{display:block;font-size:24px;color:var(--green)}
+.stat span{font-size:12px;color:var(--muted)}
+.progress{height:7px;background:#e7ece9;border-radius:10px;overflow:hidden;margin:9px 0 15px}
+.progress div{height:100%;background:var(--green);width:0;transition:width .2s}
+.tag{display:inline-block;background:var(--green2);border-radius:30px;padding:4px 10px;font-size:12px;font-weight:700}
+.question{font-size:clamp(21px,3vw,29px);font-weight:700;line-height:1.35;margin:13px 0}
+.answer{background:#f2f7f3;border-left:4px solid var(--green);padding:14px;border-radius:8px;white-space:pre-wrap}
+.answer[hidden]{display:none}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:13px 0}
+hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+textarea{min-height:145px;resize:vertical}
+.feedback{padding:12px;border-radius:10px;background:#f4f5f4;margin-top:10px;white-space:pre-wrap}
+.feedback:empty{display:none}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
+.pills button{font-size:13px;padding:8px 10px}
+.question-list{display:grid;gap:8px;margin-top:12px}
+.qitem{display:flex;align-items:flex-start;gap:8px;text-align:left;background:#f0f4f1;color:var(--ink);font-weight:400;width:100%}
+.qitem.active{outline:2px solid var(--green);background:var(--green2)}
+.qitem small{display:block;color:var(--muted)}
 .hidden{display:none!important}
-footer{text-align:center;color:var(--muted);font-size:15px;padding:20px}
-@media(max-width:1000px){#workspace{grid-template-columns:1fr}.toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}.module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){main{padding:8px}.panel{padding:12px}.toolbar,.module-grid{grid-template-columns:1fr}header{padding:14px}.navigation button{padding:9px 5px;font-size:16px}.question{font-size:23px}.answer{font-size:21px}}
-@media(min-width:1001px){body{min-height:100vh}#workspace{align-items:stretch}#questionPanel,#practicePanel{min-height:500px}}
+.notice{background:var(--gold);padding:12px;border-radius:10px;font-size:13px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:9px}.panel{order:2}.mainpanel{order:1}}
+@media(max-width:440px){main{padding:0 10px 25px}.card,.panel{padding:13px}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat strong{font-size:20px}button{padding:9px 11px}}
 </style>
 </head>
 <body>
 <header>
-<div><h1>Executive English & Professional Trainer</h1><p>May Roga LLC · Inglés profesional, liderazgo, cumplimiento y preparación ejecutiva</p></div>
-<div class="header-actions"><button id="langBtn" class="secondary" onclick="toggleLanguage()">ES / EN</button><button class="secondary" onclick="togglePractice()">Mostrar / ocultar práctica</button></div>
+<h1>Professional Interview Trainer</h1>
+<p>Practice English. Build confidence. Prepare for your next opportunity.</p>
 </header>
 <main>
-<section class="panel toolbar">
-<div class="field"><label for="sectorSelect">Área profesional</label><select id="sectorSelect" onchange="changeSector()"></select></div>
-<div class="field"><label for="levelSelect">Nivel de práctica</label><select id="levelSelect" onchange="render()"><option value="beginner">Principiante</option><option value="intermediate" selected>Intermedio</option><option value="advanced">Avanzado</option><option value="executive">Ejecutivo</option></select></div>
-<div class="field"><label for="modeSelect">Modo de aprendizaje</label><select id="modeSelect" onchange="render()"><option value="learn">Aprender con respuesta</option><option value="recall">Intentar antes de ver</option><option value="interview">Simulación de entrevista</option><option value="case">Caso práctico</option></select></div>
-<div class="field"><label for="searchBox">Buscar tema o pregunta</label><input id="searchBox" placeholder="Ej. audit, risk, leadership" oninput="searchQuestions()"></div>
-</section>
-<div id="workspace">
-<section id="questionPanel" class="panel">
-<div class="badges"><span id="sectorBadge" class="badge">Área profesional</span><span id="progressCounter" class="badge">Pregunta 1</span></div>
-<div class="progressbar"><span id="progressFill"></span></div>
-<h2>Interview question / Pregunta de entrevista</h2>
-<div id="qEnText" class="question"></div>
-<div id="qPhoneticText" class="phonetic"></div>
-<div id="qEsText" class="translation"></div>
-<div class="actions"><button onclick="speak('question')">🔊 Escuchar pregunta</button><button class="secondary" onclick="speakSlow('question')">🐢 Más despacio</button></div>
-<hr>
-<div id="answerArea">
-<h2>Model answer / Respuesta modelo</h2>
-<div id="aEnText" class="answer"></div>
-<div id="aPhoneticText" class="phonetic"></div>
-<div id="aEsText" class="answer-es"></div>
-<div class="actions"><button onclick="speak('answer')">🔊 Escuchar respuesta</button><button class="secondary" onclick="speakSlow('answer')">🐢 Repetir despacio</button><button class="secondary" onclick="toggleAnswer()">Ocultar / mostrar respuesta</button><button class="secondary" onclick="saveVocabulary()">Guardar vocabulario</button></div>
+<div class="toolbar">
+<button class="secondary" id="langES">Español / Spanish</button>
+<button class="secondary" id="langEN">English</button>
+<button class="secondary" id="voiceToggle">🔊 Voice: On</button>
+<button class="light" id="resetBtn">↻ Reset session</button>
 </div>
-<div id="starBox" class="notice hidden"><strong>Método STAR</strong><br><b>S — Situation:</b> ¿Cuál era la situación?<br><b>T — Task:</b> ¿Qué responsabilidad tenías?<br><b>A — Action:</b> ¿Qué hiciste tú?<br><b>R — Result:</b> ¿Qué resultado obtuviste y cómo lo mediste?</div>
-<div class="navigation"><button class="secondary" onclick="prev()">← Anterior</button><button onclick="next()">Siguiente →</button></div>
-<div class="actions"><button class="secondary" onclick="markDifficult()">Marcar para repasar</button><button class="secondary" onclick="showRandom()">Pregunta aleatoria</button></div>
-</section>
-<aside id="practicePanel" class="panel">
-<h2>🎙️ Práctica oral opcional</h2>
-<p>Responde en inglés con tus propias palabras. Puedes hablar hasta 60 segundos. No necesitas leer la respuesta modelo.</p>
-<button id="micBtn" onclick="toggleMic()">🎙️ Presiona para hablar</button>
-<div id="recordTimer">60 s</div>
-<div class="small">Transcripción reconocida por el navegador</div>
-<div id="userSpokenText" aria-live="polite">Tu respuesta aparecerá aquí cuando el navegador reconozca tu voz.</div>
-<h3>Evaluación orientativa</h3>
-<div class="score" id="scoreText">—%</div>
-<div id="scoreDetail" class="small">La evaluación compara las palabras reconocidas con la respuesta modelo; no mide por completo tu pronunciación, gramática ni competencia profesional.</div>
-<div class="actions"><button class="secondary" onclick="evaluateAnswer()">Evaluar respuesta</button><button class="secondary" onclick="clearPractice()">Borrar respuesta</button><button class="secondary" onclick="speakTranscript()">Escuchar mi respuesta</button></div>
-<div class="notice" style="margin-top:12px">El reconocimiento de voz depende de tu navegador y de la conexión. Si se interrumpe, el sistema intentará reanudarlo mientras quede tiempo. Puedes detenerlo antes.</div>
+<div class="stats">
+<div class="stat"><strong id="totalStat">0</strong><span id="totalLabel">Questions practiced</span></div>
+<div class="stat"><strong id="scoreStat">—</strong><span id="scoreLabel">Last practice score</span></div>
+<div class="stat"><strong id="streakStat">0</strong><span id="streakLabel">Questions answered</span></div>
+</div>
+<div class="layout">
+<aside class="panel">
+<h2 id="setupTitle">Choose your practice</h2>
+<div class="field"><label for="sector" id="sectorLabel">Career field</label><select id="sector"></select></div>
+<div class="field"><label for="level" id="levelLabel">Difficulty</label><select id="level"><option value="all">All levels</option><option value="Beginner">Beginner</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option></select></div>
+<div class="field"><label for="search" id="searchLabel">Search questions</label><input id="search" type="search" placeholder="Type a keyword..."></div>
+<div class="field"><label for="speed" id="speedLabel">Speaking speed</label><select id="speed"><option value="0.75">Slow</option><option value="0.9" selected>Normal</option><option value="1.05">Fast</option></select></div>
+<div class="field"><label for="voiceSelect" id="voiceLabel">English voice</label><select id="voiceSelect"><option value="">Default system voice</option></select></div>
+<div class="actions"><button id="shuffleBtn" class="secondary">🔀 Shuffle</button><button id="randomBtn" class="secondary">🎲 Random</button></div>
+<p class="small" id="countText">Loading questions...</p>
+<div class="progress"><div id="listProgress"></div></div>
+<div id="questionList" class="question-list"></div>
 </aside>
+<section class="mainpanel">
+<div class="card">
+<div class="toolbar" style="justify-content:space-between;align-items:center">
+<span class="tag" id="categoryTag">Interview practice</span>
+<span class="small" id="numberText">Question 1</span>
 </div>
-<section id="learningPanel" class="panel">
-<h2>Áreas de conocimiento profesional</h2>
-<p class="small">Selecciona un área para estudiar conceptos, decisiones y vocabulario que puedes aplicar en entrevistas y situaciones reales.</p>
-<div class="module-grid" id="moduleGrid"></div>
+<div class="question" id="questionText">Loading question...</div>
+<div class="actions">
+<button id="playQuestion">▶ Play question</button>
+<button class="secondary" id="playAnswer">🔊 Play model answer</button>
+<button class="secondary" id="showAnswer">Show answer</button>
+<button class="light" id="hideAnswer">Hide answer</button>
+</div>
+<div id="answerBox" class="answer" hidden></div>
+<div class="actions">
+<button class="secondary" id="prevBtn">← Previous</button>
+<button id="nextBtn">Next question →</button>
+<button class="secondary" id="markBtn">✓ Mark practiced</button>
+</div>
 <hr>
-<div id="caseBox">
-<h2>🧩 Caso práctico ejecutivo</h2>
-<p id="casePrompt">Selecciona “Siguiente caso” para analizar una situación.</p>
-<label for="caseAnswer">Tu análisis y plan de acción</label>
-<textarea id="caseAnswer" rows="4" placeholder="Describe el riesgo, la evidencia que buscarías, las acciones inmediatas y cómo verificarías el resultado."></textarea>
-<div class="actions"><button onclick="evaluateCase()">Revisar mi análisis</button><button class="secondary" onclick="nextCase()">Siguiente caso</button><button class="secondary" onclick="speakCase()">🔊 Escuchar caso</button></div>
-<div id="caseFeedback" class="answer-es" aria-live="polite"></div>
+<h2 id="yourAnswerTitle">Your answer</h2>
+<p class="small" id="yourAnswerHelp">Type your answer or use the microphone. Speak in English when possible.</p>
+<textarea id="userAnswer" placeholder="In my previous role, I was responsible for..."></textarea>
+<div class="actions">
+<button id="startMic">🎙 Start speaking</button>
+<button class="danger" id="stopMic" disabled>■ Stop recording</button>
+<button id="evaluateBtn">Evaluate my answer</button>
+<button class="secondary" id="clearAnswer">Clear</button>
 </div>
+<div id="feedback" class="feedback" aria-live="polite"></div>
+<p class="small" id="micStatus" aria-live="polite">Microphone access depends on your browser and connection.</p>
 <hr>
-<div class="module-grid">
-<div class="module-card"><h3>📚 Vocabulario guardado</h3><p>Expresiones profesionales que quieras repasar.</p><ul id="vocabList"></ul><button class="secondary" onclick="clearVocabulary()">Borrar vocabulario</button></div>
-<div class="module-card"><h3>🔁 Preguntas para repasar</h3><p>Reúne preguntas difíciles para practicar de nuevo.</p><ul id="mistakeList"></ul><button class="secondary" onclick="reviewDifficult()">Repasar marcadas</button><button class="secondary" onclick="clearDifficult()">Borrar lista</button></div>
-<div class="module-card"><h3>📈 Tu progreso</h3><p id="progressText">Todavía no hay respuestas evaluadas.</p><p id="statsText" class="small"></p><button class="secondary" onclick="resetProgress()">Reiniciar progreso</button></div>
+<h2 id="vocabTitle">Useful vocabulary</h2>
+<div id="vocabulary" class="pills"></div>
+<hr>
+<h2 id="notesTitle">My improvement notes</h2>
+<textarea id="notes" placeholder="What did I do well? What should I improve?"></textarea>
+<div class="actions"><button class="secondary" id="saveNotes">Save notes on this device</button><button class="light" id="downloadBtn">Download practice report</button></div>
+<p class="small" id="saveStatus">Notes are saved only in this browser when local storage is available.</p>
 </div>
+<div class="card" style="margin-top:16px">
+<h2 id="strategyTitle">Answer with the STAR method</h2>
+<p class="small" id="strategyHelp">For behavioral questions, explain the Situation, Task, Action, and Result.</p>
+<div class="field"><label for="starS">S — Situation</label><textarea id="starS" style="min-height:65px" placeholder="What was happening?"></textarea></div>
+<div class="field"><label for="starT">T — Task</label><textarea id="starT" style="min-height:65px" placeholder="What were you responsible for?"></textarea></div>
+<div class="field"><label for="starA">A — Action</label><textarea id="starA" style="min-height:65px" placeholder="What did you do?"></textarea></div>
+<div class="field"><label for="starR">R — Result</label><textarea id="starR" style="min-height:65px" placeholder="What happened? Include measurable results if possible."></textarea></div>
+<button class="secondary" id="buildStar">Build my STAR answer</button>
+<div id="starResult" class="feedback"></div>
+</div>
+<div class="notice" style="margin-top:16px" id="privacyNotice">Practice feedback is approximate and generated in your browser. It is not a hiring decision, certification, or guarantee of employment. Avoid entering confidential employer, patient, or customer information.</div>
 </section>
+</div>
 </main>
-<footer>Herramienta educativa para practicar inglés y conocimientos profesionales. Las respuestas son ejemplos de estudio; verifica las normas aplicables a cada organización, sector y jurisdicción.</footer>
+<footer>May Roga LLC · Professional learning and interview preparation</footer>
 <script>
 "use strict";
-const DB={
-hospitales:{label:"🏥 Hospital Management, RN Leadership & Compliance",items:[
-["How do you ensure regulatory compliance in a healthcare organization?","I maintain a current compliance register, assign clear owners, train staff, test controls, document evidence, and track corrective actions to completion.","Mantengo un registro actualizado de requisitos, asigno responsables, capacito al personal, pruebo controles, documento evidencias y verifico las correcciones."],
-["How would you investigate a suspected policy violation?","I would protect immediate safety, preserve relevant records, follow reporting procedures, maintain confidentiality, interview appropriate people fairly, document facts, and escalate findings through the approved process.","Protegería la seguridad, preservaría registros, seguiría los procedimientos, mantendría la confidencialidad, documentaría hechos y elevaría los hallazgos por los canales aprobados."],
-["How do you reduce patient safety risks?","I review incident trends, identify root causes, strengthen controls, engage frontline staff, assign corrective actions, and monitor measurable outcomes.","Reviso tendencias de incidentes, identifico causas raíz, refuerzo controles, involucro al personal y mido los resultados."],
-["How do you manage staffing shortages?","I assess patient acuity, prioritize essential coverage, verify staff competencies, communicate transparently, and escalate unsafe staffing conditions promptly.","Evalúo la complejidad de los pacientes, priorizo la cobertura esencial, verifico competencias y comunico riesgos de dotación."],
-["How do you prepare for an audit?","I confirm the audit scope, map requirements to controls, gather reliable evidence, test samples, document gaps, assign owners, and verify remediation.","Confirmo el alcance, relaciono requisitos con controles, reúno evidencias, pruebo muestras y verifico correcciones."],
-["How do you handle confidential patient information?","I follow applicable privacy rules, limit access to authorized purposes, use approved systems, report suspected exposure, and document the response.","Cumplo las normas de privacidad, limito el acceso, uso sistemas aprobados y reporto posibles exposiciones."],
-["How do you respond to a serious incident?","I prioritize immediate safety, activate the relevant response protocol, notify designated leaders, preserve evidence, communicate accurately, and support a documented review.","Priorizaría la seguridad, activaría el protocolo, notificaría a los responsables y apoyaría una revisión documentada."],
-["How do you measure nursing leadership performance?","I track safety events, quality indicators, staffing stability, patient experience, competency completion, and timely closure of corrective actions.","Mido eventos de seguridad, calidad, estabilidad del personal, experiencia del paciente y cierre de acciones correctivas."],
-["How do you resolve conflict between clinical team members?","I listen to each perspective, clarify the shared patient-care objective, address observable facts, agree on responsibilities, and follow up on the outcome.","Escucho las perspectivas, aclaro el objetivo común, abordo hechos y acuerdo responsabilidades."],
-["How do you build a corrective action plan?","I define the gap, identify root causes, set measurable actions and deadlines, assign accountable owners, and test whether the change prevents recurrence.","Defino la brecha, identifico causas, establezco acciones medibles, responsables y plazos, y compruebo su eficacia."]
-]},
-gobierno:{label:"🏛️ Government, Public Administration & Procurement",items:[
-["How do you maintain integrity in public procurement?","I apply transparent criteria, document decisions, manage conflicts of interest, preserve competition, verify approvals, and maintain an auditable record.","Aplico criterios transparentes, documento decisiones, gestiono conflictos de interés y conservo registros auditables."],
-["How would you respond to a procurement irregularity?","I preserve records, avoid unsupported conclusions, follow reporting channels, restrict access where appropriate, document facts, and support an impartial review.","Preservo registros, evito conclusiones sin pruebas, sigo los canales de reporte y apoyo una revisión imparcial."],
-["How do you evaluate a government contract?","I compare scope, eligibility, price reasonableness, performance requirements, risks, conflicts, funding restrictions, and required approvals.","Comparo alcance, elegibilidad, razonabilidad del precio, desempeño, riesgos, restricciones presupuestarias y aprobaciones."],
-["How do you ensure public accountability?","I maintain clear decision records, use approved performance measures, report material issues, and make information available under applicable rules.","Mantengo registros claros, uso indicadores aprobados, reporto problemas relevantes y cumplo las reglas de acceso a información."],
-["How do you manage competing public priorities?","I assess legal obligations, urgency, public impact, available resources, and measurable outcomes before explaining and documenting the decision.","Evalúo obligaciones legales, urgencia, impacto público, recursos y resultados antes de documentar la decisión."],
-["What would you do if a manager requested an improper exception?","I would clarify the requirement, explain the risk, document the request appropriately, and seek guidance through the designated compliance or oversight channel.","Aclararía el requisito, explicaría el riesgo, documentaría la solicitud y buscaría orientación por el canal correspondiente."],
-["How do you monitor contractor performance?","I define deliverables, service levels, evidence requirements, review dates, escalation thresholds, and remedies permitted by the contract.","Defino entregables, niveles de servicio, evidencias, fechas de revisión, criterios de escalamiento y remedios contractuales."],
-["How do you improve administrative efficiency?","I map the process, identify delays and duplicate work, simplify approved steps, assign ownership, and monitor turnaround time and quality.","Analizo el proceso, detecto demoras y duplicaciones, simplifico pasos autorizados y mido tiempo y calidad."]
-]},
-logistics:{label:"📦 Logistics, Ports & Supply Chain",items:[
-["How do you manage supply chain risk?","I map critical suppliers, assess likelihood and impact, monitor lead times, qualify alternatives, maintain contingency plans, and review residual risk.","Identifico proveedores críticos, evalúo probabilidad e impacto, vigilo plazos, preparo alternativas y reviso el riesgo residual."],
-["How do you reduce inventory costs without harming service?","I segment items by value and criticality, improve demand forecasts, set evidence-based reorder points, and track stockouts, waste, and carrying costs.","Clasifico artículos por valor y criticidad, mejoro pronósticos, ajusto reposición y controlo faltantes, desperdicio y costos."],
-["How do you handle a supplier failure?","I confirm the facts, assess operational impact, activate alternatives, inform stakeholders, document contractual obligations, and review the root cause afterward.","Confirmo los hechos, evalúo el impacto, activo alternativas, informo a las partes y reviso la causa raíz."],
-["Which logistics KPIs matter most?","I select on-time delivery, order accuracy, inventory turns, cost per shipment, damage rate, lead-time variability, and customer service level.","Uso entregas puntuales, exactitud, rotación, costo por envío, daños, variación de plazos y nivel de servicio."],
-["How do you evaluate a warehouse improvement?","I establish baseline performance, map material flow, identify bottlenecks, test a controlled change, and compare safety, accuracy, throughput, and cost.","Establezco una línea base, identifico cuellos de botella, pruebo cambios y comparo seguridad, exactitud, capacidad y costo."],
-["How do you protect continuity of supply?","I identify critical items, set minimum coverage, diversify qualified sources, define escalation triggers, and rehearse contingency procedures.","Identifico artículos críticos, defino cobertura mínima, diversifico fuentes y preparo procedimientos de contingencia."],
-["How do you manage transportation delays?","I verify shipment status, assess downstream consequences, prioritize critical orders, coordinate alternatives, and communicate realistic delivery estimates.","Verifico el envío, evalúo consecuencias, priorizo pedidos críticos, coordino alternativas y comunico estimaciones realistas."],
-["How do you assess a logistics contract?","I review scope, service levels, insurance, liability, data requirements, pricing, exceptions, performance evidence, and termination provisions.","Reviso alcance, niveles de servicio, seguros, responsabilidad, datos, precios, excepciones y terminación."]
-]},
-airlines:{label:"✈️ Airlines, Airport Operations & Ramp Management",items:[
-["How do you maintain safety during ramp operations?","I enforce approved procedures, confirm role competency, conduct briefings, report hazards, coordinate movement, and stop unsafe work when required.","Aplico procedimientos aprobados, verifico competencias, informo peligros, coordino movimientos y detengo tareas inseguras."],
-["How would you respond to a delayed departure?","I identify the constraint, coordinate operations and ground teams, protect safety and compliance, communicate verified updates, and track recovery actions.","Identifico la limitación, coordino equipos, protejo la seguridad, comunico información verificada y sigo acciones de recuperación."],
-["How do you investigate a ground-handling incident?","I secure the area, notify required personnel, preserve available records, gather factual statements, analyze contributing factors, and verify corrective actions.","Aseguro el área, notifico a los responsables, preservo registros, analizo factores y verifico correcciones."],
-["How do you improve on-time performance?","I analyze delay codes and process times, identify recurring constraints, assign owners, test targeted improvements, and monitor results without weakening safety.","Analizo causas y tiempos de demora, asigno responsables y mejoro resultados sin debilitar la seguridad."],
-["How do you manage pressure during irregular operations?","I establish priorities, use the approved command structure, verify information, allocate resources transparently, and provide concise updates.","Establezco prioridades, sigo la estructura de mando, verifico información y comunico actualizaciones claras."],
-["How do you ensure contractor accountability?","I define service standards, verify training and authorization, review performance evidence, document deviations, and apply contractual escalation procedures.","Defino estándares, verifico capacitación, reviso evidencias y aplico los procedimientos contractuales."],
-["How do you prepare for an operational emergency?","I confirm roles, communications, escalation paths, equipment readiness, and coordination with the relevant emergency plan.","Confirmo funciones, comunicaciones, escalamiento, equipos y coordinación con el plan de emergencia."],
-["How do you manage competing turnaround priorities?","I prioritize safety and required checks, coordinate interdependent tasks, monitor milestones, and escalate conflicts before they threaten departure readiness.","Priorizo seguridad y controles, coordino tareas dependientes y elevo conflictos antes de comprometer la preparación."]
-]},
-restaurantes:{label:"🍽️ Restaurant Management & Multi-Unit Operations",items:[
-["How do you improve restaurant profitability?","I analyze food and labor costs, waste, sales mix, pricing, scheduling, and guest feedback, then test changes against service and quality measures.","Analizo costos, desperdicio, ventas, precios, horarios y comentarios, y pruebo mejoras sin perjudicar calidad."],
-["How do you maintain food safety compliance?","I follow applicable food-safety requirements, verify temperature and sanitation records, train staff, correct deficiencies, and document follow-up.","Cumplo los requisitos de inocuidad, verifico temperaturas y limpieza, capacito y documento correcciones."],
-["How do you reduce food waste?","I track waste by category, improve forecasting and portion control, rotate stock, review purchasing, and measure the cost of discarded food.","Registro desperdicios, mejoro pronósticos y porciones, roto inventario y mido el costo descartado."],
-["How do you handle a customer complaint?","I listen without interrupting, acknowledge the concern, resolve what I can within policy, document recurring issues, and follow up when appropriate.","Escucho, reconozco la preocupación, resuelvo dentro de la política y registro problemas recurrentes."],
-["How do you manage labor costs?","I forecast demand, schedule based on traffic and required skills, monitor overtime, and protect legally required breaks and safe staffing.","Pronostico demanda, programo según tráfico y competencias, controlo horas extra y respeto requisitos laborales."],
-["How do you maintain consistency across locations?","I standardize essential procedures, train managers, audit critical standards, compare location-level KPIs, and share proven improvements.","Estandarizo procesos esenciales, capacito gerentes, audito estándares y comparo indicadores."],
-["How do you address employee turnover?","I examine exit feedback, scheduling, onboarding, manager behavior, development opportunities, and retention data before selecting interventions.","Analizo entrevistas de salida, horarios, incorporación, liderazgo y oportunidades de desarrollo."],
-["How do you evaluate a new menu item?","I assess ingredient cost, preparation time, capacity, customer demand, contribution margin, allergens, and consistency before scaling.","Evalúo costo, preparación, capacidad, demanda, margen, alérgenos y consistencia."]
-]},
-situaciones:{label:"⚡ Executive Strategy, STAR, Negotiation & MBA",items:[
-["Tell me about a time you solved a difficult problem.","Situation: A recurring process failure affected service. Task: I had to restore reliability. Action: I analyzed the data, involved the team, and introduced a controlled corrective plan. Result: We reduced repeat failures and improved accountability.","Situación: un fallo recurrente afectaba el servicio. Tarea: recuperar la confiabilidad. Acción: analicé datos e involucré al equipo. Resultado: redujimos recurrencias y mejoramos la responsabilidad."],
-["How do you make decisions with incomplete information?","I separate facts from assumptions, estimate potential impact, identify reversible options, gather the highest-value evidence, and define a review point.","Separo hechos de suposiciones, estimo impacto, identifico opciones reversibles y defino cuándo revisar."],
-["How do you negotiate a difficult agreement?","I clarify interests, define my alternatives and limits, use objective criteria, explore trade-offs, and document commitments and responsibilities.","Aclaro intereses, alternativas y límites, uso criterios objetivos y documento compromisos."],
-["How do you explain a failed project to senior leadership?","I present the intended outcome, evidence of the gap, root causes, financial and operational impact, corrective actions, and lessons for future decisions.","Presento el objetivo, la brecha, las causas, el impacto, las correcciones y las lecciones."],
-["How do you present financial performance?","I compare actual results with budget and forecast, explain major variances, connect drivers to operational causes, and recommend measurable actions.","Comparo resultados con presupuesto y pronóstico, explico variaciones y recomiendo acciones medibles."],
-["How do you influence people without formal authority?","I understand their priorities, build credibility with evidence, explain shared benefits, invite concerns, and agree on clear next steps.","Comprendo prioridades, presento evidencias, explico beneficios comunes y acuerdo próximos pasos."],
-["How do you prioritize competing executive initiatives?","I compare strategic alignment, expected value, urgency, risk, cost, capacity, dependencies, and measurable success criteria.","Comparo alineación estratégica, valor, urgencia, riesgo, costo, capacidad y criterios de éxito."],
-["Why should we hire you for a leadership role?","I combine structured problem-solving, clear communication, accountability, risk awareness, and a practical focus on measurable results. I learn quickly and work across teams to turn priorities into execution.","Combino resolución estructurada de problemas, comunicación, responsabilidad, gestión de riesgos y resultados medibles."],
-["How would you challenge an executive decision respectfully?","I confirm the objective, present verified evidence, explain the risk and alternatives, recommend a course of action, and support the final authorized decision.","Confirmo el objetivo, presento evidencias, explico riesgos y alternativas, y respaldo la decisión autorizada."],
-["How do you define a successful strategy?","A successful strategy connects a clear objective to resources, accountable owners, milestones, risk controls, and measurable outcomes that are reviewed regularly.","Una estrategia conecta objetivos con recursos, responsables, hitos, controles de riesgo y resultados medibles."]
-]}
+const DATA={
+"General & Behavioral":[
+["Tell me about yourself.","I am a motivated professional with experience in solving problems, working with teams, and learning new skills. I focus on delivering reliable results and providing excellent service.","Beginner","professional, experience, reliable"],
+["Why do you want this position?","I am interested in this position because it matches my skills and professional goals. I believe I can contribute to the team while continuing to grow.","Beginner","position, contribute, goals"],
+["What are your greatest strengths?","My greatest strengths are communication, organization, accountability, and the ability to stay calm under pressure. I also learn new processes quickly.","Beginner","strengths, accountability, organization"],
+["What is one weakness you are improving?","I sometimes spend too much time checking details. I am improving by prioritizing tasks, setting time limits, and focusing on the requirements that matter most.","Intermediate","weakness, improve, prioritize"],
+["Why should we hire you?","You should hire me because I am dependable, willing to learn, and committed to doing quality work. I communicate clearly and take responsibility for my results.","Beginner","dependable, quality, responsibility"],
+["Describe a difficult situation you handled.","In a previous situation, I identified the main problem, gathered the relevant information, and communicated with the people involved. We agreed on a practical solution and followed up to confirm the result.","Intermediate","situation, solution, follow-up"],
+["Tell me about a mistake you made.","I once underestimated how long a task would take. I communicated the delay, reorganized my priorities, and introduced checkpoints to improve my planning. I learned to identify risks earlier.","Intermediate","mistake, planning, risks"],
+["How do you handle criticism?","I listen carefully, ask questions when something is unclear, and focus on the specific behavior I can improve. I apply the feedback and check my progress.","Beginner","feedback, improve, progress"],
+["How do you prioritize competing deadlines?","I compare deadlines, business impact, urgency, and dependencies. I communicate conflicts early and break the work into manageable steps.","Intermediate","deadlines, impact, dependencies"],
+["Describe a time you solved a problem.","I defined the problem, checked the available information, considered possible solutions, and selected the most practical option. I monitored the outcome and adjusted the process when needed.","Intermediate","analyze, practical, outcome"],
+["Tell me about a time you worked on a team.","I clarified my responsibilities, shared information, and supported my colleagues when priorities changed. We coordinated our efforts and completed the work together.","Beginner","teamwork, coordinate, support"],
+["How do you manage stress?","I identify the most urgent tasks, organize my workload, and communicate early if I need clarification or support. I stay focused on the next practical step.","Beginner","stress, workload, focused"],
+["Describe a time you showed initiative.","I noticed a recurring issue and suggested a simple change to the process. I discussed the idea with my supervisor, helped implement it, and checked whether it improved the workflow.","Intermediate","initiative, process, workflow"],
+["How do you adapt to change?","I first clarify what has changed and why. Then I identify the impact on my responsibilities, learn the new process, and communicate any risks or questions.","Intermediate","adapt, impact, process"],
+["Where do you see yourself in five years?","I hope to have developed stronger expertise, taken on greater responsibility, and contributed consistently to the organization's goals.","Beginner","expertise, responsibility, goals"],
+["Tell me about a time you disagreed with a colleague.","I listened to the colleague's perspective, explained my concerns using facts, and looked for a solution that supported our shared objective. We agreed on the next steps professionally.","Intermediate","perspective, facts, objective"],
+["How do you measure success?","I measure success by meeting agreed goals, maintaining quality, communicating reliably, and producing results that help the team or customer.","Beginner","measure, quality, results"],
+["What motivates you at work?","I am motivated by solving useful problems, learning, helping people, and seeing that my work produces a clear and positive result.","Beginner","motivated, learning, result"],
+["Describe a time you had to learn quickly.","I identified the essential information, consulted reliable resources, practiced the process, and asked focused questions. I then applied what I learned and verified my work.","Intermediate","learn, resources, verify"],
+["Do you have any questions for us?","Yes. What would success look like in the first 90 days, and what are the team's most important priorities for this position?","Beginner","success, priorities, expectations"]
+],
+"Healthcare, RN Leadership & Compliance":[
+["How do you prioritize patient care?","I assess urgency, patient safety risks, changes in condition, and time-sensitive interventions. I follow facility protocols, communicate with the care team, and reassess priorities as conditions change.","Advanced","prioritize, safety, reassess"],
+["How do you respond to a patient safety incident?","I address immediate safety needs, notify the appropriate clinical leader, follow reporting procedures, document objective facts, and participate in reviewing contributing factors to prevent recurrence.","Advanced","incident, document, prevention"],
+["How do you manage staffing shortages?","I assess acuity and workload, identify essential coverage, escalate unsafe staffing concerns, use approved staffing procedures, and communicate assignments and risks clearly.","Advanced","acuity, staffing, escalate"],
+["How do you handle a medication error?","I prioritize the patient's immediate safety, notify the appropriate clinician and supervisor, follow the organization's medication-event procedure, document factual information, and participate in follow-up review.","Advanced","medication, safety, reporting"],
+["How do you protect patient confidentiality?","I access only information needed for my role, verify identity and authorization, use approved communication systems, and follow HIPAA and organizational privacy policies.","Intermediate","confidentiality, authorization, HIPAA"],
+["What would you do if a provider's order seemed unsafe?","I would verify the order, assess the concern, communicate respectfully with the prescribing clinician, and escalate through the appropriate chain of command if the concern remained unresolved.","Advanced","verify, escalate, chain of command"],
+["How do you improve patient satisfaction?","I listen to patient concerns, communicate in understandable language, set realistic expectations, respond promptly, and coordinate with the care team to resolve service issues.","Intermediate","listen, communicate, coordinate"],
+["How do you handle a difficult family member?","I remain calm, listen without interruption, acknowledge the concern, explain what I can within privacy rules, and involve the appropriate team member when additional support is needed.","Intermediate","calm, privacy, support"],
+["How do you prepare for a regulatory survey?","I review applicable standards, verify policies and records, assess staff readiness, identify gaps, and coordinate corrective actions with responsible leaders.","Advanced","regulatory, standards, corrective actions"],
+["What is the purpose of an incident report?","An incident report records an event through the organization's designated process, supports review and risk reduction, and helps identify opportunities to improve safety. It does not replace required clinical documentation.","Advanced","incident report, risk, safety"],
+["How do you monitor quality indicators?","I define the indicator, verify data quality, compare results with targets and trends, investigate meaningful variation, and assign actions with measurable follow-up.","Advanced","indicators, trends, measurable"],
+["How would you reduce hospital readmissions?","I would review readmission patterns, identify preventable factors, strengthen discharge planning, confirm patient understanding, coordinate follow-up, and monitor outcomes across relevant patient groups.","Advanced","readmissions, discharge, follow-up"],
+["How do you manage a performance concern with a nurse?","I gather objective information, meet privately, explain the expected standard, listen to the employee, agree on a development plan, and document and review progress according to policy.","Advanced","performance, standards, development"],
+["How do you address repeated policy violations?","I verify the facts, assess the safety implications, apply policy consistently, discuss the issue with the employee, and escalate through the established process when necessary.","Advanced","policy, consistent, escalate"],
+["What is root cause analysis?","Root cause analysis is a structured review of an event to identify system and process factors that contributed to it. The goal is to develop actions that reduce the chance of recurrence.","Advanced","root cause, system, recurrence"],
+["How do you handle a sentinel event?","I ensure immediate safety, activate the organization's response process, notify required leaders, preserve relevant information, and follow applicable reporting and investigation requirements.","Advanced","sentinel, response, investigation"],
+["How do you manage infection prevention compliance?","I reinforce hand hygiene and appropriate precautions, verify staff education and supply availability, review surveillance data, and address gaps using approved infection prevention procedures.","Advanced","infection, precautions, compliance"],
+["How do you prepare for an accreditation visit?","I align evidence and practices with applicable standards, validate documentation, educate staff on their roles, resolve identified gaps, and coordinate a consistent, transparent response.","Advanced","accreditation, evidence, standards"],
+["How do you manage patient complaints?","I listen respectfully, clarify the facts, explain the resolution process, involve the appropriate department, document according to policy, and follow up within the expected timeframe.","Intermediate","complaints, resolution, follow-up"],
+["How do you evaluate nursing competency?","I use role-specific competency criteria, direct observation where appropriate, validated assessments, staff feedback, and documented remediation and reassessment when gaps are identified.","Advanced","competency, assessment, remediation"],
+["How do you ensure accurate clinical documentation?","I document timely, objective, relevant information in the approved record, follow correction policies, and ensure that documentation reflects the care actually provided.","Advanced","documentation, objective, accuracy"],
+["How do you handle a suspected privacy breach?","I limit further disclosure, report the suspected breach promptly through the approved privacy or security channel, preserve relevant facts, and cooperate with the formal assessment process.","Advanced","privacy, breach, report"],
+["How do you manage a high patient census?","I review acuity, available resources, admission and discharge flow, and staffing constraints. I coordinate with relevant departments and escalate risks before they compromise safe care.","Advanced","census, flow, resources"],
+["How do you use evidence-based practice?","I define the clinical or operational question, review credible evidence and applicable guidance, consider local context, engage stakeholders, and measure the results of implementation.","Advanced","evidence, implementation, outcomes"],
+["How do you address burnout on your team?","I listen to staff, assess workload and scheduling concerns, promote available support resources, and work with leadership on practical changes while maintaining safe coverage.","Intermediate","burnout, workload, support"],
+["What is a corrective action plan?","It is a documented plan that defines the identified gap, likely contributing factors, corrective steps, responsible owners, deadlines, and measures used to verify effectiveness.","Advanced","corrective action, owner, effectiveness"],
+["How do you prepare an audit of clinical records?","I define the audit scope and criteria, select records using the approved method, review evidence consistently, protect confidentiality, summarize findings, and track corrective actions.","Advanced","audit, criteria, findings"],
+["How do you manage a patient fall?","I assess the patient's immediate condition, obtain appropriate clinical assistance, follow the facility's post-fall protocol, notify the required parties, document objectively, and support prevention review.","Advanced","fall, assessment, prevention"],
+["How do you communicate during a clinical emergency?","I use concise, structured communication, state the immediate concern, confirm roles and orders, use closed-loop communication when appropriate, and document according to protocol.","Advanced","emergency, closed-loop, roles"],
+["How do you handle an ethical concern?","I clarify the facts, consider patient rights and applicable policy, consult appropriate clinical or ethics resources, and escalate concerns through established channels.","Advanced","ethics, rights, escalate"],
+["How do you manage change in a clinical department?","I explain the reason for the change, involve affected staff, define training and responsibilities, monitor implementation, and use feedback and performance data to refine the process.","Advanced","change, training, monitoring"],
+["How do you report quality data to executives?","I present validated measures, trends, risks, comparisons, and operational implications. I explain limitations, recommend actionable steps, and identify how progress will be measured.","Advanced","executive, trends, recommendations"],
+["How do you address a missed treatment or delayed intervention?","I assess immediate risk, notify the responsible clinician, follow escalation and documentation procedures, determine contributing factors, and help prevent similar delays.","Advanced","delay, escalation, prevention"],
+["What is the difference between an outcome and a process measure?","An outcome measure describes the result experienced by a patient or population. A process measure assesses whether a specific care activity was performed as intended.","Advanced","outcome, process, measure"],
+["How do you ensure compliance training is effective?","I identify required competencies, deliver role-appropriate training, verify understanding, document completion, and assess whether behavior and compliance improve afterward.","Advanced","training, competency, compliance"],
+["How do you resolve conflict between departments?","I clarify the shared objective, compare facts and constraints, identify responsibilities, agree on a practical process, and define an escalation route and follow-up measures.","Advanced","conflict, responsibilities, follow-up"],
+["How do you protect against documentation fraud?","I follow audit controls, verify unusual discrepancies, preserve relevant records, report concerns through authorized channels, and avoid making unsupported conclusions before review.","Advanced","controls, discrepancy, review"],
+["How do you evaluate a new clinical workflow?","I define the problem and baseline, involve frontline staff, assess safety and feasibility, pilot the workflow where appropriate, and compare outcomes before wider adoption.","Advanced","workflow, baseline, pilot"],
+["How do you manage a serious complaint about care?","I acknowledge the concern, ensure immediate safety needs are addressed, notify the designated leadership or patient relations team, preserve relevant information, and follow the formal review process.","Advanced","complaint, leadership, review"],
+["How do you maintain compliance with changing regulations?","I monitor authoritative updates, assess their impact, revise policies through governance, educate affected staff, and verify implementation with documented checks.","Advanced","regulations, governance, verification"],
+["How do you manage supply shortages in a hospital?","I assess patient-care impact, identify approved alternatives, coordinate with supply chain and clinical leaders, communicate restrictions, and monitor inventory and risk.","Advanced","shortage, alternatives, inventory"],
+["How do you improve discharge readiness?","I coordinate discharge planning early, confirm medication and instruction understanding, identify barriers, arrange appropriate follow-up, and verify that required documentation and resources are available.","Advanced","discharge, barriers, coordination"],
+["How do you evaluate a department's performance?","I review a balanced set of safety, quality, staffing, service, and operational indicators, validate trends, discuss causes with the team, and assign measurable improvement actions.","Advanced","performance, indicators, improvement"],
+["How do you handle a staff member who reports unsafe conditions?","I listen without retaliation, assess immediate risk, protect confidentiality as appropriate, escalate through established channels, and follow up to ensure the concern is reviewed.","Advanced","unsafe, nonretaliation, escalate"],
+["How do you prepare an annual department budget?","I review prior spending, staffing needs, service volume, contract costs, and improvement priorities. I develop assumptions, justify requests, and monitor actual results against the approved budget.","Advanced","budget, assumptions, variance"],
+["How do you ensure patient identification accuracy?","I follow approved identification procedures and use the required identifiers before care, medication administration, specimen collection, or other applicable procedures.","Intermediate","identification, verify, procedure"],
+["How do you respond to a near miss?","I ensure the immediate situation is safe, report the near miss through the designated system, analyze contributing factors, and support process improvements before harm occurs.","Advanced","near miss, reporting, improvement"],
+["How do you lead a multidisciplinary team?","I clarify shared goals, define responsibilities, encourage respectful input, resolve barriers, and use regular communication and measurable outcomes to maintain accountability.","Advanced","multidisciplinary, accountability, goals"],
+["How do you support informed consent?","I follow organizational policy and applicable law, verify that the appropriate consent process has occurred, respect patient questions and decisions, and escalate unresolved concerns to the responsible clinician.","Advanced","consent, policy, patient rights"],
+["How do you manage patient flow and throughput?","I review bottlenecks, admission and discharge patterns, staffing, and coordination delays. I work with stakeholders on process changes and monitor both throughput and safety indicators.","Advanced","throughput, bottlenecks, safety"],
+["How do you investigate a compliance concern?","I follow the authorized investigation process, protect confidentiality, gather objective evidence, document findings, avoid assumptions, and escalate according to policy and applicable law.","Advanced","investigation, evidence, confidentiality"],
+["How do you build a culture of safety?","I encourage timely reporting, respectful communication, learning from near misses, fair accountability, and visible follow-through on improvement actions.","Advanced","culture, reporting, accountability"],
+["How do you prepare for a CMS or other regulatory audit?","I confirm the applicable requirements, organize requested evidence, verify data accuracy, coordinate responsible staff, answer transparently, and track any required corrective actions.","Advanced","CMS, evidence, audit"],
+["How do you manage clinical policy revisions?","I identify the regulatory or practice change, consult relevant stakeholders, obtain required approvals, communicate the effective date, educate staff, and verify adoption.","Advanced","policy, approval, adoption"],
+["How do you handle disagreement over a quality finding?","I review the measure definition and source data, invite the relevant team's evidence, distinguish facts from interpretation, and document the agreed conclusion or unresolved issue.","Advanced","quality, data, interpretation"],
+["How do you assess competency after remediation?","I reassess the original competency using approved criteria, document the result, determine whether further support is needed, and ensure the employee meets requirements before independent performance when applicable.","Advanced","remediation, reassessment, competency"],
+["How do you respond to suspected abuse or neglect?","I prioritize immediate safety, follow applicable mandatory reporting requirements and organizational procedures, document objective observations, and notify the appropriate authorities or designated professionals as required.","Advanced","abuse, mandatory reporting, safety"],
+["How do you manage a clinical equipment failure?","I remove or identify unsafe equipment according to policy, obtain an appropriate replacement, notify the responsible department, document the issue, and follow required reporting and maintenance procedures.","Advanced","equipment, replacement, maintenance"],
+["How do you evaluate a patient education program?","I define learning objectives, assess patient understanding using suitable methods, review participation and outcome data, identify barriers, and revise materials based on evidence and feedback.","Advanced","education, objectives, outcomes"],
+["How do you manage a serious staffing grievance?","I listen impartially, review applicable policy and documentation, maintain appropriate confidentiality, involve human resources or leadership as required, and communicate the established next steps.","Advanced","grievance, impartial, policy"],
+["How do you report a compliance failure to senior leadership?","I summarize verified facts, the requirement involved, potential impact, immediate containment, and proposed corrective actions. I identify owners and deadlines while protecting confidential information.","Advanced","leadership, containment, corrective"],
+["How do you evaluate whether corrective actions worked?","I define success criteria before implementation, review follow-up data after an appropriate interval, verify sustained compliance, and revise the plan if the gap persists.","Advanced","effectiveness, sustained, criteria"],
+["How do you manage patient complaints involving communication barriers?","I arrange appropriate language assistance or accessibility support, confirm understanding, document according to policy, and coordinate a resolution without relying on unqualified interpretation for critical information.","Advanced","language assistance, accessibility, understanding"],
+["How do you balance productivity with quality?","I evaluate both efficiency and safety, identify unnecessary process delays, preserve required controls, and monitor whether productivity changes affect quality or patient outcomes.","Advanced","productivity, quality, controls"],
+["How do you support regulatory readiness year-round?","I assign accountable owners, maintain current evidence, review indicators and policy changes, perform routine checks, and track gaps to closure rather than preparing only before a survey.","Advanced","readiness, evidence, closure"],
+["How do you explain a quality improvement project to staff?","I explain the problem, baseline data, proposed change, expected benefit, staff responsibilities, and measurement plan. I invite feedback and share results as the project progresses.","Intermediate","baseline, benefit, measurement"],
+["How do you manage a conflict of interest?","I disclose the potential conflict through the appropriate channel, follow organizational policy, avoid decisions where impartiality could be compromised, and seek guidance when needed.","Advanced","disclose, impartiality, policy"],
+["How do you maintain accurate quality dashboards?","I define measures consistently, validate source data, document calculation rules, review anomalies, restrict access appropriately, and publish updates on a predictable schedule.","Advanced","dashboard, validation, consistency"],
+["How do you address a failure to follow infection precautions?","I address immediate exposure or safety risks, remind staff of the required precautions, notify the appropriate leader when indicated, and follow the organization's reporting and education process.","Advanced","precautions, exposure, education"],
+["How do you lead a performance improvement meeting?","I present the objective and verified data, invite frontline perspectives, identify causes and barriers, agree on actions and owners, and schedule a review of measurable results.","Advanced","meeting, owners, results"],
+["How do you ensure equitable care?","I follow applicable standards, assess individual needs and barriers, use appropriate language and accessibility resources, review outcome differences, and work to reduce avoidable disparities.","Advanced","equity, barriers, disparities"],
+["How do you respond when a metric suddenly worsens?","I validate the data, determine whether the change is real, assess immediate risks, investigate possible causes, implement appropriate containment, and monitor corrective actions.","Advanced","metric, validate, containment"],
+["How do you prepare a leadership handoff?","I communicate current status, significant risks, outstanding actions, deadlines, responsible owners, and escalation needs using the organization's approved handoff process.","Intermediate","handoff, risks, ownership"],
+["How do you oversee a vendor that supports clinical services?","I verify contract requirements, performance measures, credentialing or access controls as applicable, incident reporting expectations, and periodic reviews with the responsible departments.","Advanced","vendor, contract, monitoring"],
+["How do you respond to a request to alter an audit result?","I maintain the accuracy and integrity of the record, do not alter findings improperly, preserve supporting evidence, and report the request through authorized compliance or leadership channels.","Advanced","integrity, evidence, compliance"],
+["How do you make an executive recommendation?","I define the decision, summarize verified evidence and options, compare risks and resources, recommend a course of action, and specify the expected outcome and review measures.","Advanced","recommendation, options, risks"],
+["How do you manage a policy exception?","I confirm whether an exception is permitted, assess the risks, obtain required authorization, document the rationale and duration, and monitor compliance with any conditions.","Advanced","exception, authorization, risk"],
+["How do you develop future nurse leaders?","I identify individual development needs, provide mentoring and stretch assignments, teach decision-making and accountability, and review progress against clear leadership competencies.","Advanced","mentoring, leadership, development"],
+["How do you communicate an adverse outcome?","I follow the organization's disclosure process, involve the appropriate clinical and leadership personnel, communicate honestly within my role, document according to policy, and support the patient or family appropriately.","Advanced","disclosure, communication, support"],
+["How do you prepare evidence for an external review?","I confirm the request and scope, collect authorized records, verify completeness and accuracy, maintain confidentiality, and document the submission and any follow-up actions.","Advanced","external review, accuracy, confidentiality"],
+["How do you evaluate a new patient safety policy?","I assess the evidence and requirements, define implementation measures, obtain appropriate review, educate affected staff, and monitor adherence and outcomes after launch.","Advanced","safety policy, implementation, outcomes"],
+["How do you handle an employee who refuses a safety instruction?","I clarify the instruction and immediate risk, follow escalation and workplace procedures, document objective facts, and involve the responsible supervisor or appropriate department.","Advanced","refusal, safety, escalation"],
+["How do you improve survey results without manipulating data?","I use validated feedback, investigate recurring concerns, improve underlying processes, communicate changes, and monitor future results honestly without altering responses or excluding unfavorable data improperly.","Advanced","survey, feedback, integrity"],
+["How do you manage compliance across multiple facilities?","I establish consistent standards, define local accountability, use comparable indicators, perform risk-based reviews, share lessons learned, and track corrective actions across sites.","Advanced","facilities, standards, accountability"],
+["How do you evaluate the impact of staff education?","I measure knowledge or competency before and after training when appropriate, observe workplace application, review relevant outcomes, and update education based on identified gaps.","Advanced","education, competency, impact"],
+["How do you respond to an unresolved safety risk?","I document the concern, notify the appropriate leader, use the required escalation path, and continue to follow applicable safety procedures until the risk is addressed or an authorized decision is made.","Advanced","unresolved, escalation, risk"],
+["How do you explain a compliance gap to executives?","I describe the requirement, verified evidence, scope and impact of the gap, immediate controls, corrective plan, accountable owners, deadlines, and method for verifying closure.","Advanced","gap, impact, closure"],
+["How do you manage document version control?","I use the approved document control process, identify the current authorized version, track approvals and effective dates, remove obsolete copies from use, and retain records as required.","Advanced","version, approval, document control"],
+["How do you decide whether to escalate a clinical concern?","I consider the urgency, potential harm, scope of my authority, available evidence, and required policy. I escalate promptly when the concern exceeds my role or remains unresolved.","Advanced","urgency, authority, escalate"],
+["How do you demonstrate accountability as a nurse leader?","I communicate expectations, make decisions within my authority, acknowledge errors, follow through on commitments, review outcomes, and address problems fairly and consistently.","Advanced","accountability, follow-through, fairness"],
+["How do you ensure policies are accessible to frontline staff?","I maintain approved, easy-to-find current policies, communicate significant changes, provide role-specific training, and verify staff can locate the guidance they need.","Intermediate","accessibility, policies, training"],
+["How do you manage competing quality initiatives?","I compare urgency, risk reduction, regulatory requirements, resources, and organizational priorities. I sequence the work, assign accountable owners, and communicate trade-offs clearly.","Advanced","priorities, resources, sequence"],
+["How do you respond to incomplete audit evidence?","I identify exactly what is missing, verify whether alternate authorized evidence exists, document the limitation, request the required information, and report findings transparently.","Advanced","evidence, limitation, transparency"],
+["How do you close a regulatory finding?","I confirm the finding and root causes, implement approved corrective actions, collect evidence, test effectiveness, obtain required review, and retain documentation showing closure.","Advanced","finding, corrective, closure"],
+["How do you manage a change in clinical leadership?","I provide a structured handoff of priorities, staffing, risks, active investigations, key measures, and outstanding deadlines while protecting confidential information.","Advanced","transition, handoff, risks"],
+["How do you communicate an urgent staffing escalation?","I state the current coverage, patient-care impact, immediate mitigation, resources requested, and decision needed. I use the designated escalation process and document the response as required.","Advanced","staffing, mitigation, escalation"],
+["How do you establish a culture of compliance?","I set clear expectations, model ethical conduct, make reporting channels accessible, provide practical education, apply policies consistently, and recognize and address issues promptly.","Advanced","ethics, reporting, consistency"],
+["How do you evaluate the cost of a quality intervention?","I define the intervention and baseline, estimate implementation and ongoing costs, assess relevant benefits and risks, compare alternatives, and monitor actual cost and outcome data.","Advanced","cost, baseline, outcomes"],
+["How do you manage confidential audit findings?","I share findings only with authorized individuals, use approved storage and transmission methods, follow retention rules, and ensure that reports contain only necessary confidential information.","Advanced","confidential, authorized, retention"],
+["How do you respond to an external complaint about a facility?","I route the complaint through the designated process, preserve relevant records, notify responsible leadership, verify facts, meet applicable response requirements, and track corrective actions.","Advanced","external complaint, records, response"],
+["How do you ensure safe delegation?","I follow applicable scope-of-practice rules and organizational policy, consider the task and individual's competency, communicate expectations, and provide appropriate supervision and follow-up.","Advanced","delegation, scope, supervision"],
+["How do you present a difficult finding to your team?","I explain the finding using verified evidence, focus on the process rather than blame, invite questions, clarify required changes, and agree on measurable follow-up.","Intermediate","finding, evidence, follow-up"],
+["How do you maintain continuity during a system outage?","I activate the approved downtime procedure, protect patient safety and information, communicate roles and contingencies, use authorized documentation methods, and reconcile records after restoration as required.","Advanced","downtime, continuity, reconciliation"],
+["How do you manage a new regulatory requirement with a short deadline?","I verify the authoritative requirement and effective date, assess the compliance gap, assign accountable owners, prioritize high-risk actions, and report progress and unresolved barriers to leadership.","Advanced","deadline, requirement, gap"],
+["How do you distinguish a policy violation from a system problem?","I gather objective facts, compare actual practice with policy, assess workflow and resource factors, and examine both individual actions and system conditions before deciding on corrective measures.","Advanced","policy, system, facts"],
+["How do you maintain a fair investigation process?","I use a consistent procedure, preserve relevant evidence, hear appropriate perspectives, protect confidentiality, avoid assumptions, and document findings and decisions objectively.","Advanced","fairness, evidence, objective"],
+["How do you monitor the sustainability of an improvement?","I assign ongoing ownership, define monitoring frequency and thresholds, review data over time, audit adherence when appropriate, and respond quickly if performance declines.","Advanced","sustainability, monitoring, thresholds"],
+["How do you handle an audit that identifies widespread gaps?","I assess immediate risk, validate the scope, inform responsible leadership, prioritize corrective work by risk, assign resources and owners, and monitor closure through a structured plan.","Advanced","widespread, risk, corrective"],
+["How do you protect the integrity of performance data?","I use defined measures and authorized source systems, validate calculations, maintain traceability, restrict unauthorized changes, and transparently report limitations and corrections.","Advanced","integrity, traceability, validation"],
+["How do you prepare a quality committee report?","I summarize key measures, significant events, trends, risks, prior action status, and decisions needed. I provide concise recommendations with accountable owners and deadlines.","Advanced","committee, trends, decisions"],
+["How do you ensure patient rights are respected?","I follow applicable law and organizational policy, support informed decisions and privacy, communicate respectfully, and escalate concerns when a patient's rights may be at risk.","Advanced","rights, privacy, informed decisions"],
+["How do you manage a recurring documentation deficiency?","I quantify the pattern, identify affected workflows and contributing factors, clarify expectations, provide targeted education or system changes, and audit follow-up performance.","Advanced","documentation, pattern, audit"],
+["How do you determine whether a safety alert requires action?","I verify the alert through an authoritative source, assess its relevance to our setting, identify immediate risks, notify responsible leaders, and implement approved actions and monitoring.","Advanced","alert, relevance, action"],
+["How do you evaluate a vendor's compliance performance?","I compare documented performance with contractual and regulatory requirements, review incidents and corrective actions, assess evidence, and escalate unresolved deficiencies through governance channels.","Advanced","vendor, contract, deficiencies"],
+["How do you lead after a serious incident?","I focus first on safety and required notifications, support a structured and fair review, communicate through authorized channels, and coordinate system-level actions with clear ownership and follow-up.","Advanced","incident, review, ownership"],
+["How do you manage multiple deadlines for regulatory submissions?","I maintain a requirements calendar, assign owners, confirm data sources and approvals, build in review time, and escalate risks early while tracking submission status.","Advanced","calendar, approvals, submission"],
+["How do you ensure that a policy is actually followed?","I combine accessible guidance and training with observation, appropriate audits, feedback, and outcome monitoring. I address barriers and verify whether corrective actions are effective.","Advanced","adherence, observation, effectiveness"],
+["How do you respond to an allegation of retaliation?","I follow the organization's reporting and investigation procedures, protect information appropriately, preserve relevant evidence, avoid prejudging the allegation, and refer it to authorized reviewers.","Advanced","retaliation, investigation, evidence"],
+["How do you evaluate a proposed staffing model?","I compare patient acuity and volume, required competencies, workload, budget, applicable standards, and outcome data. I identify risks and monitor results after implementation.","Advanced","staffing model, acuity, outcomes"],
+["How do you handle an unclear regulatory interpretation?","I review authoritative guidance, consult qualified compliance or legal resources as appropriate, document the question and rationale, and avoid presenting uncertain interpretations as settled requirements.","Advanced","interpretation, guidance, uncertainty"],
+["How do you create a leadership dashboard?","I select a concise set of decision-relevant measures, define owners and targets, validate data, show meaningful trends, and connect exceptions to actions and follow-up dates.","Advanced","dashboard, targets, decisions"],
+["How do you prioritize findings from a mock survey?","I assess potential harm, regulatory exposure, recurrence, and scope, assign corrective owners and deadlines, and verify high-risk actions first while tracking all findings to closure.","Advanced","mock survey, exposure, closure"],
+["How do you handle a disagreement with an auditor?","I remain professional, clarify the cited criterion, provide relevant evidence, ask questions about any misunderstanding, and use the formal clarification or appeal process if appropriate.","Advanced","auditor, criterion, evidence"],
+["How do you manage confidential employee information?","I access and share personnel information only for authorized purposes, use approved systems, follow retention rules, and involve human resources or other authorized parties as needed.","Advanced","personnel, access, retention"],
+["How do you evaluate whether a training requirement is met?","I verify the applicable requirement, confirm completion records and competency evidence where required, identify missing elements, and document follow-up until compliance is established.","Advanced","training, evidence, verification"],
+["How do you reduce variation between departments?","I compare definitions and workflows, identify justified versus avoidable differences, agree on standard practices where appropriate, and monitor both consistency and outcomes.","Advanced","variation, standardization, outcomes"],
+["How do you report a concern involving a senior leader?","I use the organization's designated independent reporting or escalation channel, provide objective facts, preserve relevant evidence, and follow applicable protections and procedures.","Advanced","independent, escalation, evidence"],
+["How do you prepare a corrective action for an accreditation finding?","I map the finding to the applicable standard, analyze contributing factors, define measurable actions and owners, set deadlines, and gather evidence that the changes are sustained.","Advanced","accreditation, measurable, sustained"],
+["How do you manage a patient complaint that reveals a system issue?","I address the individual concern through the proper process and separately route the system issue for review, trend analysis, corrective action, and follow-up measurement.","Advanced","complaint, system, trend"],
+["How do you decide when to stop a process for safety?","I follow stop-work and escalation policies, assess immediate danger, communicate the concern clearly, and resume only when the appropriate safety requirements have been met.","Advanced","stop-work, danger, safety"],
+["How do you evaluate whether a new policy creates unintended consequences?","I monitor the intended outcome alongside balancing measures, collect frontline feedback, review unexpected effects, and adjust the implementation through approved governance.","Advanced","balancing measures, unintended, governance"],
+["How do you manage a backlog of compliance actions?","I validate the outstanding items, rank them by risk and deadline, assign owners and realistic milestones, remove barriers, and report overdue high-risk actions to leadership.","Advanced","backlog, milestones, risk"],
+["How do you communicate when evidence is inconclusive?","I explain what the evidence supports, what remains uncertain, and what additional information is needed. I recommend proportionate next steps without overstating the conclusion.","Advanced","inconclusive, uncertainty, evidence"],
+["How do you maintain readiness for unannounced inspections?","I integrate routine checks, staff education, document control, leadership review, and corrective-action tracking into normal operations rather than relying on last-minute preparation.","Advanced","inspection, routine, readiness"],
+["How do you demonstrate ethical leadership?","I act consistently with professional standards, disclose conflicts, protect confidential information, apply rules fairly, and raise concerns through appropriate channels even when doing so is difficult.","Advanced","ethical, disclose, fairness"],
+["How do you assess the effectiveness of a new safety checklist?","I measure adoption and correct completion, review relevant safety outcomes and workflow burden, gather user feedback, and revise the checklist if it is ineffective or creates avoidable risk.","Advanced","checklist, adoption, outcomes"],
+["How do you ensure regulatory evidence remains current?","I assign document owners, establish review dates, track regulatory changes, confirm approvals and versions, and periodically verify that the evidence reflects actual practice.","Advanced","evidence, review dates, versions"],
+["How do you handle a request that conflicts with policy?","I explain the relevant requirement, seek clarification if needed, decline to bypass required controls, and escalate through the appropriate channel when the conflict remains unresolved.","Advanced","policy, controls, escalation"],
+["How do you prioritize improvement projects across a health system?","I compare risk, expected benefit, regulatory urgency, resource requirements, strategic alignment, and readiness. I sequence projects transparently and review the portfolio as conditions change.","Advanced","portfolio, strategy, resources"],
+["How do you ensure audit recommendations are implemented?","I convert recommendations into assigned actions with deadlines and success criteria, monitor progress, verify supporting evidence, and escalate delays or ineffective changes.","Advanced","recommendations, ownership, verification"],
+["How do you respond to a suspected falsified record?","I preserve the record and relevant evidence, avoid unauthorized alterations, report the concern through the designated channel, and allow authorized reviewers to conduct the investigation.","Advanced","falsified, preserve, investigation"],
+["How do you manage a high-risk compliance issue?","I assess immediate exposure, implement authorized containment, notify responsible leaders, obtain specialist support when needed, and track corrective actions and verification to closure.","Advanced","high-risk, containment, closure"],
+["How do you build trust during an audit?","I provide accurate and timely information, explain processes honestly, acknowledge known gaps, protect confidential information, and demonstrate that corrective actions are actively managed.","Advanced","trust, accurate, transparency"],
+["How do you decide whether a corrective action needs revision?","I compare actual results with predefined success criteria, investigate persistent or recurring gaps, seek relevant feedback, and revise the action when evidence shows it is insufficient.","Advanced","criteria, recurring, revision"],
+["How do you evaluate a clinical department's readiness for growth?","I assess demand, staffing and competencies, facility capacity, safety controls, compliance requirements, and financial resources. I recommend expansion only with a realistic implementation and monitoring plan.","Advanced","capacity, compliance, expansion"],
+["How do you maintain accountability across a large team?","I define clear roles and expectations, establish regular communication, track commitments and outcomes, provide timely feedback, and apply organizational policies consistently.","Advanced","roles, commitments, consistency"],
+["How do you present a difficult risk to executives?","I describe the verified risk, potential impact, current controls, remaining exposure, available options, and recommended decision. I identify ownership, timing, and how success will be measured.","Advanced","exposure, options, decision"],
+["How do you manage compliance during an organizational merger?","I map applicable requirements and existing controls, identify gaps between systems and policies, assign accountable integration leads, and monitor risks and deadlines throughout the transition.","Advanced","merger, integration, controls"],
+["How do you ensure lessons from incidents are shared?","I identify relevant lessons, remove unnecessary identifying details, communicate through approved channels, assign process improvements, and verify whether the lessons are applied across affected teams.","Advanced","lessons, incidents, application"],
+["How do you lead a review of repeated adverse events?","I validate the event pattern, assess severity and contributing factors, involve relevant disciplines, prioritize systemic changes, and track whether event frequency or severity improves.","Advanced","adverse events, systemic, trend"],
+["How do you maintain professional boundaries as a leader?","I communicate respectfully, apply policies consistently, protect confidential information, disclose conflicts, and seek appropriate guidance when a situation challenges professional boundaries.","Advanced","boundaries, confidentiality, guidance"],
+["How do you ensure a regulatory response is accurate?","I verify every factual statement against source evidence, obtain required subject-matter and leadership review, preserve supporting records, and submit through the authorized process by the deadline.","Advanced","response, source evidence, deadline"],
+["How do you close the loop after escalating a concern?","I confirm the concern reached the responsible person, clarify ownership and expected timing, follow up through the approved channel, and document the resolution or any continuing risk.","Advanced","follow-up, ownership, resolution"],
+["How do you manage competing demands from executives and clinical teams?","I clarify the outcomes and deadlines, assess safety and compliance implications, explain resource constraints, and propose a prioritized plan with transparent trade-offs.","Advanced","trade-offs, priorities, communication"],
+["How do you assess whether a quality intervention is worth scaling?","I review the pilot's outcomes, costs, safety, implementation burden, and applicability to other settings. I recommend scaling when the evidence supports it and monitoring can be sustained.","Advanced","pilot, scale, implementation"],
+["How do you prepare a department for a leadership review?","I verify key indicators, summarize risks and achievements, explain variances, update action status, and prepare clear decisions and resource requests supported by evidence.","Advanced","review, variances, decisions"],
+["How do you maintain a nonpunitive reporting culture?","I make reporting accessible, respond respectfully, distinguish human error from reckless conduct using established frameworks, protect against retaliation, and use reports to improve systems.","Advanced","reporting, fairness, systems"],
+["How do you oversee corrective actions involving several departments?","I define the shared outcome, appoint accountable leads, map dependencies, set milestones, resolve cross-department barriers, and verify completion using common evidence and measures.","Advanced","dependencies, milestones, evidence"],
+["How do you evaluate whether a policy is too complicated?","I examine usability, staff questions, error patterns, time burden, and compliance outcomes. I work with policy owners to simplify language without removing necessary safeguards.","Advanced","usability, safeguards, simplification"],
+["How do you respond when a required metric cannot be calculated?","I identify the missing data or definition issue, disclose the limitation, notify the measure owner, use an approved alternative only if valid, and document the recovery plan.","Advanced","metric, limitation, recovery"],
+["How do you communicate a compliance deadline to busy staff?","I explain the requirement and due date, identify the action needed from each role, provide a clear completion route, send appropriate reminders, and monitor outstanding tasks.","Intermediate","deadline, action, completion"],
+["How do you manage a conflict between efficiency and regulation?","I do not bypass mandatory requirements. I clarify the constraint, explore compliant alternatives, assess their operational impact, and obtain appropriate approval before implementing changes.","Advanced","regulation, compliant, approval"],
+["How do you prepare a senior leadership briefing after an inspection?","I summarize findings, risk levels, immediate actions, required deadlines, resource needs, and accountability. I distinguish confirmed facts from preliminary information and establish progress reporting.","Advanced","briefing, risk, accountability"],
+["How do you verify that a standard operating procedure is effective?","I confirm that the procedure is current and understood, observe its use, review relevant records and outcomes, identify barriers, and revise it through the approved process when needed.","Advanced","SOP, observation, revision"],
+["How do you manage a suspected conflict of interest in procurement?","I disclose the concern through the authorized channel, preserve relevant documentation, avoid participating in the affected decision, and follow procurement and compliance review procedures.","Advanced","procurement, disclosure, impartiality"],
+["How do you demonstrate that a corrective action is sustainable?","I provide evidence of implementation, show that performance remains within defined criteria over time, confirm ownership and routine monitoring, and address any recurrence promptly.","Advanced","sustainable, evidence, monitoring"],
+["How do you decide what to report immediately versus routinely?","I follow required notification rules and escalation thresholds, prioritizing imminent safety risks, material compliance exposure, and time-sensitive events while maintaining accurate records.","Advanced","notification, thresholds, urgency"],
+["How do you manage a policy that differs from current practice?","I assess the gap and its risk, verify which requirement governs, involve policy and operational owners, implement authorized changes, and monitor adoption and effectiveness.","Advanced","gap, practice, effectiveness"],
+["How do you explain your leadership style?","My leadership style is collaborative and accountable. I set clear expectations, listen to staff, use evidence to guide decisions, and follow through on commitments and results.","Intermediate","collaborative, accountable, results"],
+["How do you respond to a request for information you cannot disclose?","I explain the applicable confidentiality or authorization limitation professionally, provide information that can appropriately be shared, and direct the requester to the authorized process.","Intermediate","authorization, confidentiality, process"],
+["How do you lead a multidisciplinary corrective action meeting?","I review the verified issue, clarify the shared objective, invite each discipline's perspective, assign actions and owners, establish deadlines, and schedule effectiveness checks.","Advanced","multidisciplinary, ownership, effectiveness"],
+["How do you evaluate an organization's compliance maturity?","I assess governance, defined responsibilities, training, monitoring, reporting channels, risk assessment, corrective action, and evidence of continuous improvement against an appropriate framework.","Advanced","maturity, governance, continuous improvement"],
+["How do you handle a missed regulatory deadline?","I promptly inform the appropriate leader, verify the facts and any reporting obligations, complete required action as directed, document the cause, and implement controls to prevent recurrence.","Advanced","deadline, notification, prevention"],
+["How do you maintain objectivity in a sensitive review?","I use consistent criteria, rely on verified evidence, disclose potential conflicts, consider relevant perspectives, protect confidentiality, and document the reasoning behind conclusions.","Advanced","objectivity, criteria, evidence"],
+["How do you ensure that corrective actions address root causes?","I connect each action to an identified contributing factor, assess whether it changes the underlying process, assign ownership, and measure whether recurrence decreases over time.","Advanced","root cause, process, recurrence"],
+["How do you prepare for a board-level quality presentation?","I focus on the most material risks and trends, validate the data, explain implications and options, state the decision required, and provide a concise plan for accountability and follow-up.","Advanced","board, material risks, decision"],
+["How do you respond to a serious allegation before facts are confirmed?","I protect immediate safety, preserve relevant evidence, follow established reporting procedures, avoid speculation, and allow authorized reviewers to establish the facts fairly.","Advanced","allegation, evidence, fairness"],
+["How do you manage quality improvement in a resource-limited department?","I prioritize high-impact risks, use available data, engage frontline staff, select feasible interventions, and monitor results before committing additional resources.","Advanced","resources, impact, feasible"],
+["How do you ensure compliance responsibilities are clear?","I map requirements to accountable roles, document ownership and backup coverage, communicate deadlines and escalation paths, and periodically confirm that responsibilities remain current.","Advanced","ownership, deadlines, escalation"],
+["How do you handle a quality measure that encourages unintended behavior?","I review how the measure affects decisions, examine balancing measures, consult stakeholders, and revise the measurement or process so that improvement does not undermine safety or quality.","Advanced","measure, incentives, balancing"],
+["How do you communicate an urgent regulatory change?","I verify the source and effective date, summarize the practical impact, identify affected roles and actions, use approved communication channels, and confirm implementation and understanding.","Advanced","regulatory change, effective date, implementation"],
+["How do you lead a department through an external investigation?","I follow authorized procedures, preserve records, coordinate with designated leadership and counsel as appropriate, provide accurate information, and track required responses and corrective actions.","Advanced","investigation, records, response"],
+["How do you maintain accountability when a corrective action is delayed?","I identify the barrier, assess ongoing risk, agree on a realistic revised milestone when permitted, escalate material delays, and maintain transparent status reporting until closure.","Advanced","delay, milestone, status"],
+["How do you evaluate a proposed clinical technology?","I assess safety, workflow fit, usability, privacy and security, regulatory obligations, training, cost, and expected outcomes. I recommend a controlled evaluation with clear success criteria.","Advanced","technology, privacy, evaluation"],
+["How do you manage a recurring problem that crosses departmental boundaries?","I map the end-to-end process, identify handoff failures and shared causes, assign joint ownership, agree on standard communication, and monitor results across departments.","Advanced","handoff, shared ownership, process"],
+["How do you demonstrate compliance to an external reviewer?","I provide current, authorized evidence tied to the applicable requirement, explain the actual process accurately, acknowledge limitations, and show documented monitoring and corrective action.","Advanced","evidence, requirement, monitoring"],
+["How do you protect the integrity of an internal investigation?","I follow approved protocols, limit access to authorized participants, preserve original records, document actions objectively, and avoid conclusions before the evidence has been assessed.","Advanced","investigation, integrity, evidence"],
+["How do you evaluate a proposed policy exception for patient safety?","I confirm that an exception is permitted, assess the individual and system risks, consult responsible experts, obtain required authorization, document safeguards, and monitor the outcome.","Advanced","exception, safeguards, authorization"],
+["How do you ensure that leadership decisions are implemented?","I translate decisions into specific actions, assign owners and deadlines, communicate expectations, track milestones, remove barriers, and report results and unresolved risks.","Advanced","implementation, milestones, results"],
+["How do you handle a discrepancy between policy and regulation?","I verify the current authoritative requirement, notify compliance or legal resources as appropriate, avoid relying on a conflicting internal policy, and support an authorized revision.","Advanced","discrepancy, regulation, revision"],
+["How do you maintain consistency across clinical audits?","I use standardized criteria, trained reviewers, clear sampling methods, calibration discussions, documented definitions, and quality checks on the audit results.","Advanced","standardized, sampling, calibration"],
+["How do you evaluate a proposed corrective action deadline?","I consider risk, required approvals, operational complexity, resource availability, and regulatory expectations. I set a defensible timeline with milestones and escalation for barriers.","Advanced","deadline, complexity, milestones"],
+["How do you manage a high-volume complaint trend?","I classify and validate complaint data, identify recurring themes and affected processes, prioritize serious risks, assign corrective actions, and monitor future complaint patterns.","Advanced","complaints, trends, corrective"],
+["How do you maintain transparency without breaching confidentiality?","I share accurate information with authorized audiences, remove unnecessary identifying details, follow disclosure rules, and explain what can be communicated and through which channel.","Advanced","transparency, confidentiality, disclosure"],
+["How do you evaluate an internal compliance program?","I review risk assessment, governance, training, reporting, monitoring, investigations, corrective actions, and program effectiveness, then recommend improvements based on evidence and current requirements.","Advanced","program, monitoring, effectiveness"],
+["How do you handle a finding that cannot be fully corrected immediately?","I document the remaining gap, implement authorized interim safeguards, assign an owner and target date, communicate the ongoing risk, and monitor progress until full resolution.","Advanced","interim safeguards, gap, resolution"],
+["How do you ensure staff know when to escalate?","I provide role-specific examples, clear thresholds and contact routes, accessible procedures, and scenario-based education. I review whether staff can use the process correctly.","Advanced","thresholds, escalation, education"],
+["How do you evaluate whether a new reporting process works?","I review accessibility, reporting timeliness, completeness, user feedback, and whether reported issues lead to effective action. I revise barriers and monitor results over time.","Advanced","reporting, timeliness, action"],
+["How do you respond when a senior stakeholder challenges your findings?","I explain the methodology and evidence calmly, check for factual errors, acknowledge legitimate limitations, and maintain conclusions supported by the evidence and applicable standards.","Advanced","methodology, evidence, standards"],
+["How do you maintain an effective compliance calendar?","I record requirements, due dates, responsible owners, dependencies, approval steps, and reminders. I review the calendar regularly and update it when requirements change.","Intermediate","calendar, dependencies, reminders"],
+["How do you determine whether a safety event is reportable?","I consult the applicable law, regulatory criteria, and organizational policy, confirm the facts, and seek designated compliance or clinical guidance rather than assuming a reporting threshold.","Advanced","reportable, criteria, guidance"],
+["How do you measure improvement after a leadership intervention?","I define baseline and target measures, set a review interval, examine outcome and balancing data, gather feedback, and decide whether to sustain, adjust, or stop the intervention.","Advanced","baseline, target, balancing"],
+["How do you manage a complex compliance project?","I define scope, requirements, deliverables, stakeholders, dependencies, risks, and milestones. I assign owners, communicate status, escalate blockers, and verify each deliverable before closure.","Advanced","scope, dependencies, deliverables"],
+["How do you ensure lessons learned change daily practice?","I translate lessons into specific workflow or training changes, assign ownership, communicate the expected behavior, observe adoption, and review whether outcomes improve.","Advanced","lessons, adoption, outcomes"],
+["How do you explain the value of compliance to a skeptical team?","I connect compliance to patient safety, reliable operations, trust, and reduced organizational risk. I use practical examples and explain how the requirements apply to daily work.","Intermediate","compliance, trust, risk"],
+["How do you manage a compliance concern that involves multiple laws?","I document the issue, identify potentially applicable requirements, consult qualified compliance or legal resources, and coordinate an authorized response that addresses overlapping obligations.","Advanced","multiple requirements, legal, coordination"],
+["How do you evaluate a department's risk register?","I verify that risks are clearly described, assess likelihood and impact using the approved method, review controls and owners, and confirm that mitigation plans are current and monitored.","Advanced","risk register, controls, mitigation"],
+["How do you prepare a leadership succession plan?","I identify critical roles and competencies, assess development needs, create mentoring and cross-training plans, and review readiness while protecting personnel confidentiality.","Advanced","succession, competencies, mentoring"],
+["How do you manage an unexpected regulatory request?","I verify the request and deadline, notify the responsible leader, coordinate authorized data collection, validate the response, protect confidential information, and track submission and follow-up.","Advanced","request, validation, deadline"],
+["How do you evaluate the quality of a policy document?","I check authority, scope, clarity, responsibilities, process steps, references, version control, approval, and alignment with current practice and requirements.","Advanced","clarity, version control, alignment"],
+["How do you maintain fairness in employee accountability?","I apply established standards consistently, consider relevant facts and context, provide the employee an appropriate opportunity to respond, document decisions, and follow required procedures.","Advanced","fairness, standards, procedures"],
+["How do you ensure audit results are actionable?","I connect each finding to evidence, risk, a clear corrective action, a responsible owner, a deadline, and a measurable method for verifying effectiveness.","Advanced","actionable, owner, effectiveness"],
+["How do you evaluate the reliability of a compliance data source?","I assess data origin, definitions, completeness, timeliness, access controls, and reconciliation procedures. I document limitations and verify material anomalies before drawing conclusions.","Advanced","reliability, completeness, reconciliation"],
+["How do you manage a regulatory change that affects several departments?","I map the affected processes and roles, appoint coordinating owners, communicate requirements, sequence implementation tasks, and monitor department-level readiness and unresolved risks.","Advanced","regulatory change, coordination, readiness"],
+["How do you support a staff member who reports an error?","I address immediate safety, encourage accurate reporting, respond respectfully, follow established review procedures, and focus on learning and appropriate accountability rather than suppressing the report.","Advanced","reporting, learning, accountability"],
+["How do you present uncertainty to a governing committee?","I separate confirmed facts from assumptions, explain the limitations and possible implications, identify what additional evidence is needed, and recommend a proportionate next step.","Advanced","uncertainty, limitations, implications"],
+["How do you ensure corrective action owners have adequate authority?","I confirm each owner can influence the relevant process, provide access to needed resources, define decision rights, and establish escalation for barriers beyond their authority.","Advanced","authority, resources, escalation"],
+["How do you manage an ineffective external consultant?","I compare deliverables with the agreed scope and contract, document performance gaps, communicate required improvements, assess risk and alternatives, and follow procurement procedures for resolution.","Advanced","deliverables, contract, resolution"],
+["How do you ensure quality improvement is not just a paperwork exercise?","I verify actual changes in practice, observe relevant workflows, measure outcomes, collect frontline feedback, and confirm that documentation accurately reflects the implemented process.","Advanced","practice, outcomes, verification"],
+["How do you respond to a leadership request to omit an unfavorable metric?","I explain the importance of complete and accurate reporting, follow established governance, disclose relevant context and limitations, and escalate improper pressure through authorized channels.","Advanced","accurate reporting, governance, integrity"],
+["How do you manage risk when opening a new service line?","I assess demand, staffing, competencies, facilities, equipment, safety controls, regulatory requirements, and financial sustainability. I define approval gates and post-launch monitoring before expansion.","Advanced","service line, risk, approval"],
+["How do you demonstrate readiness for a director-level role?","I connect operational decisions to organizational strategy, manage resources and risks, develop teams, communicate with executives, and demonstrate measurable improvement and accountable execution.","Advanced","strategy, resources, execution"],
+["How do you evaluate the effectiveness of a governance committee?","I review its charter, decision rights, attendance, quality of information, completion of actions, escalation practices, and evidence that decisions improve oversight and outcomes.","Advanced","governance, decision rights, oversight"],
+["How do you respond to an audit finding with disputed facts?","I compare the finding with source evidence, clarify the audit criteria, submit documented factual corrections through the approved process, and distinguish disputed facts from accepted gaps.","Advanced","disputed, criteria, source evidence"],
+["How do you maintain continuity when a compliance officer leaves?","I identify urgent obligations, secure authorized records and calendars, appoint interim ownership, document open issues, and transfer responsibilities through a controlled handoff.","Advanced","continuity, interim, handoff"],
+["How do you ensure a risk mitigation plan remains relevant?","I reassess risks when conditions change, review control effectiveness and incident data, update owners and milestones, and obtain required approval for material changes.","Advanced","mitigation, reassess, controls"],
+["How do you evaluate whether a process should be centralized?","I compare consistency, accountability, expertise, turnaround time, cost, local needs, and risk. I recommend a model with clear decision rights and measurable service standards.","Advanced","centralized, accountability, service standards"],
+["How do you communicate a major compliance failure to staff?","I share authorized facts and required behavior, avoid speculation or unnecessary identifying details, explain the immediate safeguards and next steps, and provide a channel for questions.","Advanced","communication, safeguards, facts"],
+["How do you ensure audit follow-up is independent enough?","I assign verification to an appropriately qualified reviewer who can objectively test the evidence, document results, and escalate concerns when the corrective action is not effective.","Advanced","independent, verification, objective"],
+["How do you manage an issue that could attract media attention?","I protect safety and confidential information, notify designated leadership and communications personnel, preserve facts, and ensure external statements follow the organization's approved process.","Advanced","media, confidentiality, communications"],
+["How do you determine whether a compliance control is adequate?","I assess whether the control addresses the identified risk, operates as designed, has clear ownership, produces evidence, and remains effective under realistic operating conditions.","Advanced","control, risk, effectiveness"],
+["How do you prioritize regulatory education for staff?","I focus on roles with direct exposure to the requirement, explain the practical behaviors needed, provide accessible training, verify understanding, and monitor compliance afterward.","Advanced","education, exposure, behavior"],
+["How do you manage a long-term quality improvement portfolio?","I maintain a prioritized project register, define sponsors and owners, review benefits and risks, allocate resources, resolve dependencies, and retire or revise initiatives based on evidence.","Advanced","portfolio, resources, evidence"],
+["How do you handle an unresolved finding near an inspection date?","I verify the remaining gap, maintain authorized interim controls, notify leadership, prepare accurate evidence of progress, and follow required escalation and reporting procedures without misrepresenting closure.","Advanced","inspection, interim controls, transparency"],
+["How do you ensure accountability for corrective action across shifts?","I document the process and responsibilities, provide consistent handoff information, identify coverage for each shift, and review completion data to confirm actions are performed consistently.","Advanced","shifts, handoff, consistency"],
+["How do you distinguish compliance activity from compliance effectiveness?","Activity measures show that tasks such as training or audits occurred. Effectiveness measures whether risks declined, requirements were met, and the control operated as intended.","Advanced","activity, effectiveness, control"],
+["How do you manage a disagreement between legal advice and operational preferences?","I clarify the legal or compliance constraint, document operational concerns, explore compliant alternatives with qualified advisers, and communicate the final authorized decision and responsibilities.","Advanced","legal, alternatives, decision"],
+["How do you prepare a concise executive risk update?","I state the risk, evidence, potential impact, current mitigation, residual exposure, decision needed, and accountable owner. I keep supporting detail available for follow-up.","Advanced","risk update, mitigation, decision"],
+["How do you evaluate the success of a compliance awareness campaign?","I assess reach and participation, test understanding, review reporting behavior and relevant compliance indicators, gather feedback, and improve the campaign based on evidence.","Advanced","awareness, participation, indicators"],
+["How do you maintain trust during an internal audit?","I explain the audit purpose and process, apply consistent criteria, protect confidentiality, listen to staff, share findings through authorized channels, and follow through on agreed actions.","Advanced","trust, consistent, confidentiality"],
+["How do you make a difficult resource allocation decision?","I compare risk, required services, expected benefit, equity, cost, and organizational priorities. I explain the rationale, document the decision, and monitor the consequences.","Advanced","allocation, equity, rationale"],
+["How do you ensure a new leader understands open compliance risks?","I provide a structured summary of material risks, required actions, deadlines, evidence, accountable owners, escalation routes, and decisions pending, using authorized secure channels.","Advanced","transition, open risks, deadlines"],
+["How do you respond when an audit identifies a training gap?","I identify the affected roles and required competency, deliver targeted education, verify understanding or skill where required, document completion, and recheck performance after training.","Advanced","training gap, competency, recheck"],
+["How do you ensure an external reviewer receives the correct record version?","I retrieve the approved version from the controlled source, verify its status and date, confirm authorization for disclosure, and maintain a record of what was provided.","Advanced","version, approved, disclosure"],
+["How do you evaluate compliance risks from a new vendor?","I perform risk-based due diligence on relevant qualifications, security and privacy controls, contractual obligations, service continuity, and incident processes before approval and throughout the relationship.","Advanced","vendor, due diligence, security"],
+["How do you handle an error in a submitted regulatory report?","I verify the error, notify the responsible compliance leader promptly, determine the applicable correction process, preserve the original submission, and document the authorized remediation.","Advanced","report, correction, remediation"],
+["How do you set measurable compliance objectives?","I define the required outcome, baseline, target, owner, deadline, data source, and review frequency. I confirm the measure reflects meaningful risk reduction or compliance performance.","Advanced","objectives, baseline, target"],
+["How do you manage a corrective action that depends on new technology?","I assess the interim risk, define technical and operational requirements, involve security and end users, set implementation milestones, test controls, and verify effectiveness before closing the action.","Advanced","technology, interim risk, testing"],
+["How do you communicate a failed audit without creating blame?","I present the facts and impact, focus on process causes and required standards, invite relevant perspectives, agree on corrective actions, and maintain fair individual accountability where appropriate.","Advanced","audit, process, accountability"],
+["How do you evaluate whether a compliance policy is understood?","I use role-specific scenarios, questions, observation, or other suitable checks rather than relying only on a signed acknowledgment, then address gaps and reassess as needed.","Advanced","understanding, scenarios, reassess"],
+["How do you maintain compliance through rapid organizational growth?","I scale governance, ownership, training, monitoring, and document control alongside operations, reassess risks as services expand, and ensure controls keep pace with organizational change.","Advanced","growth, governance, controls"],
+["How do you handle an audit finding that recurs after closure?","I reopen the issue through the established process, reassess the original root cause and verification method, implement stronger controls, and extend monitoring to confirm sustained effectiveness.","Advanced","recurrence, root cause, monitoring"],
+["How do you evaluate a proposed exception to a standard?","I verify whether exceptions are allowed, assess risk and evidence, obtain authorized approval, document conditions and duration, and monitor the exception until it expires or is resolved.","Advanced","exception, approval, duration"],
+["How do you ensure leaders act on quality reports?","I connect each report to a specific decision or action, assign ownership and due dates, review progress at governance meetings, and escalate material delays or recurring issues.","Advanced","quality reports, ownership, escalation"],
+["How do you respond when evidence conflicts across systems?","I preserve the relevant records, verify timestamps and definitions, trace each value to its source, involve the data owners, and document the reconciled result and remaining uncertainty.","Advanced","conflicting data, source, reconcile"],
+["How do you maintain compliance during emergency operations?","I activate approved emergency procedures, prioritize immediate safety, clarify decision authority, preserve required documentation, and track temporary deviations and recovery actions according to policy.","Advanced","emergency, authority, recovery"],
+["How do you evaluate a regulatory consultant's recommendation?","I compare the recommendation with authoritative requirements, organizational facts, risk, and available evidence, obtain appropriate expert review, and document the rationale for the final decision.","Advanced","consultant, authoritative, rationale"],
+["How do you demonstrate continuous improvement to regulators?","I provide evidence of baseline assessment, actions taken, follow-up measures, management oversight, and sustained results, while accurately disclosing any remaining gaps.","Advanced","continuous improvement, evidence, sustained"],
+["How do you manage a compliance issue with no clear owner?","I assess immediate risk, notify the appropriate leader, identify the function with authority to own the issue, document interim responsibility, and establish a clear handoff and deadline.","Advanced","ownership, authority, handoff"],
+["How do you prepare a high-stakes leadership interview example?","I select a real example, explain the context and responsibility, describe my own actions, quantify the result when possible, and state what I learned or improved.","Intermediate","example, responsibility, result"],
+["How do you answer a question when you do not know the regulation?","I would be transparent that I need to verify the exact requirement. I would consult the authoritative source or compliance specialist and avoid guessing, especially when safety or legal obligations are involved.","Intermediate","verify, authoritative, transparency"],
+["How do you explain your leadership value in one minute?","I bring a structured approach to safety, compliance, staff development, and operational improvement. I turn evidence into clear actions, assign accountability, and follow through to measurable results.","Advanced","leadership, evidence, accountability"],
+["How do you handle a request to certify work you have not verified?","I would not certify information I have not verified. I would explain what evidence is missing, complete the required checks, and follow the authorized process before making any attestation.","Advanced","certify, verification, attestation"],
+["How do you manage a gap between policy and available resources?","I assess the risk, notify responsible leadership, identify safe and compliant alternatives, document the resource gap, and escalate decisions that exceed my authority rather than bypassing controls.","Advanced","resources, compliant, escalation"],
+["How do you build an effective relationship with compliance auditors?","I communicate clearly, provide accurate evidence, respond to requests on time, clarify criteria professionally, and track findings and commitments transparently.","Intermediate","auditors, evidence, commitments"],
+["How do you ensure a corrective action does not create another risk?","I assess potential unintended effects, involve affected stakeholders, define balancing measures, test changes appropriately, and monitor the process after implementation.","Advanced","unintended effects, balancing, monitor"],
+["How do you report a concern involving possible criminal conduct?","I protect immediate safety, preserve relevant information, and follow applicable law and the organization's authorized reporting process, involving appropriate compliance, legal, or law-enforcement channels as required.","Advanced","preserve, reporting, authorized"],
+["How do you handle a compliance question from a frontline employee?","I clarify the situation, direct the employee to the current authoritative policy, explain the relevant process within my role, and consult the appropriate specialist if the answer is uncertain.","Intermediate","policy, clarify, specialist"],
+["How do you assess whether a compliance committee has enough information?","I confirm that members receive reliable data, risk analysis, unresolved issues, action status, and clear decision requests in time to review them before the meeting.","Advanced","committee, risk analysis, decision"],
+["How do you manage a deadline that cannot reasonably be met?","I verify the actual deadline and obligations, assess available options, inform responsible leadership early, document the barrier, and follow authorized procedures for escalation or extension if available.","Advanced","deadline, options, escalation"],
+["How do you ensure a regulatory finding is not closed prematurely?","I require evidence that actions were implemented and effective, confirm that the original gap is addressed, review residual risk, and obtain the required independent or leadership approval.","Advanced","premature, effective, residual risk"],
+["How do you maintain consistency when several leaders interpret a policy differently?","I identify the authoritative policy and exact point of disagreement, seek clarification from the designated owner, document the agreed interpretation, and communicate it consistently across teams.","Advanced","interpretation, owner, consistency"],
+["How do you handle a report with a suspected data-quality problem?","I validate the source, definitions, and calculations, flag the suspected issue, avoid presenting unverified figures as final, and coordinate correction with the responsible data owner.","Advanced","data quality, validation, correction"],
+["How do you lead a compliance review after a major acquisition?","I map acquired operations to applicable requirements, prioritize material risks, review policies and controls, assign remediation owners, and track integration milestones and evidence of effectiveness.","Advanced","acquisition, integration, remediation"],
+["How do you prepare for questions from an executive panel?","I identify the business issue behind each question, answer directly, support my response with a specific example or data, explain my reasoning, and state the outcome or lesson.","Intermediate","executive panel, example, outcome"],
+["How do you handle a request that exceeds your professional scope?","I explain the limits of my role, refer the matter to the qualified professional or authorized decision-maker, and continue to support the process within my responsibilities.","Intermediate","scope, referral, responsibilities"],
+["How do you ensure policies reflect actual work?","I compare written procedures with observed workflows, consult frontline staff, identify differences and risks, and coordinate approved revisions and training where necessary.","Advanced","workflow, procedures, revisions"],
+["How do you lead an organization toward stronger compliance maturity?","I strengthen governance, clarify accountability, improve risk-based monitoring, support safe reporting, use evidence to prioritize actions, and verify that improvements are sustained.","Advanced","maturity, governance, sustained"]
+],
+"Government & Public Procurement":[
+["What is public procurement?","Public procurement is the process government organizations use to acquire goods and services through applicable laws, competition rules, documentation, and oversight.","Beginner","procurement, competition, oversight"],
+["How do you ensure a fair procurement process?","I follow the solicitation requirements, use consistent evaluation criteria, document decisions, disclose conflicts, protect sensitive information, and treat qualified vendors fairly.","Intermediate","solicitation, criteria, conflicts"],
+["What is a conflict of interest?","A conflict of interest occurs when personal or outside interests could improperly influence, or appear to influence, professional judgment. I disclose it and follow the required safeguards.","Beginner","disclose, judgment, safeguards"],
+["How do you evaluate vendor proposals?","I apply the published criteria, verify required documents, assess technical and price information, document scores and rationale, and follow the established review and approval process.","Intermediate","criteria, technical, rationale"],
+["How do you manage a government contract deadline?","I maintain a compliance calendar, assign responsibilities, track deliverables, confirm required approvals, and escalate risks early so the organization can meet its obligations.","Intermediate","contract, deliverables, approvals"],
+["How do you respond to a suspected procurement irregularity?","I preserve relevant records, avoid unsupported conclusions, report the concern through authorized channels, and follow the established review process.","Advanced","irregularity, records, reporting"],
+["How do you ensure proper contract documentation?","I maintain organized records of the solicitation, evaluation, approvals, contract changes, deliverables, invoices, and performance reviews according to applicable retention rules.","Intermediate","documentation, retention, approvals"],
+["How do you handle a vendor complaint about an award?","I follow the formal protest or complaint procedure, preserve records, route the issue to authorized reviewers, and communicate only information permitted by the rules.","Advanced","protest, procedure, authorized"],
+["How do you monitor contractor performance?","I compare deliverables with contract requirements, document performance, review invoices and milestones, address deficiencies through the contract process, and track corrective actions.","Intermediate","deliverables, milestones, corrective"],
+["How do you explain a procurement decision to an auditor?","I provide the applicable criteria, supporting records, evaluation rationale, approvals, and evidence that the process followed the governing requirements.","Advanced","criteria, rationale, evidence"],
+["What is a request for proposal?","A request for proposal describes the government's needs, instructions, evaluation criteria, and submission requirements so vendors can offer solutions for evaluation.","Beginner","proposal, requirements, evaluation"],
+["What is a request for quotation?","A request for quotation asks vendors to provide pricing and other requested information under specified requirements. The exact process depends on the applicable procurement rules.","Beginner","quotation, pricing, requirements"],
+["How do you protect confidential bid information?","I restrict access to authorized personnel, use approved systems, follow disclosure rules, and avoid sharing vendor-sensitive information outside the permitted process.","Intermediate","confidential, access, disclosure"],
+["How do you handle a change in contract scope?","I verify the contract terms, assess cost and schedule impacts, obtain required authorization before changes, and document the approved modification.","Advanced","scope, authorization, modification"],
+["How do you evaluate value for money?","I consider price, quality, risk, lifecycle costs, performance, and the stated evaluation criteria rather than selecting an option based only on the lowest initial price.","Intermediate","lifecycle, value, risk"],
+["How do you manage a late contractor deliverable?","I confirm the contractual deadline, assess operational impact, document the delay, notify responsible stakeholders, and follow the contract's remedies and escalation procedures.","Intermediate","deadline, impact, remedies"],
+["How do you avoid favoritism in procurement?","I use transparent criteria, consistent communications, documented evaluations, conflict disclosures, and appropriate separation of duties throughout the process.","Advanced","transparency, separation, fairness"],
+["How do you prepare for a contract audit?","I reconcile contract records, invoices, deliverables, approvals, changes, and performance evidence. I confirm that records are complete and accessible to authorized reviewers.","Advanced","reconcile, invoices, evidence"],
+["What is a sole-source procurement?","A sole-source procurement uses one source when the applicable rules permit it and the justification is adequately documented and approved. It should not be used simply for convenience.","Advanced","sole-source, justification, approval"],
+["How do you manage competing stakeholder priorities?","I clarify the required outcome, distinguish mandatory requirements from preferences, evaluate trade-offs, and document a decision that follows the procurement rules and serves the public interest.","Advanced","stakeholders, trade-offs, public interest"]
+],
+"Logistics & Supply Chain":[
+["How do you manage inventory accurately?","I use consistent receiving and issuing procedures, cycle counts, inventory records, and variance investigations to keep stock information reliable.","Beginner","inventory, cycle counts, variance"],
+["How do you respond to a delayed shipment?","I confirm the shipment status, assess the operational impact, contact the carrier or supplier, consider approved alternatives, and communicate a realistic revised timeline.","Beginner","shipment, carrier, alternatives"],
+["How do you reduce supply chain costs?","I analyze purchasing patterns, freight, supplier performance, inventory levels, and avoidable delays while protecting quality, reliability, and service requirements.","Intermediate","freight, supplier, reliability"],
+["How do you select a supplier?","I evaluate quality, price, delivery reliability, capacity, risk, compliance, and service performance using consistent criteria appropriate to the purchase.","Intermediate","capacity, reliability, criteria"],
+["How do you handle an inventory discrepancy?","I recount the affected items, review transactions and receiving records, check for timing or entry errors, document the variance, and follow the established correction procedure.","Intermediate","discrepancy, transactions, correction"],
+["What is safety stock?","Safety stock is additional inventory held to reduce the risk of shortages when demand or replenishment lead times vary.","Beginner","safety stock, demand, lead time"],
+["How do you manage an urgent order?","I verify the need and authorization, check available stock and suppliers, assess expedited costs, coordinate delivery, and document the decision and expected arrival.","Intermediate","urgent, authorization, expedited"],
+["How do you improve warehouse efficiency?","I analyze travel paths, picking errors, receiving delays, space utilization, and workload patterns, then test changes and measure productivity and accuracy.","Advanced","picking, utilization, productivity"],
+["How do you handle a supplier quality issue?","I isolate affected goods when appropriate, document the defect, notify the supplier and relevant teams, evaluate operational risk, and track replacement or corrective action.","Advanced","defect, isolate, corrective"],
+["How do you forecast demand?","I review historical consumption, seasonality, planned activity, supplier lead times, and known changes, then compare forecast accuracy with actual demand and adjust.","Advanced","forecast, seasonality, accuracy"],
+["How do you prioritize warehouse orders?","I consider promised delivery times, customer impact, service commitments, stock availability, and handling requirements, following the organization's approved priority rules.","Intermediate","delivery, customer impact, priority"],
+["How do you reduce stockouts?","I monitor demand and lead-time patterns, set suitable reorder points, improve supplier communication, investigate recurring shortages, and maintain appropriate safety stock.","Advanced","stockouts, reorder, lead time"],
+["How do you evaluate logistics KPIs?","I track measures such as on-time delivery, order accuracy, damage rates, inventory accuracy, and cost per shipment, using trends to identify improvement opportunities.","Intermediate","KPIs, accuracy, trends"],
+["How do you respond to damaged goods?","I document the condition, preserve evidence, segregate goods when needed, notify the carrier or supplier, and follow the claims and replacement process.","Beginner","damage, evidence, claims"],
+["How do you manage multiple transportation providers?","I compare service levels, cost, capacity, tracking visibility, claims performance, and contingency options, then allocate shipments according to business needs.","Advanced","capacity, visibility, contingency"],
+["How do you handle a customs documentation problem?","I verify the discrepancy against shipment records and applicable requirements, coordinate with the authorized broker or compliance specialist, and correct documents through approved procedures.","Advanced","customs, discrepancy, broker"],
+["How do you manage warehouse safety?","I reinforce approved procedures, inspect hazards, maintain clear aisles and appropriate equipment use, report incidents, and follow up on corrective actions.","Intermediate","hazards, inspections, corrective"],
+["How do you negotiate with a supplier?","I prepare demand and market information, define acceptable terms, consider total cost and service risk, communicate professionally, and document the agreed commitments.","Advanced","negotiate, total cost, commitments"],
+["How do you manage a supply disruption?","I assess critical needs, identify alternate approved sources, review available stock, coordinate stakeholders, communicate priorities, and monitor recovery until normal supply resumes.","Advanced","disruption, alternate sources, recovery"],
+["How do you improve order accuracy?","I standardize picking and verification, improve item identification, analyze error patterns, train staff, and monitor accuracy after changes are introduced.","Intermediate","picking, verification, accuracy"]
+],
+"Finance, Audit & Risk":[
+["How do you prepare a budget?","I review historical spending, forecast needs, confirm assumptions, prioritize resources, and compare actual results with the approved budget throughout the period.","Beginner","budget, forecast, actual"],
+["What is a budget variance?","A budget variance is the difference between a budgeted amount and the actual result. I investigate material variances and explain the factors that caused them.","Beginner","variance, actual, investigate"],
+["How do you detect a financial discrepancy?","I reconcile records, verify supporting documents, compare transactions with approvals, investigate unusual patterns, and document findings through established controls.","Intermediate","reconcile, transaction, controls"],
+["How do you prevent fraud?","I support separation of duties, approval limits, reconciliations, access controls, documentation, and timely reporting of suspicious activity.","Intermediate","fraud, controls, approvals"],
+["How do you explain financial results to a nonfinancial manager?","I focus on the main drivers, trends, risks, and decisions needed, using plain language and simple comparisons instead of unnecessary accounting terminology.","Beginner","drivers, trends, decisions"],
+["How do you prioritize audit findings?","I assess potential impact, likelihood, regulatory exposure, and control weaknesses, then assign actions and deadlines based on risk.","Advanced","impact, likelihood, risk"],
+["What is an internal control?","An internal control is a process or safeguard designed to reduce risk, support reliable reporting, protect resources, or help ensure compliance with requirements.","Beginner","safeguard, risk, compliance"],
+["How do you manage confidential financial data?","I use approved systems, restrict access to authorized individuals, follow retention rules, and share only the information necessary for a legitimate business purpose.","Intermediate","confidential, access, retention"],
+["How do you investigate an unexplained expense?","I review the transaction, approval, receipt, business purpose, and accounting classification, then request clarification and escalate unresolved discrepancies through the proper process.","Intermediate","transaction, receipt, classification"],
+["How do you present a risk assessment?","I identify the risk, assess likelihood and impact, describe current controls, evaluate remaining exposure, and recommend practical mitigation with clear ownership.","Advanced","likelihood, impact, mitigation"],
+["How do you ensure accurate monthly reporting?","I reconcile relevant accounts, review supporting schedules, investigate unusual changes, confirm cutoff and classification, and follow the reporting calendar and review controls.","Advanced","reconcile, cutoff, reporting"],
+["How do you manage an audit disagreement?","I clarify the audit criteria, review the evidence, explain the factual basis for my position, and follow the established process to resolve or document the disagreement.","Advanced","criteria, evidence, resolution"],
+["How do you evaluate a proposed investment?","I assess expected returns, costs, assumptions, cash-flow effects, risk, and strategic fit. I compare alternatives and explain uncertainty before recommending a decision.","Advanced","returns, cash flow, uncertainty"],
+["How do you protect against duplicate payments?","I use invoice matching, vendor and invoice checks, approval controls, exception reports, and periodic reviews to identify and prevent duplicate payments.","Intermediate","invoice matching, approvals, exceptions"],
+["How do you handle a missed financial deadline?","I inform the responsible stakeholders, assess the reason and impact, complete the required work as soon as possible, and improve planning or controls to prevent recurrence.","Intermediate","deadline, impact, prevention"],
+["How do you verify financial data before presenting it?","I trace figures to reliable source records, check formulas and reconciliations, review unusual values, and clearly disclose assumptions or limitations.","Intermediate","source, formulas, assumptions"],
+["How do you assess credit or counterparty risk?","I review available financial information, payment history, exposure, contractual protections, and relevant risk indicators before recommending proportionate safeguards.","Advanced","exposure, payment, safeguards"],
+["How do you communicate a material financial risk?","I explain the facts, potential financial and operational impact, timing, available mitigation options, and decision required, with supporting evidence and clear accountability.","Advanced","material, mitigation, accountability"],
+["How do you improve a financial process?","I map the current workflow, identify errors and delays, strengthen controls, simplify unnecessary steps, and measure whether accuracy and turnaround time improve.","Intermediate","workflow, controls, accuracy"],
+["How do you maintain audit independence?","I follow the audit charter and professional standards, disclose conflicts, base conclusions on sufficient evidence, and avoid making or auditing decisions where independence is compromised.","Advanced","independence, evidence, conflicts"]
+],
+"Leadership & Project Management":[
+["How do you lead a team toward a shared goal?","I clarify the goal, define responsibilities, communicate priorities, invite input, remove barriers, and track progress using agreed measures.","Beginner","goal, responsibilities, progress"],
+["How do you manage an underperforming project?","I compare actual progress with the plan, identify root causes, reassess scope and resources, agree on corrective actions, and communicate risks and revised milestones.","Advanced","progress, root causes, milestones"],
+["How do you delegate effectively?","I match tasks to skills and capacity, clarify the expected result and authority, agree on deadlines, provide support, and follow up without unnecessary micromanagement.","Intermediate","delegate, authority, follow-up"],
+["How do you manage stakeholder expectations?","I clarify scope, deliverables, timing, assumptions, and decision rights early. I communicate changes promptly and document agreed adjustments.","Intermediate","scope, deliverables, expectations"],
+["How do you resolve team conflict?","I listen to each perspective, focus on facts and shared objectives, clarify responsibilities, agree on next steps, and follow up to ensure the issue is resolved.","Intermediate","perspective, objective, resolve"],
+["How do you define project success?","I define success using agreed scope, schedule, budget, quality, stakeholder needs, and measurable outcomes, including whether the solution continues to work after delivery.","Intermediate","scope, quality, outcomes"],
+["How do you manage scope creep?","I compare requested changes with the approved scope, assess impacts on time and cost, obtain required approval, and update the plan before proceeding.","Advanced","scope, impact, approval"],
+["How do you motivate a team during a difficult period?","I communicate honestly, recognize progress, clarify immediate priorities, listen to concerns, and help the team focus on achievable steps and available support.","Intermediate","recognize, priorities, support"],
+["How do you manage a project risk?","I identify the risk, assess likelihood and impact, assign an owner, plan mitigation or contingency actions, and review the risk regularly as conditions change.","Intermediate","likelihood, mitigation, contingency"],
+["How do you report project status to executives?","I summarize progress, milestones, budget, major risks, decisions needed, and next steps, highlighting exceptions and proposed actions rather than listing every task.","Advanced","milestones, risks, decisions"],
+["How do you handle a missed milestone?","I verify the cause, assess downstream effects, develop recovery options, communicate the impact early, and update the plan with accountable owners and realistic dates.","Intermediate","milestone, recovery, accountability"],
+["How do you make decisions with incomplete information?","I distinguish known facts from assumptions, assess the cost of delay and possible risks, seek critical missing information, and make a proportionate decision with a review point.","Advanced","assumptions, risk, review"],
+["How do you manage organizational change?","I explain the reason and expected benefits, identify affected stakeholders, provide training and support, communicate progress, and measure adoption and outcomes.","Advanced","change, stakeholders, adoption"],
+["How do you build trust as a manager?","I set clear expectations, listen consistently, keep commitments, explain decisions, acknowledge mistakes, and apply standards fairly.","Beginner","trust, commitments, fairness"],
+["How do you evaluate a new business opportunity?","I assess customer need, market evidence, cost, revenue potential, operational capability, legal requirements, and risk before recommending a pilot or investment.","Advanced","customer, evidence, risk"],
+["How do you manage limited resources?","I rank work by impact and urgency, identify dependencies, allocate resources to the highest priorities, and communicate trade-offs and capacity constraints early.","Intermediate","impact, dependencies, trade-offs"],
+["How do you ensure a meeting produces results?","I define the objective and agenda, invite the necessary participants, record decisions and owners, set deadlines, and review action items afterward.","Beginner","agenda, decisions, action items"],
+["How do you evaluate employee development?","I agree on clear competencies and goals, provide coaching and opportunities to practice, review evidence of progress, and adjust development plans as needed.","Intermediate","competencies, coaching, progress"],
+["How do you manage a project with competing deadlines?","I map dependencies, assess business impact, identify critical-path tasks, negotiate priorities when needed, and maintain transparent communication about risks and timing.","Advanced","dependencies, critical path, priorities"],
+["How do you turn strategy into execution?","I translate strategic goals into measurable objectives, initiatives, owners, milestones, and resource plans, then review results and adjust based on evidence.","Advanced","strategy, objectives, milestones"]
+],
+"Business English & Customer Service":[
+["How would you introduce yourself professionally?","Hello, my name is [Name]. I have experience in [field], and I enjoy solving problems, learning new skills, and helping teams achieve their goals.","Beginner","introduce, experience, goals"],
+["How would you answer a customer complaint?","I understand your concern, and I appreciate you bringing it to my attention. Let me review the situation and explain the next steps to resolve it.","Beginner","concern, review, resolve"],
+["How do you ask someone to clarify an instruction?","Could you please clarify the expected outcome and deadline? I want to make sure I understand the requirements correctly before proceeding.","Beginner","clarify, outcome, requirements"],
+["How do you professionally disagree?","I understand your perspective. Based on the information available, I see one potential concern. Could we review the alternatives before deciding?","Intermediate","perspective, alternatives, decide"],
+["How do you explain a delay to a customer?","I apologize for the delay. We are addressing the issue, and I will provide an update by [time]. Thank you for your patience.","Beginner","delay, update, patience"],
+["How do you request more time to complete a task?","I would like to discuss the deadline. Based on the remaining work, I recommend [date] to complete it accurately. I can also review priorities if the original deadline is fixed.","Intermediate","deadline, accurately, priorities"],
+["How do you communicate a mistake at work?","I want to let you know that I identified an error in [area]. I am correcting it, reviewing the cause, and taking steps to prevent the same issue from happening again.","Intermediate","identified, correcting, prevent"],
+["How do you handle an angry customer?","I remain calm, listen carefully, acknowledge the concern, and ask questions to understand the facts. I then explain realistic options and follow through on the agreed next steps.","Intermediate","calm, acknowledge, options"],
+["How do you ask for feedback?","Could you share one thing I did well and one area I could improve? I would appreciate specific suggestions I can apply to my next assignment.","Beginner","feedback, improve, suggestions"],
+["How do you end a professional email?","Thank you for your time and consideration. Please let me know if you need any additional information. Best regards, [Name].","Beginner","consideration, additional, regards"],
+["How do you describe a complicated problem simply?","The main issue is [problem]. It affects [impact]. I recommend [action] because it addresses the immediate concern and helps prevent recurrence.","Intermediate","issue, impact, recommend"],
+["How do you speak confidently in a meeting?","I prepare my main points, organize them logically, speak at a steady pace, support my ideas with facts, and ask for clarification when needed.","Beginner","prepare, logically, steady"],
+["How do you explain that you do not know an answer?","I do not want to give you inaccurate information. Let me verify the details and get back to you with a reliable answer.","Beginner","inaccurate, verify, reliable"],
+["How do you follow up after an interview?","Thank you for meeting with me. I appreciated learning more about the role and the team's priorities. I remain interested and would be happy to provide any additional information.","Intermediate","appreciated, priorities, interested"],
+["How do you negotiate a deadline professionally?","I can complete the highest-priority items by the original deadline. To finish the remaining work properly, I recommend an additional [time]. Would that approach meet your needs?","Advanced","priority, deadline, approach"],
+["How do you make a recommendation in English?","Based on the information available, I recommend [option]. It offers [benefit], while the main risk is [risk]. We can manage that risk by [action].","Intermediate","recommend, benefit, risk"],
+["How do you handle a misunderstanding?","I think we may have understood the instruction differently. Let me explain my understanding, and we can confirm the intended outcome together.","Beginner","misunderstanding, confirm, outcome"],
+["How do you respond to a request you cannot fulfill?","I understand what you need. I am unable to complete that exact request, but I can offer [alternative] or direct you to the appropriate person.","Intermediate","unable, alternative, appropriate"],
+["How do you describe your work experience?","In my previous role, I was responsible for [responsibilities]. I worked with [team or customers] and focused on [result or achievement].","Beginner","responsible, focused, achievement"],
+["How do you close a business conversation?","Thank you for your time. To summarize, we agreed on [action], [owner], and [deadline]. I will follow up as discussed.","Intermediate","summarize, owner, follow-up"]
+],
+"Airlines, Travel & Hospitality":[
+["How would you help a passenger whose flight is delayed?","I would acknowledge the inconvenience, check the latest verified information, explain available options under company policy, and communicate any updates clearly.","Beginner","delay, verified, options"],
+["How do you handle an upset traveler?","I remain calm, listen to the concern, confirm the relevant booking or service details through approved procedures, and explain the available next steps respectfully.","Intermediate","traveler, details, next steps"],
+["How do you prioritize tasks during a busy shift?","I focus on safety-critical tasks and time-sensitive passenger needs first, follow operating procedures, coordinate with colleagues, and communicate delays or risks promptly.","Intermediate","safety-critical, coordinate, risks"],
+["How do you protect passenger information?","I access only information needed for my role, verify authorization before sharing details, use approved systems, and follow company privacy and security policies.","Intermediate","passenger, authorization, privacy"],
+["What would you do if a passenger required special assistance?","I would listen to the passenger's needs, follow applicable accessibility procedures, coordinate with trained colleagues, and confirm that the agreed assistance is arranged.","Intermediate","accessibility, coordinate, assistance"],
+["How do you respond to a safety concern?","I follow the applicable safety procedure, communicate the concern immediately to the responsible personnel, and do not bypass required controls to save time.","Advanced","safety, procedure, controls"],
+["How do you resolve a hotel guest complaint?","I listen carefully, apologize for the inconvenience, verify the issue, offer solutions within policy, and follow up to confirm the guest's concern has been addressed.","Beginner","guest, verify, follow-up"],
+["How do you handle an overbooked reservation?","I verify the reservation and current availability, explain the situation honestly, follow the organization's approved policy, and offer authorized alternatives where available.","Intermediate","reservation, availability, alternatives"],
+["How do you manage a baggage-related complaint?","I gather the relevant details, verify the baggage status through approved systems, explain the reporting process and next steps, and provide updates as available.","Intermediate","baggage, status, reporting"],
+["How do you work with a multicultural team?","I communicate respectfully, avoid assumptions, confirm important details, adapt my communication style, and focus on shared safety and service objectives.","Beginner","respectfully, confirm, shared"],
+["How do you maintain service quality under pressure?","I follow standard procedures, communicate clearly, focus on the most important customer needs, and ask for support before a service issue becomes a larger problem.","Intermediate","procedures, pressure, support"],
+["How do you respond to a travel document discrepancy?","I follow the applicable document-verification procedure, avoid guessing about eligibility, and refer uncertain cases to the authorized supervisor or designated specialist.","Advanced","verification, eligibility, specialist"],
+["How do you handle a passenger who refuses an instruction?","I communicate the reason clearly and respectfully, follow the applicable policy, and involve authorized personnel when required rather than escalating the conflict unnecessarily.","Advanced","instruction, policy, authorized"],
+["How do you explain an unavailable service?","I explain the limitation honestly, acknowledge its impact, identify any approved alternatives, and make sure the customer understands the next steps.","Beginner","limitation, alternatives, next steps"],
+["How do you coordinate a team during a disruption?","I clarify immediate priorities, share verified updates, assign responsibilities, maintain communication with affected teams, and follow the approved disruption procedures.","Advanced","disruption, priorities, verified"],
+["How do you handle an unexpected operational change?","I verify the change, assess its effect on safety and service, communicate with the responsible team, and adjust my tasks according to approved procedures.","Intermediate","operational, verify, adjust"],
+["How do you respond to a customer asking for an exception?","I listen to the request, check the applicable policy and my authority, explain what is permitted, and refer the request for approval if needed.","Intermediate","exception, authority, approval"],
+["How do you maintain accurate shift handovers?","I summarize outstanding issues, customer needs, operational changes, safety concerns, and required follow-up, confirming that the next team understands its responsibilities.","Intermediate","handover, outstanding, follow-up"],
+["How do you balance customer service and compliance?","I provide helpful service within established requirements. If a request conflicts with safety, security, or policy, I explain the limitation and identify an appropriate alternative.","Advanced","compliance, security, alternative"],
+["Why do you want to work in travel or hospitality?","I enjoy helping people, solving practical problems, and working in a service environment where clear communication, teamwork, and reliability make a difference.","Beginner","service, teamwork, reliability"]
+]
 };
-const MODULES=[
-["Regulatory Compliance","Interpretar requisitos, identificar incumplimientos, documentar evidencias, investigar y verificar planes correctivos.","Compliance, requirement, control, evidence, finding, remediation."],
-["Risk Management","Evaluar probabilidad, impacto, controles existentes, riesgo residual y prioridades.","Likelihood, impact, mitigation, residual risk, risk owner."],
-["Internal Audit","Definir alcance, probar controles, documentar hallazgos y comprobar correcciones.","Audit scope, sample, test, finding, corrective action."],
-["Corporate Governance","Entender supervisión, ética, juntas directivas, conflictos de interés y rendición de cuentas.","Oversight, accountability, conflict of interest, board, ethics."],
-["Government & Public Administration","Analizar contratación pública, controles administrativos, transparencia y responsabilidad institucional.","Procurement, public funds, transparency, approval, oversight."],
-["Security & Business Continuity","Preparar respuestas a incidentes, proteger información y sostener operaciones críticas.","Incident response, continuity plan, recovery, access control."],
-["Logistics & Supply Chain","Supervisar proveedores, contratos, inventarios, transporte, calidad y continuidad.","Supplier, inventory, lead time, shipment, shortage."],
-["Finance & Analytics","Interpretar presupuestos, costos, productividad, indicadores y variaciones financieras.","Budget, forecast, variance, margin, KPI, productivity."],
-["Leadership & Strategy","Dirigir equipos, resolver conflictos, negociar y convertir prioridades en resultados.","Stakeholder, alignment, delegation, strategy, outcome."],
-["Business English","Hablar en reuniones, presentar resultados, escribir correos y responder preguntas difíciles.","To clarify, based on the data, key priority, next steps."],
-["Project Management","Definir alcance, hitos, responsables, dependencias, presupuesto y control de cambios.","Scope, milestone, dependency, deliverable, stakeholder."],
-["Data & Excel","Organizar datos, verificar calidad, analizar tendencias y explicar conclusiones con claridad.","Dataset, trend, filter, formula, dashboard, insight."]
-];
-const CASES=[
-{q:"Una auditoría detecta que varios controles se marcan como completados, pero faltan evidencias. ¿Qué harías?",a:["preservar","evidence","scope","root cause","corrective action","owner","deadline","verify"],guide:"Define el alcance, preserva registros, verifica una muestra, identifica la causa, asigna responsables y plazos y prueba que la corrección funciona."},
-{q:"Un proveedor crítico anuncia que no podrá cumplir una entrega y existe riesgo de interrumpir la operación.",a:["impact","alternative","supplier","priority","stakeholders","contingency","monitor"],guide:"Evalúa impacto y urgencia, identifica fuentes alternativas aprobadas, activa contingencia, comunica a las partes y monitorea la recuperación."},
-{q:"Un directivo solicita omitir una revisión obligatoria para cumplir una fecha límite.",a:["requirement","risk","document","escalate","alternative","approval","compliance"],guide:"Confirma el requisito, explica el riesgo, documenta los hechos, busca alternativas conformes y escala por el canal autorizado."},
-{q:"Los costos aumentan mientras la calidad del servicio cae. La dirección pide un plan en 48 horas.",a:["baseline","data","cost","quality","root cause","action","owner","KPI"],guide:"Establece una línea base, segmenta costos y calidad, identifica causas, propone acciones priorizadas con responsables y define indicadores."},
-{q:"Dos líderes discrepan sobre una decisión operativa y el conflicto afecta al equipo.",a:["listen","objective","facts","options","responsibility","follow up"],guide:"Escucha a ambas partes, acuerda el objetivo, separa hechos de opiniones, compara opciones y documenta responsables y seguimiento."}
-];
-let sector="hospitales",index=0,filtered=[],currentList=[],answerVisible=true,englishUI=false,practiceVisible=true;
-let recognition=null,isRecording=false,micTimer=null,micDeadline=0,transcriptParts=[],spoken="",currentCase=0;
-let vocab=[],difficult=[],evaluated=0,totalScore=0,history=[],lastQuestion=null;
+const I18N={
+en:{setup:"Choose your practice",sector:"Career field",level:"Difficulty",search:"Search questions",speed:"Speaking speed",voice:"English voice",total:"Questions practiced",score:"Last practice score",answered:"Questions answered",count:"questions available",question:"Question",answer:"Model answer",show:"Show answer",hide:"Hide answer",playQ:"▶ Play question",playA:"🔊 Play model answer",prev:"← Previous",next:"Next question →",mark:"✓ Mark practiced",your:"Your answer",help:"Type your answer or use the microphone. Speak in English when possible.",mic:"🎙 Start speaking",stop:"■ Stop recording",evaluate:"Evaluate my answer",clear:"Clear",vocab:"Useful vocabulary",notes:"My improvement notes",save:"Save notes on this device",download:"Download practice report",strategy:"Answer with the STAR method",strategyHelp:"For behavioral questions, explain the Situation, Task, Action, and Result.",privacy:"Practice feedback is approximate and generated in your browser. It is not a hiring decision, certification, or guarantee of employment. Avoid entering confidential employer, patient, or customer information.",voiceOn:"🔊 Voice: On",voiceOff:"🔇 Voice: Off",beginner:"Beginner",intermediate:"Intermediate",advanced:"Advanced",all:"All levels",none:"No questions match your search. Try another keyword or level.",loading:"Loading question...",done:"Marked as practiced.",saved:"Notes saved on this device.",notSaved:"Your browser does not support local saving.",recording:"Listening... Speak clearly in English.",notSupported:"Speech recognition is not available in this browser. Try Chrome or Edge and allow microphone access.",stopped:"Recording stopped.",permission:"Microphone unavailable. Check browser permissions and try again.",empty:"Write or record an answer first.",evalTitle:"Practice feedback",wordCount:"Words",coverage:"Keyword coverage",length:"Answer length",suggestion:"Improvement suggestion",short:"Try adding a specific example, your action, and the result.",good:"Good start. Add one concrete example and a measurable result if possible.",strong:"Your answer includes useful details. Practice delivering it naturally and clearly.",vocabHint:"Vocabulary from this question",report:"INTERVIEW PRACTICE REPORT",date:"Date",field:"Career field",asked:"Question",model:"Model answer",mine:"My answer",feedback:"Feedback",notesLabel:"My notes",noAnswer:"No answer entered.",star:"Your STAR answer",random:"Random question",shuffle:"🔀 Shuffle",reset:"↻ Reset session",searchPlaceholder:"Type a keyword...",questionCount:"Question",noVoice:"No voice available",practiceScore:"Practice score",correct:"Relevant keywords",tips:"Practice tip",langName:"English"},
+es:{setup:"Elige tu práctica",sector:"Campo profesional",level:"Dificultad",search:"Buscar preguntas",speed:"Velocidad de voz",voice:"Voz en inglés",total:"Preguntas practicadas",score:"Última puntuación",answered:"Preguntas respondidas",count:"preguntas disponibles",question:"Pregunta",answer:"Respuesta modelo",show:"Mostrar respuesta",hide:"Ocultar respuesta",playQ:"▶ Escuchar pregunta",playA:"🔊 Escuchar respuesta",prev:"← Anterior",next:"Siguiente pregunta →",mark:"✓ Marcar practicada",your:"Tu respuesta",help:"Escribe tu respuesta o usa el micrófono. Intenta hablar en inglés.",mic:"🎙 Empezar a hablar",stop:"■ Detener grabación",evaluate:"Evaluar mi respuesta",clear:"Borrar",vocab:"Vocabulario útil",notes:"Mis notas de mejora",save:"Guardar notas en este dispositivo",download:"Descargar informe",strategy:"Responde con el método STAR",strategyHelp:"Para preguntas sobre experiencias, explica la Situación, Tarea, Acción y Resultado.",privacy:"La evaluación es orientativa y se genera en tu navegador. No es una decisión de contratación, certificación ni garantía de empleo. No introduzcas información confidencial de empleadores, pacientes o clientes.",voiceOn:"🔊 Voz: Activada",voiceOff:"🔇 Voz: Desactivada",beginner:"Principiante",intermediate:"Intermedio",advanced:"Avanzado",all:"Todos los niveles",none:"No hay preguntas que coincidan. Prueba otra palabra o dificultad.",loading:"Cargando pregunta...",done:"Marcada como practicada.",saved:"Notas guardadas en este dispositivo.",notSaved:"Tu navegador no permite guardar localmente.",recording:"Escuchando... Habla claramente en inglés.",notSupported:"Este navegador no ofrece reconocimiento de voz. Prueba Chrome o Edge y permite el acceso al micrófono.",stopped:"Grabación detenida.",permission:"No se pudo acceder al micrófono. Revisa los permisos del navegador.",empty:"Escribe o graba primero una respuesta.",evalTitle:"Evaluación orientativa",wordCount:"Palabras",coverage:"Palabras clave incluidas",length:"Extensión",suggestion:"Sugerencia de mejora",short:"Añade un ejemplo concreto, la acción que realizaste y el resultado.",good:"Buen comienzo. Añade un ejemplo específico y, si puedes, un resultado medible.",strong:"Tu respuesta incluye detalles útiles. Practica decirla de forma natural y clara.",vocabHint:"Vocabulario de esta pregunta",report:"INFORME DE PRÁCTICA DE ENTREVISTA",date:"Fecha",field:"Campo profesional",asked:"Pregunta",model:"Respuesta modelo",mine:"Mi respuesta",feedback:"Evaluación",notesLabel:"Mis notas",noAnswer:"No escribiste una respuesta.",star:"Tu respuesta STAR",random:"Pregunta aleatoria",shuffle:"🔀 Mezclar",reset:"↻ Reiniciar sesión",searchPlaceholder:"Escribe una palabra...",questionCount:"Pregunta",noVoice:"No hay voces disponibles",practiceScore:"Puntuación orientativa",correct:"Palabras clave relevantes",tips:"Consejo",langName:"Inglés"}
+};
+let lang="en",sector="",index=0,items=[],practiced=new Set(),answered=new Set(),lastScore=null,voiceOn=true,recognition=null,recording=false,feedbackText="",sessionCount=0;
 const $=id=>document.getElementById(id);
-function init(){
-$("sectorSelect").innerHTML=Object.entries(DB).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join("");
-$("moduleGrid").innerHTML=MODULES.map((m,i)=>`<div class="module-card"><h3>${m[0]}</h3><p>${m[1]}</p><p><b>Vocabulario:</b> ${m[2]}</p><button class="secondary" onclick="studyModule(${i})">Practicar esta área</button></div>`).join("");
-render();renderLists();nextCase();
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const tr=k=>I18N[lang][k]||I18N.en[k]||k;
+function allSectors(){return Object.keys(DATA)}
+function filteredItems(){
+let q=$("search").value.trim().toLowerCase(),lv=$("level").value;
+return (DATA[sector]||[]).map((d,i)=>({d,i})).filter(x=>(lv==="all"||x.d[2]===lv)&&(!q||x.d.join(" ").toLowerCase().includes(q)));
 }
-function activeItems(){return filtered.length?filtered:DB[sector].items}
-function changeSector(){stopMic();sector=$("sectorSelect").value;index=0;filtered=[];render()}
-function searchQuestions(){
-const term=$("searchBox").value.trim().toLowerCase();
-filtered=[];
-if(term)Object.entries(DB).forEach(([key,val])=>val.items.forEach((q,i)=>{if(q.join(" ").toLowerCase().includes(term))filtered.push({key,i,q})}));
-if(term){currentList=filtered.map(x=>x.q);index=0}else currentList=[];
+function populateSectors(){
+$("sector").innerHTML=allSectors().map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("");
+sector=allSectors()[0]||"";
+}
+function updateText(){
+$("setupTitle").textContent=tr("setup");$("sectorLabel").textContent=tr("sector");$("levelLabel").textContent=tr("level");$("searchLabel").textContent=tr("search");$("speedLabel").textContent=tr("speed");$("voiceLabel").textContent=tr("voice");$("totalLabel").textContent=tr("total");$("scoreLabel").textContent=tr("score");$("streakLabel").textContent=tr("answered");$("yourAnswerTitle").textContent=tr("your");$("yourAnswerHelp").textContent=tr("help");$("playQuestion").textContent=tr("playQ");$("playAnswer").textContent=tr("playA");$("showAnswer").textContent=tr("show");$("hideAnswer").textContent=tr("hide");$("prevBtn").textContent=tr("prev");$("nextBtn").textContent=tr("next");$("markBtn").textContent=tr("mark");$("startMic").textContent=tr("mic");$("stopMic").textContent=tr("stop");$("evaluateBtn").textContent=tr("evaluate");$("clearAnswer").textContent=tr("clear");$("vocabTitle").textContent=tr("vocab");$("notesTitle").textContent=tr("notes");$("saveNotes").textContent=tr("save");$("downloadBtn").textContent=tr("download");$("strategyTitle").textContent=tr("strategy");$("strategyHelp").textContent=tr("strategyHelp");$("privacyNotice").textContent=tr("privacy");$("shuffleBtn").textContent=tr("shuffle");$("randomBtn").textContent="🎲 "+tr("random");$("resetBtn").textContent=tr("reset");$("search").placeholder=tr("searchPlaceholder");
+const old=$("level").value;$("level").innerHTML=`<option value="all">${tr("all")}</option><option value="Beginner">${tr("beginner")}</option><option value="Intermediate">${tr("intermediate")}</option><option value="Advanced">${tr("advanced")}</option>`;$("level").value=old;
+}
+function refresh(){
+items=filteredItems();
+if(index>=items.length)index=Math.max(0,items.length-1);
 render();
 }
 function render(){
-if(filtered.length){currentList=filtered.map(x=>x.q);if(index>=currentList.length)index=0}else currentList=DB[sector].items;
-if(!currentList.length){$("qEnText").textContent="No se encontraron preguntas.";return}
-index=Math.max(0,Math.min(index,currentList.length-1));
-const q=currentList[index];lastQuestion=q;
-$("sectorBadge").textContent=filtered.length?"🔎 Resultados de búsqueda":DB[sector].label;
-$("progressCounter").textContent=`Pregunta ${index+1} de ${currentList.length}`;
-$("progressFill").style.width=((index+1)/currentList.length*100)+"%";
-$("qEnText").textContent=q[0];$("qEsText").textContent=q[0];
-$("aEnText").textContent=q[1];$("aEsText").textContent=q[2];
-$("qPhoneticText").textContent="Pronunciación: escucha el audio y repite por partes. La escritura fonética automática puede ser imprecisa; el audio en inglés es la referencia principal.";
-$("aPhoneticText").textContent="Consejo: habla con claridad, enlaza las ideas y enfatiza las palabras clave.";
-$("answerArea").classList.toggle("hidden",!answerVisible);
-$("starBox").classList.toggle("hidden",!/(time|tell me|conflict|failure|difficult|challenge|lead|problem|mistake|decision)/i.test(q[0]));
-if($("modeSelect").value==="recall"){$("answerArea").classList.add("hidden");answerVisible=false}
+$("totalStat").textContent=sessionCount;
+$("scoreStat").textContent=lastScore===null?"—":lastScore+"%";
+$("streakStat").textContent=answered.size;
+$("countText").textContent=items.length+" "+tr("count");
+$("listProgress").style.width=(items.length?(index+1)/items.length*100:0)+"%";
+$("questionList").innerHTML=items.map((x,i)=>`<button class="qitem ${i===index?"active":""}" data-i="${i}"><span>${practiced.has(sector+":"+x.i)?"✓":"○"}</span><span>${esc(x.d[0])}<small>${esc(x.d[2])}</small></span></button>`).join("");
+$("questionList").querySelectorAll("[data-i]").forEach(b=>b.addEventListener("click",()=>{index=Number(b.dataset.i);render();}));
+if(!items.length){
+$("questionText").textContent=tr("none");$("categoryTag").textContent=sector;$("numberText").textContent="0";$("answerBox").hidden=true;$("vocabulary").innerHTML="";$("feedback").textContent="";$("prevBtn").disabled=true;$("nextBtn").disabled=true;$("showAnswer").disabled=true;$("playQuestion").disabled=true;$("playAnswer").disabled=true;$("markBtn").disabled=true;return;
 }
-function next(){stopMic();index=(index+1)%activeItems().length;answerVisible=true;render()}
-function prev(){stopMic();index=(index-1+activeItems().length)%activeItems().length;answerVisible=true;render()}
-function showRandom(){stopMic();index=Math.floor(Math.random()*activeItems().length);answerVisible=true;render()}
-function toggleAnswer(){answerVisible=!answerVisible;$("answerArea").classList.toggle("hidden",!answerVisible)}
-function togglePractice(){practiceVisible=!practiceVisible;$("practicePanel").classList.toggle("hidden",!practiceVisible)}
-function toggleLanguage(){englishUI=!englishUI;$("langBtn").textContent=englishUI?"EN / ES":"ES / EN";document.documentElement.lang=englishUI?"en":"es"}
-function getText(type){return type==="question"?$("qEnText").textContent:$("aEnText").textContent}
-function speak(type){speakText(getText(type),1)}
-function speakSlow(type){speakText(getText(type),.78)}
-function speakText(text,rate){
-if(!("speechSynthesis"in window)){alert("Este navegador no admite lectura de voz.");return}
-speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=rate;const voices=speechSynthesis.getVoices();const v=voices.find(x=>x.lang==="en-US")||voices.find(x=>x.lang.startsWith("en"));if(v)u.voice=v;speechSynthesis.speak(u)
+const d=items[index].d;
+$("categoryTag").textContent=sector+" · "+d[2];$("numberText").textContent=tr("question")+" "+(index+1)+" / "+items.length;$("questionText").textContent=d[0];$("answerBox").textContent=d[1];$("vocabulary").innerHTML=d[3].split(", ").map(w=>`<button class="secondary" data-word="${esc(w)}">${esc(w)}</button>`).join("");
+$("vocabulary").querySelectorAll("[data-word]").forEach(b=>b.addEventListener("click",()=>speak(b.dataset.word)));
+$("prevBtn").disabled=index<=0;$("nextBtn").disabled=index>=items.length-1;$("showAnswer").disabled=false;$("playQuestion").disabled=false;$("playAnswer").disabled=false;$("markBtn").disabled=false;
+$("answerBox").hidden=true;$("feedback").textContent="";feedbackText="";
+$("userAnswer").value="";$("notes").value=loadNote("notes:"+sector+":"+items[index].i);
+$("starS").value="";$("starT").value="";$("starA").value="";$("starR").value="";$("starResult").textContent="";
 }
-function toggleMic(){
-if(isRecording){stopMic();return}
+function current(){return items[index]?.d||null}
+function speak(text){
+if(!voiceOn||!("speechSynthesis"in window))return;
+window.speechSynthesis.cancel();
+const u=new SpeechSynthesisUtterance(String(text||""));u.lang="en-US";u.rate=Number($("speed").value)||.9;
+const voices=window.speechSynthesis.getVoices(),selected=$("voiceSelect").value;
+if(selected){const v=voices.find(x=>x.name===selected);if(v)u.voice=v;}
+window.speechSynthesis.speak(u);
+}
+function loadVoices(){
+if(!("speechSynthesis"in window))return;
+const voices=window.speechSynthesis.getVoices().filter(v=>/^en(-|_)/i.test(v.lang));
+const currentValue=$("voiceSelect").value;
+$("voiceSelect").innerHTML=`<option value="">${tr("noVoice")}</option>`+voices.map(v=>`<option value="${esc(v.name)}">${esc(v.name)} (${esc(v.lang)})</option>`).join("");
+if(voices.some(v=>v.name===currentValue))$("voiceSelect").value=currentValue;
+}
+function markPracticed(){
+const d=current();if(!d)return;
+const key=sector+":"+items[index].i;
+if(!practiced.has(key)){practiced.add(key);sessionCount++;}
+render();$("feedback").textContent=tr("done");$("feedback").classList.remove("hidden");
+}
+function evaluate(){
+const d=current();if(!d)return;
+const answer=$("userAnswer").value.trim();
+if(!answer){$("feedback").textContent=tr("empty");return;}
+const words=answer.toLowerCase().match(/[a-z']+/g)||[];
+const keywords=d[3].split(", ").map(x=>x.toLowerCase());
+const matched=keywords.filter(k=>answer.toLowerCase().includes(k)).length;
+const coverage=Math.round(matched/Math.max(1,keywords.length)*100);
+const lengthScore=words.length>=35?100:words.length>=20?85:words.length>=10?65:35;
+const score=Math.round(coverage*.55+lengthScore*.45);
+lastScore=score;answered.add(sector+":"+items[index].i);
+feedbackText=`${tr("evalTitle")}: ${score}%\n${tr("wordCount")}: ${words.length}\n${tr("coverage")}: ${matched}/${keywords.length}\n${tr("suggestion")}: ${words.length<20?tr("short"):score<60?tr("good"):tr("strong")}\n\n${tr("tips")}: ${d[1]}`;
+$("feedback").textContent=feedbackText;
+$("scoreStat").textContent=score+"%";$("streakStat").textContent=answered.size;
+saveNote("answer:"+sector+":"+items[index].i,answer);
+}
+function saveNote(key,value){try{localStorage.setItem("interview:"+key,value);return true}catch(e){return false}}
+function loadNote(key){try{return localStorage.getItem("interview:"+key)||""}catch(e){return""}}
+function buildStar(){
+const parts=[["S — Situation",$("starS").value],["T — Task",$("starT").value],["A — Action",$("starA").value],["R — Result",$("starR").value]].filter(x=>x[1].trim());
+if(!parts.length){$("starResult").textContent=tr("empty");return}
+const result=parts.map(x=>x[0]+": "+x[1].trim()).join("\n\n");
+$("starResult").textContent=result;$("userAnswer").value=result;
+}
+function downloadReport(){
+const d=current(),date=new Date().toLocaleString();
+const lines=[tr("report"),tr("date")+": "+date,tr("field")+": "+sector,"",tr("asked")+": "+(d?d[0]:""),"",tr("model")+": "+(d?d[1]:""),"",tr("mine")+": "+($("userAnswer").value||tr("noAnswer")),"",tr("feedback")+": "+feedbackText,"",tr("notesLabel")+": "+$("notes").value,"",tr("star")+": "+$("starResult").textContent];
+const blob=new Blob(["\ufeff"+lines.join("\n")],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+a.href=url;a.download="interview-practice-report.txt";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+function initRecognition(){
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(!SR){alert("El reconocimiento de voz no está disponible en este navegador. Prueba Google Chrome y permite el micrófono.");return}
-transcriptParts=[];spoken="";isRecording=true;micDeadline=Date.now()+60000;$("scoreText").textContent="—%";$("userSpokenText").textContent="Escuchando. Puedes responder durante un máximo de 60 segundos.";startTimer();startRecognition(SR)
+if(!SR){$("micStatus").textContent=tr("notSupported");$("startMic").disabled=true;return}
+recognition=new SR();recognition.lang="en-US";recognition.continuous=true;recognition.interimResults=true;
+recognition.onstart=()=>{recording=true;$("startMic").disabled=true;$("stopMic").disabled=false;$("micStatus").textContent=tr("recording")};
+recognition.onresult=e=>{let text="";for(let i=0;i<e.results.length;i++)text+=e.results[i][0].transcript+" ";$("userAnswer").value=text.trim()};
+recognition.onerror=e=>{$("micStatus").textContent=e.error==="not-allowed"?tr("permission"):tr("notSupported");stopRecognition()};
+recognition.onend=()=>{recording=false;$("startMic").disabled=false;$("stopMic").disabled=true};
 }
-function startTimer(){
-clearInterval(micTimer);const tick=()=>{const left=Math.max(0,Math.ceil((micDeadline-Date.now())/1000));$("recordTimer").textContent=left+" s";if(left<=0)stopMic()};tick();micTimer=setInterval(tick,250)
-}
-function startRecognition(SR){
-if(!isRecording||Date.now()>=micDeadline){stopMic();return}
-const r=new SR();recognition=r;r.lang="en-US";r.continuous=true;r.interimResults=true;r.maxAlternatives=1;
-r.onstart=()=>{$("micBtn").classList.add("recording");$("micBtn").textContent="🔴 Escuchando… pulsa para terminar"};
-r.onresult=e=>{let finalText="",interim="";for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript.trim();if(e.results[i].isFinal)finalText+=t+" ";else interim+=t+" "}if(finalText)transcriptParts.push(finalText.trim());spoken=[...transcriptParts,interim.trim()].filter(Boolean).join(" ");$("userSpokenText").textContent=spoken||"Escuchando…";evaluateAnswer(false)};
-r.onerror=e=>{if(["not-allowed","service-not-allowed","audio-capture"].includes(e.error)){isRecording=false;stopMic();$("userSpokenText").textContent="No se pudo acceder al micrófono. Revisa los permisos del navegador."}};
-r.onend=()=>{if(recognition===r)recognition=null;if(isRecording&&Date.now()<micDeadline)setTimeout(()=>startRecognition(SR),250);else if(isRecording)stopMic()};
-try{r.start()}catch(e){if(isRecording&&Date.now()<micDeadline)setTimeout(()=>startRecognition(SR),400)}
-}
-function stopMic(){
-isRecording=false;clearInterval(micTimer);micTimer=null;micDeadline=0;
-if(recognition){const r=recognition;recognition=null;try{r.onend=null;r.stop()}catch(e){}}
-$("micBtn").classList.remove("recording");$("micBtn").textContent="🎙️ Presiona para hablar";$("recordTimer").textContent="60 s";
-if(spoken.trim())evaluateAnswer(true)
-}
-function normalize(s){return(s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^\p{L}\p{N}\s']/gu," ").split(/\s+/).filter(Boolean))}
-function evaluateAnswer(save=true){
-const response=spoken.trim();if(!response){$("scoreText").textContent="—%";return}
-const target=normalize(lastQuestion?lastQuestion[1]:"");const words=normalize(response);const remaining=target.slice();let matches=0;
-words.forEach(w=>{const i=remaining.indexOf(w);if(i>=0){matches++;remaining.splice(i,1)}});
-const score=Math.round(matches/Math.max(target.length,words.length,1)*100);
-$("scoreText").textContent=score+"%";
-$("scoreDetail").textContent=`Coincidencia aproximada: ${matches} palabras clave coincidentes de ${target.length} palabras en la respuesta modelo. Esto no es una certificación de inglés ni una evaluación completa de pronunciación.`;
-if(save){evaluated++;totalScore+=score;history.push({question:lastQuestion?lastQuestion[0]:"",score,response});renderLists()}
-}
-function clearPractice(){stopMic();spoken="";transcriptParts=[];$("userSpokenText").textContent="Tu respuesta aparecerá aquí."; $("scoreText").textContent="—%";$("scoreDetail").textContent="Practica con tus propias palabras y evalúa cuando termines."}
-function speakTranscript(){if(spoken.trim())speakText(spoken,1);else alert("Primero responde usando el micrófono o escribe tu respuesta en el campo de práctica.")}
-function markDifficult(){if(lastQuestion&&!difficult.some(x=>x[0]===lastQuestion[0]))difficult.push(lastQuestion);renderLists()}
-function clearDifficult(){difficult=[];renderLists()}
-function reviewDifficult(){if(!difficult.length){alert("Todavía no has marcado preguntas para repasar.");return}filtered=[];currentList=difficult;index=0;renderReview()}
-function renderReview(){const q=difficult[index];if(!q)return;$("sectorBadge").textContent="🔁 Repaso";$("progressCounter").textContent=`Repaso ${index+1} de ${difficult.length}`;$("qEnText").textContent=q[0];$("qEsText").textContent=q[0];$("aEnText").textContent=q[1];$("aEsText").textContent=q[2];$("answerArea").classList.remove("hidden")}
-function saveVocabulary(){
-const words=$("aEnText").textContent.split(/[,.!?;:]/).map(x=>x.trim()).filter(x=>x.length>3);
-const term=words.slice(0,3).join(" — ");if(term&&!vocab.includes(term))vocab.push(term);renderLists()
-}
-function clearVocabulary(){vocab=[];renderLists()}
-function renderLists(){
-$("vocabList").innerHTML=vocab.length?vocab.map(x=>`<li>${escapeHTML(x)}</li>`).join(""):"<li>Sin vocabulario guardado.</li>";
-$("mistakeList").innerHTML=difficult.length?difficult.map((x,i)=>`<li><button class="secondary" onclick="openDifficult(${i})">${escapeHTML(x[0])}</button></li>`).join(""):"<li>Sin preguntas marcadas.</li>";
-$("progressText").textContent=evaluated?`Respuestas evaluadas: ${evaluated}. Promedio orientativo: ${Math.round(totalScore/evaluated)}%.`:"Todavía no hay respuestas evaluadas.";
-$("statsText").textContent=`Vocabulario guardado: ${vocab.length}. Preguntas para repasar: ${difficult.length}.`;
-}
-function openDifficult(i){const q=difficult[i];sector=Object.keys(DB).find(k=>DB[k].items.some(x=>x[0]===q[0]))||sector;$("sectorSelect").value=sector;filtered=[];currentList=DB[sector].items;index=currentList.findIndex(x=>x[0]===q[0]);answerVisible=true;render()}
-function resetProgress(){if(!confirm("¿Quieres reiniciar las estadísticas de práctica?"))return;evaluated=0;totalScore=0;history=[];renderLists()}
-function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function studyModule(i){
-const m=MODULES[i];const q=[`Explain the main responsibilities of ${m[0]}.`,`What risks should a manager assess in ${m[0]}?`,`How would you measure success in ${m[0]}?`];
-const a=[
-`I define the objective, identify applicable requirements, assign clear responsibilities, document decisions, and monitor measurable outcomes. In ${m[0]}, I also verify that controls work in practice and that issues are corrected.`,
-`I assess likelihood, impact, existing controls, operational dependencies, legal or contractual obligations, and residual risk. I prioritize material risks and assign an owner, a deadline, and a method to verify mitigation.`,
-`I establish a baseline, select relevant key performance indicators, review reliable evidence, compare results with targets, investigate variances, and adjust the plan when the data shows a gap.`
-];
-const es=[
-"Defino el objetivo, identifico requisitos aplicables, asigno responsabilidades, documento decisiones y superviso resultados medibles.",
-"Evalúo probabilidad, impacto, controles, dependencias operativas, obligaciones y riesgo residual. Priorizo riesgos relevantes y asigno responsables y plazos.",
-"Establezco una línea base, selecciono indicadores, reviso evidencias, comparo resultados con objetivos e investigo variaciones."
-];
-DB.custom={label:m[0],items:q.map((x,j)=>[x,a[j],es[j]])};sector="custom";$("sectorSelect").innerHTML+=`<option value="custom">${m[0]}</option>`;$("sectorSelect").value="custom";filtered=[];index=0;render()
-}
-function nextCase(){currentCase=(currentCase+1)%CASES.length;const c=CASES[currentCase];$("casePrompt").textContent=c.q;$("caseAnswer").value="";$("caseFeedback").textContent=""}
-function evaluateCase(){
-const text=$("caseAnswer").value.trim().toLowerCase();if(text.length<20){$("caseFeedback").textContent="Desarrolla más tu respuesta: explica el riesgo, qué verificarías y qué acciones tomarías.";return}
-const c=CASES[currentCase];const found=c.a.filter(k=>text.includes(k.toLowerCase())).length;
-$("caseFeedback").textContent=`Puntos de revisión: ${found} de ${c.a.length} conceptos detectados mediante palabras clave. Esta revisión es orientativa, no una evaluación completa. Guía de análisis: ${c.guide}`;
-}
-function speakCase(){speakText(CASES[currentCase].q,1)}
-window.addEventListener("beforeunload",stopMic);
-init();
+function stopRecognition(){if(recognition&&recording)recognition.stop();recording=false;$("startMic").disabled=false;$("stopMic").disabled=true}
+$("sector").addEventListener("change",()=>{sector=$("sector").value;index=0;refresh()});
+$("level").addEventListener("change",()=>{index=0;refresh()});
+$("search").addEventListener("input",()=>{index=0;refresh()});
+$("playQuestion").addEventListener("click",()=>{if(current())speak(current()[0])});
+$("playAnswer").addEventListener("click",()=>{if(current())speak(current()[1])});
+$("showAnswer").addEventListener("click",()=>{$("answerBox").hidden=false});
+$("hideAnswer").addEventListener("click",()=>{$("answerBox").hidden=true});
+$("prevBtn").addEventListener("click",()=>{if(index>0){index--;render()}});
+$("nextBtn").addEventListener("click",()=>{if(index<items.length-1){index++;render()}});
+$("markBtn").addEventListener("click",markPracticed);
+$("evaluateBtn").addEventListener("click",evaluate);
+$("clearAnswer").addEventListener("click",()=>{$("userAnswer").value="";$("feedback").textContent="";feedbackText=""});
+$("startMic").addEventListener("click",()=>{if(!recognition)initRecognition();if(recognition){try{recognition.start()}catch(e){$("micStatus").textContent=tr("permission")}}});
+$("stopMic").addEventListener("click",stopRecognition);
+$("saveNotes").addEventListener("click",()=>{const d=current();if(!d)return;$("saveStatus").textContent=saveNote("notes:"+sector+":"+items[index].i,$("notes").value)?tr("saved"):tr("notSaved")});
+$("downloadBtn").addEventListener("click",downloadReport);
+$("buildStar").addEventListener("click",buildStar);
+$("shuffleBtn").addEventListener("click",()=>{const currentItem=items[index];items=filteredItems().sort(()=>Math.random()-.5);index=0;if(currentItem){const found=items.findIndex(x=>x.i===currentItem.i);if(found>=0)index=found}render()});
+$("randomBtn").addEventListener("click",()=>{if(!items.length)return;index=Math.floor(Math.random()*items.length);render()});
+$("resetBtn").addEventListener("click",()=>{if(!confirm(lang==="es"?"¿Reiniciar las estadísticas de esta sesión?":"Reset this session's statistics?"))return;practiced.clear();answered.clear();sessionCount=0;lastScore=null;refresh()});
+$("langES").addEventListener("click",()=>{lang="es";updateText();loadVoices();refresh()});
+$("langEN").addEventListener("click",()=>{lang="en";updateText();loadVoices();refresh()});
+$("voiceToggle").addEventListener("click",()=>{voiceOn=!voiceOn;$("voiceToggle").textContent=tr(voiceOn?"voiceOn":"voiceOff");if(!voiceOn&&"speechSynthesis"in window)window.speechSynthesis.cancel()});
+if("speechSynthesis"in window){loadVoices();window.speechSynthesis.onvoiceschanged=loadVoices}
+populateSectors();updateText();initRecognition();refresh();
 </script>
 </body>
 </html>
