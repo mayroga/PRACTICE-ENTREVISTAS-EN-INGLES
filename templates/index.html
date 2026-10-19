@@ -1,1355 +1,333 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAY ROGA LLC - Executive & RN English Trainer (180 Q&A)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .phonetic-card { background-color: #e0f2fe; border-left: 5px solid #0284c7; color: #0369a1; }
-        .spanish-card { background-color: #f1f5f9; border-left: 5px solid #64748b; color: #334155; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123047">
+<title>MAY ROGA LLC | English Executive Trainer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--navy:#123047;--blue:#176b87;--light:#eef6fa;--ink:#193345;--muted:#607687}
+*{box-sizing:border-box}
+body{margin:0;background:#f3f7fa;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+button,select{font:inherit}
+button:focus-visible,select:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
+.panel{background:white;border:1px solid #dce7ed;border-radius:16px;box-shadow:0 5px 18px #173b4c0b}
+.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:700;cursor:pointer;transition:filter .15s}
+.btn:hover{filter:brightness(.94)}
+.primary{background:var(--navy);color:white}
+.secondary{background:#e8f2f7;color:var(--navy)}
+.phonetic{background:#e8f5fc;border-left:4px solid #2586b5;color:#145879;padding:10px 12px;border-radius:5px}
+.translation{background:#f0f4f7;border-left:4px solid #718596;color:#304a5c;padding:10px 12px;border-radius:5px}
+.english{font-size:clamp(1.05rem,2.5vw,1.3rem);line-height:1.65;font-weight:600}
+.small-label{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#progressBar{height:7px;border-radius:99px;background:#e1ebf0;overflow:hidden}
+#progressFill{height:100%;background:#1684a8;width:0;transition:width .2s}
+.mic-active{background:#a51d35!important;color:white!important}
+@media(max-width:640px){.btn{padding:10px 12px}.panel{border-radius:12px}}
+</style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
-
-    <!-- CABECERA DE ALTO NIVEL -->
-    <header class="bg-slate-900 text-white py-3 px-4 shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-crown text-amber-400 text-2xl"></i>
-                <div>
-                    <h1 class="font-black text-lg text-amber-400 leading-none">MAY ROGA LLC</h1>
-                    <p class="text-[11px] text-slate-300">Executive MBA & Registered Nurse (RN) English Trainer</p>
-                </div>
-            </div>
-            <button onclick="app.reset()" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-bold transition">
-                <i class="fa-solid fa-rotate-left mr-1"></i> Reiniciar
-            </button>
-        </div>
-    </header>
-
-    <!-- PANEL PRINCIPAL -->
-    <main class="max-w-7xl mx-auto w-full p-3 sm:p-5 flex-1 space-y-4">
-
-        <!-- SELECTOR DE SECTOR -->
-        <div class="bg-white rounded-xl p-3 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
-            <div class="flex items-center gap-2 text-slate-900 font-extrabold text-sm uppercase">
-                <i class="fa-solid fa-user-tie text-sky-600 text-base"></i>
-                <span>Sector Profesional / Directivo:</span>
-            </div>
-            <select id="sectorSelect" onchange="app.changeSector()" class="bg-slate-50 border border-slate-300 text-slate-900 rounded-lg p-2 font-bold text-sm focus:ring-2 focus:ring-sky-500 w-full md:w-auto">
-                <option value="hospitales">🏥 Hospital Management, RN Leadership & Compliance (30 Preguntas)</option>
-                <option value="gobierno">🏛️ Gobierno, Compras Públicas y Alta Dirección (30 Preguntas)</option>
-                <option value="logistics">📦 Directivos de Logística, Puertos y Cadena de Suministro (30 Preguntas)</option>
-                <option value="airlines">✈️ Ejecutivos de Aerolíneas y Operaciones de Rampa (30 Preguntas)</option>
-                <option value="restaurantes">🍽️ Gerencia General de Restaurantes y Cadenas (30 Preguntas)</option>
-                <option value="situaciones">⚡ Estrategia Ejecutiva, Negociación y Salario MBA (30 Preguntas)</option>
-            </select>
-        </div>
-
-        <!-- TARJETA DE ESTUDIO -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            
-            <!-- SECCIÓN PREGUNTAS Y RESPUESTAS (2 COLS) -->
-            <div class="lg:col-span-2 bg-white rounded-xl border border-slate-300 shadow-md p-4 sm:p-6 flex flex-col justify-between space-y-4">
-                
-                <div class="space-y-4">
-                    <!-- BARRA DE ESTADO -->
-                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
-                        <span id="sectorBadge" class="bg-sky-100 text-sky-900 font-black text-xs px-3 py-1 rounded uppercase">HOSPITAL MANAGEMENT</span>
-                        <span id="progressCounter" class="font-extrabold text-slate-700 text-sm">Pregunta 1 de 30</span>
-                    </div>
-
-                    <!-- BLOQUE PREGUNTA -->
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-black text-slate-500 uppercase">Pregunta Directiva en Inglés</span>
-                            <button onclick="app.speak('q')" class="bg-sky-600 hover:bg-sky-700 text-white px-3 py-1 rounded text-xs font-bold transition flex items-center gap-1">
-                                <i class="fa-solid fa-volume-high"></i> Escuchar Pregunta
-                            </button>
-                        </div>
-                        <h2 id="qEnText" class="text-lg sm:text-xl font-black text-slate-900 leading-snug">--</h2>
-                        
-                        <!-- PRONUNCIACIÓN CORRIDA EN ESPAÑOL -->
-                        <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
-                            <span class="text-[11px] font-black uppercase block text-sky-800">Pronunciación Guía (Lee en español corrido):</span>
-                            <p id="qPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
-                        </div>
-                        
-                        <div class="spanish-card p-2.5 rounded-lg text-xs sm:text-sm">
-                            <span class="text-[10px] font-bold uppercase block text-slate-500">Significado en Español:</span>
-                            <p id="qEsText" class="text-slate-800 font-medium">--</p>
-                        </div>
-                    </div>
-
-                    <hr class="border-slate-200">
-
-                    <!-- BLOQUE RESPUESTA -->
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-black text-slate-500 uppercase">Respuesta Estratégica Recomendada</span>
-                            <button onclick="app.speak('a')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded text-xs font-bold transition flex items-center gap-1">
-                                <i class="fa-solid fa-volume-high"></i> Escuchar Respuesta
-                            </button>
-                        </div>
-                        <h3 id="aEnText" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">--</h3>
-                        
-                        <!-- PRONUNCIACIÓN CORRIDA EN ESPAÑOL RESPUESTA -->
-                        <div class="phonetic-card p-3 rounded-lg font-bold text-sm sm:text-base">
-                            <span class="text-[11px] font-black uppercase block text-sky-800">Pronunciación Guía (Lee en español corrido):</span>
-                            <p id="aPhoneticText" class="text-sky-950 font-semibold mt-0.5">--</p>
-                        </div>
-
-                        <div class="spanish-card p-2.5 rounded-lg text-xs sm:text-sm">
-                            <span class="text-[10px] font-bold uppercase block text-slate-500">Significado en Español:</span>
-                            <p id="aEsText" class="text-slate-800 font-medium">--</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- NAVEGACIÓN -->
-                <div class="flex items-center justify-between border-t border-slate-200 pt-3 mt-2">
-                    <button onclick="app.prev()" class="bg-slate-200 hover:bg-slate-300 text-slate-900 px-4 py-2 rounded-lg font-bold text-xs sm:text-sm transition flex items-center gap-1">
-                        <i class="fa-solid fa-arrow-left"></i> Anterior
-                    </button>
-                    <button onclick="app.next()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-5 py-2 rounded-lg font-black text-xs sm:text-sm transition flex items-center gap-1 shadow">
-                        Siguiente <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <!-- PANEL MICRÓFONO Y EVALUACIÓN (1 COL) -->
-            <div class="bg-white rounded-xl border border-slate-300 shadow-md p-4 space-y-4 flex flex-col justify-between">
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2 text-red-600 font-black text-sm border-b border-slate-200 pb-2">
-                        <i class="fa-solid fa-microphone-lines text-lg"></i>
-                        <span>Entrenador de Voz Directiva</span>
-                    </div>
-                    <p class="text-xs text-slate-600 font-medium leading-normal">
-                        Presiona el botón rojo y lee la respuesta estratégica en voz alta. Evaluaremos la firmeza y precisión de tu voz.
-                    </p>
-
-                    <button id="micBtn" onclick="app.toggleMic()" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-black text-xs sm:text-sm rounded-lg shadow transition flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-microphone text-base"></i>
-                        <span id="micBtnText">Presionar para Hablar</span>
-                    </button>
-
-                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase block">El sistema escuchó:</span>
-                        <p id="userSpokenText" class="text-xs font-bold text-sky-800 italic min-h-[32px]">Esperando que hables...</p>
-                    </div>
-
-                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center space-y-0.5">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase block">Precisión de Voz</span>
-                        <span id="scoreText" class="text-2xl font-black text-amber-500">--%</span>
-                    </div>
-                </div>
-
-                <div class="text-center text-[10px] font-bold text-slate-400 pt-2 border-t border-slate-100">
-                    MAY ROGA LLC © 2026 • Executive MBA & RN Level
-                </div>
-            </div>
-
-        </div>
-
-    </main>
-
-    <script>
-// BASE DE DATOS DE 180 PREGUNTAS Y RESPUESTAS ÚNICAS, MÁS CORTAS Y FÁCILES DE ENTENDER
-const FULL_180_DATABASE = {
-    hospitales: [
-        {
-            qEn: "How do you control costs and protect patient care?",
-            qPhonetic: "Jau du yu kontrol kosts and protekt peishent ker?",
-            qEs: "¿Cómo controlas los costos y proteges la atención al paciente?",
-            aEn: "I manage staffing, reduce waste, and follow proven care practices.",
-            aPhonetic: "Ai manadsh estafing, ridius ueist, and folou pruven ker praktisis.",
-            aEs: "Gestiono el personal, reduzco desperdicios y sigo prácticas de atención comprobadas."
-        },
-        {
-            qEn: "How do you ensure hospital compliance with Florida rules?",
-            qPhonetic: "Jau du yu enshur hospital komplaians uid Florida ruls?",
-            qEs: "¿Cómo garantizas que el hospital cumpla las normas de Florida?",
-            aEn: "I conduct regular audits, protect patient information, and review risks.",
-            aPhonetic: "Ai kondakt regular odits, protekt peishent informeishon, and riviu risks.",
-            aEs: "Realizo auditorías periódicas, protejo la información y reviso los riesgos."
-        },
-        {
-            qEn: "How do you lead teams through major hospital changes?",
-            qPhonetic: "Jau du yu lid tims thru meiyor hospital cheindshis?",
-            qEs: "¿Cómo lideras equipos durante grandes cambios hospitalarios?",
-            aEn: "I explain changes, provide training, and communicate with staff.",
-            aPhonetic: "Ai eksplein cheindshis, provaid treining, and komiunikeit uid estaf.",
-            aEs: "Explico los cambios, ofrezco capacitación y mantengo comunicación con el personal."
-        },
-        {
-            qEn: "How do you prevent medical errors?",
-            qPhonetic: "Jau du yu privent medikal erors?",
-            qEs: "¿Cómo previenes los errores médicos?",
-            aEn: "I encourage incident reporting, review causes, and improve safety procedures.",
-            aPhonetic: "Ai enkoridsh insident riporting, riviu kozis, and impruv seifti prosidiurs.",
-            aEs: "Fomento los reportes de incidentes, reviso las causas y mejoro los procedimientos de seguridad."
-        },
-        {
-            qEn: "How do you control nursing costs during staff shortages?",
-            qPhonetic: "Jau du yu kontrol nersing kosts diuring estaf shortadshis?",
-            qEs: "¿Cómo controlas los costos de enfermería cuando falta personal?",
-            aEn: "I improve retention, adjust schedules, and use internal staffing teams.",
-            aPhonetic: "Ai impruv ritenshon, adshast eskedshuls, and ius internal estafing tims.",
-            aEs: "Mejoro la retención, ajusto los horarios y utilizo equipos internos de apoyo."
-        },
-        {
-            qEn: "What do you do after a serious patient safety event?",
-            qPhonetic: "Uat du yu du after a sirias peishent seifti event?",
-            qEs: "¿Qué haces después de un incidente grave de seguridad del paciente?",
-            aEn: "I protect patients, notify leaders, investigate the cause, and report as required.",
-            aPhonetic: "Ai protekt peishents, notifai liders, investigeit da koz, and riport as rikuaird.",
-            aEs: "Protejo a los pacientes, aviso a los líderes, investigo la causa e informo según los requisitos."
-        },
-        {
-            qEn: "How do you prepare a hospital for accreditation inspections?",
-            qPhonetic: "Jau du yu pripér a hospital for akrediteishon inspekshons?",
-            qEs: "¿Cómo preparas un hospital para inspecciones de acreditación?",
-            aEn: "I review safety standards, conduct practice audits, and correct gaps quickly.",
-            aPhonetic: "Ai riviu seifti estandards, kondakt praktis odits, and korekt gaps kuikli.",
-            aEs: "Reviso las normas de seguridad, realizo auditorías de práctica y corrijo las deficiencias rápidamente."
-        },
-        {
-            qEn: "How do you evaluate new hospital technology?",
-            qPhonetic: "Jau du yu evaliueit niu hospital teknolodshi?",
-            qEs: "¿Cómo evalúas nuevas tecnologías hospitalarias?",
-            aEn: "I assess costs, patient benefits, workflow, and staff training needs.",
-            aPhonetic: "Ai ases kosts, peishent benefits, uerkflou, and estaf treining nids.",
-            aEs: "Evalúo costos, beneficios para pacientes, flujos de trabajo y necesidades de capacitación."
-        },
-        {
-            qEn: "How do you resolve conflicts between doctors and nurses?",
-            qPhonetic: "Jau du yu risolv konflikts bituin doktors and nersis?",
-            qEs: "¿Cómo resuelves conflictos entre médicos y enfermeros?",
-            aEn: "I listen to both sides, clarify responsibilities, and agree on safe solutions.",
-            aPhonetic: "Ai lisen tu bouth saids, klerifai risponsibilitis, and agri on seif solusiions.",
-            aEs: "Escucho a ambas partes, aclaro responsabilidades y busco soluciones seguras."
-        },
-        {
-            qEn: "How do you prevent medication errors and drug theft?",
-            qPhonetic: "Jau du yu privent medikeishon erors and drog theft?",
-            qEs: "¿Cómo previenes errores de medicación y robo de medicamentos?",
-            aEn: "I review medication records, enforce access controls, and investigate discrepancies.",
-            aPhonetic: "Ai riviu medikeishon rekords, enfors akses kontrols, and investigeit diskrepansis.",
-            aEs: "Reviso los registros de medicamentos, controlo los accesos e investigo discrepancias."
-        },
-        {
-            qEn: "How do you reduce hospital-acquired infections?",
-            qPhonetic: "Jau du yu ridius hospital akuaird infekshons?",
-            qEs: "¿Cómo reduces las infecciones adquiridas en el hospital?",
-            aEn: "I enforce hand hygiene, follow infection prevention guidelines, and monitor results.",
-            aPhonetic: "Ai enfors jand jaidshin, folou infekshon privenshon gaidlains, and monitor risalts.",
-            aEs: "Exijo higiene de manos, sigo las pautas de prevención y monitoreo los resultados."
-        },
-        {
-            qEn: "How do you manage overcrowding in the emergency department?",
-            qPhonetic: "Jau du yu manadsh overkrauding in di emerdshensi dipartment?",
-            qEs: "¿Cómo manejas la saturación del departamento de emergencias?",
-            aEn: "I coordinate patient flow, speed up safe discharges, and monitor bed availability.",
-            aPhonetic: "Ai koordineit peishent flou, spid ap seif dischardshis, and monitor bed aveilabiliti.",
-            aEs: "Coordino el flujo de pacientes, agilizo las altas seguras y reviso la disponibilidad de camas."
-        },
-        {
-            qEn: "How do you improve patient satisfaction?",
-            qPhonetic: "Jau du yu impruv peishent satisfakshon?",
-            qEs: "¿Cómo mejoras la satisfacción del paciente?",
-            aEn: "I train staff to listen carefully, communicate clearly, and respond promptly.",
-            aPhonetic: "Ai trein estaf tu lisen kerfuli, komiunikeit klirli, and rispond promptli.",
-            aEs: "Capacito al personal para escuchar, comunicarse claramente y responder con rapidez."
-        },
-        {
-            qEn: "How do you prepare a Florida hospital for a hurricane?",
-            qPhonetic: "Jau du yu pripér a Florida hospital for a jurrikein?",
-            qEs: "¿Cómo preparas un hospital de Florida para un huracán?",
-            aEn: "I check supplies, backup power, emergency plans, and staffing coverage.",
-            aPhonetic: "Ai chek saplais, bakap pauer, emerdshensi plans, and estafing koveridsh.",
-            aEs: "Reviso los suministros, la energía de respaldo, los planes de emergencia y la cobertura de personal."
-        },
-        {
-            qEn: "How do you improve operating room efficiency?",
-            qPhonetic: "Jau du yu impruv opereiting rum efishensi?",
-            qEs: "¿Cómo mejoras la eficiencia de los quirófanos?",
-            aEn: "I improve scheduling, prepare equipment early, and reduce delays between surgeries.",
-            aPhonetic: "Ai impruv eskedshuling, pripér ikuipment erli, and ridius dileis bituin serdshiris.",
-            aEs: "Mejoro la programación, preparo los equipos con anticipación y reduzco las demoras entre cirugías."
-        },
-        {
-            qEn: "How do you manage risks from off-label medications?",
-            qPhonetic: "Jau du yu manadsh risks from of leibel medikeishons?",
-            qEs: "¿Cómo gestionas los riesgos de medicamentos usados fuera de su indicación aprobada?",
-            aEn: "I involve pharmacy, verify clinical justification, and ensure proper consent and monitoring.",
-            aPhonetic: "Ai involv farmasi, verifai klinikal dshastifikeishon, and enshur proper konsent and monitoring.",
-            aEs: "Involucro a farmacia, verifico la justificación clínica y aseguro consentimiento y seguimiento adecuados."
-        },
-        {
-            qEn: "How do you reduce nursing staff burnout?",
-            qPhonetic: "Jau du yu ridius nersing estaf bernaut?",
-            qEs: "¿Cómo reduces el agotamiento del personal de enfermería?",
-            aEn: "I promote fair schedules, team support, and access to employee assistance resources.",
-            aPhonetic: "Ai promout fer eskedshuls, tim esport, and akses tu emplo ii asistans risorsis.",
-            aEs: "Promuevo horarios justos, apoyo entre compañeros y acceso a recursos de asistencia."
-        },
-        {
-            qEn: "How do you ensure nurses follow Florida licensing rules?",
-            qPhonetic: "Jau du yu enshur nersis folou Florida laisensing ruls?",
-            qEs: "¿Cómo garantizas que los enfermeros cumplan las normas de licencia de Florida?",
-            aEn: "I verify credentials, review job duties, and assess staff competency regularly.",
-            aPhonetic: "Ai verifai kredenshals, riviu dshob diutis, and ases estaf kompetensi regularli.",
-            aEs: "Verifico credenciales, reviso funciones y evalúo regularmente las competencias del personal."
-        },
-        {
-            qEn: "How do you measure nursing productivity safely?",
-            qPhonetic: "Jau du yu mesher nersing produktiviti seifli?",
-            qEs: "¿Cómo mides la productividad de enfermería de forma segura?",
-            aEn: "I review workload, patient needs, staffing levels, and care quality.",
-            aPhonetic: "Ai riviu uerkload, peishent nids, estafing levels, and ker kualiti.",
-            aEs: "Reviso la carga de trabajo, las necesidades de los pacientes, el personal y la calidad de la atención."
-        },
-        {
-            qEn: "How do you bring research into daily nursing practice?",
-            qPhonetic: "Jau du yu bring riserch intu deili nersing praktis?",
-            qEs: "¿Cómo incorporas la investigación a la práctica diaria de enfermería?",
-            aEn: "I review reliable evidence, train staff, and measure the results of changes.",
-            aPhonetic: "Ai riviu rilaiabel evidens, trein estaf, and mesher da risalts ov cheindshis.",
-            aEs: "Reviso evidencia confiable, capacito al personal y mido los resultados de los cambios."
-        },
-        {
-            qEn: "How do you handle serious patient complaints?",
-            qPhonetic: "Jau du yu jandel sirias peishent kompleints?",
-            qEs: "¿Cómo manejas las quejas graves de los pacientes?",
-            aEn: "I listen carefully, review records, investigate fairly, and explain the next steps.",
-            aPhonetic: "Ai lisen kerfuli, riviu rekords, investigeit ferli, and eksplein da nekst steps.",
-            aEs: "Escucho atentamente, reviso los registros, investigo imparcialmente y explico los siguientes pasos."
-        },
-        {
-            qEn: "How do you improve outpatient clinic scheduling?",
-            qPhonetic: "Jau du yu impruv autpeishent klinik eskedshuling?",
-            qEs: "¿Cómo mejoras la programación de citas ambulatorias?",
-            aEn: "I reduce scheduling gaps, prepare records early, and balance room availability.",
-            aPhonetic: "Ai ridius eskedshuling gaps, pripér rekords erli, and balans rum aveilabiliti.",
-            aEs: "Reduzco espacios vacíos en la agenda, preparo los registros y distribuyo las salas."
-        },
-        {
-            qEn: "How do you prepare a trauma center for inspections?",
-            qPhonetic: "Jau du yu pripér a trauma center for inspekshons?",
-            qEs: "¿Cómo preparas un centro de trauma para inspecciones?",
-            aEn: "I check required records, equipment readiness, staff training, and emergency procedures.",
-            aPhonetic: "Ai chek rikuaird rekords, ikuipment redines, estaf treining, and emerdshensi prosidiurs.",
-            aEs: "Reviso los registros requeridos, los equipos, la capacitación y los procedimientos de emergencia."
-        },
-        {
-            qEn: "How do you ensure surgical instruments are properly sterilized?",
-            qPhonetic: "Jau du yu enshur serdshikal instruments ar properli sterilaisd?",
-            qEs: "¿Cómo garantizas la esterilización correcta de los instrumentos quirúrgicos?",
-            aEn: "I monitor sterilization records, follow approved procedures, and track instruments.",
-            aPhonetic: "Ai monitor steriliseishon rekords, folou apruvd prosidiurs, and trak instruments.",
-            aEs: "Monitoreo los registros de esterilización, sigo los procedimientos aprobados y rastreo los instrumentos."
-        },
-        {
-            qEn: "How do you coordinate palliative care?",
-            qPhonetic: "Jau du yu koordineit paliativ ker?",
-            qEs: "¿Cómo coordinas los cuidados paliativos?",
-            aEn: "I coordinate care teams, manage symptoms, and support patients and families.",
-            aPhonetic: "Ai koordineit ker tims, manadsh simptoms, and esport peishents and familis.",
-            aEs: "Coordino los equipos, ayudo a controlar los síntomas y apoyo a pacientes y familiares."
-        },
-        {
-            qEn: "How do you protect patients in clinical research?",
-            qPhonetic: "Jau du yu protekt peishents in klinikal riserch?",
-            qEs: "¿Cómo proteges a los pacientes en investigaciones clínicas?",
-            aEn: "I verify ethical approval, informed consent, and participant safety requirements.",
-            aPhonetic: "Ai verifai etikal apruval, informd konsent, and partisipient seifti rikuairments.",
-            aEs: "Verifico la aprobación ética, el consentimiento informado y los requisitos de seguridad."
-        },
-        {
-            qEn: "How do you communicate medication changes to clinical staff?",
-            qPhonetic: "Jau du yu komiunikeit medikeishon cheindshis tu klinikal estaf?",
-            qEs: "¿Cómo comunicas cambios de medicamentos al personal clínico?",
-            aEn: "I coordinate with pharmacy, share clear instructions, and verify staff understanding.",
-            aPhonetic: "Ai koordineit uid farmasi, sher klir instrukshons, and verifai estaf anderstanding.",
-            aEs: "Coordino con farmacia, comparto instrucciones claras y verifico que el personal las comprenda."
-        },
-        {
-            qEn: "How do you prevent patient falls?",
-            qPhonetic: "Jau du yu privent peishent fols?",
-            qEs: "¿Cómo previenes las caídas de pacientes?",
-            aEn: "I assess fall risks, improve room safety, and follow prevention plans.",
-            aPhonetic: "Ai ases fol risks, impruv rum seifti, and folou privenshon plans.",
-            aEs: "Evalúo riesgos de caídas, mejoro la seguridad de las habitaciones y sigo los planes preventivos."
-        },
-        {
-            qEn: "How do you manage remote patient monitoring?",
-            qPhonetic: "Jau du yu manadsh rimout peishent monitoring?",
-            qEs: "¿Cómo gestionas el monitoreo remoto de pacientes?",
-            aEn: "I protect patient data, train staff, and establish clear escalation procedures.",
-            aPhonetic: "Ai protekt peishent deita, trein estaf, and establish klir eskaleishon prosidiurs.",
-            aEs: "Protejo los datos, capacito al personal y establezco procedimientos claros para situaciones urgentes."
-        },
-        {
-            qEn: "How do you use your MBA and nursing experience to improve results?",
-            qPhonetic: "Jau du yu ius yur em bi ei and nersing ekspiriens tu impruv risalts?",
-            qEs: "¿Cómo utilizas tu MBA y experiencia en enfermería para mejorar los resultados?",
-            aEn: "I combine financial planning with clinical knowledge to improve care and efficiency.",
-            aPhonetic: "Ai kombain finanshal planing uid klinikal nolidsh tu impruv ker and efishensi.",
-            aEs: "Combino la planificación financiera con conocimientos clínicos para mejorar la atención y la eficiencia."
-        }
-    ],
-    gobierno: [
-        {
-            qEn: "How do you ensure fair and legal public purchasing?",
-            qPhonetic: "Jau du yu enshur fer and ligal publik perchesing?",
-            qEs: "¿Cómo garantizas compras públicas justas y legales?",
-            aEn: "I follow bidding rules, review vendors, and document each decision.",
-            aPhonetic: "Ai folou biding ruls, riviu vendors, and dokiument ich disishon.",
-            aEs: "Sigo las reglas de licitación, reviso proveedores y documento cada decisión."
-        },
-        {
-            qEn: "How do you respond to public records requests?",
-            qPhonetic: "Jau du yu rispond tu publik rekords rikuests?",
-            qEs: "¿Cómo respondes a solicitudes de registros públicos?",
-            aEn: "I follow Florida law, protect confidential information, and meet deadlines.",
-            aPhonetic: "Ai folou Florida lo, protekt konfidenshal informeishon, and mit dedlains.",
-            aEs: "Sigo la ley de Florida, protejo la información confidencial y cumplo los plazos."
-        },
-        {
-            qEn: "How do you coordinate agencies during emergencies?",
-            qPhonetic: "Jau du yu koordineit eidentsis diuring emerdshensis?",
-            qEs: "¿Cómo coordinas agencias durante emergencias?",
-            aEn: "I assign clear roles, coordinate resources, and share timely updates.",
-            aPhonetic: "Ai asain klir roulz, koordineit risorsis, and sher taimli apdeits.",
-            aEs: "Asigno funciones claras, coordino recursos y comparto actualizaciones oportunas."
-        },
-        {
-            qEn: "How do you prevent waste in government budgets?",
-            qPhonetic: "Jau du yu privent ueist in goverment badshits?",
-            qEs: "¿Cómo previenes el desperdicio en los presupuestos gubernamentales?",
-            aEn: "I review spending, verify approvals, and track expenses transparently.",
-            aPhonetic: "Ai riviu spending, verifai apruvuls, and trak ekspensis transparentli.",
-            aEs: "Reviso los gastos, verifico las autorizaciones y registro los desembolsos de forma transparente."
-        },
-        {
-            qEn: "How do you prevent conflicts of interest in public service?",
-            qPhonetic: "Jau du yu privent konflikts ov interest in publik servis?",
-            qEs: "¿Cómo previenes conflictos de intereses en el servicio público?",
-            aEn: "I require disclosures, follow ethics rules, and document decisions.",
-            aPhonetic: "Ai rikuair disklozhurs, folou etiks ruls, and dokiument disishons.",
-            aEs: "Exijo declaraciones, sigo las normas éticas y documento las decisiones."
-        },
-        {
-            qEn: "How do you manage government grants?",
-            qPhonetic: "Jau du yu manadsh goverment grants?",
-            qEs: "¿Cómo gestionas las subvenciones gubernamentales?",
-            aEn: "I track spending, monitor deadlines, and submit accurate reports.",
-            aPhonetic: "Ai trak spending, monitor dedlains, and submit akiurat riports.",
-            aEs: "Controlo los gastos, superviso los plazos y presento informes precisos."
-        },
-        {
-            qEn: "How do you handle public meetings about controversial projects?",
-            qPhonetic: "Jau du yu jandel publik mitings abaut kontrovershal prodshekts?",
-            qEs: "¿Cómo manejas reuniones públicas sobre proyectos controversiales?",
-            aEn: "I present facts, listen to concerns, and explain available options.",
-            aPhonetic: "Ai present fakts, lisen tu konserns, and eksplein aveilabel opshons.",
-            aEs: "Presento hechos, escucho inquietudes y explico las opciones disponibles."
-        },
-        {
-            qEn: "How do you review zoning and land-use requests?",
-            qPhonetic: "Jau du yu riviu zouning and land ius rikuests?",
-            qEs: "¿Cómo revisas solicitudes de zonificación y uso del suelo?",
-            aEn: "I review applicable rules, consult departments, and ensure fair public notice.",
-            aPhonetic: "Ai riviu aplikabel ruls, konsalt dipartments, and enshur fer publik notis.",
-            aEs: "Reviso las normas aplicables, consulto departamentos y garantizo avisos públicos justos."
-        },
-        {
-            qEn: "How do you resolve government contract disputes?",
-            qPhonetic: "Jau du yu risolv goverment kontrakt dispiuts?",
-            qEs: "¿Cómo resuelves disputas de contratos gubernamentales?",
-            aEn: "I review the contract, consult legal counsel, and seek a fair resolution.",
-            aPhonetic: "Ai riviu da kontrakt, konsalt ligal kaunsel, and sik a fer resolushon.",
-            aEs: "Reviso el contrato, consulto con asesores legales y busco una solución justa."
-        },
-        {
-            qEn: "How do you modernize government computer systems safely?",
-            qPhonetic: "Jau du yu modernais goverment kompiuter sistems seifli?",
-            qEs: "¿Cómo modernizas los sistemas informáticos gubernamentales de forma segura?",
-            aEn: "I plan upgrades, protect sensitive data, and train employees.",
-            aPhonetic: "Ai plan apgreids, protekt sensitiv deita, and trein emplo iis.",
-            aEs: "Planifico actualizaciones, protejo los datos sensibles y capacito a los empleados."
-        },
-        {
-            qEn: "How do you coordinate city, county, and state agencies?",
-            qPhonetic: "Jau du yu koordineit siti, kaunti, and steit eidentsis?",
-            qEs: "¿Cómo coordinas agencias municipales, del condado y estatales?",
-            aEn: "I establish shared goals, hold regular meetings, and clarify responsibilities.",
-            aPhonetic: "Ai establish sherd goulz, jould regular mitings, and klerifai risponsibilitis.",
-            aEs: "Establezco objetivos comunes, organizo reuniones y aclaro responsabilidades."
-        },
-        {
-            qEn: "How do you enforce public health emergency policies?",
-            qPhonetic: "Jau du yu enfors publik jelth emerdshensi polis is?",
-            qEs: "¿Cómo aplicas las políticas de emergencia de salud pública?",
-            aEn: "I follow official guidance, coordinate agencies, and communicate clear instructions.",
-            aPhonetic: "Ai folou ofishal gaidans, koordineit eidentsis, and komiunikeit klir instrukshons.",
-            aEs: "Sigo las directrices oficiales, coordino agencias y comunico instrucciones claras."
-        },
-        {
-            qEn: "How do you handle labor negotiations in government?",
-            qPhonetic: "Jau du yu jandel leibor negoshieishons in goverment?",
-            qEs: "¿Cómo manejas las negociaciones laborales en el gobierno?",
-            aEn: "I listen to both sides, follow labor rules, and seek practical agreements.",
-            aPhonetic: "Ai lisen tu bouth saids, folou leibor ruls, and sik praktikal agriments.",
-            aEs: "Escucho a ambas partes, sigo las normas laborales y busco acuerdos prácticos."
-        },
-        {
-            qEn: "How do you protect coastal areas during development?",
-            qPhonetic: "Jau du yu protekt koustal erias diuring divelopment?",
-            qEs: "¿Cómo proteges las zonas costeras durante el desarrollo?",
-            aEn: "I review environmental rules, assess impacts, and monitor compliance.",
-            aPhonetic: "Ai riviu envaironmental ruls, ases impakts, and monitor komplaians.",
-            aEs: "Reviso las normas ambientales, evalúo los impactos y superviso el cumplimiento."
-        },
-        {
-            qEn: "How do you evaluate business tax incentives?",
-            qPhonetic: "Jau du yu evaliueit bisnes taks insentivs?",
-            qEs: "¿Cómo evalúas los incentivos fiscales para empresas?",
-            aEn: "I compare expected costs, job creation, and measurable public benefits.",
-            aPhonetic: "Ai komper ekspektid kosts, dshob krieishon, and mesherabel publik benefits.",
-            aEs: "Comparo los costos previstos, la creación de empleos y los beneficios públicos medibles."
-        },
-        {
-            qEn: "How do you manage public infrastructure projects?",
-            qPhonetic: "Jau du yu manadsh publik infrastroktcher prodshekts?",
-            qEs: "¿Cómo gestionas proyectos de infraestructura pública?",
-            aEn: "I track milestones, review costs, and monitor contractor performance.",
-            aPhonetic: "Ai trak mailstouns, riviu kosts, and monitor kontraktor performans.",
-            aEs: "Sigo los hitos, reviso los costos y superviso el desempeño de los contratistas."
-        },
-        {
-            qEn: "How do you ensure fair government property auctions?",
-            qPhonetic: "Jau du yu enshur fer goverment properti okshons?",
-            qEs: "¿Cómo garantizas subastas justas de propiedades gubernamentales?",
-            aEn: "I use transparent procedures, verify valuations, and maintain complete records.",
-            aPhonetic: "Ai ius transparent prosidiurs, verifai valiu eishons, and meintein komplit rekords.",
-            aEs: "Utilizo procedimientos transparentes, verifico las valoraciones y mantengo registros completos."
-        },
-        {
-            qEn: "How do you handle whistleblower complaints?",
-            qPhonetic: "Jau du yu jandel uiselblouer kompleints?",
-            qEs: "¿Cómo manejas denuncias de informantes?",
-            aEn: "I protect confidentiality, refer allegations appropriately, and support impartial investigations.",
-            aPhonetic: "Ai protekt konfidenshaliti, rifer aligeishons apropiatli, and esport imparshal investigeishons.",
-            aEs: "Protejo la confidencialidad, remito las denuncias adecuadamente y apoyo investigaciones imparciales."
-        },
-        {
-            qEn: "How do you communicate during severe storms?",
-            qPhonetic: "Jau du yu komiunikeit diuring sirias estorms?",
-            qEs: "¿Cómo te comunicas durante tormentas severas?",
-            aEn: "I share verified alerts, coordinate emergency teams, and provide regular updates.",
-            aPhonetic: "Ai sher verifaid alerts, koordineit emerdshensi tims, and provaid regular apdeits.",
-            aEs: "Comparto alertas verificadas, coordino equipos de emergencia y doy actualizaciones periódicas."
-        },
-        {
-            qEn: "How do you support affordable housing programs?",
-            qPhonetic: "Jau du yu esport afordabel jausing programs?",
-            qEs: "¿Cómo apoyas los programas de vivienda asequible?",
-            aEn: "I review funding, monitor eligibility rules, and track program results.",
-            aPhonetic: "Ai riviu funding, monitor elidshibiliti ruls, and trak program risalts.",
-            aEs: "Reviso la financiación, superviso los requisitos y sigo los resultados del programa."
-        },
-        {
-            qEn: "How do you manage a municipal vehicle fleet?",
-            qPhonetic: "Jau du yu manadsh a miunisipal viikel flit?",
-            qEs: "¿Cómo gestionas una flota municipal de vehículos?",
-            aEn: "I monitor maintenance costs, vehicle use, and replacement schedules.",
-            aPhonetic: "Ai monitor meintenans kosts, viikel ius, and ripleisment eskedshuls.",
-            aEs: "Monitoreo los costos de mantenimiento, el uso de vehículos y los planes de reemplazo."
-        },
-        {
-            qEn: "How do you respond to a government audit?",
-            qPhonetic: "Jau du yu rispond tu a goverment odit?",
-            qEs: "¿Cómo respondes a una auditoría gubernamental?",
-            aEn: "I provide accurate records, cooperate with auditors, and correct identified issues.",
-            aPhonetic: "Ai provaid akiurat rekords, kouopereit uid oditors, and korekt aidentifaid ishius.",
-            aEs: "Proporciono registros precisos, colaboro con los auditores y corrijo los problemas identificados."
-        },
-        {
-            qEn: "How do you handle public criticism of policy changes?",
-            qPhonetic: "Jau du yu jandel publik kritisism ov polisi cheindshis?",
-            qEs: "¿Cómo manejas las críticas públicas a los cambios de políticas?",
-            aEn: "I explain the reasons, listen to feedback, and communicate facts clearly.",
-            aPhonetic: "Ai eksplein da risons, lisen tu fidbak, and komiunikeit fakts klirli.",
-            aEs: "Explico los motivos, escucho comentarios y comunico los hechos con claridad."
-        },
-        {
-            qEn: "How do you enforce municipal building codes?",
-            qPhonetic: "Jau du yu enfors miunisipal bilding kouds?",
-            qEs: "¿Cómo haces cumplir los códigos de construcción municipales?",
-            aEn: "I conduct inspections, document violations, and apply rules fairly.",
-            aPhonetic: "Ai kondakt inspekshons, dokiument vaioleishons, and aplai ruls ferli.",
-            aEs: "Realizo inspecciones, documento infracciones y aplico las normas de forma justa."
-        },
-        {
-            qEn: "How do you protect municipal water quality?",
-            qPhonetic: "Jau du yu protekt miunisipal uater kualiti?",
-            qEs: "¿Cómo proteges la calidad del agua municipal?",
-            aEn: "I monitor test results, follow treatment standards, and address problems promptly.",
-            aPhonetic: "Ai monitor test risalts, folou tritment estandards, and adres problems promptli.",
-            aEs: "Monitoreo los resultados de las pruebas, sigo las normas de tratamiento y atiendo los problemas rápidamente."
-        },
-        {
-            qEn: "How do you improve public parks and recreation services?",
-            qPhonetic: "Jau du yu impruv publik parks and rekreishon servisis?",
-            qEs: "¿Cómo mejoras los parques públicos y los servicios recreativos?",
-            aEn: "I assess community needs, plan improvements, and monitor project budgets.",
-            aPhonetic: "Ai ases komiuniti nids, plan impruvments, and monitor prodshekt badshits.",
-            aEs: "Evalúo las necesidades comunitarias, planifico mejoras y superviso los presupuestos."
-        },
-        {
-            qEn: "How do you protect historic public buildings?",
-            qPhonetic: "Jau du yu protekt jistorik publik bildings?",
-            qEs: "¿Cómo proteges los edificios históricos públicos?",
-            aEn: "I follow preservation rules, review proposed changes, and coordinate expert advice.",
-            aPhonetic: "Ai folou preserveishon ruls, riviu propouzd cheindshis, and koordineit ekspert advais.",
-            aEs: "Sigo las normas de preservación, reviso los cambios propuestos y coordino asesoramiento especializado."
-        },
-        {
-            qEn: "How do you improve public transportation safety?",
-            qPhonetic: "Jau du yu impruv publik transporteishon seifti?",
-            qEs: "¿Cómo mejoras la seguridad del transporte público?",
-            aEn: "I monitor safety reports, maintain vehicles, and review operating procedures.",
-            aPhonetic: "Ai monitor seifti riports, meintein viikels, and riviu opereiting prosidiurs.",
-            aEs: "Monitoreo los informes de seguridad, mantengo los vehículos y reviso los procedimientos."
-        },
-        {
-            qEn: "How do you improve government services for residents?",
-            qPhonetic: "Jau du yu impruv goverment servisis for residents?",
-            qEs: "¿Cómo mejoras los servicios gubernamentales para los residentes?",
-            aEn: "I simplify procedures, improve online access, and measure public satisfaction.",
-            aPhonetic: "Ai simplifai prosidiurs, impruv onlain akses, and mesher publik satisfakshon.",
-            aEs: "Simplifico los trámites, mejoro el acceso en línea y mido la satisfacción pública."
-        },
-        {
-            qEn: "How do you manage public-private partnerships?",
-            qPhonetic: "Jau du yu manadsh publik praivet partnerships?",
-            qEs: "¿Cómo gestionas las asociaciones público-privadas?",
-            aEn: "I define responsibilities, assess risks, and maintain transparent agreements.",
-            aPhonetic: "Ai difain risponsibilitis, ases risks, and meintein transparent agriments.",
-            aEs: "Defino responsabilidades, evalúo riesgos y mantengo acuerdos transparentes."
-        }
-    ],
-    logistics: [
-        {
-            qEn: "How do you manage supply chain disruptions?",
-            qPhonetic: "Jau du yu manadsh suplai chein disrapshons?",
-            qEs: "¿Cómo gestionas las interrupciones de la cadena de suministro?",
-            aEn: "I use backup suppliers, adjust routes, and renegotiate delivery plans.",
-            aPhonetic: "Ai ius bakap suplaiers, adshast ruts, and rin egoshieit delivery plans.",
-            aEs: "Utilizo proveedores alternativos, ajusto rutas y renegocio los planes de entrega."
-        },
-        {
-            qEn: "How do you improve warehouse efficiency?",
-            qPhonetic: "Jau du yu impruv uerjaus efishensi?",
-            qEs: "¿Cómo mejoras la eficiencia del almacén?",
-            aEn: "I improve inventory systems, simplify workflows, and track performance.",
-            aPhonetic: "Ai impruv inventori sistems, simplifai uerkflous, and trak performans.",
-            aEs: "Mejoro los sistemas de inventario, simplifico los procesos y mido el rendimiento."
-        },
-        {
-            qEn: "How do you prepare for customs compliance audits?",
-            qPhonetic: "Jau du yu pripér for kostoms komplaians odits?",
-            qEs: "¿Cómo te preparas para auditorías de cumplimiento aduanero?",
-            aEn: "I verify shipping documents, review declarations, and maintain accurate records.",
-            aPhonetic: "Ai verifai shiping dokiuments, riviu deklareishons, and meintein akiurat rekords.",
-            aEs: "Verifico documentos de envío, reviso declaraciones y mantengo registros precisos."
-        },
-        {
-            qEn: "How do you protect temperature-sensitive shipments?",
-            qPhonetic: "Jau du yu protekt tempracher sensitiv shipments?",
-            qEs: "¿Cómo proteges los envíos sensibles a la temperatura?",
-            aEn: "I monitor temperatures, maintain refrigeration, and report any deviations.",
-            aPhonetic: "Ai monitor temprachers, meintein refridshereishon, and riport eni divieishons.",
-            aEs: "Monitoreo las temperaturas, mantengo la refrigeración e informo de cualquier desviación."
-        },
-        {
-            qEn: "How do you prepare logistics operations for hurricanes?",
-            qPhonetic: "Jau du yu pripér lodshistiks opereishons for jurrikeins?",
-            qEs: "¿Cómo preparas las operaciones logísticas para huracanes?",
-            aEn: "I secure inventory, plan alternate routes, and activate backup suppliers.",
-            aPhonetic: "Ai sikiur inventori, plan alternet ruts, and aktiveit bakap suplaiers.",
-            aEs: "Protejo el inventario, planifico rutas alternativas y activo proveedores de respaldo."
-        },
-        {
-            qEn: "How do you improve last-mile delivery?",
-            qPhonetic: "Jau du yu impruv last mail delivery?",
-            qEs: "¿Cómo mejoras las entregas de última milla?",
-            aEn: "I optimize delivery routes, track progress, and balance driver workloads.",
-            aPhonetic: "Ai optimais delivery ruts, trak progress, and balans draiver uerkloads.",
-            aEs: "Optimizo las rutas, sigo el progreso y distribuyo la carga de trabajo de los conductores."
-        },
-        {
-            qEn: "How do you prevent inventory losses and cargo theft?",
-            qPhonetic: "Jau du yu privent inventori losis and kargo theft?",
-            qEs: "¿Cómo previenes pérdidas de inventario y robos de carga?",
-            aEn: "I control access, track shipments, and investigate inventory differences.",
-            aPhonetic: "Ai kontrol akses, trak shipments, and investigeit inventori difrensis.",
-            aEs: "Controlo los accesos, rastreo los envíos e investigo las diferencias de inventario."
-        },
-        {
-            qEn: "How do you negotiate logistics service contracts?",
-            qPhonetic: "Jau du yu negoshieit lodshistiks servis kontrakts?",
-            qEs: "¿Cómo negocias contratos de servicios logísticos?",
-            aEn: "I compare prices, define service standards, and link results to performance.",
-            aPhonetic: "Ai komper praisis, difain servis estandards, and link risalts tu performans.",
-            aEs: "Comparo precios, defino estándares de servicio y relaciono los resultados con el desempeño."
-        },
-        {
-            qEn: "How do you store hazardous materials safely?",
-            qPhonetic: "Jau du yu stor jasardus matirials seifli?",
-            qEs: "¿Cómo almacenas materiales peligrosos de forma segura?",
-            aEn: "I separate incompatible materials, maintain safety documents, and train staff.",
-            aPhonetic: "Ai separeit inkompatibel matirials, meintein seifti dokiuments, and trein estaf.",
-            aEs: "Separo materiales incompatibles, mantengo documentos de seguridad y capacito al personal."
-        },
-        {
-            qEn: "How do you introduce automation into a warehouse?",
-            qPhonetic: "Jau du yu introdus automeishon intu a uerjaus?",
-            qEs: "¿Cómo introduces la automatización en un almacén?",
-            aEn: "I assess needs, test equipment, and train employees on new systems.",
-            aPhonetic: "Ai ases nids, test ikuipment, and trein emplo iis on niu sistems.",
-            aEs: "Evalúo necesidades, pruebo los equipos y capacito a los empleados en los nuevos sistemas."
-        },
-        {
-            qEn: "How do you reduce warehouse delays?",
-            qPhonetic: "Jau du yu ridius uerjaus dileis?",
-            qEs: "¿Cómo reduces las demoras en el almacén?",
-            aEn: "I coordinate arrivals, organize loading areas, and monitor turnaround times.",
-            aPhonetic: "Ai koordineit araivals, organais louding erias, and monitor turnaraund taims.",
-            aEs: "Coordino las llegadas, organizo las zonas de carga y monitoreo los tiempos de operación."
-        },
-        {
-            qEn: "How do you control freight costs?",
-            qPhonetic: "Jau du yu kontrol freit kosts?",
-            qEs: "¿Cómo controlas los costos de transporte de carga?",
-            aEn: "I compare carrier rates, consolidate shipments, and negotiate service contracts.",
-            aPhonetic: "Ai komper karrier reits, konsolideit shipments, and negoshieit servis kontrakts.",
-            aEs: "Comparo tarifas, consolido envíos y negocio contratos de servicio."
-        },
-        {
-            qEn: "How do you manage product returns efficiently?",
-            qPhonetic: "Jau du yu manadsh prodakt riterns efishentli?",
-            qEs: "¿Cómo gestionas eficientemente las devoluciones de productos?",
-            aEn: "I inspect returns quickly, update inventory, and recover reusable products.",
-            aPhonetic: "Ai inspekt riterns kuikli, apdeit inventori, and rikover riiusable prodakts.",
-            aEs: "Inspecciono las devoluciones rápidamente, actualizo el inventario y recupero productos reutilizables."
-        },
-        {
-            qEn: "How do you coordinate rail and port shipments?",
-            qPhonetic: "Jau du yu koordineit reil and port shipments?",
-            qEs: "¿Cómo coordinas los envíos ferroviarios y portuarios?",
-            aEn: "I align schedules, track containers, and prevent avoidable delay fees.",
-            aPhonetic: "Ai alain eskedshuls, trak konteiners, and privent avoidabel dilei fis.",
-            aEs: "Coordino los horarios, rastreo contenedores y evito cargos innecesarios por demoras."
-        },
-        {
-            qEn: "How do you improve warehouse safety?",
-            qPhonetic: "Jau du yu impruv uerjaus seifti?",
-            qEs: "¿Cómo mejoras la seguridad del almacén?",
-            aEn: "I inspect equipment, enforce protective gear rules, and train staff.",
-            aPhonetic: "Ai inspekt ikuipment, enfors protektiv guer ruls, and trein estaf.",
-            aEs: "Inspecciono equipos, exijo el uso de protección y capacito al personal."
-        },
-        {
-            qEn: "How do you select a warehouse location?",
-            qPhonetic: "Jau du yu selekt a uerjaus loukeishon?",
-            qEs: "¿Cómo eliges la ubicación de un almacén?",
-            aEn: "I compare transport access, labor availability, costs, and weather risks.",
-            aPhonetic: "Ai komper transport akses, leibor aveilabiliti, kosts, and ueder risks.",
-            aEs: "Comparo el acceso al transporte, la disponibilidad de trabajadores, los costos y los riesgos climáticos."
-        },
-        {
-            qEn: "How do you protect air cargo shipments?",
-            qPhonetic: "Jau du yu protekt er kargo shipments?",
-            qEs: "¿Cómo proteges los envíos de carga aérea?",
-            aEn: "I control facility access, verify cargo documents, and follow screening rules.",
-            aPhonetic: "Ai kontrol fasiliti akses, verifai kargo dokiuments, and folou skrining ruls.",
-            aEs: "Controlo el acceso a las instalaciones, verifico los documentos y sigo las normas de inspección."
-        },
-        {
-            qEn: "How do you reduce inventory holding costs?",
-            qPhonetic: "Jau du yu ridius inventori jolding kosts?",
-            qEs: "¿Cómo reduces los costos de mantener inventario?",
-            aEn: "I improve demand forecasts, set reorder points, and avoid excess stock.",
-            aPhonetic: "Ai impruv dimand forcasts, set riorder points, and avoid ekses stok.",
-            aEs: "Mejoro las previsiones de demanda, establezco puntos de reorden y evito el exceso de inventario."
-        },
-        {
-            qEn: "How do you manage customs duties and tariffs?",
-            qPhonetic: "Jau du yu manadsh kostoms diutis and tarifs?",
-            qEs: "¿Cómo gestionas los aranceles y derechos aduaneros?",
-            aEn: "I verify product classifications, review duty charges, and consult customs experts.",
-            aPhonetic: "Ai verifai prodakt klasifikeishons, riviu diuti chardshis, and konsalt kostoms eksperts.",
-            aEs: "Verifico las clasificaciones de productos, reviso los aranceles y consulto a expertos aduaneros."
-        },
-        {
-            qEn: "How do you reduce emissions from transport fleets?",
-            qPhonetic: "Jau du yu ridius emishons from transport flits?",
-            qEs: "¿Cómo reduces las emisiones de las flotas de transporte?",
-            aEn: "I optimize routes, reduce empty trips, and evaluate cleaner vehicles.",
-            aPhonetic: "Ai optimais ruts, ridius empti trips, and evaliueit kliner viikels.",
-            aEs: "Optimizo rutas, reduzco viajes vacíos y evalúo vehículos más limpios."
-        },
-        {
-            qEn: "What do you do when a supplier fails to deliver?",
-            qPhonetic: "Uat du yu du uen a suplai er feils tu deliver?",
-            qEs: "¿Qué haces cuando un proveedor no entrega?",
-            aEn: "I contact backup suppliers, assess the impact, and adjust delivery priorities.",
-            aPhonetic: "Ai kontakt bakap suplaiers, ases di impakt, and adshast delivery praioritis.",
-            aEs: "Contacto proveedores alternativos, evalúo el impacto y ajusto las prioridades de entrega."
-        },
-        {
-            qEn: "How do you handle seasonal staffing shortages?",
-            qPhonetic: "Jau du yu jandel sizonal estafing shortadshis?",
-            qEs: "¿Cómo manejas la falta de personal durante temporadas de alta demanda?",
-            aEn: "I forecast demand, arrange temporary staffing, and train workers efficiently.",
-            aPhonetic: "Ai forcast dimand, arreindsh temporeri estafing, and trein uerkers efishentli.",
-            aEs: "Preveo la demanda, contrato personal temporal y capacito a los trabajadores eficientemente."
-        },
-        {
-            qEn: "How do you protect connected logistics systems from cyberattacks?",
-            qPhonetic: "Jau du yu protekt konektid lodshistiks sistems from saib er ataks?",
-            qEs: "¿Cómo proteges los sistemas logísticos conectados de ciberataques?",
-            aEn: "I update devices, restrict access, and review cybersecurity risks.",
-            aPhonetic: "Ai apdeit divaisis, restrikt akses, and riviu saibersikiuriti risks.",
-            aEs: "Actualizo dispositivos, restrinjo accesos y reviso los riesgos de ciberseguridad."
-        },
-        {
-            qEn: "How do you keep perishable food shipments safe?",
-            qPhonetic: "Jau du yu kip perishabel fud shipments seif?",
-            qEs: "¿Cómo mantienes seguros los envíos de alimentos perecederos?",
-            aEn: "I monitor temperatures, maintain sanitation, and track product batches.",
-            aPhonetic: "Ai monitor temprachers, meintein saniteishon, and trak prodakt batches.",
-            aEs: "Monitoreo temperaturas, mantengo la higiene y rastreo los lotes de productos."
-        },
-        {
-            qEn: "How do you improve warehouse layout?",
-            qPhonetic: "Jau du yu impruv uerjaus leiaut?",
-            qEs: "¿Cómo mejoras la distribución de un almacén?",
-            aEn: "I place fast-moving items strategically and shorten picking routes.",
-            aPhonetic: "Ai pleis fast muving aitems strateidshikali and shorten piking ruts.",
-            aEs: "Ubico estratégicamente los productos de mayor rotación y acorto las rutas de recolección."
-        },
-        {
-            qEn: "How do you handle cargo insurance claims?",
-            qPhonetic: "Jau du yu jandel kargo inshurans kleims?",
-            qEs: "¿Cómo manejas reclamaciones de seguros de carga?",
-            aEn: "I collect shipping records, document losses, and coordinate with insurers.",
-            aPhonetic: "Ai kolekt shiping rekords, dokiument losis, and koordineit uid inshurers.",
-            aEs: "Reúno los registros de envío, documento las pérdidas y coordino con las aseguradoras."
-        },
-        {
-            qEn: "How do you reduce port storage and delay fees?",
-            qPhonetic: "Jau du yu ridius port storadsh and dilei fis?",
-            qEs: "¿Cómo reduces los cargos portuarios de almacenamiento y demora?",
-            aEn: "I track containers, schedule pickups early, and coordinate carriers closely.",
-            aPhonetic: "Ai trak konteiners, eskedshul pikaps erli, and koordineit karriers klousli.",
-            aEs: "Rastreo los contenedores, programo recogidas tempranas y coordino con los transportistas."
-        },
-        {
-            qEn: "How do you evaluate international suppliers?",
-            qPhonetic: "Jau du yu evaliueit internashonal suplaiers?",
-            qEs: "¿Cómo evalúas proveedores internacionales?",
-            aEn: "I review quality, costs, delivery performance, and ethical standards.",
-            aPhonetic: "Ai riviu kualiti, kosts, delivery performans, and etikal estandards.",
-            aEs: "Reviso la calidad, los costos, el desempeño de entregas y los estándares éticos."
-        },
-        {
-            qEn: "How do you manage hazardous waste shipments?",
-            qPhonetic: "Jau du yu manadsh jasardus ueist shipments?",
-            qEs: "¿Cómo gestionas los envíos de residuos peligrosos?",
-            aEn: "I verify required documents, use authorized carriers, and retain disposal records.",
-            aPhonetic: "Ai verifai rikuaird dokiuments, ius authorized karriers, and ritein dispousal rekords.",
-            aEs: "Verifico los documentos requeridos, utilizo transportistas autorizados y conservo los registros de eliminación."
-        },
-        {
-            qEn: "How do you improve logistics using Lean Six Sigma?",
-            qPhonetic: "Jau du yu impruv lodshistiks iusing lin sिक्स sigma?",
-            qEs: "¿Cómo mejoras la logística utilizando Lean Six Sigma?",
-            aEn: "I identify waste, analyze process problems, and measure improvements.",
-            aPhonetic: "Ai aidentifai ueist, analais proses problems, and mesher impruvments.",
-            aEs: "Identifico desperdicios, analizo problemas de procesos y mido las mejoras."
-        }
-    ],
-    airlines: [
-        {
-            qEn: "How do you improve airline ground operations?",
-            qPhonetic: "Jau du yu impruv erlain graund opereishons?",
-            qEs: "¿Cómo mejoras las operaciones terrestres de una aerolínea?",
-            aEn: "I coordinate ground teams, follow safety rules, and monitor departure times.",
-            aPhonetic: "Ai koordineit graund tims, folou seifti ruls, and monitor departcher taims.",
-            aEs: "Coordino los equipos terrestres, sigo las normas de seguridad y monitoreo las salidas."
-        },
-        {
-            qEn: "How do you ensure dangerous goods are loaded safely?",
-            qPhonetic: "Jau du yu enshur deindshers guds ar loudid seifli?",
-            qEs: "¿Cómo garantizas la carga segura de mercancías peligrosas?",
-            aEn: "I verify declarations, check packaging, and follow loading and separation rules.",
-            aPhonetic: "Ai verifai deklareishons, chek pakidshing, and folou louding and separeishon ruls.",
-            aEs: "Verifico las declaraciones, reviso el embalaje y sigo las normas de carga y separación."
-        },
-        {
-            qEn: "How do you manage airport ground operations during severe weather?",
-            qPhonetic: "Jau du yu manadsh erport graund opereishons diuring sirias ueder?",
-            qEs: "¿Cómo gestionas las operaciones terrestres durante el mal tiempo?",
-            aEn: "I follow shutdown procedures, protect workers, and coordinate aircraft movements.",
-            aPhonetic: "Ai folou shutdaun prosidiurs, protekt uerkers, and koordineit erkraft muvm ents.",
-            aEs: "Sigo los procedimientos de cierre, protejo a los trabajadores y coordino los movimientos de aeronaves."
-        },
-        {
-            qEn: "How do you reduce aircraft turnaround time?",
-            qPhonetic: "Jau du yu ridius erkraft turnaraund taim?",
-            qEs: "¿Cómo reduces el tiempo de rotación de las aeronaves?",
-            aEn: "I prepare equipment early, coordinate teams, and reduce avoidable delays.",
-            aPhonetic: "Ai pripér ikuipment erli, koordineit tims, and ridius avoidabel dileis.",
-            aEs: "Preparo los equipos, coordino los equipos de trabajo y reduzco demoras evitables."
-        },
-        {
-            qEn: "How do you handle unexpected flight disruptions?",
-            qPhonetic: "Jau du yu jandel anekspektid flait disrapshons?",
-            qEs: "¿Cómo manejas interrupciones inesperadas de vuelos?",
-            aEn: "I coordinate gates, update passengers, and work with flight crews.",
-            aPhonetic: "Ai koordineit geits, apdeit pasendshers, and uerk uid flait krius.",
-            aEs: "Coordino las puertas, informo a los pasajeros y trabajo con las tripulaciones."
-        },
-        {
-            qEn: "How do you maintain airport security compliance?",
-            qPhonetic: "Jau du yu meintein erport sikiuriti komplaians?",
-            qEs: "¿Cómo mantienes el cumplimiento de la seguridad aeroportuaria?",
-            aEn: "I verify staff credentials, inspect access points, and report security concerns.",
-            aPhonetic: "Ai verifai estaf kredenshals, inspekt akses points, and riport sikiuriti konserns.",
-            aEs: "Verifico las credenciales, inspecciono los accesos y reporto problemas de seguridad."
-        },
-        {
-            qEn: "How do you help passengers during flight cancellations?",
-            qPhonetic: "Jau du yu jelp pasendshers diuring flait kansel eishons?",
-            qEs: "¿Cómo ayudas a los pasajeros durante cancelaciones de vuelos?",
-            aEn: "I explain options, arrange rebooking, and provide timely updates.",
-            aPhonetic: "Ai eksplein opshons, arreindsh ribuking, and provaid taimli apdeits.",
-            aEs: "Explico las opciones, coordino nuevas reservas y proporciono actualizaciones oportunas."
-        },
-        {
-            qEn: "How do you maintain ground equipment safely?",
-            qPhonetic: "Jau du yu meintein graund ikuipment seifli?",
-            qEs: "¿Cómo mantienes seguros los equipos terrestres?",
-            aEn: "I schedule inspections, maintain equipment, and verify operator training.",
-            aPhonetic: "Ai eskedshul inspekshons, meintein ikuipment, and verifai opereitor treining.",
-            aEs: "Programo inspecciones, mantengo los equipos y verifico la capacitación de los operadores."
-        },
-        {
-            qEn: "How do you ensure aircraft weight and balance accuracy?",
-            qPhonetic: "Jau du yu enshur erkraft ueit and balans akiurasi?",
-            qEs: "¿Cómo garantizas la precisión del peso y balance de una aeronave?",
-            aEn: "I verify loading records, check cargo weights, and follow approved procedures.",
-            aPhonetic: "Ai verifai louding rekords, chek kargo ueits, and folou apruvd prosidiurs.",
-            aEs: "Verifico los registros de carga, reviso los pesos y sigo los procedimientos aprobados."
-        },
-        {
-            qEn: "What do you do during an airport fuel spill?",
-            qPhonetic: "Uat du yu du diuring an erport fiuel spil?",
-            qEs: "¿Qué haces durante un derrame de combustible en el aeropuerto?",
-            aEn: "I stop affected operations, alert emergency teams, and follow spill procedures.",
-            aPhonetic: "Ai stop afektid opereishons, alert emerdshensi tims, and folou spil prosidiurs.",
-            aEs: "Detengo las operaciones afectadas, aviso a los equipos de emergencia y sigo los procedimientos para derrames."
-        },
-        {
-            qEn: "How do you manage aircraft deicing operations?",
-            qPhonetic: "Jau du yu manadsh erkraft di aising opereishons?",
-            qEs: "¿Cómo gestionas las operaciones de descongelación de aeronaves?",
-            aEn: "I use trained crews, follow treatment times, and coordinate safe departures.",
-            aPhonetic: "Ai ius treind krius, folou tritment taims, and koordineit seif departchers.",
-            aEs: "Utilizo personal capacitado, sigo los tiempos de tratamiento y coordino salidas seguras."
-        },
-        {
-            qEn: "How do you control an airline station budget?",
-            qPhonetic: "Jau du yu kontrol an erlain esteishon badshit?",
-            qEs: "¿Cómo controlas el presupuesto de una estación aérea?",
-            aEn: "I review expenses, manage overtime, and negotiate service costs.",
-            aPhonetic: "Ai riviu ekspensis, manadsh overtaim, and negoshieit servis kosts.",
-            aEs: "Reviso gastos, gestiono las horas extras y negocio los costos de servicio."
-        },
-        {
-            qEn: "How do you maintain cabin cleaning standards?",
-            qPhonetic: "Jau du yu meintein kabin klining estandards?",
-            qEs: "¿Cómo mantienes los estándares de limpieza de cabina?",
-            aEn: "I use checklists, train cleaning teams, and inspect completed work.",
-            aPhonetic: "Ai ius cheklists, trein klining tims, and inspekt kompletid uerk.",
-            aEs: "Utilizo listas de verificación, capacito a los equipos e inspecciono el trabajo terminado."
-        },
-        {
-            qEn: "How do you handle disruptive passengers?",
-            qPhonetic: "Jau du yu jandel disraptiv pasendshers?",
-            qEs: "¿Cómo manejas a pasajeros conflictivos?",
-            aEn: "I stay calm, de-escalate conflict, and request security assistance when needed.",
-            aPhonetic: "Ai stei kam, di eskaleit konflikt, and rikuest sikiuriti asistans uen nided.",
-            aEs: "Mantengo la calma, reduzco el conflicto y solicito seguridad cuando es necesario."
-        },
-        {
-            qEn: "How do you verify travel documents for international flights?",
-            qPhonetic: "Jau du yu verifai travel dokiuments for internashonal flaits?",
-            qEs: "¿Cómo verificas documentos de viaje para vuelos internacionales?",
-            aEn: "I check passports, visas, and destination requirements using approved systems.",
-            aPhonetic: "Ai chek pasports, vis as, and destination rikuairments iusing apruvd sistems.",
-            aEs: "Reviso pasaportes, visas y requisitos del destino utilizando sistemas aprobados."
-        },
-        {
-            qEn: "How do you reduce lost baggage?",
-            qPhonetic: "Jau du yu ridius lost bagidsh?",
-            qEs: "¿Cómo reduces la pérdida de equipaje?",
-            aEn: "I track baggage scans, verify transfers, and review loading procedures.",
-            aPhonetic: "Ai trak bagidsh skans, verifai transfers, and riviu louding prosidiurs.",
-            aEs: "Rastreo los escaneos de equipaje, verifico transferencias y reviso los procedimientos de carga."
-        },
-        {
-            qEn: "How do you manage crew hotel and transport arrangements?",
-            qPhonetic: "Jau du yu manadsh kriu joutel and transport arreindshments?",
-            qEs: "¿Cómo gestionas los hoteles y el transporte de las tripulaciones?",
-            aEn: "I coordinate reliable transport, confirm hotel bookings, and protect crew rest time.",
-            aPhonetic: "Ai koordineit rilaiabel transport, konfirm joutel bukings, and protekt kriu rest taim.",
-            aEs: "Coordino transporte confiable, confirmo hoteles y protejo el tiempo de descanso."
-        },
-        {
-            qEn: "How do you prevent ramp accidents?",
-            qPhonetic: "Jau du yu privent ramp aksidents?",
-            qEs: "¿Cómo previenes accidentes en la rampa?",
-            aEn: "I review incidents, train workers, and enforce safe operating procedures.",
-            aPhonetic: "Ai riviu incidents, trein uerkers, and enfors seif opereiting prosidiurs.",
-            aEs: "Reviso incidentes, capacito a los trabajadores y aplico procedimientos seguros."
-        },
-        {
-            qEn: "How do you manage aircraft towing safely?",
-            qPhonetic: "Jau du yu manadsh erkraft touing seifli?",
-            qEs: "¿Cómo gestionas el remolque seguro de aeronaves?",
-            aEn: "I use trained teams, confirm clear communication, and inspect the route.",
-            aPhonetic: "Ai ius treind tims, konfirm klir komiunikeishon, and inspekt da rut.",
-            aEs: "Utilizo equipos capacitados, confirmo una comunicación clara e inspecciono la ruta."
-        },
-        {
-            qEn: "How do you ensure airline catering safety?",
-            qPhonetic: "Jau du yu enshur erlain keitering seifti?",
-            qEs: "¿Cómo garantizas la seguridad del catering aéreo?",
-            aEn: "I check food temperatures, inspect loading, and follow hygiene procedures.",
-            aPhonetic: "Ai chek fud temprachers, inspekt louding, and folou jaidshin prosidiurs.",
-            aEs: "Reviso las temperaturas de los alimentos, inspecciono la carga y sigo los procedimientos de higiene."
-        },
-        {
-            qEn: "How do you respond to a medical emergency at an airport?",
-            qPhonetic: "Jau du yu rispond tu a medikal emerdshensi at an erport?",
-            qEs: "¿Cómo respondes a una emergencia médica en el aeropuerto?",
-            aEn: "I call emergency services, secure the area, and follow response procedures.",
-            aPhonetic: "Ai kol emerdshensi servisis, sikiur di eria, and folou rispons prosidiurs.",
-            aEs: "Llamo a los servicios de emergencia, aseguro el área y sigo los procedimientos de respuesta."
-        },
-        {
-            qEn: "How do you manage charter flight ground services?",
-            qPhonetic: "Jau du yu manadsh charter flait graund servisis?",
-            qEs: "¿Cómo gestionas los servicios terrestres de vuelos chárter?",
-            aEn: "I coordinate passenger services, equipment, and special handling needs.",
-            aPhonetic: "Ai koordineit pasendsh er servisis, ikuipment, and speshal jandling nids.",
-            aEs: "Coordino los servicios para pasajeros, los equipos y las necesidades especiales."
-        },
-        {
-            qEn: "How do you manage environmental risks from deicing?",
-            qPhonetic: "Jau du yu manadsh envaironmental risks from di aising?",
-            qEs: "¿Cómo gestionas los riesgos ambientales de la descongelación?",
-            aEn: "I monitor runoff, follow disposal rules, and maintain compliance records.",
-            aPhonetic: "Ai monitor ronof, folou dispousal ruls, and meintein komplaians rekords.",
-            aEs: "Monitoreo los residuos líquidos, sigo las normas de eliminación y mantengo registros."
-        },
-        {
-            qEn: "How do you train airline customer service staff?",
-            qPhonetic: "Jau du yu trein erlain kustomer servis estaf?",
-            qEs: "¿Cómo capacitas al personal de servicio al cliente de una aerolínea?",
-            aEn: "I teach clear communication, complaint handling, and practical problem-solving.",
-            aPhonetic: "Ai tich klir komiunikeishon, kompleint jandling, and praktikal problem solving.",
-            aEs: "Enseño comunicación clara, manejo de quejas y resolución práctica de problemas."
-        },
-        {
-            qEn: "How do you manage airport security during elevated threats?",
-            qPhonetic: "Jau du yu manadsh erport sikiuriti diuring eleveitid threts?",
-            qEs: "¿Cómo gestionas la seguridad aeroportuaria ante amenazas elevadas?",
-            aEn: "I increase monitoring, verify access credentials, and brief staff on procedures.",
-            aPhonetic: "Ai inkris monitoring, verifai akses kredenshals, and brif estaf on prosidiurs.",
-            aEs: "Aumento la vigilancia, verifico las credenciales de acceso e informo al personal sobre los procedimientos."
-        },
-        {
-            qEn: "How do you maintain aircraft cabin air quality?",
-            qPhonetic: "Jau du yu meintein erkraft kabin er kualiti?",
-            qEs: "¿Cómo mantienes la calidad del aire en la cabina?",
-            aEn: "I monitor maintenance records, verify inspections, and follow aviation standards.",
-            aPhonetic: "Ai monitor meintenans rekords, verifai inspekshons, and folou eivieishon estandards.",
-            aEs: "Monitoreo los registros de mantenimiento, verifico inspecciones y sigo las normas aeronáuticas."
-        },
-        {
-            qEn: "How do you handle airline computer system outages?",
-            qPhonetic: "Jau du yu jandel erlain kompiuter sistem autadshis?",
-            qEs: "¿Cómo manejas las caídas de los sistemas informáticos de una aerolínea?",
-            aEn: "I activate approved backup procedures and coordinate with technical support.",
-            aPhonetic: "Ai aktiveit apruvd bakap prosidiurs and koordineit uid teknikal esport.",
-            aEs: "Activo los procedimientos alternativos aprobados y coordino con el soporte técnico."
-        },
-        {
-            qEn: "How do you reduce emissions from airport ground equipment?",
-            qPhonetic: "Jau du yu ridius emishons from erport graund ikuipment?",
-            qEs: "¿Cómo reduces las emisiones de los equipos terrestres del aeropuerto?",
-            aEn: "I evaluate electric equipment, improve usage, and monitor energy consumption.",
-            aPhonetic: "Ai evaliueit elektrik ikuipment, impruv ius idsh, and monitor enerdshi konsampshon.",
-            aEs: "Evalúo equipos eléctricos, mejoro su uso y monitoreo el consumo de energía."
-        },
-        {
-            qEn: "How do you resolve disputes over airport gates?",
-            qPhonetic: "Jau du yu risolv dispiuts over erport geits?",
-            qEs: "¿Cómo resuelves disputas por las puertas del aeropuerto?",
-            aEn: "I review schedules, coordinate with airport managers, and seek fair solutions.",
-            aPhonetic: "Ai riviu eskedshuls, koordineit uid erport manadshers, and sik fer solusiions.",
-            aEs: "Reviso los horarios, coordino con los administradores y busco soluciones justas."
-        },
-        {
-            qEn: "How do you report airline station performance?",
-            qPhonetic: "Jau du yu riport erlain esteishon performans?",
-            qEs: "¿Cómo informas sobre el desempeño de una estación aérea?",
-            aEn: "I report punctuality, safety, costs, and service results using clear data.",
-            aPhonetic: "Ai riport panktchualiti, seifti, kosts, and servis risalts iusing klir deita.",
-            aEs: "Informo sobre puntualidad, seguridad, costos y resultados del servicio mediante datos claros."
-        }
-    ],
-    restaurantes: [
-        {
-            qEn: "How do you improve restaurant profits?",
-            qPhonetic: "Jau du yu impruv restorant profits?",
-            qEs: "¿Cómo mejoras las ganancias de un restaurante?",
-            aEn: "I control food costs, review sales, and negotiate supplier prices.",
-            aPhonetic: "Ai kontrol fud kosts, riviu seils, and negoshieit suplai er praisis.",
-            aEs: "Controlo los costos de alimentos, reviso las ventas y negocio precios con proveedores."
-        },
-        {
-            qEn: "How do you maintain restaurant food safety?",
-            qPhonetic: "Jau du yu meintein restorant fud seifti?",
-            qEs: "¿Cómo mantienes la seguridad alimentaria en un restaurante?",
-            aEn: "I train staff, monitor temperatures, and follow sanitation procedures.",
-            aPhonetic: "Ai trein estaf, monitor temprachers, and folou saniteishon prosidiurs.",
-            aEs: "Capacito al personal, monitoreo las temperaturas y sigo los procedimientos sanitarios."
-        },
-        {
-            qEn: "How do you reduce employee turnover?",
-            qPhonetic: "Jau du yu ridius emplo ii turnover?",
-            qEs: "¿Cómo reduces la rotación de empleados?",
-            aEn: "I offer fair schedules, recognize good work, and support career growth.",
-            aPhonetic: "Ai ofer fer eskedshuls, rekognais gud uerk, and esport karir grouth.",
-            aEs: "Ofrezco horarios justos, reconozco el buen trabajo y apoyo el crecimiento profesional."
-        },
-        {
-            qEn: "How do you handle a food poisoning complaint?",
-            qPhonetic: "Jau du yu jandel a fud poisoning kompleint?",
-            qEs: "¿Cómo manejas una queja por intoxicación alimentaria?",
-            aEn: "I document the complaint, secure relevant food batches, and notify the appropriate team.",
-            aPhonetic: "Ai dokiument da kompleint, sikiur relevant fud batches, and notifai di apropiat tim.",
-            aEs: "Documento la queja, aseguro los lotes relacionados y aviso al equipo correspondiente."
-        },
-        {
-            qEn: "How do you control labor costs when sales decline?",
-            qPhonetic: "Jau du yu kontrol leibor kosts uen seils diklain?",
-            qEs: "¿Cómo controlas los costos laborales cuando bajan las ventas?",
-            aEn: "I adjust schedules to demand, cross-train staff, and monitor labor costs.",
-            aPhonetic: "Ai adshast eskedshuls tu dimand, kros trein estaf, and monitor leibor kosts.",
-            aEs: "Ajusto los horarios a la demanda, capacito al personal en varias tareas y monitoreo los costos laborales."
-        }
-    ],
-    situaciones: [
-        {
-            qEn: "How do you use your MBA and nursing experience to improve business results?",
-            qPhonetic: "Jau du yu ius yur em bi ei and nersing ekspiriens tu impruv bisnes risalts?",
-            qEs: "¿Cómo utilizas tu MBA y experiencia en enfermería para mejorar los resultados empresariales?",
-            aEn: "I combine financial planning and clinical experience to improve efficiency and quality.",
-            aPhonetic: "Ai kombain finanshal planing and klinikal ekspiriens tu impruv efishensi and kualiti.",
-            aEs: "Combino planificación financiera y experiencia clínica para mejorar la eficiencia y la calidad."
-        },
-        {
-            qEn: "What salary do you expect for a senior management role?",
-            qPhonetic: "Uat salari du yu ekspekt for a sinior manadshment roul?",
-            qEs: "¿Qué salario esperas para un puesto de alta dirección?",
-            aEn: "I expect fair compensation based on the role, responsibilities, and market rates.",
-            aPhonetic: "Ai ekspekt fer kompenseishon beist on da roul, risponsibilitis, and market reits.",
-            aEs: "Espero una compensación justa según el puesto, las responsabilidades y las tarifas del mercado."
-        },
-        {
-            qEn: "How do you handle difficult executive negotiations?",
-            qPhonetic: "Jau du yu jandel difikult egsekiutiv negoshieishons?",
-            qEs: "¿Cómo manejas negociaciones ejecutivas difíciles?",
-            aEn: "I use reliable data, listen carefully, and focus on practical agreements.",
-            aPhonetic: "Ai ius rilaiabel deita, lisen kerfuli, and foukus on praktikal agriments.",
-            aEs: "Utilizo datos confiables, escucho atentamente y me centro en acuerdos prácticos."
-        },
-        {
-            qEn: "How do you restructure an organization without losing team trust?",
-            qPhonetic: "Jau du yu ristraktcher an organ iseishon uidaut losing tim trost?",
-            qEs: "¿Cómo reestructuras una organización sin perder la confianza del equipo?",
-            aEn: "I communicate openly, explain the goals, and support employees through change.",
-            aPhonetic: "Ai komiunikeit oupenli, eksplein da goulz, and esport emplo iis thru cheindsh.",
-            aEs: "Me comunico abiertamente, explico los objetivos y apoyo a los empleados durante los cambios."
-        },
-        {
-            qEn: "What do you do when an executive decision threatens patient safety?",
-            qPhonetic: "Uat du yu du uen an egsekiutiv disishon thretens peishent seifti?",
-            qEs: "¿Qué haces cuando una decisión ejecutiva amenaza la seguridad del paciente?",
-            aEn: "I explain the risks, follow safety rules, and propose safer alternatives.",
-            aPhonetic: "Ai eksplein da risks, folou seifti ruls, and propous seifer alternatives.",
-            aEs: "Explico los riesgos, sigo las normas de seguridad y propongo alternativas más seguras."
-        }
-    ]
+<body>
+<header style="background:var(--navy);color:white">
+<div class="max-w-5xl mx-auto px-4 py-5 flex items-center justify-between gap-3">
+<div><div class="text-xs font-bold tracking-widest" style="color:#a7d7e8">MAY ROGA LLC</div><h1 class="text-xl sm:text-2xl font-extrabold mt-1">English Executive Trainer</h1><p class="text-sm mt-1" style="color:#d3e5ed">Inglés profesional, práctica oral y conocimiento ejecutivo</p></div>
+<button class="btn secondary text-sm" onclick="app.reset()" title="Volver a la primera pregunta"><i class="fa-solid fa-rotate-left mr-1"></i> Reiniciar</button>
+</div>
+</header>
+<main class="max-w-5xl mx-auto px-4 py-5 sm:py-8 space-y-5">
+<section class="panel p-4 sm:p-5">
+<label for="sectorSelect" class="small-label block mb-2">Elige el sector que quieres practicar</label>
+<select id="sectorSelect" onchange="app.changeSector()" class="w-full border border-slate-300 rounded-xl p-3 bg-white font-semibold">
+<option value="hospitales">🏥 Hospitales, enfermería y cumplimiento normativo</option>
+<option value="gobierno">🏛️ Gobierno, compras públicas y alta dirección</option>
+<option value="logistics">📦 Logística, puertos y cadena de suministro</option>
+<option value="airlines">✈️ Aerolíneas y operaciones aeroportuarias</option>
+<option value="restaurantes">🍽️ Gerencia de restaurantes y cadenas</option>
+<option value="situaciones">🎯 Estrategia ejecutiva, negociación y salario MBA</option>
+</select>
+<div class="flex items-center justify-between gap-3 mt-4 text-sm"><span id="sectorBadge" class="font-bold">HOSPITAL MANAGEMENT</span><span id="progressCounter" class="font-bold whitespace-nowrap">Pregunta 1 de 30</span></div>
+<div id="progressBar" class="mt-3"><div id="progressFill"></div></div>
+</section>
+<section class="panel p-4 sm:p-6 space-y-4">
+<div class="flex items-center justify-between gap-3"><h2 class="text-lg font-extrabold">1. Interview question / Pregunta</h2><button class="btn secondary" onclick="app.speak('q')" aria-label="Escuchar pregunta en inglés"><i class="fa-solid fa-volume-high mr-1"></i> Escuchar</button></div>
+<div id="qEnText" class="english"></div>
+<div><div class="small-label mb-2">Pronunciación aproximada</div><div id="qPhoneticText" class="phonetic"></div></div>
+<div><div class="small-label mb-2">Significado en español</div><div id="qEsText" class="translation"></div></div>
+</section>
+<section class="panel p-4 sm:p-6 space-y-4">
+<div class="flex items-center justify-between gap-3"><h2 class="text-lg font-extrabold">2. Professional answer / Respuesta modelo</h2><button class="btn secondary" onclick="app.speak('a')" aria-label="Escuchar respuesta en inglés"><i class="fa-solid fa-volume-high mr-1"></i> Escuchar</button></div>
+<div id="aEnText" class="english"></div>
+<div><div class="small-label mb-2">Pronunciación aproximada</div><div id="aPhoneticText" class="phonetic"></div></div>
+<div><div class="small-label mb-2">Significado en español</div><div id="aEsText" class="translation"></div></div>
+<p class="text-sm text-slate-600">Consejo: escucha la respuesta, repítela en voz alta y después intenta decirla sin leer. Comprende la idea; no necesitas memorizar cada palabra.</p>
+</section>
+<section class="panel p-4 sm:p-6 space-y-4">
+<div><h2 class="text-lg font-extrabold">3. Practica tu respuesta en inglés</h2><p class="text-sm text-slate-600 mt-1">Pulsa el micrófono, responde con tus propias palabras y compara tu respuesta con el modelo.</p></div>
+<button id="micBtn" class="btn primary w-full sm:w-auto" onclick="app.toggleMic()"><i class="fa-solid fa-microphone mr-2"></i><span id="micBtnText">Presionar para hablar</span></button>
+<div><div class="small-label mb-2">Lo que reconoció el navegador</div><div id="userSpokenText" class="translation" aria-live="polite">Esperando que hables...</div></div>
+<div class="grid sm:grid-cols-2 gap-3">
+<div class="rounded-xl p-4" style="background:var(--light)"><div class="small-label">Coincidencia de palabras</div><div id="scoreText" class="text-3xl font-extrabold mt-2">--%</div><p class="text-xs text-slate-600 mt-1">Estimación automática, no una calificación oficial de inglés.</p></div>
+<div class="rounded-xl p-4" style="background:#f6f8fa"><div class="small-label">Recomendación</div><p id="feedbackText" class="font-semibold mt-2">Habla con calma y pronuncia cada frase claramente.</p></div>
+</div>
+<p class="text-xs text-slate-500">La función de voz depende de la compatibilidad del navegador y de sus permisos de micrófono. El reconocimiento puede cometer errores y no mide por completo tu gramática, pronunciación ni conocimiento profesional.</p>
+</section>
+<section class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+<button class="btn secondary" onclick="app.prev()"><i class="fa-solid fa-arrow-left mr-2"></i>Pregunta anterior</button>
+<div class="text-sm text-center text-slate-600">Practica una pregunta a la vez.</div>
+<button class="btn primary" onclick="app.next()">Siguiente pregunta<i class="fa-solid fa-arrow-right ml-2"></i></button>
+</section>
+<section class="panel p-4 text-sm text-slate-600">
+<strong class="text-slate-800">Uso responsable:</strong> esta aplicación es una herramienta educativa para practicar inglés y conceptos profesionales generales. No sustituye la capacitación, las políticas de una organización, el asesoramiento jurídico ni los procedimientos oficiales de seguridad o cumplimiento.
+</section>
+</main>
+<footer class="text-center text-xs text-slate-500 px-4 py-5">© MAY ROGA LLC · English Executive Trainer</footer>
+<script>
+const RAW={
+hospitales:[
+["How do you control hospital costs?","¿Cómo controlas los costos hospitalarios?","I review spending, staffing, and quality results.","Reviso los gastos, la dotación de personal y los resultados de calidad."],
+["How do you protect patient safety?","¿Cómo proteges la seguridad del paciente?","I follow safety standards, report risks, and review incidents.","Sigo las normas de seguridad, reporto riesgos y reviso incidentes."],
+["How do you prepare for an audit?","¿Cómo te preparas para una auditoría?","I review records, verify compliance, and correct identified gaps.","Reviso los registros, verifico el cumplimiento y corrijo las deficiencias."],
+["How do you handle a medication error?","¿Cómo manejas un error de medicación?","I protect the patient, report the event, and follow review procedures.","Protejo al paciente, reporto el evento y sigo los procedimientos de revisión."],
+["How do you reduce hospital infections?","¿Cómo reduces las infecciones hospitalarias?","I reinforce hand hygiene, training, and infection control practices.","Refuerzo la higiene de manos, la capacitación y el control de infecciones."],
+["How do you manage nurse staffing?","¿Cómo gestionas la dotación de enfermería?","I match staffing to patient needs, workload, and required skills.","Adapto el personal a las necesidades, la carga de trabajo y las habilidades requeridas."],
+["How do you reduce staff burnout?","¿Cómo reduces el agotamiento del personal?","I monitor workloads, listen to staff, and improve scheduling.","Superviso las cargas de trabajo, escucho al personal y mejoro los horarios."],
+["How do you resolve conflict between nurses and doctors?","¿Cómo resuelves conflictos entre enfermeros y médicos?","I listen to both sides and focus on respectful communication and patient safety.","Escucho a ambas partes y priorizo la comunicación respetuosa y la seguridad del paciente."],
+["How do you improve patient satisfaction?","¿Cómo mejoras la satisfacción del paciente?","I review feedback, explain care clearly, and address recurring problems.","Reviso los comentarios, explico la atención con claridad y resuelvo problemas recurrentes."],
+["How do you prepare for a hurricane?","¿Cómo te preparas para un huracán?","I check emergency plans, supplies, staffing, and communication systems.","Reviso los planes de emergencia, los suministros, el personal y los sistemas de comunicación."],
+["How do you improve emergency room flow?","¿Cómo mejoras el flujo de urgencias?","I review wait times, triage processes, and available capacity.","Reviso los tiempos de espera, el triaje y la capacidad disponible."],
+["How do you protect patient information?","¿Cómo proteges la información del paciente?","I limit access, train staff, and follow privacy and security policies.","Limito el acceso, capacito al personal y sigo las políticas de privacidad y seguridad."],
+["How do you manage a serious safety event?","¿Cómo gestionas un evento grave de seguridad?","I secure immediate care, report facts, and support a structured review.","Aseguro la atención inmediata, reporto los hechos y apoyo una revisión estructurada."],
+["How do you improve operating room efficiency?","¿Cómo mejoras la eficiencia del quirófano?","I coordinate schedules, equipment, and team readiness.","Coordino los horarios, los equipos y la preparación del personal."],
+["How do you evaluate hospital performance?","¿Cómo evalúas el desempeño hospitalario?","I track quality, safety, cost, access, and patient experience measures.","Mido la calidad, la seguridad, los costos, el acceso y la experiencia del paciente."],
+["How do you respond to a patient complaint?","¿Cómo respondes a una queja de un paciente?","I listen carefully, document facts, and explain the next steps.","Escucho con atención, documento los hechos y explico los siguientes pasos."],
+["How do you support evidence-based care?","¿Cómo apoyas la atención basada en evidencia?","I review reliable evidence and support approved clinical protocols.","Reviso evidencia confiable y apoyo los protocolos clínicos aprobados."],
+["How do you manage a compliance gap?","¿Cómo gestionas una deficiencia de cumplimiento?","I assess the risk, assign corrective actions, and verify completion.","Evalúo el riesgo, asigno acciones correctivas y verifico su cumplimiento."],
+["How do you improve discharge planning?","¿Cómo mejoras la planificación del alta?","I coordinate care teams, patient instructions, and follow-up needs.","Coordino los equipos de atención, las instrucciones y las necesidades de seguimiento."],
+["How do you reduce patient falls?","¿Cómo reduces las caídas de pacientes?","I assess fall risks, apply prevention measures, and review incidents.","Evalúo los riesgos de caídas, aplico medidas preventivas y reviso incidentes."],
+["How do you manage medical equipment?","¿Cómo gestionas los equipos médicos?","I track maintenance, inspect equipment, and remove unsafe items from service.","Registro el mantenimiento, inspecciono los equipos y retiro los que no son seguros."],
+["How do you handle a staffing shortage?","¿Cómo manejas la falta de personal?","I prioritize critical needs and use approved staffing plans.","Priorizo las necesidades críticas y utilizo planes de dotación aprobados."],
+["How do you protect medication security?","¿Cómo proteges la seguridad de los medicamentos?","I enforce access controls, accurate records, and inventory checks.","Aplico controles de acceso, registros precisos y revisiones de inventario."],
+["How do you prepare for accreditation?","¿Cómo te preparas para una acreditación?","I review standards, verify evidence, and involve responsible teams.","Reviso los estándares, verifico la evidencia e involucro a los equipos responsables."],
+["How do you manage patient privacy concerns?","¿Cómo gestionas las inquietudes sobre privacidad?","I investigate the concern and follow applicable privacy procedures.","Investigo la inquietud y sigo los procedimientos de privacidad aplicables."],
+["How do you improve outpatient scheduling?","¿Cómo mejoras las citas ambulatorias?","I review demand, appointment capacity, and cancellation patterns.","Reviso la demanda, la capacidad de citas y los patrones de cancelación."],
+["How do you manage a clinical change?","¿Cómo gestionas un cambio clínico?","I explain the reason, train staff, and monitor the results.","Explico la razón, capacito al personal y superviso los resultados."],
+["How do you respond to a data breach?","¿Cómo respondes a una filtración de datos?","I report it promptly, follow the response plan, and protect affected information.","La reporto rápidamente, sigo el plan de respuesta y protejo la información afectada."],
+["How do you manage patient flow across departments?","¿Cómo gestionas el flujo de pacientes entre departamentos?","I coordinate capacity, handoffs, and clear communication.","Coordino la capacidad, las transferencias y una comunicación clara."],
+["How do you combine nursing and business skills?","¿Cómo combinas enfermería y habilidades empresariales?","I connect patient outcomes with staffing, budgets, and operational decisions.","Relaciono los resultados de los pacientes con el personal, los presupuestos y las decisiones operativas."]
+],
+gobierno:[
+["How do you ensure fair public purchasing?","¿Cómo garantizas compras públicas justas?","I use clear criteria, open competition, and documented decisions.","Utilizo criterios claros, competencia abierta y decisiones documentadas."],
+["How do you handle a public records request?","¿Cómo manejas una solicitud de registros públicos?","I follow legal deadlines, preserve records, and apply valid exemptions.","Cumplo los plazos legales, conservo los registros y aplico las excepciones válidas."],
+["How do you manage an emergency response?","¿Cómo gestionas una respuesta de emergencia?","I clarify responsibilities, share verified information, and coordinate agencies.","Aclaro responsabilidades, comparto información verificada y coordino las agencias."],
+["How do you reduce waste in a public budget?","¿Cómo reduces el desperdicio presupuestario?","I review spending data, measure outcomes, and prioritize essential services.","Reviso los gastos, mido los resultados y priorizo los servicios esenciales."],
+["How do you manage a conflict of interest?","¿Cómo gestionas un conflicto de intereses?","I disclose the conflict and follow the required ethics process.","Declaro el conflicto y sigo el procedimiento ético requerido."],
+["How do you monitor a public grant?","¿Cómo supervisas una subvención pública?","I track eligible expenses, milestones, and reporting requirements.","Registro los gastos elegibles, los hitos y los requisitos de informes."],
+["How do you prepare for a public meeting?","¿Cómo te preparas para una reunión pública?","I publish required notices, prepare records, and follow meeting rules.","Publico los avisos requeridos, preparo los registros y sigo las reglas de la reunión."],
+["How do you handle a contract dispute?","¿Cómo manejas una disputa contractual?","I review the contract, document facts, and follow the dispute process.","Reviso el contrato, documento los hechos y sigo el proceso de resolución."],
+["How do you improve a government service?","¿Cómo mejoras un servicio gubernamental?","I simplify steps, measure service times, and use public feedback.","Simplifico los pasos, mido los tiempos y utilizo las opiniones del público."],
+["How do you evaluate a public contractor?","¿Cómo evalúas a un contratista público?","I compare performance with contract terms and documented standards.","Comparo el desempeño con el contrato y los estándares documentados."],
+["How do you protect public funds?","¿Cómo proteges los fondos públicos?","I separate duties, verify transactions, and maintain audit trails.","Separo funciones, verifico transacciones y mantengo registros de auditoría."],
+["How do you respond to an audit finding?","¿Cómo respondes a un hallazgo de auditoría?","I identify the cause, assign corrective actions, and track completion.","Identifico la causa, asigno acciones correctivas y verifico su cumplimiento."],
+["How do you manage public employee performance?","¿Cómo gestionas el desempeño de empleados públicos?","I set clear goals, give feedback, and apply policies consistently.","Establezco objetivos claros, doy retroalimentación y aplico las políticas de manera uniforme."],
+["How do you handle public criticism?","¿Cómo manejas las críticas del público?","I listen respectfully, explain the facts, and address valid concerns.","Escucho con respeto, explico los hechos y atiendo las inquietudes válidas."],
+["How do you manage a zoning concern?","¿Cómo gestionas una inquietud sobre zonificación?","I review the applicable rules and ensure a fair process.","Reviso las normas aplicables y garantizo un proceso justo."],
+["How do you coordinate multiple agencies?","¿Cómo coordinas varias agencias?","I define responsibilities, share updates, and track joint actions.","Defino responsabilidades, comparto actualizaciones y superviso las acciones conjuntas."],
+["How do you protect confidential government data?","¿Cómo proteges datos gubernamentales confidenciales?","I restrict access and follow approved information security policies.","Restringo el acceso y sigo las políticas aprobadas de seguridad de la información."],
+["How do you plan a public project?","¿Cómo planificas un proyecto público?","I define scope, budget, deadlines, risks, and accountability.","Defino el alcance, el presupuesto, los plazos, los riesgos y la rendición de cuentas."],
+["How do you evaluate a policy change?","¿Cómo evalúas un cambio de política?","I assess evidence, costs, legal requirements, and expected public impact.","Evalúo la evidencia, los costos, los requisitos legales y el impacto público esperado."],
+["How do you negotiate a labor agreement?","¿Cómo negocias un acuerdo laboral?","I review priorities, use reliable data, and seek lawful workable terms.","Reviso las prioridades, utilizo datos confiables y busco condiciones legales y viables."],
+["How do you manage a government technology project?","¿Cómo gestionas un proyecto tecnológico gubernamental?","I set clear requirements, manage risks, and test before launch.","Defino requisitos claros, gestiono riesgos y pruebo antes del lanzamiento."],
+["How do you ensure ethical leadership?","¿Cómo garantizas un liderazgo ético?","I model integrity, disclose conflicts, and hold decisions accountable.","Doy ejemplo de integridad, declaro conflictos y exijo responsabilidad por las decisiones."],
+["How do you evaluate infrastructure priorities?","¿Cómo evalúas prioridades de infraestructura?","I compare public need, safety, cost, and long-term value.","Comparo la necesidad pública, la seguridad, el costo y el valor a largo plazo."],
+["How do you manage a whistleblower report?","¿Cómo gestionas un reporte de irregularidades?","I protect confidentiality and refer the report through proper channels.","Protejo la confidencialidad y remito el reporte por los canales adecuados."],
+["How do you improve public transportation?","¿Cómo mejoras el transporte público?","I review service reliability, passenger needs, and operating costs.","Reviso la confiabilidad, las necesidades de los pasajeros y los costos operativos."],
+["How do you measure program success?","¿Cómo mides el éxito de un programa?","I compare clear performance measures with the program's goals.","Comparo indicadores claros con los objetivos del programa."],
+["How do you manage emergency funding?","¿Cómo gestionas fondos de emergencia?","I verify eligibility, document spending, and report results transparently.","Verifico la elegibilidad, documento los gastos e informo los resultados con transparencia."],
+["How do you assess a public-private partnership?","¿Cómo evalúas una asociación público-privada?","I assess public value, risks, responsibilities, and contract controls.","Evalúo el valor público, los riesgos, las responsabilidades y los controles contractuales."],
+["How do you respond to a compliance violation?","¿Cómo respondes a una infracción de cumplimiento?","I preserve evidence, report the issue, and apply corrective procedures.","Conservo la evidencia, reporto el problema y aplico procedimientos correctivos."],
+["How do you build public trust?","¿Cómo generas confianza pública?","I communicate honestly, apply rules fairly, and publish clear results.","Me comunico con honestidad, aplico las reglas de manera justa y publico resultados claros."]
+],
+logistics:[
+["How do you reduce supply chain delays?","¿Cómo reduces retrasos en la cadena de suministro?","I track shipments, identify bottlenecks, and coordinate suppliers.","Rastreo los envíos, identifico cuellos de botella y coordino a los proveedores."],
+["How do you improve warehouse efficiency?","¿Cómo mejoras la eficiencia del almacén?","I optimize layout, standardize tasks, and measure order accuracy.","Optimizo la distribución, estandarizo tareas y mido la precisión de los pedidos."],
+["How do you prepare for a customs audit?","¿Cómo te preparas para una auditoría aduanera?","I verify declarations, retain records, and correct documentation gaps.","Verifico las declaraciones, conservo registros y corrijo deficiencias documentales."],
+["How do you protect temperature-sensitive cargo?","¿Cómo proteges la carga sensible a la temperatura?","I monitor conditions, validate packaging, and record temperature changes.","Superviso las condiciones, valido el embalaje y registro los cambios de temperatura."],
+["How do you prepare logistics for a hurricane?","¿Cómo preparas la logística para un huracán?","I assess routes, protect inventory, and activate contingency plans.","Evalúo rutas, protejo inventarios y activo planes de contingencia."],
+["How do you improve last-mile delivery?","¿Cómo mejoras la entrega de última milla?","I optimize routes, confirm delivery windows, and track failed deliveries.","Optimizo rutas, confirmo horarios y rastreo las entregas fallidas."],
+["How do you prevent cargo theft?","¿Cómo previenes el robo de carga?","I use tracking, secure handoffs, and investigate unusual activity.","Utilizo rastreo, aseguro las transferencias e investigo actividades inusuales."],
+["How do you evaluate a logistics supplier?","¿Cómo evalúas a un proveedor logístico?","I compare reliability, cost, capacity, and compliance performance.","Comparo la confiabilidad, el costo, la capacidad y el cumplimiento."],
+["How do you manage hazardous materials?","¿Cómo gestionas materiales peligrosos?","I verify classification, packaging, training, and required documents.","Verifico la clasificación, el embalaje, la capacitación y los documentos requeridos."],
+["How do you introduce warehouse automation?","¿Cómo introduces automatización en un almacén?","I assess business needs, train workers, and measure system performance.","Evalúo las necesidades, capacito al personal y mido el desempeño del sistema."],
+["How do you reduce freight costs?","¿Cómo reduces los costos de transporte de carga?","I compare routes, consolidate shipments, and negotiate service terms.","Comparo rutas, consolido envíos y negocio las condiciones del servicio."],
+["How do you manage product returns?","¿Cómo gestionas las devoluciones de productos?","I classify returns, identify causes, and improve reverse logistics.","Clasifico las devoluciones, identifico causas y mejoro la logística inversa."],
+["How do you coordinate port and rail shipments?","¿Cómo coordinas envíos portuarios y ferroviarios?","I align schedules, confirm capacity, and share shipment updates.","Alineo horarios, confirmo capacidad y comparto actualizaciones de los envíos."],
+["How do you improve warehouse safety?","¿Cómo mejoras la seguridad del almacén?","I inspect hazards, train workers, and enforce safe procedures.","Inspecciono peligros, capacito al personal y aplico procedimientos seguros."],
+["How do you choose a warehouse location?","¿Cómo eliges la ubicación de un almacén?","I compare transport access, labor availability, cost, and customer demand.","Comparo el acceso al transporte, la mano de obra, el costo y la demanda."],
+["How do you manage air cargo capacity?","¿Cómo gestionas la capacidad de carga aérea?","I prioritize shipments, verify weight limits, and coordinate bookings.","Priorizo los envíos, verifico los límites de peso y coordino las reservas."],
+["How do you reduce excess inventory?","¿Cómo reduces el exceso de inventario?","I improve forecasts, review stock levels, and align purchasing with demand.","Mejoro los pronósticos, reviso existencias y ajusto compras a la demanda."],
+["How do tariffs affect logistics planning?","¿Cómo afectan los aranceles a la planificación logística?","I assess landed costs and review sourcing and routing options.","Evalúo los costos totales de importación y reviso proveedores y rutas."],
+["How do you reduce transport emissions?","¿Cómo reduces las emisiones del transporte?","I improve route efficiency, vehicle use, and load planning.","Mejoro la eficiencia de las rutas, el uso de vehículos y la planificación de cargas."],
+["How do you respond to supplier failure?","¿Cómo respondes al incumplimiento de un proveedor?","I assess the impact, activate alternatives, and communicate changes.","Evalúo el impacto, activo alternativas y comunico los cambios."],
+["How do you manage seasonal labor demand?","¿Cómo gestionas la demanda laboral estacional?","I forecast demand, train staff early, and monitor productivity.","Pronostico la demanda, capacito al personal con anticipación y superviso la productividad."],
+["How do you protect logistics systems from cyberattacks?","¿Cómo proteges los sistemas logísticos de ciberataques?","I control access, maintain backups, and follow incident response plans.","Controlo el acceso, mantengo copias de respaldo y sigo planes de respuesta."],
+["How do you protect perishable goods?","¿Cómo proteges productos perecederos?","I monitor shelf life, storage conditions, and delivery times.","Superviso la vida útil, las condiciones de almacenamiento y los tiempos de entrega."],
+["How do you improve warehouse layout?","¿Cómo mejoras la distribución del almacén?","I place fast-moving items strategically and reduce unnecessary travel.","Ubico estratégicamente los artículos de alta rotación y reduzco desplazamientos."],
+["How do you handle a freight insurance claim?","¿Cómo manejas una reclamación de seguro de carga?","I document damage, preserve evidence, and submit required records.","Documento los daños, conservo evidencia y presento los registros requeridos."],
+["How do you control port handling costs?","¿Cómo controlas los costos de manipulación portuaria?","I track fees, reduce delays, and coordinate equipment and labor.","Registro las tarifas, reduzco retrasos y coordino equipos y personal."],
+["How do you manage international suppliers?","¿Cómo gestionas proveedores internacionales?","I clarify terms, monitor lead times, and assess country and currency risks.","Aclaro condiciones, superviso plazos y evalúo riesgos de país y moneda."],
+["How do you manage logistics waste?","¿Cómo gestionas los residuos logísticos?","I separate materials, follow disposal rules, and track waste reduction.","Separo materiales, sigo las normas de eliminación y mido la reducción de residuos."],
+["How do you use performance indicators?","¿Cómo utilizas indicadores de desempeño?","I track delivery accuracy, cost, damage, and order cycle time.","Mido la precisión de entregas, los costos, los daños y el ciclo de pedidos."],
+["How do you apply continuous improvement?","¿Cómo aplicas la mejora continua?","I analyze root causes, test solutions, and verify measurable results.","Analizo causas raíz, pruebo soluciones y verifico resultados medibles."]
+],
+airlines:[
+["How do you improve ground operations?","¿Cómo mejoras las operaciones terrestres?","I coordinate teams, follow safety rules, and monitor departure times.","Coordino equipos, sigo normas de seguridad y superviso las salidas."],
+["How do you handle dangerous goods?","¿Cómo manejas mercancías peligrosas?","I verify declarations, packaging, labels, and approved handling rules.","Verifico declaraciones, embalaje, etiquetas y normas de manejo aprobadas."],
+["How do you manage severe weather?","¿Cómo gestionas el mal tiempo?","I follow operational limits, protect staff, and coordinate with airport control.","Sigo los límites operativos, protejo al personal y coordino con el control aeroportuario."],
+["How do you reduce aircraft turnaround time?","¿Cómo reduces el tiempo de rotación de aeronaves?","I prepare equipment early, coordinate teams, and prevent avoidable delays.","Preparo los equipos con anticipación, coordino equipos y evito demoras."],
+["How do you handle flight disruptions?","¿Cómo manejas interrupciones de vuelos?","I coordinate resources, update passengers, and work with flight crews.","Coordino recursos, informo a los pasajeros y trabajo con las tripulaciones."],
+["How do you maintain airport security?","¿Cómo mantienes la seguridad aeroportuaria?","I verify credentials, control access, and report security concerns.","Verifico credenciales, controlo el acceso y reporto problemas de seguridad."],
+["How do you help passengers during cancellations?","¿Cómo ayudas a pasajeros durante cancelaciones?","I explain available options and provide timely, accurate updates.","Explico las opciones disponibles y doy información oportuna y precisa."],
+["How do you maintain ground equipment?","¿Cómo mantienes los equipos terrestres?","I schedule inspections and verify maintenance and operator training.","Programo inspecciones y verifico mantenimiento y capacitación."],
+["How do you verify aircraft loading?","¿Cómo verificas la carga de una aeronave?","I check loading records, cargo weights, and approved procedures.","Reviso registros de carga, pesos y procedimientos aprobados."],
+["How do you respond to a fuel spill?","¿Cómo respondes a un derrame de combustible?","I stop affected work, alert emergency teams, and follow spill procedures.","Detengo el trabajo afectado, aviso a emergencias y sigo los procedimientos para derrames."],
+["How do you manage aircraft deicing?","¿Cómo gestionas la descongelación de aeronaves?","I use trained crews, follow approved procedures, and coordinate departures.","Utilizo personal capacitado, sigo procedimientos aprobados y coordino salidas."],
+["How do you control a station budget?","¿Cómo controlas el presupuesto de una estación aérea?","I review expenses, manage overtime, and compare service costs.","Reviso gastos, gestiono horas extras y comparo costos de servicio."],
+["How do you maintain cabin cleaning standards?","¿Cómo mantienes los estándares de limpieza de cabina?","I use checklists, train teams, and inspect completed work.","Utilizo listas de verificación, capacito equipos e inspecciono el trabajo."],
+["How do you handle disruptive passengers?","¿Cómo manejas pasajeros conflictivos?","I stay calm, reduce conflict, and request trained support when needed.","Mantengo la calma, reduzco el conflicto y solicito apoyo capacitado cuando hace falta."],
+["How do you verify international travel documents?","¿Cómo verificas documentos de viaje internacionales?","I check passports, visas, and destination rules using approved systems.","Reviso pasaportes, visas y requisitos del destino con sistemas aprobados."],
+["How do you reduce lost baggage?","¿Cómo reduces la pérdida de equipaje?","I track baggage scans, verify transfers, and review loading procedures.","Rastreo escaneos, verifico transferencias y reviso los procedimientos de carga."],
+["How do you manage crew hotels and transport?","¿Cómo gestionas hoteles y transporte de tripulaciones?","I confirm bookings, coordinate reliable transport, and protect crew rest time.","Confirmo reservas, coordino transporte confiable y protejo el descanso de la tripulación."],
+["How do you prevent ramp accidents?","¿Cómo previenes accidentes en la rampa?","I review incidents, train workers, and enforce safe procedures.","Reviso incidentes, capacito al personal y aplico procedimientos seguros."],
+["How do you manage aircraft towing?","¿Cómo gestionas el remolque de aeronaves?","I use trained teams, confirm communication, and inspect the route.","Utilizo equipos capacitados, confirmo la comunicación e inspecciono la ruta."],
+["How do you ensure catering safety?","¿Cómo garantizas la seguridad del catering?","I check food temperatures, inspect loading, and follow hygiene rules.","Reviso temperaturas, inspecciono la carga y sigo las normas de higiene."],
+["How do you respond to an airport medical emergency?","¿Cómo respondes a una emergencia médica aeroportuaria?","I contact emergency services, secure the area, and follow response procedures.","Contacto a emergencias, aseguro el área y sigo los procedimientos de respuesta."],
+["How do you manage charter flight services?","¿Cómo gestionas servicios de vuelos chárter?","I coordinate passengers, equipment, schedules, and special needs.","Coordino pasajeros, equipos, horarios y necesidades especiales."],
+["How do you manage environmental risks from deicing?","¿Cómo gestionas riesgos ambientales de la descongelación?","I monitor runoff and follow approved collection and disposal procedures.","Superviso los residuos líquidos y sigo procedimientos aprobados de recolección y eliminación."],
+["How do you train customer service staff?","¿Cómo capacitas al personal de servicio al cliente?","I teach clear communication, complaint handling, and problem-solving.","Enseño comunicación clara, manejo de quejas y resolución de problemas."],
+["How do you manage elevated security threats?","¿Cómo gestionas amenazas de seguridad elevadas?","I follow security plans, verify access, and brief staff on procedures.","Sigo los planes de seguridad, verifico accesos e informo al personal."],
+["How do you maintain cabin air quality?","¿Cómo mantienes la calidad del aire de cabina?","I verify maintenance records and follow applicable aviation standards.","Verifico los registros de mantenimiento y sigo los estándares aeronáuticos aplicables."],
+["How do you respond to system outages?","¿Cómo respondes a caídas de sistemas?","I activate approved backup procedures and contact technical support.","Activo procedimientos alternativos aprobados y contacto al soporte técnico."],
+["How do you reduce ground equipment emissions?","¿Cómo reduces emisiones de equipos terrestres?","I assess cleaner equipment, improve usage, and monitor energy consumption.","Evalúo equipos menos contaminantes, mejoro su uso y superviso el consumo."],
+["How do you resolve gate allocation disputes?","¿Cómo resuelves disputas por asignación de puertas?","I review schedules, coordinate stakeholders, and seek safe solutions.","Reviso horarios, coordino a las partes interesadas y busco soluciones seguras."],
+["How do you report station performance?","¿Cómo informas sobre el desempeño de una estación?","I report punctuality, safety, cost, and service results using clear data.","Informo sobre puntualidad, seguridad, costos y resultados del servicio con datos claros."]
+],
+restaurantes:[
+["How do you improve restaurant profits?","¿Cómo mejoras las ganancias de un restaurante?","I control food costs, review sales, and negotiate supplier prices.","Controlo costos de alimentos, reviso ventas y negocio precios."],
+["How do you maintain food safety?","¿Cómo mantienes la seguridad alimentaria?","I train staff, monitor temperatures, and follow sanitation procedures.","Capacito al personal, superviso temperaturas y sigo procedimientos sanitarios."],
+["How do you reduce employee turnover?","¿Cómo reduces la rotación de empleados?","I offer fair schedules, recognize good work, and support development.","Ofrezco horarios justos, reconozco el buen trabajo y apoyo el desarrollo."],
+["How do you handle a food safety complaint?","¿Cómo manejas una queja de seguridad alimentaria?","I document the complaint, secure relevant food, and notify the proper team.","Documento la queja, aseguro los alimentos relacionados y aviso al equipo adecuado."],
+["How do you control labor costs?","¿Cómo controlas los costos laborales?","I match schedules to demand and monitor labor cost percentages.","Adapto horarios a la demanda y superviso el porcentaje de costos laborales."],
+["How do you manage inventory?","¿Cómo gestionas el inventario?","I track stock, rotate products, and compare usage with sales.","Registro existencias, roto productos y comparo consumo con ventas."],
+["How do you improve customer service?","¿Cómo mejoras el servicio al cliente?","I train staff, review feedback, and resolve problems quickly.","Capacito al personal, reviso comentarios y resuelvo problemas rápidamente."],
+["How do you manage supplier price increases?","¿Cómo gestionas aumentos de precios de proveedores?","I compare alternatives, negotiate terms, and protect product quality.","Comparo alternativas, negocio condiciones y protejo la calidad."],
+["How do you reduce food waste?","¿Cómo reduces el desperdicio de alimentos?","I improve forecasting, portion control, and inventory rotation.","Mejoro los pronósticos, el control de porciones y la rotación del inventario."],
+["How do you manage a busy service period?","¿Cómo gestionas un servicio muy concurrido?","I assign clear roles, monitor wait times, and coordinate the team.","Asigno funciones claras, superviso esperas y coordino al equipo."],
+["How do you evaluate menu profitability?","¿Cómo evalúas la rentabilidad del menú?","I compare ingredient costs, selling prices, and customer demand.","Comparo costos de ingredientes, precios de venta y demanda."],
+["How do you handle a difficult customer?","¿Cómo manejas a un cliente difícil?","I listen calmly, acknowledge the concern, and offer a fair solution.","Escucho con calma, reconozco la inquietud y ofrezco una solución justa."],
+["How do you prepare for a health inspection?","¿Cómo te preparas para una inspección sanitaria?","I check records, sanitation, temperatures, and staff practices.","Reviso registros, limpieza, temperaturas y prácticas del personal."],
+["How do you improve restaurant productivity?","¿Cómo mejoras la productividad del restaurante?","I simplify workflows, clarify duties, and track service results.","Simplifico procesos, aclaro funciones y mido los resultados del servicio."],
+["How do you train new employees?","¿Cómo capacitas a empleados nuevos?","I explain standards, demonstrate tasks, and check understanding.","Explico estándares, demuestro tareas y compruebo la comprensión."],
+["How do you manage cash controls?","¿Cómo gestionas los controles de efectivo?","I reconcile sales, separate duties, and investigate differences.","Concilio ventas, separo funciones e investigo diferencias."],
+["How do you improve table turnover?","¿Cómo mejoras la rotación de mesas?","I coordinate seating, kitchen timing, and payment processes.","Coordino la asignación de mesas, los tiempos de cocina y los pagos."],
+["How do you manage delivery orders?","¿Cómo gestionas pedidos a domicilio?","I verify order accuracy, packaging, and pickup timing.","Verifico la precisión de pedidos, el embalaje y los tiempos de recogida."],
+["How do you respond to a power outage?","¿Cómo respondes a un corte eléctrico?","I protect people and food, follow emergency procedures, and document losses.","Protejo a las personas y los alimentos, sigo los procedimientos y documento pérdidas."],
+["How do you manage employee scheduling?","¿Cómo gestionas los horarios del personal?","I forecast demand, consider availability, and apply scheduling rules fairly.","Pronostico la demanda, considero la disponibilidad y asigno horarios justamente."],
+["How do you expand a restaurant chain?","¿Cómo expandes una cadena de restaurantes?","I test market demand, assess costs, and standardize operations.","Evalúo la demanda, analizo costos y estandarizo las operaciones."],
+["How do you protect restaurant reputation?","¿Cómo proteges la reputación del restaurante?","I maintain consistent quality and respond honestly to feedback.","Mantengo una calidad constante y respondo con honestidad a los comentarios."],
+["How do you measure customer loyalty?","¿Cómo mides la fidelidad del cliente?","I review repeat visits, feedback, and loyalty program results.","Reviso visitas recurrentes, comentarios y resultados del programa de fidelidad."],
+["How do you manage equipment failures?","¿Cómo gestionas fallas de equipos?","I protect food safety, arrange repairs, and use approved backup plans.","Protejo la seguridad alimentaria, coordino reparaciones y utilizo planes alternativos."],
+["How do you improve purchasing decisions?","¿Cómo mejoras las decisiones de compra?","I compare quality, total cost, reliability, and supplier performance.","Comparo calidad, costo total, confiabilidad y desempeño del proveedor."],
+["How do you maintain consistent food quality?","¿Cómo mantienes una calidad constante de los alimentos?","I standardize recipes, train cooks, and check finished dishes.","Estandarizo recetas, capacito cocineros y reviso los platos terminados."],
+["How do you manage alcohol service responsibly?","¿Cómo gestionas responsablemente el servicio de alcohol?","I follow licensing rules, train staff, and apply age and safety checks.","Sigo las normas de licencia, capacito al personal y aplico controles de edad y seguridad."],
+["How do you evaluate a restaurant location?","¿Cómo evalúas una ubicación para un restaurante?","I assess demand, visibility, rent, competition, and operating costs.","Evalúo demanda, visibilidad, alquiler, competencia y costos operativos."],
+["How do you resolve conflict between kitchen and service teams?","¿Cómo resuelves conflictos entre cocina y servicio?","I clarify responsibilities, review the workflow, and agree on improvements.","Aclaro responsabilidades, reviso el proceso y acuerdo mejoras."],
+["How do you present restaurant results to owners?","¿Cómo presentas los resultados a los propietarios?","I report sales, margins, labor costs, customer feedback, and key risks.","Informo ventas, márgenes, costos laborales, comentarios y riesgos principales."]
+],
+situaciones:[
+["How do you combine an MBA with nursing experience?","¿Cómo combinas un MBA con experiencia en enfermería?","I connect financial planning and operational decisions with quality and safety.","Relaciono la planificación financiera y las decisiones operativas con la calidad y la seguridad."],
+["What salary do you expect?","¿Qué salario esperas?","I consider the role, responsibilities, market data, and total compensation.","Considero el puesto, las responsabilidades, los datos del mercado y la compensación total."],
+["How do you handle a difficult negotiation?","¿Cómo manejas una negociación difícil?","I use reliable data, listen carefully, and seek a workable agreement.","Utilizo datos confiables, escucho atentamente y busco un acuerdo viable."],
+["How do you lead organizational change?","¿Cómo lideras un cambio organizacional?","I explain the purpose, involve employees, and measure adoption.","Explico el propósito, involucro a los empleados y mido la adopción."],
+["What do you do if a decision threatens safety?","¿Qué haces si una decisión amenaza la seguridad?","I explain the risk, follow required standards, and propose safer options.","Explico el riesgo, sigo los estándares requeridos y propongo opciones más seguras."],
+["How do you make decisions with limited data?","¿Cómo tomas decisiones con datos limitados?","I identify key facts, assess uncertainty, and document my assumptions.","Identifico hechos clave, evalúo la incertidumbre y documento mis supuestos."],
+["How do you manage competing priorities?","¿Cómo gestionas prioridades en conflicto?","I rank tasks by impact, urgency, risk, and available resources.","Ordeno las tareas por impacto, urgencia, riesgo y recursos disponibles."],
+["How do you explain a complex idea simply?","¿Cómo explicas una idea compleja de forma sencilla?","I focus on the main point, use a clear example, and check understanding.","Me centro en la idea principal, uso un ejemplo claro y compruebo la comprensión."],
+["How do you respond to executive criticism?","¿Cómo respondes a críticas ejecutivas?","I stay professional, review the evidence, and improve where needed.","Mantengo el profesionalismo, reviso la evidencia y mejoro cuando hace falta."],
+["How do you build a strong team?","¿Cómo construyes un equipo sólido?","I set clear goals, define roles, and encourage accountability.","Establezco objetivos claros, defino funciones y promuevo la responsabilidad."],
+["How do you evaluate a business opportunity?","¿Cómo evalúas una oportunidad empresarial?","I assess demand, costs, risks, competition, and expected returns.","Evalúo la demanda, los costos, los riesgos, la competencia y los rendimientos esperados."],
+["How do you manage financial risk?","¿Cómo gestionas el riesgo financiero?","I test assumptions, monitor cash flow, and prepare contingency options.","Pruebo supuestos, superviso el flujo de caja y preparo alternativas."],
+["How do you present results to senior leaders?","¿Cómo presentas resultados a la alta dirección?","I summarize the findings, explain risks, and recommend clear actions.","Resumo los hallazgos, explico los riesgos y recomiendo acciones claras."],
+["How do you handle an ethical dilemma?","¿Cómo manejas un dilema ético?","I review the facts, apply ethical standards, and disclose conflicts.","Reviso los hechos, aplico estándares éticos y declaro conflictos."],
+["How do you negotiate a higher salary?","¿Cómo negocias un salario más alto?","I show measurable value, research market rates, and discuss total compensation.","Demuestro valor medible, investigo salarios del mercado y analizo la compensación total."],
+["How do you manage underperformance?","¿Cómo gestionas un bajo desempeño?","I set clear expectations, identify barriers, and review progress fairly.","Establezco expectativas claras, identifico obstáculos y reviso el progreso justamente."],
+["How do you develop a business strategy?","¿Cómo desarrollas una estrategia empresarial?","I assess the market, define priorities, and align resources with goals.","Evalúo el mercado, defino prioridades y alineo recursos con objetivos."],
+["How do you measure return on investment?","¿Cómo mides el retorno de la inversión?","I compare expected benefits with total costs and track actual results.","Comparo beneficios esperados con costos totales y mido resultados reales."],
+["How do you respond to a project failure?","¿Cómo respondes al fracaso de un proyecto?","I identify root causes, communicate lessons, and adjust the plan.","Identifico causas raíz, comunico aprendizajes y ajusto el plan."],
+["How do you protect confidential business information?","¿Cómo proteges información empresarial confidencial?","I limit access, follow policy, and share information only when authorized.","Limito el acceso, sigo las políticas y comparto información solo con autorización."],
+["How do you manage reputational risk?","¿Cómo gestionas el riesgo reputacional?","I verify facts, respond promptly, and communicate transparently.","Verifico los hechos, respondo pronto y me comunico con transparencia."],
+["How do you lead across departments?","¿Cómo lideras entre departamentos?","I align shared goals, clarify ownership, and resolve obstacles collaboratively.","Alineo objetivos comunes, aclaro responsabilidades y resuelvo obstáculos en colaboración."],
+["How do you assess a new market?","¿Cómo evalúas un mercado nuevo?","I research customers, competitors, regulations, and entry costs.","Investigo clientes, competidores, regulaciones y costos de entrada."],
+["How do you improve an inefficient process?","¿Cómo mejoras un proceso ineficiente?","I map the workflow, remove unnecessary steps, and measure improvement.","Represento el proceso, elimino pasos innecesarios y mido la mejora."],
+["How do you manage a disagreement with your manager?","¿Cómo gestionas un desacuerdo con tu jefe?","I present evidence respectfully and work toward shared objectives.","Presento evidencia con respeto y trabajo por objetivos compartidos."],
+["How do you evaluate a major investment?","¿Cómo evalúas una inversión importante?","I compare cash flows, risks, strategic value, and alternative uses of funds.","Comparo flujos de caja, riesgos, valor estratégico y usos alternativos de fondos."],
+["How do you maintain professional credibility?","¿Cómo mantienes credibilidad profesional?","I prepare carefully, communicate honestly, and deliver on commitments.","Me preparo bien, me comunico honestamente y cumplo mis compromisos."],
+["How do you manage a crisis as a leader?","¿Cómo gestionas una crisis como líder?","I protect people, verify facts, assign roles, and communicate updates.","Protejo a las personas, verifico los hechos, asigno funciones y comunico novedades."],
+["How do you choose between cost and quality?","¿Cómo eliges entre costo y calidad?","I compare total value, safety, customer needs, and long-term consequences.","Comparo el valor total, la seguridad, las necesidades del cliente y las consecuencias a largo plazo."],
+["How do you define executive success?","¿Cómo defines el éxito ejecutivo?","I measure results, ethical leadership, team development, and sustainable value.","Mido resultados, liderazgo ético, desarrollo del equipo y valor sostenible."]
+]
 };
-        // MOTOR DE LA APLICACIÓN Y NAVEGACIÓN
-        class ExecutiveApp {
-            constructor() {
-                this.db = FULL_180_DATABASE;
-                this.currentSector = 'hospitales';
-                this.currentIndex = 0;
-                this.recognition = null;
-                this.isRecording = false;
-                this.init();
-            }
-
-            init() {
-                this.render();
-            }
-
-            changeSector() {
-                this.currentSector = document.getElementById('sectorSelect').value;
-                this.currentIndex = 0;
-                this.render();
-            }
-
-            render() {
-                const list = this.db[this.currentSector];
-                const current = list[this.currentIndex];
-
-                const names = {
-                    hospitales: "HOSPITAL MANAGEMENT & RN LEADERSHIP",
-                    gobierno: "GOBIERNO Y ALTA DIRECCIÓN",
-                    logistics: "LOGÍSTICA Y CADENA DE SUMINISTRO",
-                    airlines: "AEROLÍNEAS Y OPERACIONES",
-                    restaurantes: "GERENCIA GENERAL DE RESTAURANTES",
-                    situaciones: "ESTRATEGIA EJECUTIVA Y SALARIO MBA"
-                };
-
-                document.getElementById('sectorBadge').innerText = names[this.currentSector];
-                document.getElementById('progressCounter').innerText = `Pregunta ${this.currentIndex + 1} de ${list.length}`;
-
-                document.getElementById('qEnText').innerText = current.qEn;
-                document.getElementById('qPhoneticText').innerText = current.qPhonetic;
-                document.getElementById('qEsText').innerText = current.qEs;
-
-                document.getElementById('aEnText').innerText = current.aEn;
-                document.getElementById('aPhoneticText').innerText = current.aPhonetic;
-                document.getElementById('aEsText').innerText = current.aEs;
-
-                document.getElementById('userSpokenText').innerText = "Esperando que hables...";
-                document.getElementById('scoreText').innerText = "--%";
-            }
-
-            next() {
-                if (this.currentIndex < this.db[this.currentSector].length - 1) {
-                    this.currentIndex++;
-                    this.render();
-                }
-            }
-
-            prev() {
-                if (this.currentIndex > 0) {
-                    this.currentIndex--;
-                    this.render();
-                }
-            }
-
-            speak(type) {
-                window.speechSynthesis.cancel();
-                const list = this.db[this.currentSector];
-                const text = (type === 'q') ? list[this.currentIndex].qEn : list[this.currentIndex].aEn;
-                
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'en-US';
-                utterance.rate = 0.85;
-                window.speechSynthesis.speak(utterance);
-            }
-
-            toggleMic() {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                if (!SpeechRecognition) {
-                    alert("Tu navegador no soporta voz. Utiliza Google Chrome.");
-                    return;
-                }
-
-                if (this.isRecording) {
-                    if (this.recognition) this.recognition.stop();
-                    return;
-                }
-
-                this.recognition = new SpeechRecognition();
-                this.recognition.lang = 'en-US';
-
-                this.recognition.onstart = () => {
-                    this.isRecording = true;
-                    document.getElementById('micBtn').classList.add('bg-red-800', 'animate-pulse');
-                    document.getElementById('micBtnText').innerText = "Escuchando... Habla ahora";
-                    document.getElementById('userSpokenText').innerText = "Procesando voz...";
-                };
-
-                this.recognition.onresult = (e) => {
-                    const transcript = e.results[0][0].transcript;
-                    document.getElementById('userSpokenText').innerText = `"${transcript}"`;
-                    
-                    const target = this.db[this.currentSector][this.currentIndex].aEn.toLowerCase();
-                    const wordsSpoken = transcript.toLowerCase().split(' ');
-                    const targetWords = target.split(' ');
-                    let matches = 0;
-                    wordsSpoken.forEach(w => { if (targetWords.includes(w)) matches++; });
-                    
-                    let score = Math.round((matches / Math.max(wordsSpoken.length, targetWords.length)) * 100);
-                    score = Math.max(score, 50);
-                    document.getElementById('scoreText').innerText = `${score}%`;
-                };
-
-                this.recognition.onerror = () => {
-                    document.getElementById('userSpokenText').innerText = "No se escuchó voz clara. Intenta de nuevo.";
-                    this.stopMicState();
-                };
-
-                this.recognition.onend = () => {
-                    this.stopMicState();
-                };
-
-                this.recognition.start();
-            }
-
-            stopMicState() {
-                this.isRecording = false;
-                document.getElementById('micBtn').classList.remove('bg-red-800', 'animate-pulse');
-                document.getElementById('micBtnText').innerText = "Presionar para Hablar";
-            }
-
-            reset() {
-                this.currentIndex = 0;
-                this.render();
-            }
-        }
-
-        const app = new ExecutiveApp();
-    </script>
+const WORDS={
+"how":"jau","do":"du","you":"yu","what":"uat","when":"uen","where":"uer","why":"uai","who":"ju","which":"uich","your":"yor","the":"da","a":"a","an":"an","and":"and","or":"or","of":"ov","to":"tu","for":"for","with":"uid","in":"in","on":"on","from":"from","by":"bai","is":"is","are":"ar","was":"uaz","were":"uer","can":"kan","could":"kud","would":"ud","should":"shud","will":"uil","I":"ai","my":"mai","we":"ui","our":"aur","they":"dei","their":"der","this":"dis","that":"dat","these":"diiz","those":"dous","it":"it","as":"as","at":"at","not":"nat","have":"jav","has":"jaz","had":"jad","use":"ius","review":"riviu","clear":"klir","cost":"kost","costs":"kosts","staff":"staf","safety":"seifti","patient":"peishent","patients":"peishents","risk":"risk","risks":"risks","data":"deita","team":"tim","teams":"tims","manage":"manidsh","management":"manidshment","improve":"impruv","reduce":"ridius","control":"kontrol","protect":"protekt","follow":"folou","check":"chek","report":"riport","support":"suport","business":"bisnes","public":"pablik","service":"servis","services":"servisis","training":"treining","training":"treining","staffing":"stafing","quality":"kualiti","supply":"suplai","chain":"chein","delivery":"deliv eri","budget":"badshit","finance":"fainans","financial":"fainanshal","speak":"spik","safety":"seifti","audit":"odit","compliance":"komplaians","security":"sikiuriti","customer":"kustomer","customers":"kustomers","schedule":"skedshul","schedules":"skedshuls","process":"proses","processes":"prosesiz","decision":"disishon","decisions":"disishons","employees":"emploiis","employee":"emploii","leadership":"lidership","negotiate":"negoshieit","negotiation":"negoshieishon","communication":"komiunikeishon","information":"inform eishon","equipment":"ikuipment","airport":"erport","aircraft":"erkraft","restaurant":"restorant","hospital":"jospital","government":"gavernment","supplier":"suplai er","suppliers":"suplai ers","inventory":"inventori","operations":"opereishons","operational":"opereishonal","effective":"efektiv","efficient":"efishent","efficiently":"efishentli","employees":"emploiis","results":"risalts","problem":"problem","problems":"problems","clear":"klir","quickly":"kuikli","carefully":"kerfuli","situation":"sichueishon","responsibilities":"risponsibilitis","responsibility":"risponsibiliti","experience":"ekspiriens","professional":"profeshonal","professionalism":"profeshonalism","strategy":"strategi","strategic":"strategik","organization":"organizeishon","organizational":"organizeishonal","customer":"kustomer","patient":"peishent","value":"valiu","values":"valius","review":"riviu","reviewing":"riviuing","measure":"mesher","measures":"meshers","measurable":"mesherabel","identify":"aidentifai","identified":"aidentifaid","evaluate":"evaliueit","evaluating":"evaliueiting","communicate":"komiunikeit","communicating":"komiunikeiting","coordinate":"koordineit","coordinate":"koordineit","coordinating":"koordineiting","accurate":"akiurat","accurately":"akiuratli","reliable":"rilaiabel","reliability":"rilaiabiliti","important":"important","required":"rikuaird","requirements":"rikuairments","appropriate":"aprop riet","available":"aveilabel","available":"aveilabel","financial":"fainanshal","information":"inform eishon","investigate":"investigeit","investigation":"investigeishon","corrective":"korektiv","immediately":"imidiatli","emergency":"emerdshensi","emergencies":"emerdshensis","employees":"emploiis","performance":"performans","operating":"opereiting","operational":"opereishonal","training":"treining","procedure":"prosidiur","procedures":"prosidiurs","policy":"polisi","policies":"polisis","evidence":"evidens","evidence-based":"evidens beist","planning":"planing","planning":"planing","patient":"peishent","supply":"suplai","warehouse":"uerjaus","logistics":"lodshistiks","airline":"erlain","airlines":"erlains","passengers":"pasendshers","passenger":"pasend sher","flight":"flait","flights":"flaits","speak":"spik","listen":"lisen","listen":"lisen","answer":"anser","answers":"ansers","simple":"simpel","clear":"klir","fair":"fer","fairly":"ferli","fairness":"fernes","sustainable":"sustainabel","sustainability":"sustainabiliti","transparent":"transpar ent","transparently":"transpar entli","consumption":"konsampshon","competition":"kompetishon","competitors":"kompetitors","opportunity":"oportuniti","opportunities":"oportunitis","resources":"risorsis","resource":"risors","communication":"komiunikeishon","customer":"kustomer","customers":"kustomers","agreement":"agriment","agreements":"agriments","situation":"sichueishon","department":"department","departments":"departments","confidential":"konfidenshal","confidentiality":"konfidenshaliti","appropriate":"aprop riet","authorization":"ozorizeishon","authorize":"ozoraiz","authorized":"ozoraizd","available":"aveilabel","analysis":"analisis","analyze":"analais","assess":"ases","assessment":"asesment","responsible":"risponsabel","responsibly":"risponsabli","manage":"manidsh","managed":"manidshd","monitor":"monitor","monitoring":"monitoring","maintain":"meintein","maintains":"meinteins","maintained":"meinteind","ensure":"enshur","ensures":"enshurs","ensuring":"enshuring","review":"riviu","reviews":"rivius","reviewed":"riviud","schedule":"skedshul","scheduling":"skedshuling","reduce":"ridius","reducing":"ridiusing","increase":"inkris","improve":"impruv","improving":"impruving","coordinate":"koordineit","coordinated":"koordineitid","coordinating":"koordineiting","develop":"divelop","development":"divelopment","evaluate":"evaliueit","evaluating":"evaliueiting","compare":"komper","compared":"komperd","identify":"aidentifai","identifying":"aidentifaiing","prioritize":"praioritaiz","priorities":"praioritis","prioritize":"praioritaiz","communicate":"komiunikeit","communicates":"komiunikeits","communicated":"komiunikeitid","protect":"protekt","protecting":"protekt ing","explain":"eksplein","explaining":"ekspleining","provide":"provaid","providing":"provaiding","support":"suport","supporting":"suporting","report":"riport","reporting":"riporting","document":"dokiument","documented":"dokiumentid","documents":"dokiuments","confirm":"konfirm","confirming":"konfirming","verify":"verifai","verified":"verifaid","prevent":"privent","prevention":"privenshon","prepare":"priper","prepared":"priperd","training":"treining","speak":"spik","speaking":"spiking","listening":"lisen ing","answer":"anser","correct":"korekt","correction":"korekshon","question":"kuestchon","questions":"kuestchons","answer":"anser","answers":"ansers","word":"uerd","words":"uerds","English":"inglish","English":"inglish","Spanish":"spanish","English-language":"inglish lenguidsh","publicly":"pablikli","policy":"polisi","policies":"polisis","legal":"ligal","legally":"ligali","lawful":"loful","lawfully":"lofuli","lead":"lid","leader":"lider","leaders":"liders","leading":"liding","leadership":"lidership","ethical":"ethikal","ethics":"ethiks","ethically":"ethikali","risk":"risk","risks":"risks","risks":"risks","root":"rut","cause":"koz","causes":"kozis","causes":"kozis","cost":"kost","costs":"kosts","cash":"kash","flow":"flou","cash flow":"kash flou","return":"ritern","investment":"invest ment","market":"market","markets":"markets","strategy":"strategi","strategies":"strategis","growth":"grouth","change":"cheinsh","changes":"cheinshis","change":"cheinsh","training":"treining","employee":"emploii","employees":"emploiis","customer":"kustomer","customers":"kustomers","quality":"kualiti","safety":"seifti","time":"taim","times":"taims","service":"servis","services":"servisis","operations":"opereishons","operation":"opereishon","operational":"opereishonal","team":"tim","teams":"tims","goal":"goul","goals":"goulz","plan":"plan","plans":"plans","planning":"planing","risk":"risk","risks":"risks","result":"risalt","results":"risalts","results":"risalts","costs":"kosts","cost":"kost","staff":"staf","budget":"badshit","budgets":"badshits","profit":"profit","profits":"profits","profitability":"profitabiliti","process":"proses","processes":"prosesiz","standard":"standard","standards":"standards","standards":"standards","clear":"klir","clearly":"klirli","fair":"fer","fairly":"ferli","needs":"nids","need":"nid","people":"pipol","people":"pipol","work":"uerk","workers":"uerkers","workforce":"uerkfors","teamwork":"timuerk","decision":"disishon","decisions":"disishons","decide":"disaid","decisions":"disishons","during":"diuring","before":"bifor","after":"after","early":"erli","quickly":"kuikli","accurate":"akiurat","accurate":"akiurat","customer":"kustomer","food":"fud","supply":"suplai","chain":"chein","supply chain":"suplai chein","warehouse":"uerjaus","port":"port","ports":"ports","air":"er","airport":"erport","hospital":"jospital","nursing":"nersing","nurse":"ners","nurses":"nersis","clinical":"klinikal","care":"ker","patient":"peishent","patients":"peishents","public":"pablik","government":"gavernment","governmental":"gavernmental","purchasing":"perchesing","purchase":"perches","procurement":"prokiurment","supplier":"suplai er","suppliers":"suplai ers","transport":"transport","transportation":"transport eishon","scheduling":"skedshuling","staffing":"stafing","customer":"kustomer","feedback":"fidbak","improvement":"impruvment","continuous":"kontinius","contingency":"kontindshensi","contingencies":"kontindshensis","incident":"insid ent","incidents":"insidents","incident":"insident","review":"riviu","evidence":"evidens","based":"beist","patient safety":"peishent seifti","compliance":"komplaians","regulation":"regiuleishon","regulations":"regiuleishons","regulatory":"regiulatori","audit":"odit","audits":"odits","auditor":"oditor","accountability":"akauntabiliti","accountable":"akauntabel","responsibility":"risponsibiliti","responsibilities":"risponsibilitis","budget":"badshit","budgetary":"badshit eri","procurement":"prokiurment","public records":"pablik rekords","conflict":"konflikt","interest":"interest","interests":"interests","disclose":"disklous","disclosure":"disklousher","disclosed":"disklousd","records":"rekords","record":"rekord","retention":"ritenshon","request":"rikuest","requests":"rikuests","complaint":"kompleint","complaints":"kompleints","service":"servis","delivery":"deliv eri","accurate":"akiurat","appropriate":"aprop riet","timely":"taimli","available":"aveilabel","options":"opshons","option":"opshon","costs":"kosts","expense":"ekspens","expenses":"ekspensis","staff":"staf","staffing":"stafing","emergency":"emerdshensi","supply":"suplai","supplier":"suplai er","supplier":"suplai er","system":"sistem","systems":"sistems","access":"akses","security":"sikiuriti","privacy":"praivasi","information":"inform eishon","information security":"inform eishon sikiuriti","cybersecurity":"saiber sikiuriti","customer service":"kustomer servis","satisfaction":"satisfakshon","performance":"performans","measure":"mesher","measures":"meshers","measurement":"mesh erment","efficiency":"efishensi","efficient":"efishent","effectiveness":"efektivnes","effective":"efektiv","evaluate":"evaliueit","evaluate":"evaliueit","assessment":"asesment","risk assessment":"risk asesment","leadership":"lidership","negotiation":"negoshieishon","negotiations":"negoshieishons","salary":"salari","compensation":"kompenseishon","responsibilities":"risponsibilitis","experience":"ekspiriens","organization":"organizeishon","organizational":"organizeishonal","employee":"emploii","employees":"emploiis","customer":"kustomer","customers":"kustomers","patient":"peishent","patients":"peishents","resources":"risorsis","resource":"risors","capacity":"kapasiti","demand":"dimand","forecast":"for kast","forecasting":"for kasting","inventory":"inventori","shipment":"shipment","shipments":"shipments","delivery":"deliv eri","deliveries":"deliv eris","schedule":"skedshul","schedules":"skedshuls","scheduling":"skedshuling","equipment":"ikuipment","maintenance":"meintenans","maintain":"meintein","inspection":"inspekshon","inspections":"inspekshons","inspection":"inspekshon","safety":"seifti","sanitation":"saniteishon","temperature":"tempracher","temperatures":"temprachers","hygiene":"jaidshin","food":"fud","catering":"keitering","flight":"flait","flights":"flaits","aircraft":"erkraft","airline":"erlain","airlines":"erlains","passenger":"pasend sher","passengers":"pasendshers","baggage":"bagidsh","cargo":"kargo","loading":"louding","deicing":"di aising","deice":"di ais","deicing":"di aising","ramp":"ramp","gate":"geit","gates":"geits","airport":"erport","airports":"erports","turnaround":"turnaraund","departure":"departcher","departures":"departchers","cancellation":"kansel eishon","cancellations":"kansel eishons","disruption":"disrapshon","disruptions":"disrapshons","weather":"uedher","severe":"sivir","crew":"kriu","crews":"krius","training":"treining","trained":"treind","training":"treining","crew":"kriu","charter":"charter","environmental":"envaironmental","emissions":"emishons","emission":"emishon","electric":"elektrik","energy":"enerdshi","consumption":"konsampshon","strategy":"strategi","strategic":"strategik","negotiation":"negoshieishon","negotiate":"negoshieit","agreement":"agriment","agreements":"agriments","business":"bisnes","businesses":"bisnesis","profit":"profit","profits":"profits","sales":"seils","sale":"seil","restaurant":"restorant","restaurants":"restorants","food":"fud","supplier":"suplai er","suppliers":"suplai ers","menu":"meniu","menus":"menius","customer":"kustomer","customers":"kustomers","kitchen":"kitchen","service":"servis","service":"servis","turnover":"turnover","employee":"emploii","employees":"emploiis","labor":"leibor","labour":"leibor","cost":"kost","costs":"kosts","margin":"mardshin","margins":"mardshins","quality":"kualiti","complaint":"kompleint","complaints":"kompleints","schedule":"skedshul","schedules":"skedshuls","cash":"kash","inventory":"inventori","purchasing":"perchesing","investment":"invest ment","investments":"invest ments","invest":"invest","investing":"investing","financial":"fainanshal","finance":"fainans","analysis":"analisis","analytics":"analitiks","strategy":"strategi","strategies":"strategis","leadership":"lidership","manager":"manad sher","management":"manidshment","executive":"egsekiutiv","executives":"egsekiutivs","senior":"sinior","market":"market","markets":"markets","salary":"salari","compensation":"kompenseishon","benefits":"benefits","benefit":"benefit","professional":"profeshonal","credibility":"kredibiliti","integrity":"integriti","ethics":"ethiks","ethical":"ethikal","risk":"risk","risk":"risk","crisis":"kraisis","crises":"kraisisiz","communication":"komiunikeishon","communicate":"komiunikeit","communicating":"komiunikeiting","decision":"disishon","decisions":"disishons","planning":"planing","plan":"plan","plans":"plans","plan":"plan","goal":"goul","goals":"goulz","return":"ritern","investment":"invest ment","cash":"kash","flow":"flou","market":"market","marketplace":"marketpleis","opportunity":"oportuniti","opportunities":"oportunitis","competition":"kompetishon","competitive":"kompetitiv","competitors":"kompetitors","customer":"kustomer","demand":"dimand","growth":"grouth","change":"cheinsh","changes":"cheinshis","improve":"impruv","improvement":"impruvment","project":"prodsh ect","projects":"prodsh ekts","failure":"feiliur","failures":"feiliurs","success":"sakses","successful":"saksesful","successfully":"saksesfuli","ethical":"ethikal","ethically":"ethikali","policy":"polisi","policies":"polisis","standard":"standard","standards":"standards","process":"proses","processes":"prosesiz","procedure":"prosidiur","procedures":"prosidiurs","risk":"risk","risks":"risks","resources":"risorsis","resource":"risors","priorities":"praioritis","priority":"praioriti","work":"uerk","working":"uerking","worked":"uerkt","people":"pipol","person":"person","team":"tim","teams":"tims","clear":"klir","clearly":"klirli","fair":"fer","fairly":"ferli","honest":"onest","honestly":"onestli","listen":"lisen","listening":"lisen ing","explain":"eksplein","explanation":"eksplaneishon","understand":"anderstand","understanding":"anderstanding","learn":"lern","learning":"lerning","practice":"praktis","practical":"praktikal","example":"egzampel","examples":"egzampels","speak":"spik","speaking":"spiking","spoken":"spouken","language":"lenguidsh","English":"inglish","Spanish":"spanish","answer":"anser","response":"rispons","respond":"rispond","responding":"risponding","recommend":"rek omend","recommendation":"rek omendeishon","recommendations":"rek omendeishons","evidence":"evidens","document":"dokiument","documents":"dokiuments","documented":"dokiumentid","data":"deita","analysis":"analisis","analyze":"analais","analyzed":"analaizd","monitor":"monitor","monitoring":"monitoring","measures":"meshers","measure":"mesher","result":"risalt","results":"risalts","outcome":"autkam","outcomes":"autkams","impact":"impact","impacts":"impacts","long-term":"long term","short-term":"short term","sustainable":"sustainabel","sustainability":"sustainabiliti","immediate":"imidiat","immediately":"imidiatli","urgent":"erdshent","urgency":"erdshensi","important":"important","essential":"esenshal","critical":"kritikal","crucial":"krushal","necessary":"neseseri","available":"aveilabel","appropriate":"aprop riet","proper":"proper","properly":"properli","required":"rikuaird","requirement":"rikuairment","requirements":"rikuairments","accurate":"akiurat","accuracy":"akiurasi","reliable":"rilaiabel","reliability":"rilaiabiliti","effective":"efektiv","effectively":"efektivli","efficient":"efishent","efficiency":"efishensi","careful":"kerful","carefully":"kerfuli","safe":"seif","safely":"seifli","safety":"seifti","secure":"sikiur","securely":"sikiurli","security":"sikiuriti","public":"pablik","private":"praivet","privacy":"praivasi","confidential":"konfidenshal","confidentiality":"konfidenshaliti","access":"akses","control":"kontrol","controls":"kontrols","controlled":"kontrold","risk":"risk","risks":"risks","management":"manidshment","manager":"manad sher","manage":"manidsh","managed":"manidshd","managing":"manidshing","leaders":"liders","leader":"lider","lead":"lid","led":"led","leadership":"lidership","team":"tim","teams":"tims","workforce":"uerkfors","employee":"emploii","employees":"emploiis","worker":"uerker","workers":"uerkers","staff":"staf","staffing":"stafing","organization":"organizeishon","organizations":"organizeishons","organizational":"organizeishonal","department":"department","departments":"departments","company":"kampani","companies":"kampanis","business":"bisnes","businesses":"bisnesis","public":"pablik","government":"gavernment","hospital":"jospital","hospitals":"jospitals","nursing":"nersing","nurse":"ners","restaurant":"restorant","restaurants":"restorants","airline":"erlain","airlines":"erlains","logistics":"lodshistiks","supply":"suplai","chain":"chein","airport":"erport","operations":"opereishons","operation":"opereishon","procurement":"prokiurment","audit":"odit","compliance":"komplaians","regulatory":"regiulatori","regulation":"regiuleishon","regulations":"regiuleishons","legal":"ligal","law":"lo","lawful":"loful","ethics":"ethiks","ethical":"ethikal","integrity":"integriti","accountability":"akauntabiliti","responsible":"risponsabel","responsibility":"risponsibiliti","responsibilities":"risponsibilitis","budget":"badshit","financial":"fainanshal","finance":"fainans","cost":"kost","costs":"kosts","profit":"profit","profits":"profits","revenue":"reveniu","revenues":"revenius","expense":"ekspens","expenses":"ekspensis","investment":"invest ment","investments":"invest ments","return":"ritern","returns":"riterns","cash":"kash","flow":"flou","forecast":"forkast","forecasting":"forkasting","market":"market","customer":"kustomer","customers":"kustomers","supplier":"suplai er","suppliers":"suplai ers","inventory":"inventori","warehouse":"uerjaus","port":"port","ports":"ports","cargo":"kargo","shipment":"shipment","shipments":"shipments","delivery":"deliv eri","deliveries":"deliv eris","transport":"transport","transportation":"transport eishon","route":"rut","routes":"ruts","scheduling":"skedshuling","schedule":"skedshul","schedules":"skedshuls","planning":"planing","plan":"plan","plans":"plans","strategy":"strategi","strategic":"strategik","strategies":"strategis","negotiation":"negoshieishon","negotiations":"negoshieishons","salary":"salari","compensation":"kompenseishon","performance":"performans","productivity":"prodaktiviti","product":"prodakt","products":"prodakts","service":"servis","services":"servisis","quality":"kualiti","satisfaction":"satisfakshon","customer satisfaction":"kustomer satisfakshon","feedback":"fidbak","complaint":"kompleint","complaints":"kompleints","problem":"problem","problems":"problems","solution":"solushon","solutions":"solushons","change":"cheinsh","changes":"cheinshis","improvement":"impruvment","improvements":"impruvments","continuous":"kontinius","training":"treining","train":"trein","trained":"treind","trainers":"trainers","learn":"lern","learned":"lernd","learning":"lerning","explain":"eksplein","explains":"ekspleins","explained":"ekspleind","listen":"lisen","listened":"lisend","communicate":"komiunikeit","communication":"komiunikeishon","communicating":"komiunikeiting","clear":"klir","clearly":"klirli","fair":"fer","fairly":"ferli","transparent":"transparent","transparency":"transparensi","trust":"trast","trusted":"trastid","trustworthy":"trastuerdi","evidence":"evidens","fact":"fakt","facts":"fakts","data":"deita","information":"inform eishon","record":"rekord","records":"rekords","report":"riport","reports":"riports","reporting":"riporting","document":"dokiument","documentation":"dokiumenteishon","review":"riviu","reviewing":"riviuing","reviewed":"riviud","assess":"ases","assessing":"asesing","assessment":"asesment","evaluate":"evaliueit","evaluation":"evaliueishon","evaluating":"evaliueiting","identify":"aidentifai","identifying":"aidentifaiing","identified":"aidentifaid","monitor":"monitor","monitoring":"monitoring","measure":"mesher","measuring":"meshering","measurement":"mesherment","results":"risalts","outcome":"autkam","outcomes":"autkams","goal":"goul","goals":"goulz","priority":"praioriti","priorities":"praioritis","resource":"risors","resources":"risorsis","capacity":"kapasiti","demand":"dimand","available":"aveilabel","availability":"aveilabiliti","risk":"risk","risks":"risks","mitigate":"mitigeit","mitigation":"mitigeishon","contingency":"kontindshensi","contingencies":"kontindshensis","emergency":"emerdshensi","emergencies":"emerdshensis","crisis":"kraisis","crises":"kraisisiz","response":"rispons","respond":"rispond","responding":"risponding","prevent":"privent","prevention":"privenshon","protect":"protekt","protection":"prote kshon","reduce":"ridius","reduction":"rid akshon","increase":"inkris","increasing":"inkrising","improve":"impruv","improving":"impruving","develop":"divelop","development":"divelopment","implement":"implement","implementation":"implement eishon","implementing":"implementing","apply":"aplai","applied":"aplaid","application":"aplikeishon","follow":"folou","following":"folouing","followed":"foloud","enforce":"enfors","enforcement":"enforsment","enforcing":"enforsing","maintain":"meintein","maintenance":"meintenans","check":"chek","checking":"cheking","verify":"verifai","verification":"verifikeishon","inspect":"inspekt","inspection":"inspekshon","inspection":"inspekshon","correct":"korekt","correction":"korekshon","corrective":"korektiv","action":"akshon","actions":"akshons","assign":"asain","assigned":"asaind","responsibility":"risponsibiliti","ownership":"ounership","accountable":"akauntabel","accountability":"akauntabiliti","collaborate":"kolaboreit","collaboration":"kolaboreishon","coordinate":"koordineit","coordination":"koordineishon","coordinating":"koordineiting","align":"alain","alignment":"alain ment","aligned":"alaind","agree":"agri","agreement":"agriment","agreements":"agriments","negotiate":"negoshieit","negotiating":"negoshieiting","negotiate":"negoshieit","resolve":"risolv","resolution":"risolushon","conflict":"konflikt","conflicts":"konflikts","dispute":"dispiut","disputes":"dispiuts","listen":"lisen","listening":"lisen ing","understand":"anderstand","understanding":"anderstanding","explain":"eksplein","explanation":"eksplaneishon","present":"prisent","presentation":"presenteishon","recommend":"rekomend","recommendation":"rekomendeishon","propose":"propous","proposal":"propousal","consider":"konsider","consideration":"konsidereishon","decide":"disaid","decision":"disishon","decision-making":"disishon meiking","decisions":"disishons","plan":"plan","planning":"planing","planned":"pland","prepare":"priper","preparation":"prepereishon","prepared":"priperd","execute":"eksekiut","execution":"eksekiushon","deliver":"deliv er","delivered":"deliv erd","delivery":"deliv eri","deliveries":"deliv eris","achieve":"achiv","achievement":"achivment","achieve":"achiv","achieving":"achiving","success":"sakses","successful":"saksesful","successfully":"saksesfuli","fail":"feil","failure":"feiliur","failures":"feiliurs","learn":"lern","lesson":"leson","lessons":"lesons","improve":"impruv","improvement":"impruvment","improvements":"impruvments","professional":"profeshonal","professionally":"profeshonali","profession":"profeshon","experience":"ekspiriens","experienced":"ekspiriensd","expertise":"ekspertise","knowledge":"nolidsh","skills":"skils","skill":"skil","ability":"abiliti","abilities":"abilitis","confidence":"konfidens","confident":"konfident","confidently":"konfidentli","answer":"anser","answering":"ansering","question":"kuestchon","questions":"kuestchons","practice":"praktis","practicing":"praktising","practise":"praktis","pronunciation":"pronansieishon","pronounce":"pronouns","spoken":"spouken","speaking":"spiking","speech":"spich","voice":"vois","audio":"odio","repeat":"rip it","repeating":"rip iting","repeat":"rip it","read":"rid","reading":"riding","hear":"jir","heard":"jerd","listen":"lisen","listening":"lisen ing","understand":"anderstand","meaning":"mining","simple":"simpel","simplify":"simplifai","simple":"simpel","simpler":"simpler","easy":"isi","easier":"isier","clear":"klir","clarity":"klariti","sentence":"sentens","sentences":"sentensis","phrase":"freiz","phrases":"freizis","word":"uerd","words":"uerds","vocabulary":"vokabiuleri","grammar":"gramer","fluency":"fl uensi","fluent":"fluent","English":"inglish","American":"amerikan","American English":"amerikan inglish","practice":"praktis","professional":"profeshonal","executive":"egsekiutiv","management":"manidshment","leadership":"lidership","healthcare":"jelthker","health":"jelth","hospital":"jospital","nursing":"nersing","government":"gavernment","public":"pablik","procurement":"prokiurment","logistics":"lodshistiks","airline":"erlain","restaurant":"restorant","strategy":"strategi","business":"bisnes","finance":"fainans","salary":"salari","MBA":"em bi ei","RN":"ar en","USA":"iu es ei","Florida":"florida","United States":"iunaitid steits","Miami":"maiami","Florida":"florida","hurricane":"jarrikein","hurricanes":"jarrikeins","emergency":"emerdshensi","employee":"emploii","employees":"emploiis","customer":"kustomer","customers":"kustomers","patient":"peishent","patients":"peishents","public":"pablik","procurement":"prokiurment","warehouse":"uerjaus","turnaround":"turnaraund","profitability":"profitabiliti","profit":"profit","profits":"profits","budget":"badshit","budgets":"badshits","audit":"odit","auditing":"oditing","compliance":"komplaians","contract":"kontrakt","contracts":"kontrakts","contractor":"kontraktor","contractors":"kontraktors","government":"gavernment","regulations":"regiuleishons","regulatory":"regiulatori","supply chain":"suplai chein","aircraft":"erkraft","airline":"erlain","airport":"erport","operations":"opereishons","restaurant":"restorant","financial":"fainanshal","finance":"fainans","executive":"egsekiutiv","salary":"salari","negotiation":"negoshieishon","negotiations":"negoshieishons","responsible":"risponsabel","responsibly":"risponsabli","responsibility":"risponsibiliti","responsibilities":"risponsibilitis","ethics":"ethiks","ethical":"ethikal","transparency":"transparensi","transparent":"transparent","customer":"kustomer","customers":"kustomers","service":"servis","services":"servisis","food":"fud","safety":"seifti","quality":"kualiti","satisfaction":"satisfakshon","cost":"kost","costs":"kosts","growth":"grouth","market":"market","markets":"markets","demand":"dimand","resources":"risorsis","team":"tim","teams":"tims","staff":"staf","staffing":"stafing","performance":"performans","performance":"performans","results":"risalts","risk":"risk","risks":"risks","improve":"impruv","improved":"impruvd","improvement":"impruvment","reduce":"ridius","reduced":"ridiusd","manage":"manidsh","managed":"manidshd","managing":"manidshing","review":"riviu","reviewed":"riviud","check":"chek","checked":"chekt","follow":"folou","followed":"foloud","report":"riport","reported":"riportid","use":"ius","used":"iuzd","make":"meik","made":"meid","take":"teik","taken":"teiken","keep":"kip","kept":"kept","set":"set","work":"uerk","worked":"uerkt","workload":"uerkloud","workloads":"uerklouds","outcome":"autkam","outcomes":"autkams","goal":"goul","goals":"goulz","customer":"kustomer","customers":"kustomers","passenger":"pasend sher","passengers":"pasendshers","flight":"flait","flights":"flaits","food":"fud","restaurant":"restorant","restaurants":"restorants","speak":"spik","spoken":"spouken","speak":"spik","English":"inglish","simple":"simpel","professional":"profeshonal","value":"valiu","value":"valiu","valuable":"valiuabel","knowledge":"nolidsh","confidence":"konfidens","competence":"kompetens","competent":"kompetent","important":"important","important":"important","help":"jelp","helps":"jelps","helpful":"jelpful","practical":"praktikal","practices":"praktisis","practice":"praktis","practical":"praktikal","applicable":"aplikabel","applicable":"aplikabel","approach":"aproch","approaches":"aprochis","response":"rispons","responses":"risponsis","respond":"rispond","responds":"risponds","patient":"peishent","situation":"sichueishon","situations":"sichueishons","question":"kuestchon","questions":"kuestchons","answer":"anser","answers":"ansers","model":"model","models":"models","interview":"interviu","interviews":"intervius","role":"roul","roles":"rouls","responsibilities":"risponsibilitis","skills":"skils","skills":"skils","experience":"ekspiriens","knowledge":"nolidsh","leadership":"lidership","strategy":"strategi","management":"manidshment","financial":"fainanshal","planning":"planing","patient":"peishent","safety":"seifti","compliance":"komplaians","risk":"risk","quality":"kualiti","cost":"kost","costs":"kosts","results":"risalts","team":"tim","teams":"tims","clear":"klir","clearly":"klirli","accurate":"akiurat","accurately":"akiuratli","reliable":"rilaiabel","reliably":"rilaiabli","fair":"fer","fairly":"ferli","safe":"seif","safely":"seifli","proper":"proper","properly":"properli","public":"pablik","government":"gavernment","hospital":"jospital","nursing":"nersing","logistics":"lodshistiks","airline":"erlain","restaurant":"restorant","business":"bisnes","strategy":"strategi","executive":"egsekiutiv","senior":"sinior","salary":"salari","negotiation":"negoshieishon","professional":"profeshonal","professionalism":"profeshonalism","communication":"komiunikeishon","decision":"disishon","decisions":"disishons","manage":"manidsh","manager":"manad sher","managers":"manad shers","managing":"manidshing","improve":"impruv","improvement":"impruvment","reduce":"ridius","control":"kontrol","protect":"protekt","ensure":"enshur","maintain":"meintein","develop":"divelop","support":"suport","prepare":"priper","prevent":"privent","evaluate":"evaliueit","assess":"ases","assessments":"asesments","analyze":"analais","analysis":"analisis","measure":"mesher","monitor":"monitor","track":"trak","coordinate":"koordineit","communicate":"komiunikeit","listen":"lisen","explain":"eksplein","provide":"provaid","consider":"konsider","compare":"komper","focus":"foukus","prioritize":"praioritaiz","identify":"aidentifai","follow":"folou","apply":"aplai","review":"riviu","report":"riport","document":"dokiument","check":"chek","verify":"verifai","confirm":"konfirm","respond":"rispond","resolve":"risolv","deliver":"deliv er","achieve":"achiv","align":"alain","assign":"asain","build":"bild","create":"krieit","support":"suport","listen":"lisen","understand":"anderstand","learn":"lern","work":"uerk","works":"uerks","working":"uerking","teamwork":"timuerk","use":"ius","uses":"iusis","using":"iusing","find":"faind","make":"meik","making":"meiking","set":"set","meet":"mit","meeting":"miting","follow":"folou","following":"folouing","review":"riviu","reviewing":"riviuing","address":"adres","addressing":"adresing","issue":"ishu","issues":"ishus","concern":"konsern","concerns":"konserns","cause":"koz","causes":"kozis","impact":"impact","impacts":"impacts","plan":"plan","planning":"planing","plans":"plans","system":"sistem","systems":"sistems","process":"proses","processes":"prosesiz","standard":"standard","standards":"standards","procedure":"prosidiur","procedures":"prosidiurs","policy":"polisi","policies":"polisis","program":"program","programs":"programs","project":"prodsh ekt","projects":"prodsh ekts","service":"servis","services":"servisis","customer":"kustomer","customers":"kustomers","patient":"peishent","patients":"peishents","staff":"staf","employees":"emploiis","employee":"emploii","workers":"uerkers","workers":"uerkers","people":"pipol","person":"person","persons":"persons","organization":"organizeishon","organizations":"organizeishons","organizational":"organizeishonal","company":"kampani","companies":"kampanis","business":"bisnes","businesses":"bisnesis","government":"gavernment","public":"pablik","hospital":"jospital","hospitals":"jospitals","healthcare":"jelthker","nursing":"nersing","logistics":"lodshistiks","airline":"erlain","airlines":"erlains","restaurant":"restorant","restaurants":"restorants","supply":"suplai","chain":"chein","port":"port","ports":"ports","airport":"erport","aircraft":"erkraft","flight":"flait","flights":"flaits","cargo":"kargo","food":"fud","supplier":"suplai er","suppliers":"suplai ers","inventory":"inventori","warehouse":"uerjaus","safety":"seifti","security":"sikiuriti","privacy":"praivasi","compliance":"komplaians","audit":"odit","regulatory":"regiulatori","regulation":"regiuleishon","regulations":"regiuleishons","legal":"ligal","ethics":"ethiks","ethical":"ethikal","risk":"risk","risks":"risks","finance":"fainans","financial":"fainanshal","cost":"kost","costs":"kosts","budget":"badshit","budgets":"badshits","profit":"profit","profits":"profits","sales":"seils","revenue":"reveniu","revenues":"revenius","expense":"ekspens","expenses":"ekspensis","investment":"invest ment","investments":"invest ments","market":"market","markets":"markets","customer":"kustomer","demand":"dimand","satisfaction":"satisfakshon","quality":"kualiti","performance":"performans","productivity":"prodaktiviti","efficiency":"efishensi","effective":"efektiv","efficient":"efishent","improvement":"impruvment","continuous":"kontinius","change":"cheinsh","changes":"cheinshis","leadership":"lidership","manager":"manad sher","management":"manidshment","executive":"egsekiutiv","strategy":"strategi","strategic":"strategik","negotiation":"negoshieishon","salary":"salari","compensation":"kompenseishon","responsibility":"risponsibiliti","responsibilities":"risponsibilitis","conflict":"konflikt","agreement":"agriment","agreements":"agriments","transparency":"transparensi","transparent":"transparent","integrity":"integriti","accountability":"akauntabiliti","information":"inform eishon","data":"deita","evidence":"evidens","fact":"fakt","facts":"fakts","accurate":"akiurat","reliable":"rilaiabel","clear":"klir","clearly":"klirli","timely":"taimli","appropriate":"aprop riet","available":"aveilabel","necessary":"neseseri","required":"rikuaird","required":"rikuaird","resources":"risorsis","capacity":"kapasiti","demand":"dimand","outcome":"autkam","outcomes":"autkams","goals":"goulz","goal":"goul","target":"target","targets":"targets","measure":"mesher","measures":"meshers","metric":"metrik","metrics":"metriks","indicator":"indikeitor","indicators":"indikeitors","score":"skor","scores":"skors","percent":"persent","percentage":"persentidsh","results":"risalts","result":"risalt","progress":"progress","improve":"impruv","improved":"impruvd","reducing":"ridiusing","reduction":"rid akshon","risk":"risk","risks":"risks","mitigation":"mitigeishon","plan":"plan","plans":"plans","planning":"planing","prepare":"priper","prepared":"priperd","preparation":"prepereishon","response":"rispons","respond":"rispond","emergency":"emerdshensi","incident":"insident","incidents":"insidents","accident":"aksident","accidents":"aksidents","safety":"seifti","secure":"sikiur","security":"sikiuriti","access":"akses","control":"kontrol","controls":"kontrols","privacy":"praivasi","confidential":"konfidenshal","confidentiality":"konfidenshaliti","public":"pablik","private":"praivet","legal":"ligal","lawful":"loful","laws":"loz","law":"lo","policy":"polisi","policies":"polisis","standard":"standard","standards":"standards","procedure":"prosidiur","procedures":"prosidiurs","required":"rikuaird","require":"rikuair","requires":"rikuairs","required":"rikuaird","responsible":"risponsabel","responsibility":"risponsibiliti","professional":"profeshonal","professionally":"profeshonali","executive":"egsekiutiv","leadership":"lidership","strategy":"strategi","business":"bisnes","knowledge":"nolidsh","experience":"ekspiriens","English":"inglish","speak":"spik","speak":"spik","speaking":"spiking","question":"kuestchon","answer":"anser","practice":"praktis","practice":"praktis","simple":"simpel","understand":"anderstand","understanding":"anderstanding","listen":"lisen","repeat":"rip it","repeat":"rip it","read":"rid","voice":"vois","microphone":"maikrofon","pronunciation":"pronansieishon","phonetic":"fonetik","phonetics":"fonetiks","word":"uerd","words":"uerds","sentence":"sentens","sentences":"sentensis","phrase":"freiz","phrases":"freizis","fluency":"fluensi","fluent":"fluent","confidence":"konfidens","confidence":"konfidens","professional":"profeshonal","value":"valiu","knowledge":"nolidsh","learn":"lern","learning":"lerning","skill":"skil","skills":"skils","correct":"korekt","correctly":"korektli","wrong":"rong","different":"diferent","answer":"anser","answers":"ansers","similar":"similar","similarity":"similariti","match":"mach","matching":"maching","score":"skor","scoring":"skoring","feedback":"fidbak","recommendation":"rekomendeishon","suggestion":"sadshes chon","suggestions":"sadshes chons","improve":"impruv","improvement":"impruvment","repeat":"rip it","again":"agen","slowly":"slouli","calmly":"kamli","clearly":"klirli","carefully":"kerfuli","professional":"profeshonal","general":"dsheneral","education":"edukeishon","educational":"edukeishonal","application":"aplikeishon","browser":"brauser","internet":"internet","permission":"permishon","permissions":"permishons","supported":"suportid","support":"suport","recognized":"rekognaizd","recognition":"rekognishon","automatic":"otomatik","estimate":"estimeit","estimated":"estimeitid","official":"ofishal","evaluation":"evaliueishon","evaluate":"evaliueit","complete":"komplit","completely":"komplitli","full":"ful","entire":"entair","every":"evri","each":"ich","one":"uan","first":"ferst","second":"sekond","third":"therd","next":"nekst","previous":"privious","last":"last","before":"bifor","after":"after","today":"tudei","tomorrow":"tumorou","always":"olueis","never":"never","sometimes":"samtaims","often":"ofen","usually":"iushuali","clear":"klir","simple":"simpel","easy":"isi","short":"short","long":"long","better":"beter","best":"best","good":"gud","well":"uel","very":"veri","more":"mor","less":"les","much":"mach","many":"meni","few":"fiu","enough":"inof","all":"ol","some":"sam","most":"moust","other":"ader","another":"anader","same":"seim","different":"diferent","because":"bikoz","so":"sou","if":"if","then":"den","while":"uail","although":"oldhou","however":"jau ever","therefore":"derfor","also":"olso","but":"bat","and":"and","or":"or","not":"nat","no":"nou","yes":"ies","can":"kan","cannot":"kanat","must":"mast","should":"shud","could":"kud","would":"ud","will":"uil","may":"mei","might":"mait","need":"nid","needs":"nids","want":"uant","wanting":"uanting","expect":"ekspekt","expected":"ekspektid","consider":"konsider","considering":"konsidering","based":"beist","according":"akording","within":"uidin","without":"uidaut","through":"thru","throughout":"thruaut","between":"bituin","among":"among","around":"araund","about":"abaut","above":"abav","below":"bilou","under":"ander","over":"ouver","during":"diuring","against":"agenst","toward":"tuerd","towards":"tuerdz","across":"akros","into":"intu","onto":"ontu","from":"from","to":"tu","for":"for","with":"uid","by":"bai","at":"at","on":"on","in":"in","of":"ov","the":"da","a":"a","an":"an","is":"is","are":"ar","was":"uaz","were":"uer","be":"bi","been":"bin","being":"biing","have":"jav","has":"jaz","had":"jad","do":"du","does":"daz","did":"did","done":"dan","make":"meik","made":"meid","take":"teik","took":"tuk","give":"giv","gave":"geiv","get":"get","got":"gat","go":"gou","went":"uent","come":"kam","came":"keim","know":"nou","knew":"niu","think":"think","thought":"thot","say":"sei","said":"sed","tell":"tel","told":"tould","show":"shou","shown":"shoun","find":"faind","found":"faund","keep":"kip","kept":"kept","set":"set","put":"put","let":"let","help":"jelp","helps":"jelps","work":"uerk","works":"uerks","worked":"uerkt","use":"ius","used":"iuzd","using":"iusing","apply":"aplai","applied":"aplaid","follow":"folou","followed":"foloud","provide":"provaid","provided":"prova idid","ensure":"enshur","ensured":"enshurd","maintain":"meintein","maintained":"meinteind","manage":"manidsh","managed":"manidshd","improve":"impruv","improved":"impruvd","reduce":"ridius","reduced":"ridiusd","control":"kontrol","controlled":"kontrold","protect":"protekt","protected":"protektid","prepare":"priper","prepared":"priperd","prevent":"privent","prevented":"priventid","review":"riviu","reviewed":"riviud","check":"chek","checked":"chekt","report":"riport","reported":"riportid","coordinate":"koordineit","coordinated":"koordineitid","communicate":"komiunikeit","communicated":"komiunikeitid","explain":"eksplein","explained":"ekspleind","listen":"lisen","listened":"lisend","learn":"lern","learned":"lernd","train":"trein","trained":"treind","build":"bild","built":"bilt","lead":"lid","led":"led","meet":"mit","met":"met","set":"set","choose":"chuz","chose":"chouz","compare":"komper","compared":"komperd","evaluate":"evaliueit","evaluated":"evaliueitid","assess":"ases","assessed":"asest","identify":"aidentifai","identified":"aidentifaid","monitor":"monitor","monitored":"monitor d","measure":"mesher","measured":"mesherd","track":"trak","tracked":"trakt","align":"alain","aligned":"alaind","assign":"asain","assigned":"asaind","deliver":"deliv er","delivered":"deliv erd","achieve":"achiv","achieved":"achivd","support":"suport","supported":"suportid","develop":"divelop","developed":"divelopd","resolve":"risolv","resolved":"risolvd","respond":"rispond","responded":"rispondid","address":"adres","addressed":"adresd","consider":"konsider","considered":"konsiderd","prioritize":"praioritaiz","prioritized":"praioritaizd","disclose":"disklous","disclosed":"disklousd","protect":"protekt","protection":"prote kshon","supply":"suplai","supplies":"suplais","chain":"chein","warehouse":"uerjaus","port":"port","ports":"ports","cargo":"kargo","shipment":"shipment","shipments":"shipments","route":"rut","routes":"ruts","delivery":"deliv eri","deliveries":"deliv eris","demand":"dimand","forecast":"forkast","forecasting":"forkasting","inventory":"inventori","stock":"stok","stocks":"stoks","cost":"kost","costs":"kosts","price":"prais","prices":"praisis","profit":"profit","profits":"profits","sales":"seils","revenue":"reveniu","expense":"ekspens","expenses":"ekspensis","budget":"badshit","budgets":"badshits","cash":"kash","flow":"flou","risk":"risk","risks":"risks","quality":"kualiti","safety":"seifti","security":"sikiuriti","privacy":"praivasi","patient":"peishent","nurse":"ners","nursing":"nersing","doctor":"doktor","hospital":"jospital","healthcare":"jelthker","government":"gavernment","public":"pablik","procurement":"prokiurment","audit":"odit","compliance":"komplaians","regulation":"regiuleishon","regulations":"regiuleishons","restaurant":"restorant","airline":"erlain","airport":"erport","aircraft":"erkraft","flight":"flait","flights":"flaits","passenger":"pasend sher","passengers":"pasendshers","turnaround":"turnaraund","gate":"geit","gates":"geits","ramp":"ramp","deicing":"di aising","crew":"kriu","crews":"krius","food":"fud","customer":"kustomer","customers":"kustomers","supplier":"suplai er","suppliers":"suplai ers","employee":"emploii","employees":"emploiis","manager":"manad sher","managers":"manad shers","executive":"egsekiutiv","executives":"egsekiutivs","salary":"salari","compensation":"kompenseishon","negotiation":"negoshieishon","strategy":"strategi","strategic":"strategik","leadership":"lidership","MBA":"em bi ei","RN":"ar en"
+};
+function phonetic(text){
+return text.split(/(\s+|[.,?!:;])/).map(part=>{
+if(!part.trim()||/^[.,?!:;]$/.test(part))return part;
+const key=part.replace(/[^a-zA-Z'-]/g,"").toLowerCase();
+if(WORDS[key])return WORDS[key];
+let w=key.toLowerCase();
+w=w.replace(/tion$/,"shon").replace(/sion$/,"shon").replace(/ture$/,"cher").replace(/ough$/,"ou").replace(/igh$/,"ai").replace(/ee/g,"i").replace(/ea/g,"i").replace(/oo/g,"u").replace(/sh/g,"sh").replace(/ch/g,"ch").replace(/th/g,"th").replace(/ph/g,"f").replace(/qu/g,"ku").replace(/ck/g,"k").replace(/c(?=[eiy])/g,"s").replace(/c/g,"k").replace(/j/g,"dsh").replace(/y/g,"i").replace(/x/g,"ks").replace(/w/g,"u").replace(/v/g,"v").replace(/z/g,"s").replace(/a/g,"a").replace(/e/g,"e").replace(/i/g,"i").replace(/o/g,"o").replace(/u/g,"u");
+return w;
+}).join("");
+}
+const FULL_180_DATABASE=Object.fromEntries(Object.entries(RAW).map(([key,items])=>[key,items.map(([qEn,qEs,aEn,aEs])=>({qEn,qPhonetic:phonetic(qEn),qEs,aEn,aPhonetic:phonetic(aEn),aEs}))]));
+class ExecutiveApp{
+constructor(){this.db=FULL_180_DATABASE;this.currentSector="hospitales";this.currentIndex=0;this.recognition=null;this.isRecording=false;this.init()}
+init(){document.getElementById("sectorSelect").value=this.currentSector;this.render()}
+changeSector(){this.stopRecognition();this.currentSector=document.getElementById("sectorSelect").value;this.currentIndex=0;this.render()}
+render(){
+const list=this.db[this.currentSector];const current=list[this.currentIndex];const names={hospitales:"HOSPITALES · ENFERMERÍA Y CUMPLIMIENTO",gobierno:"GOBIERNO · COMPRAS Y ALTA DIRECCIÓN",logistics:"LOGÍSTICA · CADENA DE SUMINISTRO",airlines:"AEROLÍNEAS · OPERACIONES AEROPORTUARIAS",restaurantes:"RESTAURANTES · GERENCIA GENERAL",situaciones:"ESTRATEGIA EJECUTIVA · MBA"};
+document.getElementById("sectorBadge").innerText=names[this.currentSector];document.getElementById("progressCounter").innerText=`Pregunta ${this.currentIndex+1} de ${list.length}`;document.getElementById("progressFill").style.width=`${((this.currentIndex+1)/list.length)*100}%`;
+for(const [id,value] of Object.entries({qEnText:current.qEn,qPhoneticText:current.qPhonetic,qEsText:current.qEs,aEnText:current.aEn,aPhoneticText:current.aPhonetic,aEsText:current.aEs}))document.getElementById(id).innerText=value;
+document.getElementById("userSpokenText").innerText="Esperando que hables...";document.getElementById("scoreText").innerText="--%";document.getElementById("feedbackText").innerText="Escucha, comprende y responde con calma.";this.stopMicState();
+}
+next(){if(this.currentIndex<this.db[this.currentSector].length-1){this.stopRecognition();this.currentIndex++;this.render()}else{document.getElementById("feedbackText").innerText="¡Has llegado al final de este sector! Puedes elegir otro sector o reiniciar."}}
+prev(){if(this.currentIndex>0){this.stopRecognition();this.currentIndex--;this.render()}}
+speak(type){
+if(!("speechSynthesis"in window)){alert("Tu navegador no admite reproducción de voz.");return}
+window.speechSynthesis.cancel();const current=this.db[this.currentSector][this.currentIndex];const utterance=new SpeechSynthesisUtterance(type==="q"?current.qEn:current.aEn);utterance.lang="en-US";utterance.rate=.82;utterance.pitch=1;window.speechSynthesis.speak(utterance)
+}
+toggleMic(){
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SR){alert("Tu navegador no admite reconocimiento de voz. Prueba Google Chrome y permite el acceso al micrófono.");return}
+if(this.isRecording){this.stopRecognition();return}
+window.speechSynthesis.cancel();this.recognition=new SR();this.recognition.lang="en-US";this.recognition.continuous=false;this.recognition.interimResults=false;this.recognition.maxAlternatives=3;
+this.recognition.onstart=()=>{this.isRecording=true;document.getElementById("micBtn").classList.add("mic-active");document.getElementById("micBtnText").innerText="Escuchando... pulsa para detener";document.getElementById("userSpokenText").innerText="Escuchando tu respuesta..."};
+this.recognition.onresult=e=>{const result=e.results[0][0];const transcript=result.transcript||"";document.getElementById("userSpokenText").innerText=`“${transcript}”`;this.evaluate(transcript)};
+this.recognition.onerror=e=>{const msg=e.error==="not-allowed"?"Permite el uso del micrófono en el navegador.":e.error==="no-speech"?"No se detectó voz. Intenta hablar un poco más cerca del micrófono.":"No se pudo reconocer la voz. Intenta de nuevo.";document.getElementById("userSpokenText").innerText=msg};
+this.recognition.onend=()=>this.stopMicState();
+try{this.recognition.start()}catch(e){this.stopMicState();document.getElementById("userSpokenText").innerText="No se pudo iniciar el micrófono. Intenta otra vez."}
+}
+normalize(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\s'-]/g," ").replace(/\s+/g," ").trim()}
+evaluate(transcript){
+const target=this.normalize(this.db[this.currentSector][this.currentIndex].aEn);const spoken=this.normalize(transcript);const stop=new Set(["i","a","an","the","and","or","to","of","in","on","with","for","is","are","am","it","my","we","our","by","as","at","be","do","use"]);const expected=target.split(" ").filter(w=>w.length>1&&!stop.has(w));const actual=spoken.split(" ").filter(w=>w.length>1&&!stop.has(w));const unique=new Set(actual);let hits=0;for(const word of unique)if(expected.includes(word))hits++;const recall=expected.length?hits/expected.length:0;const precision=actual.length?hits/actual.length:0;const score=Math.round(100*(precision+recall?2*precision*recall/(precision+recall):0));document.getElementById("scoreText").innerText=`${score}%`;let feedback;if(!spoken){feedback="No se detectó una respuesta. Intenta de nuevo."}else if(score>=80){feedback="Buena coincidencia con la respuesta modelo. Ahora intenta expresarla sin leer."}else if(score>=55){feedback="Has incluido algunas ideas clave. Revisa el modelo y vuelve a intentarlo."}else{feedback="La coincidencia es baja. Escucha el modelo y practica una frase corta cada vez."}document.getElementById("feedbackText").innerText=feedback
+}
+stopMicState(){this.isRecording=false;const btn=document.getElementById("micBtn");if(btn)btn.classList.remove("mic-active");const label=document.getElementById("micBtnText");if(label)label.innerText="Presionar para hablar"}
+stopRecognition(){if(this.recognition){try{this.recognition.onend=null;this.recognition.stop()}catch(e){}this.recognition=null}this.stopMicState()}
+reset(){this.stopRecognition();window.speechSynthesis?.cancel();this.currentIndex=0;this.render()}
+}
+const app=new ExecutiveApp();
+</script>
 </body>
 </html>
