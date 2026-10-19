@@ -104,7 +104,9 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 <div class="actions">
 <button class="secondary" id="prevBtn">← Previous</button>
 <button id="nextBtn">Next question →</button>
+<button class="secondary" id="autoBtn" aria-pressed="false">▶ Auto practice</button>
 <button class="secondary" id="markBtn">✓ Mark practiced</button>
+<p class="small" id="autoStatus" aria-live="polite" style="flex-basis:100%;margin:0"></p>
 </div>
 <hr>
 <h2 id="yourAnswerTitle">Your answer</h2>
@@ -711,10 +713,10 @@ const DATA={
 ]
 };
 const I18N={
-en:{setup:"Choose your practice",sector:"Career field",level:"Difficulty",search:"Search questions",speed:"Speaking speed",voice:"English voice",total:"Questions practiced",score:"Last practice score",answered:"Questions answered",count:"questions available",question:"Question",answer:"Model answer",show:"Show answer",hide:"Hide answer",playQ:"▶ Play question",playA:"🔊 Play model answer",prev:"← Previous",next:"Next question →",mark:"✓ Mark practiced",your:"Your answer",help:"Type your answer or use the microphone. Speak in English when possible.",mic:"🎙 Start speaking",stop:"■ Stop recording",evaluate:"Evaluate my answer",clear:"Clear",vocab:"Useful vocabulary",notes:"My improvement notes",save:"Save notes on this device",download:"Download practice report",strategy:"Answer with the STAR method",strategyHelp:"For behavioral questions, explain the Situation, Task, Action, and Result.",privacy:"Practice feedback is approximate and generated in your browser. It is not a hiring decision, certification, or guarantee of employment. Avoid entering confidential employer, patient, or customer information.",voiceOn:"🔊 Voice: On",voiceOff:"🔇 Voice: Off",beginner:"Beginner",intermediate:"Intermediate",advanced:"Advanced",all:"All levels",none:"No questions match your search. Try another keyword or level.",loading:"Loading question...",done:"Marked as practiced.",saved:"Notes saved on this device.",notSaved:"Your browser does not support local saving.",recording:"Listening... Speak clearly in English.",notSupported:"Speech recognition is not available in this browser. Try Chrome or Edge and allow microphone access.",stopped:"Recording stopped.",permission:"Microphone unavailable. Check browser permissions and try again.",empty:"Write or record an answer first.",evalTitle:"Practice feedback",wordCount:"Words",coverage:"Keyword coverage",length:"Answer length",suggestion:"Improvement suggestion",short:"Try adding a specific example, your action, and the result.",good:"Good start. Add one concrete example and a measurable result if possible.",strong:"Your answer includes useful details. Practice delivering it naturally and clearly.",vocabHint:"Vocabulary from this question",report:"INTERVIEW PRACTICE REPORT",date:"Date",field:"Career field",asked:"Question",model:"Model answer",mine:"My answer",feedback:"Feedback",notesLabel:"My notes",noAnswer:"No answer entered.",star:"Your STAR answer",random:"Random question",shuffle:"🔀 Shuffle",reset:"↻ Reset session",searchPlaceholder:"Type a keyword...",questionCount:"Question",noVoice:"No voice available",practiceScore:"Practice score",correct:"Relevant keywords",tips:"Practice tip",langName:"English"},
-es:{setup:"Elige tu práctica",sector:"Campo profesional",level:"Dificultad",search:"Buscar preguntas",speed:"Velocidad de voz",voice:"Voz en inglés",total:"Preguntas practicadas",score:"Última puntuación",answered:"Preguntas respondidas",count:"preguntas disponibles",question:"Pregunta",answer:"Respuesta modelo",show:"Mostrar respuesta",hide:"Ocultar respuesta",playQ:"▶ Escuchar pregunta",playA:"🔊 Escuchar respuesta",prev:"← Anterior",next:"Siguiente pregunta →",mark:"✓ Marcar practicada",your:"Tu respuesta",help:"Escribe tu respuesta o usa el micrófono. Intenta hablar en inglés.",mic:"🎙 Empezar a hablar",stop:"■ Detener grabación",evaluate:"Evaluar mi respuesta",clear:"Borrar",vocab:"Vocabulario útil",notes:"Mis notas de mejora",save:"Guardar notas en este dispositivo",download:"Descargar informe",strategy:"Responde con el método STAR",strategyHelp:"Para preguntas sobre experiencias, explica la Situación, Tarea, Acción y Resultado.",privacy:"La evaluación es orientativa y se genera en tu navegador. No es una decisión de contratación, certificación ni garantía de empleo. No introduzcas información confidencial de empleadores, pacientes o clientes.",voiceOn:"🔊 Voz: Activada",voiceOff:"🔇 Voz: Desactivada",beginner:"Principiante",intermediate:"Intermedio",advanced:"Avanzado",all:"Todos los niveles",none:"No hay preguntas que coincidan. Prueba otra palabra o dificultad.",loading:"Cargando pregunta...",done:"Marcada como practicada.",saved:"Notas guardadas en este dispositivo.",notSaved:"Tu navegador no permite guardar localmente.",recording:"Escuchando... Habla claramente en inglés.",notSupported:"Este navegador no ofrece reconocimiento de voz. Prueba Chrome o Edge y permite el acceso al micrófono.",stopped:"Grabación detenida.",permission:"No se pudo acceder al micrófono. Revisa los permisos del navegador.",empty:"Escribe o graba primero una respuesta.",evalTitle:"Evaluación orientativa",wordCount:"Palabras",coverage:"Palabras clave incluidas",length:"Extensión",suggestion:"Sugerencia de mejora",short:"Añade un ejemplo concreto, la acción que realizaste y el resultado.",good:"Buen comienzo. Añade un ejemplo específico y, si puedes, un resultado medible.",strong:"Tu respuesta incluye detalles útiles. Practica decirla de forma natural y clara.",vocabHint:"Vocabulario de esta pregunta",report:"INFORME DE PRÁCTICA DE ENTREVISTA",date:"Fecha",field:"Campo profesional",asked:"Pregunta",model:"Respuesta modelo",mine:"Mi respuesta",feedback:"Evaluación",notesLabel:"Mis notas",noAnswer:"No escribiste una respuesta.",star:"Tu respuesta STAR",random:"Pregunta aleatoria",shuffle:"🔀 Mezclar",reset:"↻ Reiniciar sesión",searchPlaceholder:"Escribe una palabra...",questionCount:"Pregunta",noVoice:"No hay voces disponibles",practiceScore:"Puntuación orientativa",correct:"Palabras clave relevantes",tips:"Consejo",langName:"Inglés"}
+en:{setup:"Choose your practice",sector:"Career field",level:"Difficulty",search:"Search questions",speed:"Speaking speed",voice:"English voice",total:"Questions practiced",score:"Last practice score",answered:"Questions answered",count:"questions available",question:"Question",answer:"Model answer",show:"Show answer",hide:"Hide answer",playQ:"▶ Play question",playA:"🔊 Play model answer",prev:"← Previous",next:"Next question →",autoStart:"▶ Auto practice",autoStop:"⏸ Stop auto",autoRunning:"Automatic practice is running: question, model answer, then next question.",autoStopped:"Automatic practice stopped.",autoFinished:"Automatic practice finished.",mark:"✓ Mark practiced",your:"Your answer",help:"Type your answer or use the microphone. Speak in English when possible.",mic:"🎙 Start speaking",stop:"■ Stop recording",evaluate:"Evaluate my answer",clear:"Clear",vocab:"Useful vocabulary",notes:"My improvement notes",save:"Save notes on this device",download:"Download practice report",strategy:"Answer with the STAR method",strategyHelp:"For behavioral questions, explain the Situation, Task, Action, and Result.",privacy:"Practice feedback is approximate and generated in your browser. It is not a hiring decision, certification, or guarantee of employment. Avoid entering confidential employer, patient, or customer information.",voiceOn:"🔊 Voice: On",voiceOff:"🔇 Voice: Off",beginner:"Beginner",intermediate:"Intermediate",advanced:"Advanced",all:"All levels",none:"No questions match your search. Try another keyword or level.",loading:"Loading question...",done:"Marked as practiced.",saved:"Notes saved on this device.",notSaved:"Your browser does not support local saving.",recording:"Listening... Speak clearly in English.",notSupported:"Speech recognition is not available in this browser. Try Chrome or Edge and allow microphone access.",stopped:"Recording stopped.",permission:"Microphone unavailable. Check browser permissions and try again.",empty:"Write or record an answer first.",evalTitle:"Practice feedback",wordCount:"Words",coverage:"Keyword coverage",length:"Answer length",suggestion:"Improvement suggestion",short:"Try adding a specific example, your action, and the result.",good:"Good start. Add one concrete example and a measurable result if possible.",strong:"Your answer includes useful details. Practice delivering it naturally and clearly.",vocabHint:"Vocabulary from this question",report:"INTERVIEW PRACTICE REPORT",date:"Date",field:"Career field",asked:"Question",model:"Model answer",mine:"My answer",feedback:"Feedback",notesLabel:"My notes",noAnswer:"No answer entered.",star:"Your STAR answer",random:"Random question",shuffle:"🔀 Shuffle",reset:"↻ Reset session",searchPlaceholder:"Type a keyword...",questionCount:"Question",noVoice:"No voice available",practiceScore:"Practice score",correct:"Relevant keywords",tips:"Practice tip",langName:"English"},
+es:{setup:"Elige tu práctica",sector:"Campo profesional",level:"Dificultad",search:"Buscar preguntas",speed:"Velocidad de voz",voice:"Voz en inglés",total:"Preguntas practicadas",score:"Última puntuación",answered:"Preguntas respondidas",count:"preguntas disponibles",question:"Pregunta",answer:"Respuesta modelo",show:"Mostrar respuesta",hide:"Ocultar respuesta",playQ:"▶ Escuchar pregunta",playA:"🔊 Escuchar respuesta",prev:"← Anterior",next:"Siguiente pregunta →",autoStart:"▶ Práctica automática",autoStop:"⏸ Detener automático",autoRunning:"Práctica automática activa: pregunta, respuesta modelo y luego la siguiente pregunta.",autoStopped:"Práctica automática detenida.",autoFinished:"La práctica automática terminó.",mark:"✓ Marcar practicada",your:"Tu respuesta",help:"Escribe tu respuesta o usa el micrófono. Intenta hablar en inglés.",mic:"🎙 Empezar a hablar",stop:"■ Detener grabación",evaluate:"Evaluar mi respuesta",clear:"Borrar",vocab:"Vocabulario útil",notes:"Mis notas de mejora",save:"Guardar notas en este dispositivo",download:"Descargar informe",strategy:"Responde con el método STAR",strategyHelp:"Para preguntas sobre experiencias, explica la Situación, Tarea, Acción y Resultado.",privacy:"La evaluación es orientativa y se genera en tu navegador. No es una decisión de contratación, certificación ni garantía de empleo. No introduzcas información confidencial de empleadores, pacientes o clientes.",voiceOn:"🔊 Voz: Activada",voiceOff:"🔇 Voz: Desactivada",beginner:"Principiante",intermediate:"Intermedio",advanced:"Avanzado",all:"Todos los niveles",none:"No hay preguntas que coincidan. Prueba otra palabra o dificultad.",loading:"Cargando pregunta...",done:"Marcada como practicada.",saved:"Notas guardadas en este dispositivo.",notSaved:"Tu navegador no permite guardar localmente.",recording:"Escuchando... Habla claramente en inglés.",notSupported:"Este navegador no ofrece reconocimiento de voz. Prueba Chrome o Edge y permite el acceso al micrófono.",stopped:"Grabación detenida.",permission:"No se pudo acceder al micrófono. Revisa los permisos del navegador.",empty:"Escribe o graba primero una respuesta.",evalTitle:"Evaluación orientativa",wordCount:"Palabras",coverage:"Palabras clave incluidas",length:"Extensión",suggestion:"Sugerencia de mejora",short:"Añade un ejemplo concreto, la acción que realizaste y el resultado.",good:"Buen comienzo. Añade un ejemplo específico y, si puedes, un resultado medible.",strong:"Tu respuesta incluye detalles útiles. Practica decirla de forma natural y clara.",vocabHint:"Vocabulario de esta pregunta",report:"INFORME DE PRÁCTICA DE ENTREVISTA",date:"Fecha",field:"Campo profesional",asked:"Pregunta",model:"Respuesta modelo",mine:"Mi respuesta",feedback:"Evaluación",notesLabel:"Mis notas",noAnswer:"No escribiste una respuesta.",star:"Tu respuesta STAR",random:"Pregunta aleatoria",shuffle:"🔀 Mezclar",reset:"↻ Reiniciar sesión",searchPlaceholder:"Escribe una palabra...",questionCount:"Pregunta",noVoice:"No hay voces disponibles",practiceScore:"Puntuación orientativa",correct:"Palabras clave relevantes",tips:"Consejo",langName:"Inglés"}
 };
-let lang="en",sector="",index=0,items=[],practiced=new Set(),answered=new Set(),lastScore=null,voiceOn=true,recognition=null,recording=false,feedbackText="",sessionCount=0;
+let lang="en",sector="",index=0,items=[],practiced=new Set(),answered=new Set(),lastScore=null,voiceOn=true,recognition=null,recording=false,feedbackText="",sessionCount=0,autoMode=false,autoTimer=null,autoRunId=0;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const tr=k=>I18N[lang][k]||I18N.en[k]||k;
@@ -728,7 +730,7 @@ $("sector").innerHTML=allSectors().map(s=>`<option value="${esc(s)}">${esc(s)}</
 sector=allSectors()[0]||"";
 }
 function updateText(){
-$("setupTitle").textContent=tr("setup");$("sectorLabel").textContent=tr("sector");$("levelLabel").textContent=tr("level");$("searchLabel").textContent=tr("search");$("speedLabel").textContent=tr("speed");$("voiceLabel").textContent=tr("voice");$("totalLabel").textContent=tr("total");$("scoreLabel").textContent=tr("score");$("streakLabel").textContent=tr("answered");$("yourAnswerTitle").textContent=tr("your");$("yourAnswerHelp").textContent=tr("help");$("playQuestion").textContent=tr("playQ");$("playAnswer").textContent=tr("playA");$("showAnswer").textContent=tr("show");$("hideAnswer").textContent=tr("hide");$("prevBtn").textContent=tr("prev");$("nextBtn").textContent=tr("next");$("markBtn").textContent=tr("mark");$("startMic").textContent=tr("mic");$("stopMic").textContent=tr("stop");$("evaluateBtn").textContent=tr("evaluate");$("clearAnswer").textContent=tr("clear");$("vocabTitle").textContent=tr("vocab");$("notesTitle").textContent=tr("notes");$("saveNotes").textContent=tr("save");$("downloadBtn").textContent=tr("download");$("strategyTitle").textContent=tr("strategy");$("strategyHelp").textContent=tr("strategyHelp");$("privacyNotice").textContent=tr("privacy");$("shuffleBtn").textContent=tr("shuffle");$("randomBtn").textContent="🎲 "+tr("random");$("resetBtn").textContent=tr("reset");$("search").placeholder=tr("searchPlaceholder");
+$("setupTitle").textContent=tr("setup");$("sectorLabel").textContent=tr("sector");$("levelLabel").textContent=tr("level");$("searchLabel").textContent=tr("search");$("speedLabel").textContent=tr("speed");$("voiceLabel").textContent=tr("voice");$("totalLabel").textContent=tr("total");$("scoreLabel").textContent=tr("score");$("streakLabel").textContent=tr("answered");$("yourAnswerTitle").textContent=tr("your");$("yourAnswerHelp").textContent=tr("help");$("playQuestion").textContent=tr("playQ");$("playAnswer").textContent=tr("playA");$("showAnswer").textContent=tr("show");$("hideAnswer").textContent=tr("hide");$("prevBtn").textContent=tr("prev");$("nextBtn").textContent=tr("next");$("autoBtn").textContent=tr(autoMode?"autoStop":"autoStart");$("autoBtn").setAttribute("aria-pressed",String(autoMode));$("autoStatus").textContent=autoMode?tr("autoRunning"):"";$("markBtn").textContent=tr("mark");$("startMic").textContent=tr("mic");$("stopMic").textContent=tr("stop");$("evaluateBtn").textContent=tr("evaluate");$("clearAnswer").textContent=tr("clear");$("vocabTitle").textContent=tr("vocab");$("notesTitle").textContent=tr("notes");$("saveNotes").textContent=tr("save");$("downloadBtn").textContent=tr("download");$("strategyTitle").textContent=tr("strategy");$("strategyHelp").textContent=tr("strategyHelp");$("privacyNotice").textContent=tr("privacy");$("shuffleBtn").textContent=tr("shuffle");$("randomBtn").textContent="🎲 "+tr("random");$("resetBtn").textContent=tr("reset");$("search").placeholder=tr("searchPlaceholder");
 const old=$("level").value;$("level").innerHTML=`<option value="all">${tr("all")}</option><option value="Beginner">${tr("beginner")}</option><option value="Intermediate">${tr("intermediate")}</option><option value="Advanced">${tr("advanced")}</option>`;$("level").value=old;
 }
 function refresh(){
@@ -745,6 +747,7 @@ $("listProgress").style.width=(items.length?(index+1)/items.length*100:0)+"%";
 $("questionList").innerHTML=items.map((x,i)=>`<button class="qitem ${i===index?"active":""}" data-i="${i}"><span>${practiced.has(sector+":"+x.i)?"✓":"○"}</span><span>${esc(x.d[0])}<small>${esc(x.d[2])}</small></span></button>`).join("");
 $("questionList").querySelectorAll("[data-i]").forEach(b=>b.addEventListener("click",()=>{index=Number(b.dataset.i);render();}));
 if(!items.length){
+if(autoMode)stopAuto("autoFinished");
 $("questionText").textContent=tr("none");$("categoryTag").textContent=sector;$("numberText").textContent="0";$("answerBox").hidden=true;$("vocabulary").innerHTML="";$("feedback").textContent="";$("prevBtn").disabled=true;$("nextBtn").disabled=true;$("showAnswer").disabled=true;$("playQuestion").disabled=true;$("playAnswer").disabled=true;$("markBtn").disabled=true;return;
 }
 const d=items[index].d;
@@ -817,15 +820,55 @@ recognition.onerror=e=>{$("micStatus").textContent=e.error==="not-allowed"?tr("p
 recognition.onend=()=>{recording=false;$("startMic").disabled=false;$("stopMic").disabled=true};
 }
 function stopRecognition(){if(recognition&&recording)recognition.stop();recording=false;$("startMic").disabled=false;$("stopMic").disabled=true}
-$("sector").addEventListener("change",()=>{sector=$("sector").value;index=0;refresh()});
-$("level").addEventListener("change",()=>{index=0;refresh()});
-$("search").addEventListener("input",()=>{index=0;refresh()});
+function stopAuto(messageKey="autoStopped"){
+ autoMode=false;autoRunId++;if(autoTimer!==null){clearTimeout(autoTimer);autoTimer=null}
+ if("speechSynthesis"in window)window.speechSynthesis.cancel();
+ $("autoBtn").textContent=tr("autoStart");$("autoBtn").setAttribute("aria-pressed","false");$("autoStatus").textContent=messageKey?tr(messageKey):"";
+}
+function waitForSpeech(text,runId,done){
+ let finished=false;const finish=()=>{if(finished||runId!==autoRunId)return;finished=true;if(autoTimer!==null){clearTimeout(autoTimer);autoTimer=null}done()};
+ const rate=Number($("speed").value)||.9;
+ const fallback=Math.max(1800,Math.min(18000,(String(text||"").length/14)*1000/rate+1200));
+ autoTimer=setTimeout(finish,fallback);
+ if(!voiceOn||!("speechSynthesis"in window)){return}
+ window.speechSynthesis.cancel();
+ const utterance=new SpeechSynthesisUtterance(String(text||""));utterance.lang="en-US";utterance.rate=rate;
+ const voices=window.speechSynthesis.getVoices(),selected=$("voiceSelect").value;
+ if(selected){const voice=voices.find(v=>v.name===selected);if(voice)utterance.voice=voice}
+ utterance.onend=finish;utterance.onerror=finish;window.speechSynthesis.speak(utterance);
+}
+function runAutoStep(runId){
+ if(!autoMode||runId!==autoRunId)return;
+ if(!items.length){stopAuto("autoFinished");return}
+ if(index>=items.length){stopAuto("autoFinished");return}
+ const d=current();if(!d){stopAuto("autoFinished");return}
+ $("answerBox").hidden=false;$("autoStatus").textContent=tr("autoRunning");
+ waitForSpeech(d[0],runId,()=>{
+  if(!autoMode||runId!==autoRunId)return;
+  waitForSpeech(d[1],runId,()=>{
+   if(!autoMode||runId!==autoRunId)return;
+   autoTimer=setTimeout(()=>{
+    autoTimer=null;if(!autoMode||runId!==autoRunId)return;
+    if(index<items.length-1){index++;render();runAutoStep(runId)}else stopAuto("autoFinished");
+   },700);
+  });
+ });
+}
+function toggleAuto(){
+ if(autoMode){stopAuto("autoStopped");return}
+ if(!items.length){$("autoStatus").textContent=tr("none");return}
+ autoMode=true;const runId=++autoRunId;$("autoBtn").textContent=tr("autoStop");$("autoBtn").setAttribute("aria-pressed","true");$("autoStatus").textContent=tr("autoRunning");runAutoStep(runId);
+}
+$("autoBtn").addEventListener("click",toggleAuto);
+$("sector").addEventListener("change",()=>{if(autoMode)stopAuto("autoStopped");sector=$("sector").value;index=0;refresh()});
+$("level").addEventListener("change",()=>{if(autoMode)stopAuto("autoStopped");index=0;refresh()});
+$("search").addEventListener("input",()=>{if(autoMode)stopAuto("autoStopped");index=0;refresh()});
 $("playQuestion").addEventListener("click",()=>{if(current())speak(current()[0])});
 $("playAnswer").addEventListener("click",()=>{if(current())speak(current()[1])});
 $("showAnswer").addEventListener("click",()=>{$("answerBox").hidden=false});
 $("hideAnswer").addEventListener("click",()=>{$("answerBox").hidden=true});
-$("prevBtn").addEventListener("click",()=>{if(index>0){index--;render()}});
-$("nextBtn").addEventListener("click",()=>{if(index<items.length-1){index++;render()}});
+$("prevBtn").addEventListener("click",()=>{if(autoMode)stopAuto("autoStopped");if(index>0){index--;render()}});
+$("nextBtn").addEventListener("click",()=>{if(autoMode)stopAuto("autoStopped");if(index<items.length-1){index++;render()}});
 $("markBtn").addEventListener("click",markPracticed);
 $("evaluateBtn").addEventListener("click",evaluate);
 $("clearAnswer").addEventListener("click",()=>{$("userAnswer").value="";$("feedback").textContent="";feedbackText=""});
@@ -834,11 +877,11 @@ $("stopMic").addEventListener("click",stopRecognition);
 $("saveNotes").addEventListener("click",()=>{const d=current();if(!d)return;$("saveStatus").textContent=saveNote("notes:"+sector+":"+items[index].i,$("notes").value)?tr("saved"):tr("notSaved")});
 $("downloadBtn").addEventListener("click",downloadReport);
 $("buildStar").addEventListener("click",buildStar);
-$("shuffleBtn").addEventListener("click",()=>{const currentItem=items[index];items=filteredItems().sort(()=>Math.random()-.5);index=0;if(currentItem){const found=items.findIndex(x=>x.i===currentItem.i);if(found>=0)index=found}render()});
-$("randomBtn").addEventListener("click",()=>{if(!items.length)return;index=Math.floor(Math.random()*items.length);render()});
-$("resetBtn").addEventListener("click",()=>{if(!confirm(lang==="es"?"¿Reiniciar las estadísticas de esta sesión?":"Reset this session's statistics?"))return;practiced.clear();answered.clear();sessionCount=0;lastScore=null;refresh()});
-$("langES").addEventListener("click",()=>{lang="es";updateText();loadVoices();refresh()});
-$("langEN").addEventListener("click",()=>{lang="en";updateText();loadVoices();refresh()});
+$("shuffleBtn").addEventListener("click",()=>{if(autoMode)stopAuto("autoStopped");const currentItem=items[index];items=filteredItems().sort(()=>Math.random()-.5);index=0;if(currentItem){const found=items.findIndex(x=>x.i===currentItem.i);if(found>=0)index=found}render()});
+$("randomBtn").addEventListener("click",()=>{if(autoMode)stopAuto("autoStopped");if(!items.length)return;index=Math.floor(Math.random()*items.length);render()});
+$("resetBtn").addEventListener("click",()=>{if(autoMode)stopAuto("autoStopped");if(!confirm(lang==="es"?"¿Reiniciar las estadísticas de esta sesión?":"Reset this session's statistics?"))return;practiced.clear();answered.clear();sessionCount=0;lastScore=null;refresh()});
+$("langES").addEventListener("click",()=>{if(autoMode)stopAuto("autoStopped");lang="es";updateText();loadVoices();refresh()});
+$("langEN").addEventListener("click",()=>{if(autoMode)stopAuto("autoStopped");lang="en";updateText();loadVoices();refresh()});
 $("voiceToggle").addEventListener("click",()=>{voiceOn=!voiceOn;$("voiceToggle").textContent=tr(voiceOn?"voiceOn":"voiceOff");if(!voiceOn&&"speechSynthesis"in window)window.speechSynthesis.cancel()});
 if("speechSynthesis"in window){loadVoices();window.speechSynthesis.onvoiceschanged=loadVoices}
 populateSectors();updateText();initRecognition();refresh();
