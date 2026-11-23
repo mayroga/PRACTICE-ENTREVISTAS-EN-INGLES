@@ -759,83 +759,163 @@ $("userAnswer").value="";$("notes").value=loadNote("notes:"+sector+":"+items[ind
 $("starS").value="";$("starT").value="";$("starA").value="";$("starR").value="";$("starResult").textContent="";
 }
 function current(){return items[index]?.d||null}
-function speak(text){
-if(!voiceOn||!("speechSynthesis"in window))return;
-window.speechSynthesis.cancel();
-const u=new SpeechSynthesisUtterance(String(text||""));u.lang="en-US";u.rate=Number($("speed").value)||.9;
-const voices=window.speechSynthesis.getVoices(),selected=$("voiceSelect").value;
-if(selected){const v=voices.find(x=>x.name===selected);if(v)u.voice=v;}
-window.speechSynthesis.speak(u);
+function prepareNaturalSpeechText(text) {
+  return String(text || "")
+    .replace(/\s+/g, " ")
+    .replace(/\s*([,;:])\s*/g, "$1 ")
+    .replace(/\s*([.!?])\s*/g, "$1  ")
+    .replace(/([.!?])\1+/g, "$1")
+    .trim();
 }
-function loadVoices(){
-if(!("speechSynthesis"in window))return;
-const voices=window.speechSynthesis.getVoices().filter(v=>/^en(-|_)/i.test(v.lang));
-const currentValue=$("voiceSelect").value;
-$("voiceSelect").innerHTML=`<option value="">${tr("noVoice")}</option>`+voices.map(v=>`<option value="${esc(v.name)}">${esc(v.name)} (${esc(v.lang)})</option>`).join("");
-if(voices.some(v=>v.name===currentValue))$("voiceSelect").value=currentValue;
+
+function pickHumanVoice(voices, selectedName) {
+  if (!Array.isArray(voices) || !voices.length) return null;
+
+  if (selectedName) {
+    const exact = voices.find((v) => v.name === selectedName);
+    if (exact) return exact;
+  }
+
+  const englishVoices = voices.filter((v) => /^en(-|_)/i.test(v.lang));
+  const pool = englishVoices.length ? englishVoices : voices;
+
+  const naturalKeywords = [
+    "natural",
+    "neural",
+    "online",
+    "premium",
+    "enhanced",
+    "samantha",
+    "ava",
+    "allison",
+    "aria",
+    "jenny",
+    "google us english"
+  ];
+
+  const avoidKeywords = [
+    "espeak",
+    "festival",
+    "flite",
+    "robot",
+    "compact",
+    "zarvox",
+    "trinoids",
+    "whisper"
+  ];
+
+  const scored = pool.map((v) => {
+    const hay = `${v.name} ${v.voiceURI || ""}`.toLowerCase();
+    let score = 0;
+
+    if (/^en[-_]us$/i.test(v.lang)) score += 6;
+    else if (/^en(-|_)/i.test(v.lang)) score += 3;
+
+    if (v.localService === false) score += 4;
+    if (v.default) score += 2;
+
+    for (const k of naturalKeywords) {
+      if (hay.includes(k)) score += 5;
+    }
+    for (const k of avoidKeywords) {
+      if (hay.includes(k)) score -= 12;
+    }
+
+    return { v, score };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored[0]?.v || pool[0] || null;
 }
-function markPracticed(){
-const d=current();if(!d)return;
-const key=sector+":"+items[index].i;
-if(!practiced.has(key)){practiced.add(key);sessionCount++;}
-render();$("feedback").textContent=tr("done");$("feedback").classList.remove("hidden");
+
+function createHumanUtterance(text, rateValue) {
+  const cleanText = prepareNaturalSpeechText(text);
+  const u = new SpeechSynthesisUtterance(cleanText);
+  const baseRate = Number(rateValue);
+  const safeRate = Number.isFinite(baseRate) && baseRate > 0 ? baseRate : 0.9;
+
+  // Ritmo pausado y de lectura clara, ligeramente calmado para sonar más humano
+  u.lang = "en-US";
+  u.rate = Math.min(1.05, Math.max(0.65, safeRate * 0.94));
+  u.pitch = 0.98;
+  u.volume = 1.0;
+
+  const voices = window.speechSynthesis.getVoices() || [];
+  const selected = $("voiceSelect") ? $("voiceSelect").value : "";
+  const chosenVoice = pickHumanVoice(voices, selected);
+  if (chosenVoice) {
+    u.voice = chosenVoice;
+    if (chosenVoice.lang) u.lang = chosenVoice.lang;
+  }
+
+  return u;
 }
-function evaluate(){
-const d=current();if(!d)return;
-const answer=$("userAnswer").value.trim();
-if(!answer){$("feedback").textContent=tr("empty");return;}
-const words=answer.toLowerCase().match(/[a-z']+/g)||[];
-const keywords=d[3].split(", ").map(x=>x.toLowerCase());
-const matched=keywords.filter(k=>answer.toLowerCase().includes(k)).length;
-const coverage=Math.round(matched/Math.max(1,keywords.length)*100);
-const lengthScore=words.length>=35?100:words.length>=20?85:words.length>=10?65:35;
-const score=Math.round(coverage*.55+lengthScore*.45);
-lastScore=score;answered.add(sector+":"+items[index].i);
-feedbackText=`${tr("evalTitle")}: ${score}%\n${tr("wordCount")}: ${words.length}\n${tr("coverage")}: ${matched}/${keywords.length}\n${tr("suggestion")}: ${words.length<20?tr("short"):score<60?tr("good"):tr("strong")}\n\n${tr("tips")}: ${d[1]}`;
-$("feedback").textContent=feedbackText;
-$("scoreStat").textContent=score+"%";$("streakStat").textContent=answered.size;
-saveNote("answer:"+sector+":"+items[index].i,answer);
+
+function speak(text) {
+  if (!voiceOn || !("speechSynthesis" in window)) return;
+  const cleanText = prepareNaturalSpeechText(text);
+  if (!cleanText) return;
+
+  window.speechSynthesis.cancel();
+  const u = createHumanUtterance(cleanText, $("speed") ? $("speed").value : 0.9);
+  window.speechSynthesis.speak(u);
 }
-function saveNote(key,value){try{localStorage.setItem("interview:"+key,value);return true}catch(e){return false}}
-function loadNote(key){try{return localStorage.getItem("interview:"+key)||""}catch(e){return""}}
-function buildStar(){
-const parts=[["S — Situation",$("starS").value],["T — Task",$("starT").value],["A — Action",$("starA").value],["R — Result",$("starR").value]].filter(x=>x[1].trim());
-if(!parts.length){$("starResult").textContent=tr("empty");return}
-const result=parts.map(x=>x[0]+": "+x[1].trim()).join("\n\n");
-$("starResult").textContent=result;$("userAnswer").value=result;
+
+function loadVoices() {
+  if (!("speechSynthesis" in window)) return;
+  const allVoices = window.speechSynthesis.getVoices() || [];
+  const voices = allVoices.filter((v) => /^en(-|_)/i.test(v.lang));
+  const listToShow = voices.length ? voices : allVoices;
+  const currentValue = $("voiceSelect").value;
+  const recommended = pickHumanVoice(listToShow, "");
+
+  $("voiceSelect").innerHTML =
+    `<option value="">${esc(tr("noVoice"))}</option>` +
+    listToShow
+      .map((v) => {
+        const isRec = recommended && v.name === recommended.name ? " ★" : "";
+        return `<option value="${esc(v.name)}">${esc(v.name)} (${esc(v.lang)})${isRec}</option>`;
+      })
+      .join("");
+
+  if (currentValue && listToShow.some((v) => v.name === currentValue)) {
+    $("voiceSelect").value = currentValue;
+  } else if (recommended) {
+    $("voiceSelect").value = recommended.name;
+  }
 }
-function downloadReport(){
-const d=current(),date=new Date().toLocaleString();
-const lines=[tr("report"),tr("date")+": "+date,tr("field")+": "+sector,"",tr("asked")+": "+(d?d[0]:""),"",tr("model")+": "+(d?d[1]:""),"",tr("mine")+": "+($("userAnswer").value||tr("noAnswer")),"",tr("feedback")+": "+feedbackText,"",tr("notesLabel")+": "+$("notes").value,"",tr("star")+": "+$("starResult").textContent];
-const blob=new Blob(["\ufeff"+lines.join("\n")],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");
-a.href=url;a.download="interview-practice-report.txt";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
-}
-function initRecognition(){
-const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(!SR){$("micStatus").textContent=tr("notSupported");$("startMic").disabled=true;return}
-recognition=new SR();recognition.lang="en-US";recognition.continuous=true;recognition.interimResults=true;
-recognition.onstart=()=>{recording=true;$("startMic").disabled=true;$("stopMic").disabled=false;$("micStatus").textContent=tr("recording")};
-recognition.onresult=e=>{let text="";for(let i=0;i<e.results.length;i++)text+=e.results[i][0].transcript+" ";$("userAnswer").value=text.trim()};
-recognition.onerror=e=>{$("micStatus").textContent=e.error==="not-allowed"?tr("permission"):tr("notSupported");stopRecognition()};
-recognition.onend=()=>{recording=false;$("startMic").disabled=false;$("stopMic").disabled=true};
-}
-function stopRecognition(){if(recognition&&recording)recognition.stop();recording=false;$("startMic").disabled=false;$("stopMic").disabled=true}
-function stopAuto(messageKey="autoStopped"){
- autoMode=false;autoRunId++;if(autoTimer!==null){clearTimeout(autoTimer);autoTimer=null}
- if("speechSynthesis"in window)window.speechSynthesis.cancel();
- $("autoBtn").textContent=tr("autoStart");$("autoBtn").setAttribute("aria-pressed","false");$("autoStatus").textContent=messageKey?tr(messageKey):"";
-}
-function waitForSpeech(text,runId,done){
- let finished=false;const finish=()=>{if(finished||runId!==autoRunId)return;finished=true;if(autoTimer!==null){clearTimeout(autoTimer);autoTimer=null}done()};
- const rate=Number($("speed").value)||.9;
- const fallback=Math.max(1800,Math.min(18000,(String(text||"").length/14)*1000/rate+1200));
- autoTimer=setTimeout(finish,fallback);
- if(!voiceOn||!("speechSynthesis"in window)){return}
- window.speechSynthesis.cancel();
- const utterance=new SpeechSynthesisUtterance(String(text||""));utterance.lang="en-US";utterance.rate=rate;
- const voices=window.speechSynthesis.getVoices(),selected=$("voiceSelect").value;
- if(selected){const voice=voices.find(v=>v.name===selected);if(voice)utterance.voice=voice}
- utterance.onend=finish;utterance.onerror=finish;window.speechSynthesis.speak(utterance);
+
+function waitForSpeech(text, runId, done) {
+  let finished = false;
+  const finish = () => {
+    if (finished || runId !== autoRunId) return;
+    finished = true;
+    if (autoTimer !== null) {
+      clearTimeout(autoTimer);
+      autoTimer = null;
+    }
+    done();
+  };
+
+  const cleanText = prepareNaturalSpeechText(text);
+  const rate = Number($("speed").value) || 0.9;
+  const effectiveRate = Math.min(1.05, Math.max(0.65, rate * 0.94));
+  const fallback = Math.max(
+    2200,
+    Math.min(24000, (cleanText.length / 12.5) * 1000 / effectiveRate + 1600)
+  );
+
+  autoTimer = setTimeout(finish, fallback);
+
+  if (!voiceOn || !("speechSynthesis" in window) || !cleanText) {
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+  const utterance = createHumanUtterance(cleanText, rate);
+  utterance.onend = finish;
+  utterance.onerror = finish;
+  window.speechSynthesis.speak(utterance);
 }
 function runAutoStep(runId){
  if(!autoMode||runId!==autoRunId)return;
